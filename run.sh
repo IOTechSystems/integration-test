@@ -23,7 +23,7 @@ docker pull edgexfoundry/docker-device-virtual
 sh deploy-edgeX.sh
 
 cd postman-test/bin
-sh run.sh -cd ${1}
+sh run.sh -all ${1}
 
 cd ..
 cd ..

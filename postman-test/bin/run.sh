@@ -3,10 +3,10 @@
 option="${1}"
 TEST_DIR="${2}"
 
-echo " ${option}  ${DOCKER_NETWORK_PREFIX}"
+echo " ${option}  ${TEST_DIR}"
 
-if [ -z "${DOCKER_NETWORK_PREFIX}" ] ; then
-    echo "[ERROR] Need DOCKER_NETWORK_PREFIX  "
+if [ -z "${TEST_DIR}" ] ; then
+    echo "[ERROR] Need TEST_DIR  "
     exit 1;
 fi
 
