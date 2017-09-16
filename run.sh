@@ -1,11 +1,13 @@
 #!/bin/sh
 
-sh deploy-edgeX.sh
+echo "done"
 
-cd postman-test/bin
-sh run.sh -cd integrationtest
-
-cd ..
-cd ..
-
-docker-compose down
+#sh deploy-edgeX.sh
+#
+#cd postman-test/bin
+#sh run.sh -cd integrationtest
+#
+#cd ..
+#cd ..
+#
+#docker-compose down
