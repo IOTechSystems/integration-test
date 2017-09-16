@@ -1,12 +1,12 @@
 #!/bin/bash
 
 option="${1}"
-DOCKER_NETWORK="${2}"
+DOCKER_NETWORK_PREFIX="${2}"
 
-echo " ${option}  ${DOCKER_NETWORK}"
+echo " ${option}  ${DOCKER_NETWORK_PREFIX}"
 
-if [ -z "${DOCKER_NETWORK}" ] ; then
-    echo "[ERROR] Need DOCKER_NETWORK  "
+if [ -z "${DOCKER_NETWORK_PREFIX}" ] ; then
+    echo "[ERROR] Need DOCKER_NETWORK_PREFIX  "
     exit 1;
 fi
 
@@ -24,7 +24,7 @@ FUSELOGSPATH=$BASEPATH/fuse$TIMESTAMPFORMAT.log
 coreDataTest() {
 	
 	$(dirname "$0")/importCoreDataDump.sh
-	$(dirname "$0")/coreDataTest.sh ${DOCKER_NETWORK}
+	$(dirname "$0")/coreDataTest.sh ${DOCKER_NETWORK_PREFIX}
 	$(dirname "$0")/flushCoreDataDump.sh
 
 }
@@ -33,7 +33,7 @@ coreDataTest() {
 metaDataTest() {	
 
  	$(dirname "$0")/importMetaDataDumps.sh
- 	$(dirname "$0")/metadataTest.sh ${DOCKER_NETWORK}
+ 	$(dirname "$0")/metadataTest.sh ${DOCKER_NETWORK_PREFIX}
 	./flushMetaDataDump.sh
 
 }
@@ -41,7 +41,7 @@ metaDataTest() {
 commandTest() {
 
 	$(dirname "$0")/importCommandDataDump.sh
-	$(dirname "$0")/commandTest.sh ${DOCKER_NETWORK}
+	$(dirname "$0")/commandTest.sh ${DOCKER_NETWORK_PREFIX}
 	$(dirname "$0")/flushCommandDataDump.sh
 
 }

@@ -1,10 +1,9 @@
 #!/bin/bash
 
-DOCKER_NETWORK="${1}"
+DOCKER_NETWORK="${1}_edgex-network"
 
 NAMESFILE=files.sh
 
-POSTMAN_PATH="~/Documents/workspace/git/edgeX/integration-test/postman-test";
 COLLECTION_PATH="collections/fuse-core-data.postman_collection.json"
 ENV_PATH="environment/CoredataEnv.postman_environment.json"
 
@@ -24,24 +23,24 @@ echo "[info] ---------- use docker run newman  ----------"
 
 docker run --rm -v ~/Documents/workspace/git/edgeX/integration-test/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export="${EVENTREPORT200FILE}"
+    --reporters="junit,cli"
 docker run --rm -v ~/Documents/workspace/git/edgeX/integration-test/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export="${EVENTREPORT4XXFILE}"
+    --reporters="junit,cli"
 
 docker run --rm -v ~/Documents/workspace/git/edgeX/integration-test/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="reading" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export="${READINGREPORT200FILE}"
+    --reporters="junit,cli"
 docker run --rm -v ~/Documents/workspace/git/edgeX/integration-test/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="reading_error_4xx" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export="${READINGREPORT4XXFILE}"
+    --reporters="junit,cli"
 
 docker run --rm -v ~/Documents/workspace/git/edgeX/integration-test/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="valuedescriptor" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export="${VDREPORT200FILE}"
+    --reporters="junit,cli"
 docker run --rm -v ~/Documents/workspace/git/edgeX/integration-test/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="valuedescriptor_error_4xx" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export="${VDREPORT4XXFILE}"
+    --reporters="junit,cli"
 
 
 

@@ -1,8 +1,11 @@
 #!/bin/bash
 
-DOCKER_NETWORK="${1}"
+DOCKER_NETWORK="${1}_edgex-network"
 
 NAMESFILE=files.sh
+
+COLLECTION_PATH="collections/fuse-core-command.postman_collection.json"
+ENV_PATH="environment/command.postman_environment.json"
 
 if [ -f $NAMESFILE ]; then 
 
@@ -14,9 +17,6 @@ else
 
 fi
 
-COLLECTION_PATH="collections/fuse-core-command.postman_collection.json"
-ENV_PATH="environment/command.postman_environment.json"
-
 echo "Info: Initiating Command Test."
 
 #if [ "${WORKSPACE}" != "" ]; then
@@ -25,12 +25,12 @@ echo ""
 echo "[info] ---------- jenkins use docker run newman  ----------"
 echo "[info] WORKSPACE is ${WORKSPACE}"
 
-docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
-    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-    --folder="device" --iteration-data="data/coreCommandData.json"
-docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
-    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-    --folder="device_error_4xx" --iteration-data="data/coreCommandData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
+    --folder="device" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
+    --reporters="junit,cli"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
+    --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
+    --reporters="junit,cli"
 #fi
 
 
