@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "done"
-
+pwd
 #sh deploy-edgeX.sh
 #
 #cd postman-test/bin
