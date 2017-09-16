@@ -1,0 +1,284 @@
+Info: Event data imported
+Info: Reading data imported
+Info: valueDescriptor data imported
+Info: Initiating Coredata Test.
+newman
+
+fuse-core-data
+
+❏ event
+↳ 07 http://localhost:48080/api/v1/event
+  GET localhost:48080/api/v1/event   2. Status code is 200
+  3. Response time is less than 400
+
+↳ 04 http://localhost:48080/api/v1/event
+  PUT localhost:48080/api/v1/event   5. Status code is 200
+  6. Response time is less than 400ms
+
+↳ 95 http://localhost:48080/api/v1/event 
+  POST localhost:48080/api/v1/event   8. Status code is 200
+  9. Response time is less than 400
+
+↳ 10 http://localhost:48080/api/v1/event/:id
+  GET localhost:48080/api/v1/event/57e866d5e4b0ca8e6d73a3c5  11. Status code is 200
+ 12. Response time is less than 400
+
+↳ 15 http://localhost:48080/api/v1/event/id/:id
+  PUT localhost:48080/api/v1/event/id/57e87462e4b0ca8e6d73c2a4  14. Status code is 200
+ 15. Response time is less than 400ms
+
+↳ 12 http://localhost:48080/api/v1/event/id/:id
+  DELETE localhost:48080/api/v1/event/id/57e866d4e4b0ca8e6d73a3ba  17. Status code is 200
+ 18. Response time is less than 400ms
+
+↳ 94 http://localhost:48080/api/v1/event/device/:deviceId/{limit}
+  GET localhost:48080/api/v1/event/device/ohmmeter/100  20. Status code is 200
+ 21. Response time is less than 400
+
+↳ 98 http://localhost:48080/api/v1/event/device/:deviceId/{limit}
+  GET localhost:48080/api/v1/event/device/57ba04a1189b95b8afcdade1/100  23. Status code is 200
+ 24. Response time is less than 400
+
+↳ 21 http://localhost:48080/api/v1/event/device/:deviceId
+  DELETE localhost:48080/api/v1/event/device/57ba04a1189b95b8afcdade1  26. Status code is 200
+ 27. Response time is less than 400ms
+
+↳ 99 http://localhost:48080/api/v1/event/device/:deviceId
+  DELETE localhost:48080/api/v1/event/device/industrialThermostat  29. Status code is 200
+ 30. Response time is less than 400ms
+
+↳ 24 http://localhost:48080/api/v1/event/:start/{end}/{limit}
+  GET localhost:48080/api/v1/event/1464039919104/1464039919109/100  32. Status code is 200
+ 33. Response time is less than 400
+
+↳ 27 http://localhost:48080/api/v1/event/device/:deviceId/valuedescriptor/{valuedescriptor}/{limit} 
+  GET localhost:48080/api/v1/event/device/ohmmeter/valuedescriptor/ohm/100  35. Status code is 200
+ 36. Response time is less than 400
+
+↳ 30 http://localhost:48080/api/v1/event/removeold/age/:age
+  DELETE localhost:48080/api/v1/event/removeold/age/2500000000  38. Status code is 200
+ 39. Response time is less than 400ms
+
+↳ 32 http://localhost:48080/api/v1/event/scrub
+  DELETE localhost:48080/api/v1/event/scrub  41. Status code is 200
+ 42. Response time is less than 400ms
+
+↳ 01 http://localhost:48080/api/v1/event
+  POST localhost:48080/api/v1/event  44. Status code is 200
+ 45. Response time is less than 400
+
+┌─────────────────────────┬──────────┬──────────┐
+│                         │ executed │   failed │
+├─────────────────────────┼──────────┼──────────┤
+│              iterations │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│                requests │       15 │       15 │
+├─────────────────────────┼──────────┼──────────┤
+│            test-scripts │       15 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│      prerequest-scripts │        0 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│              assertions │       30 │       30 │
+├─────────────────────────┴──────────┴──────────┤
+│ total run duration: 886ms                     │
+├───────────────────────────────────────────────┤
+│ total data received: 0B (approx)              │
+├───────────────────────────────────────────────┤
+│ average response time: 0ms                    │
+└───────────────────────────────────────────────┘
+
+   #  failure           detail                                                                                                              
+                                                                                                                                            
+ 01.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 07 http://localhost:48080/api/v1/event"                                                             
+                                                                                                                                            
+ 02.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 07 http://localhost:48080/api/v1/event"                                                             
+                                                                                                                                            
+ 03.  AssertionFailure  Response time is less than 400                                                                                      
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 07 http://localhost:48080/api/v1/event"                                                             
+                                                                                                                                            
+ 04.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 04 http://localhost:48080/api/v1/event"                                                             
+                                                                                                                                            
+ 05.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 04 http://localhost:48080/api/v1/event"                                                             
+                                                                                                                                            
+ 06.  AssertionFailure  Response time is less than 400ms                                                                                    
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 04 http://localhost:48080/api/v1/event"                                                             
+                                                                                                                                            
+ 07.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 95 http://localhost:48080/api/v1/event "                                                            
+                                                                                                                                            
+ 08.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 95 http://localhost:48080/api/v1/event "                                                            
+                                                                                                                                            
+ 09.  AssertionFailure  Response time is less than 400                                                                                      
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 95 http://localhost:48080/api/v1/event "                                                            
+                                                                                                                                            
+ 10.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 10 http://localhost:48080/api/v1/event/:id"                                                         
+                                                                                                                                            
+ 11.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 10 http://localhost:48080/api/v1/event/:id"                                                         
+                                                                                                                                            
+ 12.  AssertionFailure  Response time is less than 400                                                                                      
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 10 http://localhost:48080/api/v1/event/:id"                                                         
+                                                                                                                                            
+ 13.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 15 http://localhost:48080/api/v1/event/id/:id"                                                      
+                                                                                                                                            
+ 14.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 15 http://localhost:48080/api/v1/event/id/:id"                                                      
+                                                                                                                                            
+ 15.  AssertionFailure  Response time is less than 400ms                                                                                    
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 15 http://localhost:48080/api/v1/event/id/:id"                                                      
+                                                                                                                                            
+ 16.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 12 http://localhost:48080/api/v1/event/id/:id"                                                      
+                                                                                                                                            
+ 17.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 12 http://localhost:48080/api/v1/event/id/:id"                                                      
+                                                                                                                                            
+ 18.  AssertionFailure  Response time is less than 400ms                                                                                    
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 12 http://localhost:48080/api/v1/event/id/:id"                                                      
+                                                                                                                                            
+ 19.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 94 http://localhost:48080/api/v1/event/device/:deviceId/{limit}"                                    
+                                                                                                                                            
+ 20.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 94 http://localhost:48080/api/v1/event/device/:deviceId/{limit}"                                    
+                                                                                                                                            
+ 21.  AssertionFailure  Response time is less than 400                                                                                      
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 94 http://localhost:48080/api/v1/event/device/:deviceId/{limit}"                                    
+                                                                                                                                            
+ 22.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 98 http://localhost:48080/api/v1/event/device/:deviceId/{limit}"                                    
+                                                                                                                                            
+ 23.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 98 http://localhost:48080/api/v1/event/device/:deviceId/{limit}"                                    
+                                                                                                                                            
+ 24.  AssertionFailure  Response time is less than 400                                                                                      
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 98 http://localhost:48080/api/v1/event/device/:deviceId/{limit}"                                    
+                                                                                                                                            
+ 25.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 21 http://localhost:48080/api/v1/event/device/:deviceId"                                            
+                                                                                                                                            
+ 26.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 21 http://localhost:48080/api/v1/event/device/:deviceId"                                            
+                                                                                                                                            
+ 27.  AssertionFailure  Response time is less than 400ms                                                                                    
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 21 http://localhost:48080/api/v1/event/device/:deviceId"                                            
+                                                                                                                                            
+ 28.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 99 http://localhost:48080/api/v1/event/device/:deviceId"                                            
+                                                                                                                                            
+ 29.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 99 http://localhost:48080/api/v1/event/device/:deviceId"                                            
+                                                                                                                                            
+ 30.  AssertionFailure  Response time is less than 400ms                                                                                    
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 99 http://localhost:48080/api/v1/event/device/:deviceId"                                            
+                                                                                                                                            
+ 31.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 24 http://localhost:48080/api/v1/event/:start/{end}/{limit}"                                        
+                                                                                                                                            
+ 32.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 24 http://localhost:48080/api/v1/event/:start/{end}/{limit}"                                        
+                                                                                                                                            
+ 33.  AssertionFailure  Response time is less than 400                                                                                      
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 24 http://localhost:48080/api/v1/event/:start/{end}/{limit}"                                        
+                                                                                                                                            
+ 34.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 27 http://localhost:48080/api/v1/event/device/:deviceId/valuedescriptor/{valuedescriptor}/{limit} " 
+                                                                                                                                            
+ 35.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 27 http://localhost:48080/api/v1/event/device/:deviceId/valuedescriptor/{valuedescriptor}/{limit} " 
+                                                                                                                                            
+ 36.  AssertionFailure  Response time is less than 400                                                                                      
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 27 http://localhost:48080/api/v1/event/device/:deviceId/valuedescriptor/{valuedescriptor}/{limit} " 
+                                                                                                                                            
+ 37.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 30 http://localhost:48080/api/v1/event/removeold/age/:age"                                          
+                                                                                                                                            
+ 38.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 30 http://localhost:48080/api/v1/event/removeold/age/:age"                                          
+                                                                                                                                            
+ 39.  AssertionFailure  Response time is less than 400ms                                                                                    
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 30 http://localhost:48080/api/v1/event/removeold/age/:age"                                          
+                                                                                                                                            
+ 40.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 32 http://localhost:48080/api/v1/event/scrub"                                                       
+                                                                                                                                            
+ 41.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 32 http://localhost:48080/api/v1/event/scrub"                                                       
+                                                                                                                                            
+ 42.  AssertionFailure  Response time is less than 400ms                                                                                    
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 32 http://localhost:48080/api/v1/event/scrub"                                                       
+                                                                                                                                            
+ 43.  Error             connect ECONNREFUSED 127.0.0.1:48080                                                                                
+                        at request                                                                                                          
+                        inside "event / 01 http://localhost:48080/api/v1/event"                                                             
+                                                                                                                                            
+ 44.  AssertionFailure  Status code is 200                                                                                                  
+                        at assertion:1 in test-script                                                                                       
+                        inside "event / 01 http://localhost:48080/api/v1/event"                                                             
+                                                                                                                                            
+ 45.  AssertionFailure  Response time is less than 400                                                                                      
+                        at assertion:2 in test-script                                                                                       
+                        inside "event / 01 http://localhost:48080/api/v1/event"                                                             
+[info] not jenkins build
+Info:Coredata Test Completed.
+MongoDB shell version v3.4.7
+connecting to: mongodb://localhost:27017/coredata
+MongoDB server version: 3.4.4
+Info: Event data flushed
+MongoDB shell version v3.4.7
+connecting to: mongodb://localhost:27017/coredata
+MongoDB server version: 3.4.4
+Info: Reading data flushed
+MongoDB shell version v3.4.7
+connecting to: mongodb://localhost:27017/coredata
+MongoDB server version: 3.4.4
+Info: Value Descriptor data flushed

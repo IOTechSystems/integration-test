@@ -1,0 +1,620 @@
+Info: Event data imported
+Info: Reading data imported
+Info: valueDescriptor data imported
+Info: Initiating Coredata Test.
+newman
+
+fuse-core-data
+
+❏ event
+↳ 07 http://localhost:48080/api/v1/event
+  GET localhost:48080/api/v1/event [413 Request Entity Too Large, 5.29KB, 69ms]
+  1. Status code is 200
+  ✓  Response time is less than 400
+
+↳ 04 http://localhost:48080/api/v1/event
+  PUT localhost:48080/api/v1/event [404 Not Found, 5.32KB, 20ms]
+  2. Status code is 200
+  ✓  Response time is less than 400ms
+
+↳ 95 http://localhost:48080/api/v1/event 
+  POST localhost:48080/api/v1/event [409 Conflict, 5.2KB, 7ms]
+  3. Status code is 200
+  ✓  Response time is less than 400
+
+↳ 10 http://localhost:48080/api/v1/event/:id
+  GET localhost:48080/api/v1/event/57e866d5e4b0ca8e6d73a3c5 [404 Not Found, 5.32KB, 8ms]
+  4. Status code is 200
+  ✓  Response time is less than 400
+
+↳ 15 http://localhost:48080/api/v1/event/id/:id
+  PUT localhost:48080/api/v1/event/id/57e87462e4b0ca8e6d73c2a4 [404 Not Found, 5.25KB, 17ms]
+  5. Status code is 200
+  ✓  Response time is less than 400ms
+
+↳ 12 http://localhost:48080/api/v1/event/id/:id
+  DELETE localhost:48080/api/v1/event/id/57e866d4e4b0ca8e6d73a3ba [404 Not Found, 5.33KB, 11ms]
+  6. Status code is 200
+  ✓  Response time is less than 400ms
+
+↳ 94 http://localhost:48080/api/v1/event/device/:deviceId/{limit}
+  GET localhost:48080/api/v1/event/device/ohmmeter/100 [200 OK, 159B, 72ms]
+  ┌
+  │ 'Event is empty.'
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Event empty
+
+↳ 98 http://localhost:48080/api/v1/event/device/:deviceId/{limit}
+  GET localhost:48080/api/v1/event/device/57ba04a1189b95b8afcdade1/100 [200 OK, 159B, 7ms]
+  ┌
+  │ 'Event is empty.'
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Event empty
+
+↳ 21 http://localhost:48080/api/v1/event/device/:deviceId
+  DELETE localhost:48080/api/v1/event/device/57ba04a1189b95b8afcdade1 [200 OK, 158B, 235ms]
+  ✓  Status code is 200
+  ✓  Response time is less than 400ms
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  7. Is items deleted
+
+↳ 99 http://localhost:48080/api/v1/event/device/:deviceId
+  DELETE localhost:48080/api/v1/event/device/industrialThermostat [200 OK, 158B, 6ms]
+  ✓  Status code is 200
+  ✓  Response time is less than 400ms
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  8. Is items deleted
+
+↳ 24 http://localhost:48080/api/v1/event/:start/{end}/{limit}
+  GET localhost:48080/api/v1/event/1464039919104/1464039919109/100 [200 OK, 159B, 13ms]
+  ┌
+  │ 'Event is empty.'
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Event empty
+
+↳ 27 http://localhost:48080/api/v1/event/device/:deviceId/valuedescriptor/{valuedescriptor}/{limit} 
+  GET localhost:48080/api/v1/event/device/ohmmeter/valuedescriptor/ohm/100 [200 OK, 159B, 23ms]
+  ┌
+  │ 'Validation failed: ', null
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Valid Response Schema
+
+↳ 30 http://localhost:48080/api/v1/event/removeold/age/:age
+  DELETE localhost:48080/api/v1/event/removeold/age/2500000000 [200 OK, 158B, 78ms]
+  ✓  Status code is 200
+  ✓  Response time is less than 400ms
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  9. Is items deleted
+
+↳ 32 http://localhost:48080/api/v1/event/scrub
+  DELETE localhost:48080/api/v1/event/scrub [200 OK, 160B, 127ms]
+  ✓  Status code is 200
+  ✓  Response time is less than 400ms
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is items deleted
+
+↳ 01 http://localhost:48080/api/v1/event
+  POST localhost:48080/api/v1/event [409 Conflict, 5.2KB, 5ms]
+ 10. Status code is 200
+  ✓  Response time is less than 400
+
+┌─────────────────────────┬──────────┬──────────┐
+│                         │ executed │   failed │
+├─────────────────────────┼──────────┼──────────┤
+│              iterations │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│                requests │       15 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│            test-scripts │       15 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│      prerequest-scripts │        0 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│              assertions │       54 │       10 │
+├─────────────────────────┴──────────┴──────────┤
+│ total run duration: 1325ms                    │
+├───────────────────────────────────────────────┤
+│ total data received: 35.86KB (approx)         │
+├───────────────────────────────────────────────┤
+│ average response time: 46ms                   │
+└───────────────────────────────────────────────┘
+
+   #  failure           detail                                                                     
+                                                                                                   
+ 01.  AssertionFailure  Status code is 200                                                         
+                        at assertion:1 in test-script                                              
+                        inside "event / 07 http://localhost:48080/api/v1/event"                    
+                                                                                                   
+ 02.  AssertionFailure  Status code is 200                                                         
+                        at assertion:1 in test-script                                              
+                        inside "event / 04 http://localhost:48080/api/v1/event"                    
+                                                                                                   
+ 03.  AssertionFailure  Status code is 200                                                         
+                        at assertion:1 in test-script                                              
+                        inside "event / 95 http://localhost:48080/api/v1/event "                   
+                                                                                                   
+ 04.  AssertionFailure  Status code is 200                                                         
+                        at assertion:1 in test-script                                              
+                        inside "event / 10 http://localhost:48080/api/v1/event/:id"                
+                                                                                                   
+ 05.  AssertionFailure  Status code is 200                                                         
+                        at assertion:1 in test-script                                              
+                        inside "event / 15 http://localhost:48080/api/v1/event/id/:id"             
+                                                                                                   
+ 06.  AssertionFailure  Status code is 200                                                         
+                        at assertion:1 in test-script                                              
+                        inside "event / 12 http://localhost:48080/api/v1/event/id/:id"             
+                                                                                                   
+ 07.  AssertionFailure  Is items deleted                                                           
+                        at assertion:5 in test-script                                              
+                        inside "event / 21 http://localhost:48080/api/v1/event/device/:deviceId"   
+                                                                                                   
+ 08.  AssertionFailure  Is items deleted                                                           
+                        at assertion:5 in test-script                                              
+                        inside "event / 99 http://localhost:48080/api/v1/event/device/:deviceId"   
+                                                                                                   
+ 09.  AssertionFailure  Is items deleted                                                           
+                        at assertion:5 in test-script                                              
+                        inside "event / 30 http://localhost:48080/api/v1/event/removeold/age/:age" 
+                                                                                                   
+ 10.  AssertionFailure  Status code is 200                                                         
+                        at assertion:1 in test-script                                              
+                        inside "event / 01 http://localhost:48080/api/v1/event"                    
+newman
+
+fuse-core-data
+
+❏ reading
+↳ 41 http://localhost:48080/api/v1/reading
+  GET localhost:48080/api/v1/reading [200 OK, 8.23KB, 41ms]
+  ┌
+  │ 'Validation failed: ', null
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Valid Response Schema
+
+↳ 37 http://localhost:48080/api/v1/reading
+  PUT localhost:48080/api/v1/reading [404 Not Found, 5.33KB, 21ms]
+  1. Status code is 200
+  ✓  Response time is less than 400
+
+↳ 34 http://localhost:48080/api/v1/reading
+  POST localhost:48080/api/v1/reading [409 Conflict, 5.28KB, 8ms]
+
+↳ 44 http://localhost:48080/api/v1/reading/:id
+  GET localhost:48080/api/v1/reading/57e745efe4b0ca8e6d7116d7 [404 Not Found, 5.33KB, 9ms]
+  2. Status code is 200
+  ✓  Response time is less than 400
+
+↳ 46 http://localhost:48080/api/v1/reading/id/:id
+  DELETE localhost:48080/api/v1/reading/id/57e866d5e4b0ca8e6d73a3c4 [404 Not Found, 5.33KB, 8ms]
+  3. Status code is 200
+
+↳ 49 http://localhost:48080/api/v1/reading/device/:deviceId/{limit}
+  GET localhost:48080/api/v1/reading/device/variableSpeedMotor/100 [200 OK, 159B, 6ms]
+  ┌
+  │ 'Reading is empty.'
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Reading empty
+
+↳ 53 http://localhost:48080/api/v1/reading/name/:name/{limit}
+  GET localhost:48080/api/v1/reading/name/temperature/100 [200 OK, 159B, 5ms]
+  ┌
+  │ 'Reading is empty.'
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Reading empty
+
+↳ 56 http://localhost:48080/api/v1/reading/uomlabel/:uomLabel/{limit}
+  GET localhost:48080/api/v1/reading/uomlabel/power/100 [200 OK, 159B, 5ms]
+  ┌
+  │ 'Reading is empty.'
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Reading empty
+
+↳ 59 http://localhost:48080/api/v1/reading/label/:label/{limit}
+  GET localhost:48080/api/v1/reading/label/KW/100 [200 OK, 159B, 20ms]
+  ┌
+  │ 'Reading is empty.'
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Reading empty
+
+↳ 62 http://localhost:48080/api/v1/reading/type/:type/{limit}
+  GET localhost:48080/api/v1/reading/type/F/100 [200 OK, 7.31KB, 11ms]
+  ┌
+  │ 'Validation failed: ', null
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is record count is equal or less than limit
+  ✓  Is valid response schema
+
+↳ 65 http://localhost:48080/api/v1/reading/:start/{end}/{limit}
+  GET localhost:48080/api/v1/reading/1464039919104/1464039919109/100 [200 OK, 159B, 7ms]
+  ┌
+  │ 'Reading is empty.'
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Reading empty
+
+┌─────────────────────────┬──────────┬──────────┐
+│                         │ executed │   failed │
+├─────────────────────────┼──────────┼──────────┤
+│              iterations │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│                requests │       11 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│            test-scripts │       11 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│      prerequest-scripts │        0 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│              assertions │       41 │        3 │
+├─────────────────────────┴──────────┴──────────┤
+│ total run duration: 673ms                     │
+├───────────────────────────────────────────────┤
+│ total data received: 35.93KB (approx)         │
+├───────────────────────────────────────────────┤
+│ average response time: 12ms                   │
+└───────────────────────────────────────────────┘
+
+  #  failure           detail                                                             
+                                                                                          
+ 1.  AssertionFailure  Status code is 200                                                 
+                       at assertion:1 in test-script                                      
+                       inside "reading / 37 http://localhost:48080/api/v1/reading"        
+                                                                                          
+ 2.  AssertionFailure  Status code is 200                                                 
+                       at assertion:1 in test-script                                      
+                       inside "reading / 44 http://localhost:48080/api/v1/reading/:id"    
+                                                                                          
+ 3.  AssertionFailure  Status code is 200                                                 
+                       at assertion:1 in test-script                                      
+                       inside "reading / 46 http://localhost:48080/api/v1/reading/id/:id" 
+newman
+
+fuse-core-data
+
+❏ valuedescriptor
+↳ 73 http://localhost:48080/api/v1/valuedescriptor
+  GET localhost:48080/api/v1/valuedescriptor [200 OK, 3.26KB, 29ms]
+  ┌
+  │ 'Validation failed: ', null
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400ms
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Valid Response Schema
+
+↳ 71 http://localhost:48080/api/v1/valuedescriptor
+  PUT localhost:48080/api/v1/valuedescriptor [404 Not Found, 5.37KB, 39ms]
+  1. Status code is 200
+
+↳ 68 http://localhost:48080/api/v1/valuedescriptor
+  POST localhost:48080/api/v1/valuedescriptor [200 OK, 167B, 19ms]
+  ✓  Status code is 200
+  ✓  Response time is less than 200ms
+  ✓  Has Content-Type
+  ✓  Content-Type is text/plain
+  ✓  Response Object id
+
+↳ 76 http://localhost:48080/api/v1/valuedescriptor/id/:id
+  DELETE localhost:48080/api/v1/valuedescriptor/id/57ea0061e4b0f1b53f534137 [404 Not Found, 5.37KB, 11ms]
+  2. Status code is 200
+
+↳ 80 http://localhost:48080/api/v1/valuedescriptor/name/:name
+  GET localhost:48080/api/v1/valuedescriptor/name/co2 [404 Not Found, 5.34KB, 7ms]
+  3. Status code is 200
+  ✓  Response time is less than 400ms
+
+↳ 82 http://localhost:48080/api/v1/valuedescriptor/name/:name
+  DELETE localhost:48080/api/v1/valuedescriptor/name/O2 [404 Not Found, 5.33KB, 9ms]
+  4. Status code is 200
+  ✓  Response time is less than 400ms
+
+↳ 86 http://localhost:48080/api/v1/valuedescriptor/:id
+  GET localhost:48080/api/v1/valuedescriptor/57b9fbb2189b95b8afcdafd2 [404 Not Found, 5.38KB, 8ms]
+  5. Status code is 200
+  ✓  Response time is less than 400ms
+
+↳ 88 http://localhost:48080/api/v1/valuedescriptor/uomlabel/:uomLabel
+  GET localhost:48080/api/v1/valuedescriptor/uomlabel/degreecel [200 OK, 406B, 7ms]
+  ┌
+  │ 'Validation failed: ', null
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400ms
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Valid Response Schema
+
+↳ 90 http://localhost:48080/api/v1/valuedescriptor/label/:label
+  GET localhost:48080/api/v1/valuedescriptor/label/hvac [200 OK, 406B, 7ms]
+  ┌
+  │ 'Validation failed: ', null
+  └
+  ✓  Status code is 200
+  ✓  Response time is less than 400ms
+  ✓  Has Content-Type
+  ✓  Content-Type is application/json
+  ✓  Is Valid Response Schema
+
+┌─────────────────────────┬──────────┬──────────┐
+│                         │ executed │   failed │
+├─────────────────────────┼──────────┼──────────┤
+│              iterations │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│                requests │        9 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│            test-scripts │        9 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│      prerequest-scripts │        0 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│              assertions │       28 │        5 │
+├─────────────────────────┴──────────┴──────────┤
+│ total run duration: 595ms                     │
+├───────────────────────────────────────────────┤
+│ total data received: 29.66KB (approx)         │
+├───────────────────────────────────────────────┤
+│ average response time: 15ms                   │
+└───────────────────────────────────────────────┘
+
+  #  failure           detail                                                                                 
+                                                                                                              
+ 1.  AssertionFailure  Status code is 200                                                                     
+                       at assertion:1 in test-script                                                          
+                       inside "valuedescriptor / 71 http://localhost:48080/api/v1/valuedescriptor"            
+                                                                                                              
+ 2.  AssertionFailure  Status code is 200                                                                     
+                       at assertion:1 in test-script                                                          
+                       inside "valuedescriptor / 76 http://localhost:48080/api/v1/valuedescriptor/id/:id"     
+                                                                                                              
+ 3.  AssertionFailure  Status code is 200                                                                     
+                       at assertion:1 in test-script                                                          
+                       inside "valuedescriptor / 80 http://localhost:48080/api/v1/valuedescriptor/name/:name" 
+                                                                                                              
+ 4.  AssertionFailure  Status code is 200                                                                     
+                       at assertion:1 in test-script                                                          
+                       inside "valuedescriptor / 82 http://localhost:48080/api/v1/valuedescriptor/name/:name" 
+                                                                                                              
+ 5.  AssertionFailure  Status code is 200                                                                     
+                       at assertion:1 in test-script                                                          
+                       inside "valuedescriptor / 86 http://localhost:48080/api/v1/valuedescriptor/:id"        
+newman
+
+fuse-core-data
+
+❏ event_error_4xx
+↳ 05 http://localhost:48080/api/v1/event
+  PUT localhost:48080/api/v1/event [404 Not Found, 5.29KB, 35ms]
+  ✓  Status code is 404
+  ✓  Response time is less than 400
+
+↳ 02 http://localhost:48080/api/v1/event
+  POST localhost:48080/api/v1/event [409 Conflict, 5.2KB, 10ms]
+  ✓  Status code is 409
+  ✓  Response time is less than 400
+
+↳ 96 http://localhost:48080/api/v1/event
+  POST localhost:48080/api/v1/event [409 Conflict, 5.2KB, 5ms]
+  ✓  Status code is 409
+  ✓  Response time is less than 400
+
+↳ 16 http://localhost:48080/api/v1/event/id/:id
+  PUT localhost:48080/api/v1/event/id/1234657898sdssdw [404 Not Found, 5.23KB, 6ms]
+  ✓  Status code is 404
+  ✓  Response time is less than 400
+
+↳ 13 http://localhost:48080/api/v1/event/id/:id
+  DELETE localhost:48080/api/v1/event/id/1234657898sdssdw [404 Not Found, 5.31KB, 10ms]
+  ✓  Status code is 404
+  ✓  Response time is less than 400
+
+↳ 18 http://localhost:48080/api/v1/event/device/:deviceId/{limit}
+  GET localhost:48080/api/v1/event/device/1234657898sdssdw/100 [200 OK, 159B, 8ms]
+  ✓  Response time is less than 400
+
+↳ 100 http://localhost:48080/api/v1/event/device/:deviceId
+  DELETE localhost:48080/api/v1/event/device/preassureSensor [200 OK, 158B, 5ms]
+  ✓  Response time is less than 400
+
+↳ 22 http://localhost:48080/api/v1/event/device/:deviceId
+  DELETE localhost:48080/api/v1/event/device/1234657898sdssdw [200 OK, 158B, 5ms]
+  ✓  Response time is less than 400
+
+┌─────────────────────────┬──────────┬──────────┐
+│                         │ executed │   failed │
+├─────────────────────────┼──────────┼──────────┤
+│              iterations │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│                requests │        8 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│            test-scripts │        8 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│      prerequest-scripts │        0 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│              assertions │       13 │        0 │
+├─────────────────────────┴──────────┴──────────┤
+│ total run duration: 487ms                     │
+├───────────────────────────────────────────────┤
+│ total data received: 25.5KB (approx)          │
+├───────────────────────────────────────────────┤
+│ average response time: 10ms                   │
+└───────────────────────────────────────────────┘
+newman
+
+fuse-core-data
+
+❏ reading_error_4xx
+↳ 38 http://localhost:48080/api/v1/reading
+  PUT localhost:48080/api/v1/reading [404 Not Found, 5.3KB, 30ms]
+  ✓  Status code is 404
+  ✓  Response time is less than 200ms
+
+↳ 35 http://localhost:48080/api/v1/reading
+  POST localhost:48080/api/v1/reading [409 Conflict, 5.28KB, 10ms]
+  ✓  Status code is 409
+  ✓  Response time is less than 200ms
+
+↳ 47 http://localhost:48080/api/v1/reading/id/:id
+  DELETE localhost:48080/api/v1/reading/id/{{invalidId}} [404 Not Found, 5.31KB, 10ms]
+  ✓  Status code is 404
+  ✓  Response time is less than 200ms
+
+↳ 39 http://localhost:48080/api/v1/reading 409 Error Status
+  PUT localhost:48080/api/v1/reading [404 Not Found, 5.33KB, 10ms]
+  1. Status code is 409
+  ✓  Response time is less than 200ms
+
+┌─────────────────────────┬──────────┬──────────┐
+│                         │ executed │   failed │
+├─────────────────────────┼──────────┼──────────┤
+│              iterations │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│                requests │        4 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│            test-scripts │        4 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│      prerequest-scripts │        0 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│              assertions │        8 │        1 │
+├─────────────────────────┴──────────┴──────────┤
+│ total run duration: 348ms                     │
+├───────────────────────────────────────────────┤
+│ total data received: 20.64KB (approx)         │
+├───────────────────────────────────────────────┤
+│ average response time: 15ms                   │
+└───────────────────────────────────────────────┘
+
+  #  failure           detail                                                                                 
+                                                                                                              
+ 1.  AssertionFailure  Status code is 409                                                                     
+                       at assertion:1 in test-script                                                          
+                       inside "reading_error_4xx / 39 http://localhost:48080/api/v1/reading 409 Error Status" 
+newman
+
+fuse-core-data
+
+❏ valuedescriptor_error_4xx
+↳ 72 http://localhost:48080/api/v1/valuedescriptor
+  PUT localhost:48080/api/v1/valuedescriptor [404 Not Found, 5.37KB, 31ms]
+  ✓  Status code is 404
+  ✓  Response time is less than 200ms
+  ✓  Has Content-Type
+  ✓  Content-Type is text/plain
+  ✓  Not found Exception
+
+↳ 69 http://localhost:48080/api/v1/valuedescriptor
+  POST localhost:48080/api/v1/valuedescriptor [409 Conflict, 5.44KB, 9ms]
+  ✓  Status code is 409
+  ✓  Response time is less than 200ms
+  ✓  Has Content-Type
+  ✓  Content-Type is text/plain
+  ✓  Data Validation Exception
+
+↳ 77 http://localhost:48080/api/v1/valuedescriptor/id/:id
+  DELETE localhost:48080/api/v1/valuedescriptor/id/57e5036fe4b0f1b53f5340fe2 [404 Not Found, 5.37KB, 9ms]
+  ✓  Status code is 404
+  ✓  Response time is less than 200ms
+  ✓  Has Content-Type
+  ✓  Content-Type is text/plain
+  ✓  Not Found Exception
+
+↳ 83 http://localhost:48080/api/v1/valuedescriptor/name/:name
+  DELETE localhost:48080/api/v1/valuedescriptor/name/HC [404 Not Found, 5.33KB, 11ms]
+  ✓  Status code is 404
+  ✓  Response time is less than 200ms
+  ✓  Has Content-Type
+  ✓  Content-Type is text/plain
+  ✓  Not Found Exception
+
+↳ 78 http://localhost:48080/api/v1/valuedescriptor/id/:id 409
+  DELETE localhost:48080/api/v1/valuedescriptor/id/57b9fbb2189b95b8afcdafd4 [404 Not Found, 5.37KB, 9ms]
+  1. Status code is 409
+
+↳ 84 http://localhost:48080/api/v1/valuedescriptor/name/:name 409
+  DELETE localhost:48080/api/v1/valuedescriptor/name/RPM [404 Not Found, 5.33KB, 6ms]
+
+↳ 103 http://localhost:48080/api/v1/valuedescriptor
+  PUT localhost:48080/api/v1/valuedescriptor [404 Not Found, 5.33KB, 11ms]
+
+↳ 104 http://localhost:48080/api/v1/valuedescriptor 409
+  POST localhost:48080/api/v1/valuedescriptor [200 OK, 167B, 5ms]
+  2. Status code is 409
+  ✓  Response time is less than 200ms
+
+┌─────────────────────────┬──────────┬──────────┐
+│                         │ executed │   failed │
+├─────────────────────────┼──────────┼──────────┤
+│              iterations │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│                requests │        8 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│            test-scripts │        8 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│      prerequest-scripts │        0 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│              assertions │       23 │        2 │
+├─────────────────────────┴──────────┴──────────┤
+│ total run duration: 521ms                     │
+├───────────────────────────────────────────────┤
+│ total data received: 36.53KB (approx)         │
+├───────────────────────────────────────────────┤
+│ average response time: 11ms                   │
+└───────────────────────────────────────────────┘
+
+  #  failure           detail                                                                                           
+                                                                                                                        
+ 1.  AssertionFailure  Status code is 409                                                                               
+                       at assertion:1 in test-script                                                                    
+                       inside "valuedescriptor_error_4xx / 78 http://localhost:48080/api/v1/valuedescriptor/id/:id 409" 
+                                                                                                                        
+ 2.  AssertionFailure  Status code is 409                                                                               
+                       at assertion:1 in test-script                                                                    
+                       inside "valuedescriptor_error_4xx / 104 http://localhost:48080/api/v1/valuedescriptor 409"       
+Info:Coredata Test Completed.
+Info: Event data flushed
+Info: Reading data flushed
+Info: Value Descriptor data flushed

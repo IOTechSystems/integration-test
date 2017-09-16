@@ -1,0 +1,19 @@
+Info: Event data imported
+Info: Reading data imported
+Info: valueDescriptor data imported
+Info: Initiating Coredata Test.
+[info] jenkins build 
+[info] not jenkins build
+Info:Coredata Test Completed.
+MongoDB shell version v3.4.7
+connecting to: mongodb://localhost:27017/coredata
+MongoDB server version: 3.4.4
+Info: Event data flushed
+MongoDB shell version v3.4.7
+connecting to: mongodb://localhost:27017/coredata
+MongoDB server version: 3.4.4
+Info: Reading data flushed
+MongoDB shell version v3.4.7
+connecting to: mongodb://localhost:27017/coredata
+MongoDB server version: 3.4.4
+Info: Value Descriptor data flushed

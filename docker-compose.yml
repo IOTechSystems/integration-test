@@ -1,0 +1,403 @@
+## EdgeX Foundry docker compose file
+
+version: '2'
+services:
+  volume:
+    image: edgexfoundry/docker-edgex-volume
+    networks:
+      - edgex-network
+
+    volumes:
+      - /data/db
+      - /edgex/logs
+      - /consul/config
+      - /consul/data
+
+  consul:
+    image: edgexfoundry/docker-core-consul
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-core-consul
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+
+  config-seed:
+    image: edgexfoundry/docker-core-config-seed
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-core-config-seed
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+
+  mongo:
+    image: edgexfoundry/docker-edgex-mongo
+    ports:
+      - "27017:27017"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-mongo
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+    command: --smallfiles
+
+  mongo-seed:
+    image: edgexfoundry/docker-edgex-mongo-seed
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-mongo-seed
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - mongo
+
+  logging:
+    image: edgexfoundry/docker-support-logging
+#    ports:
+#      - "48061:48061"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-support-logging
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+
+  notifications:
+    image: edgexfoundry/docker-support-notifications
+#    ports:
+#      - "48060:48060"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-support-notifications
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+
+  metadata:
+    image: edgexfoundry/docker-core-metadata
+#    ports:
+#      - "48081:48081"
+    hostname: edgex-core-metadata
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-core-metadata
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+
+  data:
+    image: edgexfoundry/docker-core-data
+#    ports:
+#      - "48080:48080"
+#      - "5563"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-core-data
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+      - notifications
+
+  command:
+    image: edgexfoundry/docker-core-command
+#    ports:
+#      - "48082:48082"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-core-command
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+      - metadata
+
+  scheduler:
+    image: edgexfoundry/docker-support-scheduler
+#    ports:
+#      - "48085:48085"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-support-scheduler
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+      - metadata
+      - command
+
+  export-client:
+    image: edgexfoundry/docker-export-client
+#    ports:
+#      - "48071:48071"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-export-client
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+      - notifications
+      - metadata
+      - data
+
+  export-distro:
+    image: edgexfoundry/docker-export-distro
+#    ports:
+#      - "48070:48070"
+#      - "5566"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-export-distro
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+      - notifications
+      - metadata
+      - data
+      - export-client
+
+  rulesengine:
+    image: edgexfoundry/docker-support-rulesengine
+#    ports:
+#      - "48075:48075"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-support-rulesengine
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+      - metadata
+      - command
+      - export-distro
+
+#################################################################
+# Device Services
+#################################################################
+
+  device-virtual:
+    image: edgexfoundry/docker-device-virtual
+#    ports:
+#      - "49990:49990"
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-device-virtual
+    volumes_from:
+      - volume
+    depends_on:
+      - volume
+      - consul
+      - config-seed
+      - mongo
+      - mongo-seed
+      - logging
+      - metadata
+      - data
+      - command
+
+  # device-bacnet:
+    # image: edgexfoundry/docker-device-bacnet
+    # ports:
+      # - "49986:49986"
+    # container_name: edgex-device-bacnet
+    # hostname: edgex-device-bacnet
+    # networks:
+      # - edgex-network
+    # volumes_from:
+      # - volume
+    # depends_on:
+      # - volume
+      # - consul
+      # - config-seed
+      # - mongo
+      # - mongo-seed
+      # - logging
+      # - metadata
+      # - data
+      # - command
+
+  # device-bluetooth:
+    # image: edgexfoundry/docker-device-bluetooth
+    # ports:
+      # - "49988:49988"
+    # container_name: edgex-device-bluetooth
+    # hostname: edgex-device-bluetooth
+    # networks:
+      # - edgex-network
+    # volumes_from:
+      # - volume
+    # privileged: true
+    # depends_on:
+      # - volume
+      # - consul
+      # - config-seed
+      # - mongo
+      # - mongo-seed
+      # - logging
+      # - metadata
+      # - data
+      # - command
+
+  # device-fischetechnik:
+    # image: edgexfoundry/docker-device-fischetechnik
+    # ports:
+      # - "49985:49985"
+    # container_name: edgex-device-fischetechnik
+    # hostname: edgex-device-fischetechnik
+    # networks:
+      # - edgex-network
+    # volumes_from:
+      # - volume
+    # privileged: true
+    # depends_on:
+      # - volume
+      # - consul
+      # - config-seed
+      # - mongo
+      # - mongo-seed
+      # - logging
+      # - metadata
+      # - data
+      # - command
+
+  # device-modbus:
+    # image: edgexfoundry/docker-device-modbus
+    # ports:
+      # - "49991:49991"
+    # container_name: edgex-device-modbus
+    # hostname: edgex-device-modbus
+    # networks:
+      # - edgex-network
+    # volumes_from:
+      # - volume
+    # privileged: true
+    # depends_on:
+      # - volume
+      # - consul
+      # - config-seed
+      # - mongo
+      # - mongo-seed
+      # - logging
+      # - metadata
+      # - data
+      # - command
+
+  # device-mqtt:
+    # image: edgexfoundry/docker-device-mqtt
+    # ports:
+      # - "49982:49982"
+    # container_name: edgex-device-mqtt
+    # hostname: edgex-device-mqtt
+    # networks:
+      # - edgex-network
+    # volumes_from:
+      # - volume
+    # depends_on:
+      # - volume
+      # - consul
+      # - config-seed
+      # - mongo
+      # - mongo-seed
+      # - logging
+      # - metadata
+      # - data
+      # - command
+
+  # device-snmp:
+    # image: edgexfoundry/docker-device-snmp
+    # ports:
+      # - "49989:49989"
+    # container_name: edgex-device-snmp
+    # hostname: edgex-device-snmp
+    # networks:
+      # - edgex-network
+    # volumes_from:
+      # - volume
+    # depends_on:
+      # - volume
+      # - consul
+      # - config-seed
+      # - mongo
+      # - mongo-seed
+      # - logging
+      # - metadata
+      # - data
+      # - command
+
+networks:
+  edgex-network:
+    driver: "bridge"
