@@ -1,5 +1,19 @@
 #!/bin/bash
 
+option="${1}"
+DOCKER_NETWORK="${2}"
+
+echo " ${option}  ${DOCKER_NETWORK}"
+
+if [ -z "${DOCKER_NETWORK}" ] ; then
+    echo "[ERROR] Need DOCKER_NETWORK  "
+    exit 1;
+fi
+
+
+
+
+
 TIMESTAMPFORMAT=`date +%d-%m-%Y_%H%M%S`
 BASEPATH=../scriptLogs
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
@@ -9,26 +23,26 @@ FUSELOGSPATH=$BASEPATH/fuse$TIMESTAMPFORMAT.log
 
 coreDataTest() {
 	
-	./importCoreDataDump.sh
-	./coreDataTest.sh
-	./flushCoreDataDump.sh
+	$(dirname "$0")/importCoreDataDump.sh
+	$(dirname "$0")/coreDataTest.sh ${DOCKER_NETWORK}
+	$(dirname "$0")/flushCoreDataDump.sh
 
 }
 
 
 metaDataTest() {	
 
- 	./importMetaDataDumps.sh
- 	./metadataTest.sh
+ 	$(dirname "$0")/importMetaDataDumps.sh
+ 	$(dirname "$0")/metadataTest.sh ${DOCKER_NETWORK}
 	./flushMetaDataDump.sh
 
 }
 
 commandTest() {
 
-	./importCommandDataDump.sh
-	./commandTest.sh
-	./flushCommandDataDump.sh
+	$(dirname "$0")/importCommandDataDump.sh
+	$(dirname "$0")/commandTest.sh ${DOCKER_NETWORK}
+	$(dirname "$0")/flushCommandDataDump.sh
 
 }
 
@@ -42,7 +56,7 @@ testAll() {
 #Main Script starts here
 ./banner.sh
 
-option="${1}" 
+
 case ${option} in 
 	-cd)  
 	echo "Info: Initiating Coredata Test"

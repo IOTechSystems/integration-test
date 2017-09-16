@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOCKER_NETWORK="${1}"
+
 NAMESFILE=files.sh
 
 if [ -f $NAMESFILE ]; then 
@@ -18,92 +20,92 @@ echo "Info: Initiating Metadata Test."
 COLLECTION_PATH="collections/fuse-core-metadata.postman_collection.json"
 ENV_PATH="environment/MetadataEnv.postman_environment.json"
 
-if [ "${WORKSPACE}" != "" ]; then
+#if [ "${WORKSPACE}" != "" ]; then
 
-	echo "[info] ---------- jenkins use docker run newman  ----------"
-	echo "[info] WORKSPACE is ${WORKSPACE}"
+echo "[info] ---------- jenkins use docker run newman  ----------"
+#	echo "[info] WORKSPACE is ${WORKSPACE}"
 
-	echo "[info] ======================== Start run test - addressable ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}" --folder="addressable"  \
-	    --iteration-data="data/addressableData.json" --environment="${ENV_PATH}"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}" --folder="addressable_error_4xx"  \
-	    --iteration-data="data/addressableData.json" --environment="${ENV_PATH}"
+echo "[info] ======================== Start run test - addressable ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}" --folder="addressable"  \
+    --iteration-data="data/addressableData.json" --environment="${ENV_PATH}"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}" --folder="addressable_error_4xx"  \
+    --iteration-data="data/addressableData.json" --environment="${ENV_PATH}"
 
-	echo "[info] ======================== Start run test - command ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}" --folder="command"  \
-	    --iteration-data="data/commandData.json" --environment="${ENV_PATH}"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}" --folder="command_error_4xx"  \
-	    --iteration-data="data/commandData.json" --environment="${ENV_PATH}"
+echo "[info] ======================== Start run test - command ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}" --folder="command"  \
+    --iteration-data="data/commandData.json" --environment="${ENV_PATH}"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}" --folder="command_error_4xx"  \
+    --iteration-data="data/commandData.json" --environment="${ENV_PATH}"
 
-	echo "[info] ======================== Start run test - device ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="device" --iteration-data="data/deviceData.json"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="device_error_4xx" --iteration-data="data/deviceData.json"   
+echo "[info] ======================== Start run test - device ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="device" --iteration-data="data/deviceData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="device_error_4xx" --iteration-data="data/deviceData.json"
 
-    echo "[info] ======================== Start run test - devicemanager ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="devicemanager" --iteration-data="data/deviceManagerData.json"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="devicemanager_error_4xx" --iteration-data="data/deviceManagerData.json"
+echo "[info] ======================== Start run test - devicemanager ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="devicemanager" --iteration-data="data/deviceManagerData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="devicemanager_error_4xx" --iteration-data="data/deviceManagerData.json"
 
-    echo "[info] ======================== Start run test - deviceprofile ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="deviceprofile" --iteration-data="data/deviceProfileData.json"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="deviceprofile_error_4xx" --iteration-data="data/deviceProfileData.json"
+echo "[info] ======================== Start run test - deviceprofile ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="deviceprofile" --iteration-data="data/deviceProfileData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="deviceprofile_error_4xx" --iteration-data="data/deviceProfileData.json"
 
-    echo "[info] ======================== Start run test - devicereport ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="devicereport" --iteration-data="data/deviceReportData.json"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="devicereport_error_4xx" --iteration-data="data/deviceReportData.json"
+echo "[info] ======================== Start run test - devicereport ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="devicereport" --iteration-data="data/deviceReportData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="devicereport_error_4xx" --iteration-data="data/deviceReportData.json"
 
-    echo "[info] ======================== Start run test - deviceservice ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="deviceservice" --iteration-data="data/deviceServiceData.json"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="deviceservice_error_4xx" --iteration-data="data/deviceServiceData.json"
+echo "[info] ======================== Start run test - deviceservice ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="deviceservice" --iteration-data="data/deviceServiceData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="deviceservice_error_4xx" --iteration-data="data/deviceServiceData.json"
 
-    echo "[info] ======================== Start run test - provisionwatcher ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="provisionwatcher" --iteration-data="data/provisionWatcherData.json"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="provisionwatcher_error_4xx" --iteration-data="data/provisionWatcherData.json"
+echo "[info] ======================== Start run test - provisionwatcher ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="provisionwatcher" --iteration-data="data/provisionWatcherData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="provisionwatcher_error_4xx" --iteration-data="data/provisionWatcherData.json"
 
-    echo "[info] ======================== Start run test - schedule ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="schedule" --iteration-data="data/scheduleData.json"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="schedule_error_4xx" --iteration-data="data/scheduleData.json"
+echo "[info] ======================== Start run test - schedule ========================"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="schedule" --iteration-data="data/scheduleData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="schedule_error_4xx" --iteration-data="data/scheduleData.json"
 
 echo "[info] ======================== Start run test - scheduleevent ========================"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="scheduleevent" --iteration-data="data/scheduleEventData.json"
-	docker run --rm -v postman-test/:/etc/newman --network=host postman/newman_ubuntu1404 \
-	    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-	    --folder="scheduleevent_error_4xx" --iteration-data="data/scheduleEventData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="scheduleevent" --iteration-data="data/scheduleEventData.json"
+docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
+    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
+    --folder="scheduleevent_error_4xx" --iteration-data="data/scheduleEventData.json"
 
-fi
+#fi
 
 
 ##Addressable -200 status Code
