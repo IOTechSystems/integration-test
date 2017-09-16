@@ -1,6 +1,6 @@
 #!/bin/bash
-
-DOCKER_NETWORK="${1}_edgex-network"
+TEST_DIR=${1}
+DOCKER_NETWORK="${TEST_DIR}_edgex-network"
 
 NAMESFILE=files.sh
 

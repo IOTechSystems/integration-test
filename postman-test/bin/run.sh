@@ -1,7 +1,7 @@
 #!/bin/bash
 
 option="${1}"
-DOCKER_NETWORK_PREFIX="${2}"
+TEST_DIR="${2}"
 
 echo " ${option}  ${DOCKER_NETWORK_PREFIX}"
 
@@ -24,7 +24,7 @@ FUSELOGSPATH=$BASEPATH/fuse$TIMESTAMPFORMAT.log
 coreDataTest() {
 	
 	$(dirname "$0")/importCoreDataDump.sh
-	$(dirname "$0")/coreDataTest.sh ${DOCKER_NETWORK_PREFIX}
+	$(dirname "$0")/coreDataTest.sh ${TEST_DIR}
 	$(dirname "$0")/flushCoreDataDump.sh
 
 }
@@ -33,7 +33,7 @@ coreDataTest() {
 metaDataTest() {	
 
  	$(dirname "$0")/importMetaDataDumps.sh
- 	$(dirname "$0")/metadataTest.sh ${DOCKER_NETWORK_PREFIX}
+ 	$(dirname "$0")/metadataTest.sh ${TEST_DIR}
 	./flushMetaDataDump.sh
 
 }
@@ -41,7 +41,7 @@ metaDataTest() {
 commandTest() {
 
 	$(dirname "$0")/importCommandDataDump.sh
-	$(dirname "$0")/commandTest.sh ${DOCKER_NETWORK_PREFIX}
+	$(dirname "$0")/commandTest.sh ${TEST_DIR}
 	$(dirname "$0")/flushCommandDataDump.sh
 
 }
