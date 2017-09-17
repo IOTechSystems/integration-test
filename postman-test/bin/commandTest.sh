@@ -1,6 +1,6 @@
 #!/bin/bash
 TEST_DIR=${1}
-DOCKER_NETWORK="${TEST_DIR}_edgex-network"
+DOCKER_NETWORK="integrationtestdeployment_edgex-network"
 
 NAMESFILE=files.sh
 
@@ -25,10 +25,10 @@ echo ""
 echo "[info] ---------- jenkins use docker run newman  ----------"
 echo "[info] WORKSPACE is ${WORKSPACE}"
 
-docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
+docker run --rm -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
     --folder="device" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
     --reporters="junit,cli"
-docker run --rm -v postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
+docker run --rm -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
     --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
     --reporters="junit,cli"
 #fi
