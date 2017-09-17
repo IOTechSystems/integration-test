@@ -21,24 +21,24 @@ echo "Info: Initiating Coredata Test."
 
 echo "[info] ---------- use docker run newman  ----------"
 
-docker run --rm -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
+docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
-docker run --rm -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
+docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker run --rm -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
+docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="reading" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
-docker run --rm -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
+docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="reading_error_4xx" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker run --rm -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
+docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="valuedescriptor" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
-docker run --rm -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
+docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
     --folder="valuedescriptor_error_4xx" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 

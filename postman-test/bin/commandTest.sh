@@ -25,10 +25,10 @@ echo ""
 echo "[info] ---------- jenkins use docker run newman  ----------"
 echo "[info] WORKSPACE is ${WORKSPACE}"
 
-docker run --rm -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
+docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
     --folder="device" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
     --reporters="junit,cli"
-docker run --rm -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
+docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
     --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
     --reporters="junit,cli"
 #fi
