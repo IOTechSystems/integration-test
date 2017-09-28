@@ -43,17 +43,17 @@
           "title": "name"
         },
         "start": {
-          "type": "integer",
+          "type": ["integer","null"],
           "required": false,
           "title": "start"
         },
         "end": {
-          "type": "integer",
+          "type": ["integer","null"],
           "required": false,
           "title": "end"
         },
         "frequency": {
-          "type": "integer",
+          "type": ["integer","null"],
           "required": false,
           "title": "frequency"
         },
@@ -101,17 +101,17 @@
           "title": "name"
         },
         "start": {
-          "type": "integer",
+          "type": ["integer","null"],
           "required": false,
           "title": "start"
         },
         "end": {
-          "type": "integer",
+          "type": ["integer","null"],
           "required": false,
           "title": "end"
         },
         "frequency": {
-          "type": "integer",
+          "type": ["integer","null"],
           "required": false,
           "title": "frequency"
         },
