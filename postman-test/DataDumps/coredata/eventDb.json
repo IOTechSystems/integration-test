@@ -926,9 +926,9 @@
   "_id": {
     "$oid": "57e866d4e4b0ca8e6d73a4c4"
   },
-  "created": 1474848468956,
-  "modified": 1474848468956,
-  "origin": 1471806386919,
+  "created": 474848468956,
+  "modified": 474848468956,
+  "origin": 471806386919,
   "pushed": 0,
   "device": "ohmmeter",
   "readings": [
