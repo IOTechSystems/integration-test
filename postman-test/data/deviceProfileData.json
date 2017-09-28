@@ -134,7 +134,7 @@
           "title": "description"
         },
         "objects": {
-          "type": "string",
+          "type": "object",
           "required": false,
           "title": "objects"
         }
