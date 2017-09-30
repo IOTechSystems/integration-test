@@ -268,8 +268,6 @@
         "e9f63265-45eb-d93f-deb8-5e80f57a16fc",
         "11b7c3c9-fbf3-beeb-b81a-be5c023be4a9",
         "9b5c271e-1d0e-e172-8b91-007ec3b884dc",
-        "d144ef55-9017-b371-0b80-960af606533c",
-        "3ca87e23-a391-0b42-08e0-d201ca2111cc",
         "a0f682b6-7d8b-c9b6-9f9a-a7c4ff9965e6"
       ]
     },
@@ -295,6 +293,8 @@
         "4b917faf-609d-ec32-4076-74d5624c42f1",
         "d38520af-9d83-b2e4-0763-005d7f5b5640",
         "a78bffd4-b4c1-224f-6f69-4869e20cf7b3",
+        "d144ef55-9017-b371-0b80-960af606533c",
+        "3ca87e23-a391-0b42-08e0-d201ca2111cc",
         "a98ddb68-5c92-a93a-37f4-8d5875495544"
       ]
     },
@@ -1125,7 +1125,7 @@
       "name": "360 http://localhost:48081/api/v1/deviceservice/:id",
       "description": "Fetch a specific device service by database generated id. May return null if no service with the id is found. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
       "descriptionFormat": "html",
-      "tests": "/**\n * Test Case:  /api/v1/deviceservice/:id - GET\n * Version: Alpha\n * Service: Metadata\n * @Author: Tata Elxsi\n *\n **/\n \n    tests[\"Status code is 200\"] = responseCode.code === 200;\n    if(responseCode.code === 200){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n\n         //Test body parameters\n        if(responseBody.length === 0) {\n            tests[\"DeviceService list empty\"] = responseBody.length === 0;\n        }\n    }",
+      "tests": "/**\n * Test Case:  /api/v1/deviceservice/:id - GET\n * Version: Alpha\n * Service: Metadata\n * @Author: Tata Elxsi\n *\n **/\n \n    tests[\"Status code is 404\"] = responseCode.code === 404;\n    if(responseCode.code === 404){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n\n         //Test body parameters\n        if(responseBody.length === 0) {\n            tests[\"DeviceService list empty\"] = responseBody.length === 0;\n        }\n    }",
       "currentHelper": "normal",
       "helperAttributes": "{}",
       "folder": "9dffcdf5-a8bd-67df-ca3e-f7377b4519a9",
@@ -3508,13 +3508,13 @@
       "data": [
         {
           "key": "file",
-          "value": "sample_profile (1).yaml",
+          "value": "sample_profile_duplicated_command.yaml",
           "type": "file",
           "enabled": true
         }
       ],
       "dataMode": "params",
-      "tests": "    /**\n     * Test Case:  /api/v1/deviceprofile - POST\n     * Version: Alpha\n     * @Author: Tata Elxsi\n     *\n     **/\n    if(responseCode.code === 409){\n        tests[\"Status code is 404\"] = responseCode.code === 409;\n        tests[\"Response time is less than 200ms\"] = responseTime < 200;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n        }\n        // the device Profile cannot be located by the identifier.\n        }",
+      "tests": "    /**\n     * Test Case:  /api/v1/deviceprofile - POST\n     * Version: Alpha\n     * @Author: Tata Elxsi\n     *\n     **/\n    if(responseCode.code === 409){\n        tests[\"Status code is 409\"] = responseCode.code === 409;\n        tests[\"Response time is less than 200ms\"] = responseTime < 200;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n        }\n        // the device Profile cannot be located by the identifier.\n        }",
       "currentHelper": "normal",
       "helperAttributes": "{}",
       "time": 1476359478552,
@@ -3649,7 +3649,7 @@
       "method": "GET",
       "data": [],
       "dataMode": "params",
-      "tests": "/**\n * Test Case:  /api/v1/deviceservice/name/:name - GET\n * Version: Alpha\n * Service: Metadata\n * @Author: Tata Elxsi\n *\n **/\n \n    tests[\"Status code is 200\"] = responseCode.code === 200;\n    if(responseCode.code === 200){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        //Test body parameters\n        if(responseBody.length >= 0) {\n            tests[\"DeviceService empty\"] = responseBody.length === 0\n        } \n    }",
+      "tests": "/**\n * Test Case:  /api/v1/deviceservice/name/:name - GET\n * Version: Alpha\n * Service: Metadata\n * @Author: Tata Elxsi\n *\n **/\n \n    tests[\"Status code is 404\"] = responseCode.code === 404;\n    if(responseCode.code === 404){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        //Test body parameters\n        if(responseBody.length >= 0) {\n            tests[\"DeviceService empty\"] = responseBody.length === 0\n        } \n    }",
       "currentHelper": "normal",
       "helperAttributes": "{}",
       "name": "359 http://localhost:48081/api/v1/deviceservice/name/:name",
