@@ -61,18 +61,6 @@ fi
 
 echo "Info: Command data imported"
 
-if [ -f $DEVICEMANAGER_DATADUMP ]; then 
-
-	mongoimport -h $mongoDbHost -d metadata -c deviceManager --file $DEVICEMANAGER_DATADUMP
-
-else 
-	echo "Error: DeviceManager data dump does not exist."
-	exit $?
-
-fi
-
-echo "Info: DeviceManager data imported"
-
 if [ -f $DEVICEPROFILE_DATADUMP ]; then 
 
 	mongoimport -h $mongoDbHost -d metadata -c deviceProfile --file $DEVICEPROFILE_DATADUMP

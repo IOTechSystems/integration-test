@@ -53,16 +53,6 @@ else
 
 fi
 
-if [ -f $DEVICEMANAGER_JS ]; then 
-
-	mongo $mongoDbHost/metadata $DEVICEMANAGER_JS
-	echo "Info: DevcieManager data flushed"
-
-else
-	echo "Error: Mongo JS Command file does not exist."
-
-fi
-
 if [ -f $DEVICPROFILE_JS ]; then 
 
 	mongo $mongoDbHost/metadata $DEVICPROFILE_JS

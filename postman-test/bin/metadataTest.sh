@@ -52,14 +52,6 @@ docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test/:/etc/newman --netwo
     run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
     --folder="device_error_4xx" --iteration-data="data/deviceData.json" --reporters="junit,cli"
 
-echo "[info] ======================== Start run test - devicemanager ========================"
-docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
-    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-    --folder="devicemanager" --iteration-data="data/deviceManagerData.json" --reporters="junit,cli"
-docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
-    run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
-    --folder="devicemanager_error_4xx" --iteration-data="data/deviceManagerData.json" --reporters="junit,cli"
-
 echo "[info] ======================== Start run test - deviceprofile ========================"
 docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 \
     run "${COLLECTION_PATH}"  --environment="${ENV_PATH}" \
