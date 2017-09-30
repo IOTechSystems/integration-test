@@ -467,6 +467,38 @@
 }
 {
   "_id": {
+    "$oid": "57f39efde4b060e268aeb77g"
+  },
+  "_class": "com.dell.fuse.domain.meta.Command",
+  "name": "boilingpoint",
+  "get": {
+    "path": "/boiling",
+    "response": {
+      "code": "200",
+      "errorDescription": "not a float",
+      "expectedValues": "temperature"
+    }
+  },
+  "put": {
+    "parameters": [
+      {
+        "name": "boilingpoint",
+        "value": "float"
+      }
+    ],
+    "path": "/boiling",
+    "response": {
+      "code": "200",
+      "errorDescription": "not a float",
+      "expectedValues": "temperature"
+    }
+  },
+  "created": 1475583741398,
+  "modified": 1475583741398,
+  "origin": 1471806386919
+}
+{
+  "_id": {
     "$oid": "57f39ee1e4b060e268aeb06c"
   },
   "_class": "com.dell.fuse.domain.meta.Command",

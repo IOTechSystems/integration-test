@@ -4071,7 +4071,7 @@
       "name": "350 http://localhost:48081/api/v1/command",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": " {\n    \"id\": \"57ff4e85e4b060e2cba50cb8\",\n    \"created\": 1476349573318,\n    \"modified\": 1476349573318,\n    \"origin\": 1471806386919,\n    \"name\": \"boilingpoint\",\n    \"get\": {\n      \"path\": \"/boiling\",\n      \"response\": {\n        \"code\": \"200\",\n        \"errorDescription\": \"not afloat\",\n        \"expectedValues\": \"temperature\"\n      }\n    },\n    \"put\": {\n      \"path\": \"/boiling\",\n      \"response\": null,\n      \"parameters\": null\n    }\n }",
+      "rawModeData": " {\n    \"id\": \"57f39efde4b060e268aeb06e\",\n    \"created\": 1476349573318,\n    \"modified\": 1476349573318,\n    \"origin\": 1471806386919,\n    \"name\": \"boilingpoint\",\n    \"get\": {\n      \"path\": \"/boiling\",\n      \"response\": {\n        \"code\": \"200\",\n        \"errorDescription\": \"not afloat\",\n        \"expectedValues\": \"temperature\"\n      }\n    },\n    \"put\": {\n      \"path\": \"/boiling\",\n      \"response\": null,\n      \"parameters\": null\n    }\n }",
       "descriptionFormat": "html",
       "description": "Update the Command identified by the database generated id in the object provided. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. NotFoundException (HTTP 404) if no Command is found with the provided id. DataValidationException (HTTP 409) if the name is updated and it is not unique for the Device Profile.",
       "headers": "Content-Type: application/json\n",
