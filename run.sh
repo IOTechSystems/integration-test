@@ -22,9 +22,9 @@ pwd
 
 #sh deploy-edgeX.sh
 
-chmod u+x ./bin/postman-test/newman
-rm -rf ./bin/postman-test/newman
+#chmod u+x ./bin/postman-test/newman
+#rm -rf ./bin/postman-test/newman
 
-#sh ./bin/run.sh -cd
+sh ./bin/run.sh -cd
 
 #docker-compose down
