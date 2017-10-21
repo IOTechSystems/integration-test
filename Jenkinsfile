@@ -4,7 +4,7 @@ node {
     try {
 
         stage('Deploy test service') {
-            sh 'sh deploy-edgeX.sh'
+            //sh 'sh deploy-edgeX.sh'
         }
 
 

@@ -20,7 +20,7 @@ if [ -f $EVENTDUMPJS ]; then
 
 #	mongo $mongoDbHost/coredata $EVENTDUMPJS
     docker cp $EVENTDUMPJS "$(docker-compose ps -q mongo)":event.js
-	docker-compose exec mongo /bin/bash -c "mongo coredata event.js"
+	docker-compose exec -T mongo /bin/bash -c "mongo coredata event.js"
 
 	echo "Info: Event data flushed"
 
@@ -33,7 +33,7 @@ if [ -f $READINGDUMPJS ]; then
 
 #	mongo $mongoDbHost/coredata $READINGDUMPJS
     docker cp $READINGDUMPJS "$(docker-compose ps -q mongo)":reading.js
-	docker-compose exec mongo /bin/bash -c "mongo coredata reading.js"
+	docker-compose exec -T mongo /bin/bash -c "mongo coredata reading.js"
 
 	echo "Info: Reading data flushed"
 
@@ -46,7 +46,7 @@ if [ -f $VDDUMPJS ]; then
 
 #	mongo $mongoDbHost/coredata $VDDUMPJS
     docker cp $VDDUMPJS "$(docker-compose ps -q mongo)":valueDescriptor.js
-	docker-compose exec mongo /bin/bash -c "mongo coredata valueDescriptor.js"
+	docker-compose exec -T mongo /bin/bash -c "mongo coredata valueDescriptor.js"
 
 	echo "Info: Value Descriptor data flushed"
 
