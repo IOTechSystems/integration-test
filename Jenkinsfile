@@ -1,6 +1,6 @@
-pipeline {node('ubuntu1604-dell-5000'){
+pipeline {
 
-    agent any
+    agent 'ubuntu1604-dell-5000'
     stages {
         stage('Deploy test service') {
             agent any
@@ -35,5 +35,5 @@ pipeline {node('ubuntu1604-dell-5000'){
         }
 
     }
-}}
+}
 
