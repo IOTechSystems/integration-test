@@ -1,20 +1,29 @@
 pipeline {
     agent any
     stages {
-        stage('Build artifact') {
+        stage('Deploy test service') {
             agent any
             steps {
-                sh 'ssh bruce@192.168.99.100 pwd'
-                sh 'ssh bruce@192.168.99.100 mkdir -p jenkins/it${BUILD_ID}/'
-                sh 'scp -r * bruce@192.168.99.100:jenkins/it${BUILD_ID}/'
-                sh 'ssh bruce@192.168.99.100 "cd jenkins/it${BUILD_ID}; sh run.sh it${BUILD_ID}; " '
-
-                sh 'scp -r bruce@192.168.99.100:jenkins/it${BUILD_ID}/postman-test/newman ./'
-
-                sh 'pwd'
-                junit 'newman/**.xml'
+                sh 'deploy-edgeX.sh'
             }
         }
+
+        stage('Run Postman test') {
+            agent any
+            steps {
+                sh './bin/run.sh -cd'
+                junit './bin/postman-test/newman/**.xml'
+            }
+        }
+
+
+        stage('Clear test service') {
+            agent any
+            steps {
+                sh 'docker-compose down'
+            }
+        }
+
     }
 }
 

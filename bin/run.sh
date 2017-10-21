@@ -3,16 +3,7 @@
 option="${1}"
 TEST_DIR="${2}"
 
-echo " ${option}  ${TEST_DIR}"
-
-if [ -z "${TEST_DIR}" ] ; then
-    echo "[ERROR] Need TEST_DIR  "
-    exit 1;
-fi
-
-
-
-
+echo " ${option}"
 
 TIMESTAMPFORMAT=`date +%d-%m-%Y_%H%M%S`
 BASEPATH=$(dirname "$0")/postman-test/scriptLogs
@@ -24,7 +15,7 @@ FUSELOGSPATH=$BASEPATH/fuse$TIMESTAMPFORMAT.log
 coreDataTest() {
 
 	$(dirname "$0")/importCoreDataDump.sh
-#	$(dirname "$0")/coreDataTest.sh
+	$(dirname "$0")/coreDataTest.sh
 	$(dirname "$0")/flushCoreDataDump.sh
 
 }
@@ -33,15 +24,15 @@ coreDataTest() {
 metaDataTest() {	
 
  	$(dirname "$0")/importMetaDataDumps.sh
- 	$(dirname "$0")/metadataTest.sh ${TEST_DIR}
-	flushMetaDataDump.sh
+ 	$(dirname "$0")/metadataTest.sh
+	$(dirname "$0")/flushMetaDataDump.sh
 
 }
 
 commandTest() {
 
 	$(dirname "$0")/importCommandDataDump.sh
-	$(dirname "$0")/commandTest.sh ${TEST_DIR}
+	$(dirname "$0")/commandTest.sh
 	$(dirname "$0")/flushCommandDataDump.sh
 
 }
