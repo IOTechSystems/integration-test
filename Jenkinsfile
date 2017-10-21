@@ -4,7 +4,7 @@ pipeline {
         stage('Deploy test service') {
             agent any
             steps {
-                sh 'deploy-edgeX.sh'
+                sh 'sh deploy-edgeX.sh'
             }
         }
 
