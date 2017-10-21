@@ -1,15 +1,11 @@
+node {
+    try {
 
-
-node {try {
-    stage('Deploy test service') {
-        sh 'sh deploy-edgeX.sh'
-    }
-
-    stage('Clear test service') {
-        steps {
-            sh 'docker-compose down'
+        stage('Deploy test service') {
+            sh 'sh deploy-edgeX.sh'
         }
-    }
+
+
         stage('Run Postman test') {
             steps {
                 sh './bin/run.sh -cd'
@@ -17,8 +13,15 @@ node {try {
                 junit './bin/postman-test/newman/**.xml'
             }
         }
-            }catch (exc) {
-                echo 'Something failed!'
+
+        stage('Clear test service') {
+            steps {
                 sh 'docker-compose down'
             }
+        }
+
+    }catch (exc) {
+        echo 'Something failed!'
+        sh 'docker-compose down'
+    }
 }
