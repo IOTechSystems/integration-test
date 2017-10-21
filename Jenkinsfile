@@ -1,11 +1,21 @@
-pipeline {
+pipeline {node('ubuntu1604-dell-5000'){
+
     agent any
     stages {
         stage('Deploy test service') {
             agent any
-            steps {
-                sh 'sh deploy-edgeX.sh'
+            try {
+                steps {
+                    sh 'sh deploy-edgeX.sh'
+                }
             }
+            catch (exc) {
+                echo 'Something failed !'
+                sh 'docker-compose down'
+                throw
+            }
+
+
         }
 
         stage('Run Postman test') {
@@ -26,5 +36,5 @@ pipeline {
         }
 
     }
-}
+}}
 
