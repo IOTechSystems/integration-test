@@ -1,5 +1,5 @@
 #!/bin/bash
-TEST_DIR=${1}
+
 DOCKER_NETWORK="integrationtest_edgex-network"
 
 NAMESFILE=$(dirname "$0")/files.sh
