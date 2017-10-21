@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_NETWORK="integrationtest_edgex-network"
+DOCKER_NETWORK="postmanintegrationtest_edgex-network"
 
 NAMESFILE=$(dirname "$0")/files.sh
 

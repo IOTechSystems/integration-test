@@ -1,7 +1,6 @@
 #!/bin/bash
 
 option="${1}"
-TEST_DIR="${2}"
 
 echo " ${option}"
 
