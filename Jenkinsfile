@@ -17,9 +17,9 @@ node {
 
     }catch (exc) {
         echo 'Something failed!'
-        println(ex.toString());
-        println(ex.getMessage());
-        println(ex.getStackTrace());
+        println(exc.toString());
+        println(exc.getMessage());
+        println(exc.getStackTrace());
     }finally{
         echo '[INFO] test end !'
         sh 'docker-compose down'
