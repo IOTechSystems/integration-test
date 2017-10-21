@@ -4,6 +4,7 @@ pipeline {
         stage('Deploy test service') {
             agent any
             steps {
+                sh 'chattr -i bin/postman-test/newman/*'
                 sh 'rm -f bin/postman-test/newman/*'
                 sh 'sh deploy-edgeX.sh'
             }
