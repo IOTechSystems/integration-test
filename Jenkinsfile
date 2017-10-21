@@ -11,8 +11,6 @@ pipeline {
         stage('Run Postman test') {
             agent any
             steps {
-                sh 'rm -f bin/postman-test/newman/*'
-
                 sh './bin/run.sh -cd'
 
                 junit './bin/postman-test/newman/**.xml'
