@@ -22,10 +22,8 @@ docker pull edgexfoundry/docker-device-virtual
 
 sh deploy-edgeX.sh
 
-cd postman-test/bin
-sh run.sh -all ${1}
+rm -rf ./bin/postman-test/newman
 
-cd ..
-cd ..
+sh ./bin/run.sh -cd
 
 docker-compose down
