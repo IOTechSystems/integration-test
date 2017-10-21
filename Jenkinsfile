@@ -12,7 +12,6 @@ pipeline {node('ubuntu1604-dell-5000'){
             catch (exc) {
                 echo 'Something failed !'
                 sh 'docker-compose down'
-                throw
             }
 
 
