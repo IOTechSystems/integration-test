@@ -4,8 +4,8 @@ DOCKER_NETWORK="postmanintegrationtest_edgex-network"
 
 NAMESFILE=$(dirname "$0")/files.sh
 
-COLLECTION_PATH="collections/fuse-core-data.postman_collection.json"
-ENV_PATH="environment/CoredataEnv.postman_environment.json"
+COLLECTION_PATH="/etc/newmancollections/fuse-core-data.postman_collection.json"
+ENV_PATH="/etc/newman/environment/CoredataEnv.postman_environment.json"
 
 if [ -f $NAMESFILE ]; then 
 
@@ -23,7 +23,7 @@ echo "[info] ---------- use docker run newman  ----------"
 echo "${PWD}/bin/postman-test"
 
 docker-compose run --rm -v "/var/jenkins_home/workspace/it_test_use-jenkins-slave-P3ZIUAL4BT3JIEACP6LUXLHOJEIYRJPMRZAMZFSM7GQPYFWSXCFA@2/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
-    --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
+    --folder="event" --iteration-data="/etc/newman/data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 #docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
 #    --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
