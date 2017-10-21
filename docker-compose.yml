@@ -15,10 +15,10 @@ services:
 
   consul:
     image: edgexfoundry/docker-core-consul
-    ports:
-      - "8400:8400"
-      - "8500:8500"
-      - "8600:8600"
+#    ports:
+#      - "8400:8400"
+#      - "8500:8500"
+#      - "8600:8600"
     networks:
       edgex-network:
         aliases:
