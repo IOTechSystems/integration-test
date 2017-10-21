@@ -4,7 +4,7 @@ DOCKER_NETWORK="postmanintegrationtest_edgex-network"
 
 NAMESFILE=$(dirname "$0")/files.sh
 
-COLLECTION_PATH="/etc/newmancollections/fuse-core-data.postman_collection.json"
+COLLECTION_PATH="/etc/newman/collections/fuse-core-data.postman_collection.json"
 ENV_PATH="/etc/newman/environment/CoredataEnv.postman_environment.json"
 
 if [ -f $NAMESFILE ]; then 
