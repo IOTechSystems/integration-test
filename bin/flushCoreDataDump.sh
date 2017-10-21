@@ -21,6 +21,7 @@ if [ -f $EVENTDUMPJS ]; then
 #	mongo $mongoDbHost/coredata $EVENTDUMPJS
     docker cp $EVENTDUMPJS "$(docker-compose ps -q mongo)":event.js
 	docker-compose exec mongo /bin/bash -c "mongo coredata event.js"
+
 	echo "Info: Event data flushed"
 
 else
@@ -28,22 +29,28 @@ else
 
 fi
 
-#if [ -f $READINGDUMPJS ]; then
-#
+if [ -f $READINGDUMPJS ]; then
+
 #	mongo $mongoDbHost/coredata $READINGDUMPJS
-#	echo "Info: Reading data flushed"
-#
-#else
-#	echo "Error: Mongo JS Reading file does not exist."
-#
-#fi
-#
-#if [ -f $VDDUMPJS ]; then
-#
+    docker cp $READINGDUMPJS "$(docker-compose ps -q mongo)":reading.js
+	docker-compose exec mongo /bin/bash -c "mongo coredata reading.js"
+
+	echo "Info: Reading data flushed"
+
+else
+	echo "Error: Mongo JS Reading file does not exist."
+
+fi
+
+if [ -f $VDDUMPJS ]; then
+
 #	mongo $mongoDbHost/coredata $VDDUMPJS
-#	echo "Info: Value Descriptor data flushed"
-#
-#else
-#	echo "Error: Mongo JS Value Descriptor file does not exist."
-#
-#fi
+    docker cp $VDDUMPJS "$(docker-compose ps -q mongo)":valueDescriptor.js
+	docker-compose exec mongo /bin/bash -c "mongo coredata valueDescriptor.js"
+
+	echo "Info: Value Descriptor data flushed"
+
+else
+	echo "Error: Mongo JS Value Descriptor file does not exist."
+
+fi
