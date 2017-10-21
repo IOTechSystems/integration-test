@@ -1,18 +1,15 @@
 pipeline {
-
-    agent 'ubuntu1604-dell-5000'
+try {
+    agent any
     stages {
         stage('Deploy test service') {
             agent any
-            try {
+
                 steps {
                     sh 'sh deploy-edgeX.sh'
                 }
             }
-            catch (exc) {
-                echo 'Something failed !'
-                sh 'docker-compose down'
-            }
+
 
 
         }
@@ -35,5 +32,9 @@ pipeline {
         }
 
     }
+catch (exc) {
+    echo 'Something failed !'
+    sh 'docker-compose down'
+}
 }
 
