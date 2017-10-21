@@ -269,6 +269,11 @@ services:
       - data
       - command
 
+  postman:
+    image: postman/newman_ubuntu1404
+    networks:
+      - edgex-network
+
   # device-bacnet:
     # image: edgexfoundry/docker-device-bacnet
     # ports:

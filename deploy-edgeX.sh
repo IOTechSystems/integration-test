@@ -50,3 +50,5 @@ sleep 60
 run_service rulesengine
 sleep 60
 run_service device-virtual
+
+run_service postman
