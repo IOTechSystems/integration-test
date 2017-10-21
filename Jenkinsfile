@@ -11,7 +11,6 @@ pipeline {
         stage('Run Postman test') {
             agent any
             steps {
-                sh 'chattr -i bin/postman-test/newman/*'
                 sh 'rm -f bin/postman-test/newman/*'
 
                 sh './bin/run.sh -cd'
