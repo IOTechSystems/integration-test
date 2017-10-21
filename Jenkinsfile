@@ -15,9 +15,9 @@ node {
         }
 
 
-    }catch (exc) {
+    }catch (e) {
         echo 'Something failed!'
-
+        throw e;
     }finally{
         echo '[INFO] test end !'
         sh 'docker-compose down'
