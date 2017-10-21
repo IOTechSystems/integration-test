@@ -18,7 +18,7 @@ node {try {
             }
         }
             }catch (exc) {
-                echo 'Something failed, I should sound the klaxons!'
-                throw
+                echo 'Something failed!'
+                sh 'docker-compose down'
             }
 }
