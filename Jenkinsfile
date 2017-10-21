@@ -9,11 +9,9 @@ node {
 
 
         stage('Run Postman test') {
-            steps {
-                sh './bin/run.sh -cd'
+            sh './bin/run.sh -cd'
 
-                junit './bin/postman-test/newman/**.xml'
-            }
+            junit './bin/postman-test/newman/**.xml'
         }
 
 
@@ -21,6 +19,7 @@ node {
         echo 'Something failed!'
 
     }finally{
+        echo 'test end !'
         sh 'docker-compose down'
     }
 }
