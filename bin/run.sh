@@ -46,7 +46,6 @@ testAll() {
 #Main Script starts here
 $(dirname "$0")/banner.sh
 
-
 case ${option} in 
 	-cd)  
 	echo "Info: Initiating Coredata Test"
