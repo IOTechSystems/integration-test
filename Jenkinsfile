@@ -4,7 +4,7 @@ pipeline {
         stage('Deploy test service') {
             agent any
             steps {
-                sh 'rm -rf bin/postman-test/newman'
+                sh 'rm -Rf bin/postman-test/newman'
                 sh 'sh deploy-edgeX.sh'
             }
         }
@@ -13,7 +13,7 @@ pipeline {
             agent any
             steps {
                 sh 'chmod u+x ./bin/postman-test/newman'
-                sh 'rm -rf ./bin/postman-test/newman'
+                sh 'rm -Rf ./bin/postman-test/newman'
 
                 sh './bin/run.sh -cd'
 
