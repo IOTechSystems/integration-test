@@ -17,9 +17,11 @@ node {
 
     }catch (exc) {
         echo 'Something failed!'
-
+        println(ex.toString());
+        println(ex.getMessage());
+        println(ex.getStackTrace());
     }finally{
-        echo 'test end !'
+        echo '[INFO] test end !'
         sh 'docker-compose down'
     }
 }
