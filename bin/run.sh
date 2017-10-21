@@ -15,14 +15,14 @@ fi
 
 
 TIMESTAMPFORMAT=`date +%d-%m-%Y_%H%M%S`
-BASEPATH=../scriptLogs
+BASEPATH=$(dirname "$0")/postman-test/scriptLogs
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 FUSELOGSPATH=$BASEPATH/fuse$TIMESTAMPFORMAT.log
 
 coreDataTest() {
-	
+
 	$(dirname "$0")/importCoreDataDump.sh
 	$(dirname "$0")/coreDataTest.sh ${TEST_DIR}
 	$(dirname "$0")/flushCoreDataDump.sh
@@ -34,7 +34,7 @@ metaDataTest() {
 
  	$(dirname "$0")/importMetaDataDumps.sh
  	$(dirname "$0")/metadataTest.sh ${TEST_DIR}
-	./flushMetaDataDump.sh
+	flushMetaDataDump.sh
 
 }
 
@@ -54,7 +54,7 @@ testAll() {
 }
 
 #Main Script starts here
-./banner.sh
+$(dirname "$0")/banner.sh
 
 
 case ${option} in 
@@ -84,7 +84,7 @@ echo
 echo "Info: Logs available in [scriptLogs]"
 echo "Info: HTML Reports available in [Reports]"
 echo
-./endBanner.sh
+$(dirname "$0")/endBanner.sh
 
 
 

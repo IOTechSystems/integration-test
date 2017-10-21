@@ -1,5 +1,5 @@
 
 /.idea/
-/postman-test/newman/
-postman-test/newman/
-postman-test/scriptLogs/
+/bin/postman-test/newman/
+bin/postman-test/newman/
+bin/postman-test/scriptLogs/

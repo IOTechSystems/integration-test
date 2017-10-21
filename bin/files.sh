@@ -2,48 +2,48 @@
 
 TIMESTAMPFORMAT=`date +%d-%m-%Y_%H%M%S`
 
-CONFIGFILE=config.sh
+CONFIGFILE=$(dirname "$0")/config.sh
 
-EVENTDATAFILE=../data/eventData.json
-COREDATAENVFILE=../environment/CoredataEnv.postman_environment.json
-COREDATACOLLFILE=../collections/fuse-core-data.postman_collection.json
-EVENTDATADUMP=../DataDumps/coredata/eventDb.json
-READINGDATADUMP=../DataDumps/coredata/readingDb.json
-VDDATADUMP=../DataDumps/coredata/valueDescriptorDb.json
-READINGDATAFILE=../data/readingData.json
-VDDATAFILE=../data/valueDescriptorData.json
+EVENTDATAFILE=$(dirname "$0")/postman-test/data/eventData.json
+COREDATAENVFILE=$(dirname "$0")/postman-test/environment/CoredataEnv.postman_environment.json
+COREDATACOLLFILE=$(dirname "$0")/postman-test/collections/fuse-core-data.postman_collection.json
+EVENTDATADUMP=$(dirname "$0")/postman-test/DataDumps/coredata/eventDb.json
+READINGDATADUMP=$(dirname "$0")/postman-test/DataDumps/coredata/readingDb.json
+VDDATADUMP=$(dirname "$0")/postman-test/DataDumps/coredata/valueDescriptorDb.json
+READINGDATAFILE=$(dirname "$0")/postman-test/data/readingData.json
+VDDATAFILE=$(dirname "$0")/postman-test/data/valueDescriptorData.json
 
-METADATA_ENVFILE=../environment/MetadataEnv.postman_environment.json
-METADATA_COLLFILE=../collections/fuse-core-metadata.postman_collection.json
-ADDRESSABLE_DATAFILE=../data/addressableData.json
-ADDRESSABLE_DATADUMP=../DataDumps/metadata/addressableDb.json
-DEVICE_DATAFILE=../data/deviceData.json
-DEVICE_DATADUMP=../DataDumps/metadata/deviceDb.json
-DEVICESERVICE_DATAFILE=../data/deviceServiceData.json
-DEVICESERVICE_DATADUMP=../DataDumps/metadata/deviceserviceDb.json
-COMMAND_DATAFILE=../data/commandData.json
-COMMAND_DATADUMP=../DataDumps/metadata/commandDb.json
-DEVICEMANAGER_DATAFILE=../data/deviceManagerData.json
-DEVICEMANAGER_DATADUMP=../DataDumps/metadata/deviceManagerDb.json
-DEVICEPROFILE_DATAFILE=../data/deviceProfileData.json
-DEVICEPROFILE_DATADUMP=../DataDumps/metadata/deviceProfileDb.json
-PROVISION_DATAFILE=../data/provisionWatcherData.json
-PROVISION_DATADUMP=../DataDumps/metadata/provisioWatcherDb.json
-DEVICEREPORT_DATAFILE=../data/deviceReportData.json
-DEVICEREPORT_DATADUMP=../DataDumps/metadata/deviceReportDb.json
-SCHEDULE_DATAFILE=../data/scheduleData.json
-SCHEDULE_DATADUMP=../DataDumps/metadata/scheduleDb.json
-SCHEDULEEVENT_DATAFILE=../data/scheduleEventData.json
-SCHEDULEEVENT_DATADUMP=../DataDumps/metadata/scheduleEventDb.json
+METADATA_ENVFILE=$(dirname "$0")/postman-test/environment/MetadataEnv.postman_environment.json
+METADATA_COLLFILE=$(dirname "$0")/postman-test/collections/fuse-core-metadata.postman_collection.json
+ADDRESSABLE_DATAFILE=$(dirname "$0")/postman-test/data/addressableData.json
+ADDRESSABLE_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/addressableDb.json
+DEVICE_DATAFILE=$(dirname "$0")/postman-test/data/deviceData.json
+DEVICE_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/deviceDb.json
+DEVICESERVICE_DATAFILE=$(dirname "$0")/postman-test/data/deviceServiceData.json
+DEVICESERVICE_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/deviceserviceDb.json
+COMMAND_DATAFILE=$(dirname "$0")/postman-test/data/commandData.json
+COMMAND_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/commandDb.json
+DEVICEMANAGER_DATAFILE=$(dirname "$0")/postman-test/data/deviceManagerData.json
+DEVICEMANAGER_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/deviceManagerDb.json
+DEVICEPROFILE_DATAFILE=$(dirname "$0")/postman-test/data/deviceProfileData.json
+DEVICEPROFILE_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/deviceProfileDb.json
+PROVISION_DATAFILE=$(dirname "$0")/postman-test/data/provisionWatcherData.json
+PROVISION_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/provisioWatcherDb.json
+DEVICEREPORT_DATAFILE=$(dirname "$0")/postman-test/data/deviceReportData.json
+DEVICEREPORT_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/deviceReportDb.json
+SCHEDULE_DATAFILE=$(dirname "$0")/postman-test/data/scheduleData.json
+SCHEDULE_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/scheduleDb.json
+SCHEDULEEVENT_DATAFILE=$(dirname "$0")/postman-test/data/scheduleEventData.json
+SCHEDULEEVENT_DATADUMP=$(dirname "$0")/postman-test/DataDumps/metadata/scheduleEventDb.json
 
-CORECOMMANDENVFILE=../environment/command.postman_environment.json
-CORECOMMANDCOLLFILE=../collections/fuse-core-command.postman_collection.json
-ADDRESSABLECCDATADUMP=../DataDumps/command/addressableDb.json
-DEVICECCDATADUMP=../DataDumps/command/deviceDb.json
-DEVICEPROFILECCDATADUMP=../DataDumps/command/deviceProfileDb.json
-DEVICESERVICECCDATADUMP=../DataDumps/command/deviceServiceDb.json
-COMMANDCCDATADUMP=../DataDumps/command/commandDb.json
-CORECOMMANDDATAFILE=../data/coreCommandData.json
+CORECOMMANDENVFILE=$(dirname "$0")/postman-test/environment/command.postman_environment.json
+CORECOMMANDCOLLFILE=$(dirname "$0")/postman-test/collections/fuse-core-command.postman_collection.json
+ADDRESSABLECCDATADUMP=$(dirname "$0")/postman-test/DataDumps/command/addressableDb.json
+DEVICECCDATADUMP=$(dirname "$0")/postman-test/DataDumps/command/deviceDb.json
+DEVICEPROFILECCDATADUMP=$(dirname "$0")/postman-test/DataDumps/command/deviceProfileDb.json
+DEVICESERVICECCDATADUMP=$(dirname "$0")/postman-test/DataDumps/command/deviceServiceDb.json
+COMMANDCCDATADUMP=$(dirname "$0")/postman-test/DataDumps/command/commandDb.json
+CORECOMMANDDATAFILE=$(dirname "$0")/postman-test/data/coreCommandData.json
 
 if [ -f $CONFIGFILE ]; then 
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=../config/config.txt
+FILE=$(dirname "$0")/postman-test/config/config.txt
 
 if [ -f $FILE ]; then
 	

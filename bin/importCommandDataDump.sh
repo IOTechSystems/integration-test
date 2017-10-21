@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAMESFILE=files.sh
+NAMESFILE=$(dirname "$0")/files.sh
 
 if [ -f $NAMESFILE ]; then 
 
