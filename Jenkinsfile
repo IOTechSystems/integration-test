@@ -16,14 +16,11 @@ node {
             }
         }
 
-        stage('Clear test service') {
-            steps {
-                sh 'docker-compose down'
-            }
-        }
 
     }catch (exc) {
         echo 'Something failed!'
+
+    }finally{
         sh 'docker-compose down'
     }
 }
