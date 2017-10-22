@@ -21,7 +21,7 @@ do
 
     if [ -f ${DUMP_FILES[index]} ]; then
         COPY_FROM="${DUMP_FILES[index]}"
-        COPY_TO=${COPY_FROM:5}
+        COPY_TO=${COPY_FROM:6}
 
         echo "${COPY_FROM} ~ $COPY_TO"
 
