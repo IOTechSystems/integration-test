@@ -17,55 +17,23 @@ else
 
 fi
 
-if [ -f $ADDRESSABLE_JS ]; then 
+FLUSH_SCRIPTS=( $ADDRESSABLE_JS $DEVICE_JS $DEVICPROFILE_JS $DEVICESERVICE_JS $COMMAND_JS )
 
-	mongo $mongoDbHost/metadata $ADDRESSABLE_JS
-	echo "Info: Addressable data flushed"
+for index in "${!FLUSH_SCRIPTS[@]}"
+do
+    if [ -f ${FLUSH_SCRIPTS[index]} ]; then
+        COPY_FROM="${FLUSH_SCRIPTS[index]}"
+        COPY_TO="${RANDOM}.json"
 
-else
-	echo "Error: Mongo JS event file does not exist."
+        docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
+        docker-compose exec -T mongo /bin/bash -c "mongo coredata ${COPY_TO}"
 
-fi
+        echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
 
-if [ -f $DEVICE_JS ]; then 
+    else
+        echo "Error: Mongo JS ${FLUSH_SCRIPTS[index]} file does not exist."
 
-	mongo $mongoDbHost/metadata $DEVICE_JS
-	echo "Info: Device data flushed"
-
-else
-	echo "Error: Mongo JS Device file does not exist."
-
-fi
+    fi
 
 
-if [ -f $DEVICPROFILE_JS ]; then 
-
-	mongo $mongoDbHost/metadata $DEVICPROFILE_JS
-	echo "Info: DeviceProfile data flushed"
-
-else
-	echo "Error: Mongo JS Command file does not exist."
-
-fi 
-
-if [ -f $DEVICESERVICE_JS ]; then 
-
-	mongo $mongoDbHost/metadata $DEVICESERVICE_JS
-	echo "Info: DeviceService data flushed"
-
-else
-	echo "Error: Mongo JS DeviceService file does not exist."
-
-fi
-
-
-if [ -f $COMMAND_JS ]; then 
-
-	mongo $mongoDbHost/metadata $COMMAND_JS
-	echo "Info: Command data flushed"
-
-else
-	echo "Error: Mongo JS Comnmand file does not exist."
-
-fi
-
+done
