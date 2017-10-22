@@ -20,9 +20,13 @@ do
 	echo "${index}.  ${DUMP_FILES[index]}"
 
     if [ -f ${DUMP_FILES[index]} ]; then
+        COPY_FROM=${DUMP_FILES[index]}
+        COPY_TO=${COPY_FROM#t*postman-test}
 
-        docker cp ${DUMP_FILES[index]} "$(docker-compose ps -q mongo)":${DUMP_FILES[index]}
-        docker-compose exec -T mongo /bin/bash -c "mongoimport -d coredata -c event --file ${DUMP_FILES[index]}"
+        echo "${COPY_FROM} ~ $COPY_TO}"
+
+        docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
+        docker-compose exec -T mongo /bin/bash -c "mongoimport -d coredata -c event --file ${COPY_TO}"
 
     else
         echo "Error: ${DUMP_FILES[index]} data dump does not exist."
