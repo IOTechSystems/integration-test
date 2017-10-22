@@ -21,7 +21,7 @@ do
 
     if [ -f ${DUMP_FILES[index]} ]; then
         COPY_FROM="${DUMP_FILES[index]}"
-        COPY_TO=${COPY_FROM:6}
+        COPY_TO="${RANDOM}.json"
 
         echo "${COPY_FROM} ~ $COPY_TO"
 
