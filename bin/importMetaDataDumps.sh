@@ -12,7 +12,15 @@ else
 
 fi
 
-DUMP_FILES=( $ADDRESSABLE_DATADUMP $DEVICESERVICE_DATADUMP $DEVICE_DATADUMP $COMMAND_DATADUMP $DEVICEPROFILE_DATADUMP $PROVISION_DATADUMP $DEVICEREPORT_DATADUMP $SCHEDULE_DATADUMP $SCHEDULEEVENT_DATADUMP )
+DATA_BASE="metadata"
+COLLECTIONS=(
+    "addressable" "deviceService" "device"
+     "command" "deviceProfile" "provisionWatcher"
+     "deviceReport" "schedule" "scheduleEvent")
+DUMP_FILES=(
+    $ADDRESSABLE_DATADUMP $DEVICESERVICE_DATADUMP $DEVICE_DATADUMP
+    $COMMAND_DATADUMP $DEVICEPROFILE_DATADUMP $PROVISION_DATADUMP
+    $DEVICEREPORT_DATADUMP $SCHEDULE_DATADUMP $SCHEDULEEVENT_DATADUMP )
 
 for index in "${!DUMP_FILES[@]}"
 do
@@ -22,7 +30,7 @@ do
         COPY_TO="${RANDOM}.json"
 
         docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
-        docker-compose exec -T mongo /bin/bash -c "mongoimport -d coredata -c event --file ${COPY_TO}"
+        docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${COPY_TO}"
 
     else
         echo "Error: ${DUMP_FILES[index]} data dump does not exist."

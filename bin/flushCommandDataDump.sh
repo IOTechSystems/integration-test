@@ -17,6 +17,7 @@ else
 
 fi
 
+DATA_BASE="metadata"
 FLUSH_SCRIPTS=( $ADDRESSABLE_JS $DEVICE_JS $DEVICPROFILE_JS $DEVICESERVICE_JS $COMMAND_JS )
 
 for index in "${!FLUSH_SCRIPTS[@]}"
@@ -26,7 +27,7 @@ do
         COPY_TO="${RANDOM}.json"
 
         docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
-        docker-compose exec -T mongo /bin/bash -c "mongo coredata ${COPY_TO}"
+        docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${COPY_TO}"
 
         echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
 

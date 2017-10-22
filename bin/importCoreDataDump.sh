@@ -12,6 +12,8 @@ else
 
 fi
 
+DATA_BASE="coredata"
+COLLECTIONS=( "event" "reading" "valueDescriptor" )
 DUMP_FILES=( $EVENTDATADUMP $READINGDATADUMP $VDDATADUMP)
 
 for index in "${!DUMP_FILES[@]}"
@@ -22,7 +24,7 @@ do
         COPY_TO="${RANDOM}.json"
 
         docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
-        docker-compose exec -T mongo /bin/bash -c "mongoimport -d coredata -c event --file ${COPY_TO}"
+        docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${COPY_TO}"
 
     else
         echo "Error: ${DUMP_FILES[index]} data dump does not exist."

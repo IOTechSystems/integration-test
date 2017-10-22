@@ -12,6 +12,8 @@ else
 
 fi
 
+DATA_BASE="metadata"
+COLLECTIONS=( "addressable" "device" "deviceProfile" "deviceService" "command" )
 DUMP_FILES=( $ADDRESSABLECCDATADUMP $DEVICECCDATADUMP $DEVICEPROFILECCDATADUMP $DEVICESERVICECCDATADUMP $COMMANDCCDATADUMP )
 
 for index in "${!DUMP_FILES[@]}"
@@ -22,7 +24,7 @@ do
         COPY_TO="${RANDOM}.json"
 
         docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
-        docker-compose exec -T mongo /bin/bash -c "mongoimport -d coredata -c event --file ${COPY_TO}"
+        docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${COPY_TO}"
 
     else
         echo "Error: ${DUMP_FILES[index]} data dump does not exist."
