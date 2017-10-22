@@ -20,7 +20,9 @@ node {
         echo 'Something failed!'
         throw e;
     }finally{
-        echo '[INFO] test end !'
-        sh 'docker-compose down'
+        stage('Clear test service !') {
+            echo '[INFO] test end !'
+            sh 'docker-compose down'
+        }
     }
 }
