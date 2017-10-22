@@ -1,11 +1,11 @@
 #!/bin/bash
 
-NAMESFILE=files.sh
-ADDRESSABLE_JS=javascript/command/addressable.js
-DEVICE_JS=javascript/command/device.js
-COMMAND_JS=javascript/command/command.js
-DEVICPROFILE_JS=javascript/command/deviceProfile.js
-DEVICESERVICE_JS=javascript/command/deviceService.js
+NAMESFILE=$(dirname "$0")/files.sh
+ADDRESSABLE_JS=$(dirname "$0")/javascript/command/addressable.js
+DEVICE_JS=$(dirname "$0")/javascript/command/device.js
+COMMAND_JS=$(dirname "$0")/javascript/command/command.js
+DEVICPROFILE_JS=$(dirname "$0")/javascript/command/deviceProfile.js
+DEVICESERVICE_JS=$(dirname "$0")/javascript/command/deviceService.js
 
 if [ -f $NAMESFILE ]; then 
 

@@ -1,16 +1,16 @@
 #!/bin/bash
 
-NAMESFILE=files.sh
-ADDRESSABLE_JS=javascript/metadata/addressable.js
-DEVICE_JS=javascript/metadata/device.js
-COMMAND_JS=javascript/metadata/command.js
-DEVICEMANAGER_JS=javascript/metadata/deviceManager.js
-DEVICPROFILE_JS=javascript/metadata/deviceProfile.js
-DEVICEREPORT_JS=javascript/metadata/deviceReport.js
-DEVICESERVICE_JS=javascript/metadata/deviceService.js
-PROVISIONWATCHER_JS=javascript/metadata/provisionWatcher.js
-SCHEDULE_JS=javascript/metadata/schedule.js
-SCHEDULEEVENT_JS=javascript/metadata/scheduleEvent.js
+NAMESFILE=$(dirname "$0")/files.sh
+ADDRESSABLE_JS=$(dirname "$0")/javascript/metadata/addressable.js
+DEVICE_JS=$(dirname "$0")/javascript/metadata/device.js
+COMMAND_JS=$(dirname "$0")/javascript/metadata/command.js
+DEVICEMANAGER_JS=$(dirname "$0")/javascript/metadata/deviceManager.js
+DEVICPROFILE_JS=$(dirname "$0")/javascript/metadata/deviceProfile.js
+DEVICEREPORT_JS=$(dirname "$0")/javascript/metadata/deviceReport.js
+DEVICESERVICE_JS=$(dirname "$0")/javascript/metadata/deviceService.js
+PROVISIONWATCHER_JS=$(dirname "$0")/javascript/metadata/provisionWatcher.js
+SCHEDULE_JS=$(dirname "$0")/javascript/metadata/schedule.js
+SCHEDULEEVENT_JS=$(dirname "$0")/javascript/metadata/scheduleEvent.js
 
 
 if [ -f $NAMESFILE ]; then 
