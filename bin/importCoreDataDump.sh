@@ -17,13 +17,10 @@ DUMP_FILES=( $EVENTDATADUMP $READINGDATADUMP $VDDATADUMP)
 
 for index in "${!DUMP_FILES[@]}"
 do
-	echo "${index}.  ${DUMP_FILES[index]}"
 
     if [ -f ${DUMP_FILES[index]} ]; then
         COPY_FROM="${DUMP_FILES[index]}"
         COPY_TO="${RANDOM}.json"
-
-        echo "${COPY_FROM} ~ $COPY_TO"
 
         docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
         docker-compose exec -T mongo /bin/bash -c "mongoimport -d coredata -c event --file ${COPY_TO}"

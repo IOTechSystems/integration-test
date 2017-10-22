@@ -22,13 +22,12 @@ FLUSH_SCRIPTS=( $EVENTDUMPJS $READINGDUMPJS $VDDUMPJS)
 
 for index in "${!FLUSH_SCRIPTS[@]}"
 do
-	echo "${index}.  ${FLUSH_SCRIPTS[index]}"
+    if [ -f ${FLUSH_SCRIPTS[index]} ]; then
+        COPY_FROM="${FLUSH_SCRIPTS[index]}"
+        COPY_TO="${RANDOM}.json"
 
-    if [ -f $VDDUMPJS ]; then
-
-    #	mongo $mongoDbHost/coredata $VDDUMPJS
-        docker cp ${FLUSH_SCRIPTS[index]} "$(docker-compose ps -q mongo)":${FLUSH_SCRIPTS[index]}
-        docker-compose exec -T mongo /bin/bash -c "mongo coredata ${FLUSH_SCRIPTS[index]}"
+        docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
+        docker-compose exec -T mongo /bin/bash -c "mongo coredata ${COPY_TO}"
 
         echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
 
