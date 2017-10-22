@@ -4,7 +4,7 @@ node {
     try {
 
         stage('Deploy test service') {
-            sh 'rm -f bin/postman-test/newman/*'
+            //sh 'rm -f bin/postman-test/newman/*'
             sh 'sh deploy-edgeX.sh'
         }
 
