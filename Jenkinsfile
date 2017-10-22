@@ -4,12 +4,13 @@ node {
     try {
 
         stage('Deploy test service') {
+            sh 'rm -f bin/postman-test/newman/*'
             sh 'sh deploy-edgeX.sh'
         }
 
 
         stage('Run Postman test') {
-            sh './bin/run.sh -cd'
+            sh './bin/run.sh -all'
 
             junit 'bin/postman-test/newman/**.xml'
         }
