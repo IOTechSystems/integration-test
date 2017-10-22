@@ -10,7 +10,7 @@ node {
 
 
         stage('Run Postman test') {
-            sh './bin/run.sh -cd'
+            sh './bin/run.sh -all'
 
             //junit 'bin/postman-test/newman/**.xml'
         }
