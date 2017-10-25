@@ -9,7 +9,7 @@ node {
 
 
         stage('Run Postman test') {
-            docker-compose exec -T volume rm -rf /etc/newman/newman/
+            sh 'docker-compose exec -T volume rm -rf /etc/newman/newman/'
 
             sh './bin/run.sh -all'
 
