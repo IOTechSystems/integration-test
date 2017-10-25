@@ -12,6 +12,7 @@ services:
       - /edgex/logs
       - /consul/config
       - /consul/data
+      - ${PWD}/bin/postman-test:/etc/newman
 
   consul:
     image: edgexfoundry/docker-core-consul
@@ -273,6 +274,8 @@ services:
     image: postman/newman_ubuntu1404
     networks:
       - edgex-network
+    volumes_from:
+      - volume
 
   # device-bacnet:
     # image: edgexfoundry/docker-device-bacnet
