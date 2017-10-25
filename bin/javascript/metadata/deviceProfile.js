@@ -19,7 +19,9 @@ var deviceProfilesToBeRemoved = [
     ObjectId("57f5e077e4b060e2071a5c37"),
     ObjectId("57fe0142e4b060e2c823643c"),
     ObjectId("57fdc221e4b060e2bbc1511c"),
-    ObjectId("57fddad1e4b060e2df0aa104")
+    ObjectId("57fddad1e4b060e2df0aa104"),
+    ObjectId("57fb3067e4b060e22bd8c1b6"),
+    ObjectId("57f5e077e4b060e2071a5c36")
 ];
 
 db.deviceProfile.remove({
