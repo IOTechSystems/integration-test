@@ -41,9 +41,7 @@ var commandsToBeRemoved = [
     ObjectId("57fe011ce4b060e2c823643a"),
     ObjectId("57fe0142e4b060e2c823643b"),
     ObjectId("57fddad1e4b060e2df0aa103"),
-    ObjectId("57fdc221e4b060e2bbc1511b"),
-    ObjectId("58006b02e4b060e2194e427e"),
-    ObjectId("57f39efde4b060e268aeb77g")
+    ObjectId("57fdc221e4b060e2bbc1511b")
 ];
 
 db.command.remove({
