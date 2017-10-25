@@ -23,7 +23,7 @@ coreDataTest() {
 metaDataTest() {	
 
  	$(dirname "$0")/importMetaDataDumps.sh
-# 	$(dirname "$0")/metadataTest.sh
+ 	$(dirname "$0")/metadataTest.sh
 	$(dirname "$0")/flushMetaDataDump.sh
 
 }
@@ -31,7 +31,7 @@ metaDataTest() {
 commandTest() {
 
 	$(dirname "$0")/importCommandDataDump.sh
-#	$(dirname "$0")/commandTest.sh
+	$(dirname "$0")/commandTest.sh
 	$(dirname "$0")/flushCommandDataDump.sh
 
 }

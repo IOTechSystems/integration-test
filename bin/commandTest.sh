@@ -1,8 +1,6 @@
 #!/bin/bash
-TEST_DIR=${1}
-DOCKER_NETWORK="integrationtestdeployment_edgex-network"
 
-NAMESFILE=files.sh
+NAMESFILE=$(dirname "$0")/files.sh
 
 COLLECTION_PATH="collections/fuse-core-command.postman_collection.json"
 ENV_PATH="environment/command.postman_environment.json"
@@ -19,20 +17,22 @@ fi
 
 echo "Info: Initiating Command Test."
 
-#if [ "${WORKSPACE}" != "" ]; then
-echo ""
-echo ""
-echo "[info] ---------- jenkins use docker run newman  ----------"
-echo "[info] WORKSPACE is ${WORKSPACE}"
+echo "[info] ---------- use docker-compose run newman ----------"
 
-docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
-    --folder="device" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
+docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
+    --folder="device" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
-docker run --rm --user="1000" -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
-    --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
-    --reporters="junit,cli"
-#fi
 
+docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
+    --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
+    --reporters="junit,cli"
+
+#docker run --rm -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
+#    --folder="device" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
+#    --reporters="junit,cli"
+#docker run --rm -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
+#    --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
+#    --reporters="junit,cli"
 
 
 #newman run $CORECOMMANDCOLLFILE --folder device -d $CORECOMMANDDATAFILE -e $CORECOMMANDENVFILE -r cli,html --reporter-html-export $DEVICECCREPORT200FILE

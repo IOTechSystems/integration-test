@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOCKER_NETWORK="postmanintegrationtest_edgex-network"
-
 NAMESFILE=$(dirname "$0")/files.sh
 
 COLLECTION_PATH="collections/fuse-core-data.postman_collection.json"
@@ -19,7 +17,7 @@ fi
 
 echo "Info: Initiating Coredata Test."
 
-echo "[info] ---------- use docker run newman ${UID} ----------"
+echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
     --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
