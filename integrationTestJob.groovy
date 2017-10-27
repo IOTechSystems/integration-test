@@ -5,6 +5,7 @@ def runNode() {
         stage('Startup test services') {
             sh 'sh deploy-edgeX.sh'
             sh 'docker-compose exec -T volume ls /etc/newman'
+            sh 'docker-compose exec volume ls /etc/newman'
         }
 
 
