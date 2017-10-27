@@ -4,5 +4,5 @@ node{
     def rootDir = pwd()
     def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
 
-    integrationTestJob.runNode("ubuntu1604-vm1")
+    integrationTestJob.runNode("win10-1")
 }
