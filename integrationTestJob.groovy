@@ -4,7 +4,7 @@ def runNode(nodeName) {
 
             try {
 
-                stage('Deploy test service ~') {
+                stage('Startup test services') {
                     sh 'sh deploy-edgeX.sh'
                 }
 
@@ -22,7 +22,7 @@ def runNode(nodeName) {
                 echo 'Something failed!'
                 throw e;
             }finally{
-                stage('Clear test service !') {
+                stage('Shutdown test services') {
                     echo '[INFO] test end !'
                     sh 'docker-compose down'
                 }
