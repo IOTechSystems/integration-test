@@ -3,6 +3,8 @@ node("win10-1"){
 
     sh 'set COMPOSE_CONVERT_WINDOWS_PATHS=1'
 
+    sh 'ls ${pwd}'
+
     def rootDir = pwd()
     def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
 
