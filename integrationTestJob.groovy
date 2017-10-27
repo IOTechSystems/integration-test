@@ -12,7 +12,7 @@ def runNode(nodeName) {
                 stage('Run Postman test') {
                     sh 'docker-compose exec -T volume rm -rf /etc/newman/newman/'
 
-                    sh './bin/run.sh -all'
+                    sh './bin/run.sh -cd'
 
                     junit 'bin/postman-test/newman/**.xml'
                 }
