@@ -1,4 +1,5 @@
 node{
-def integrationTestJob = load "Jenkinsfile"
-integrationTestJob.runNode("ubuntu1604-vm1")
+    def rootDir = pwd()
+    def integrationTestJob = load "${rootDir}/Jenkinsfile"
+    integrationTestJob.runNode("ubuntu1604-vm1")
 }
