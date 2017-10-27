@@ -6,7 +6,7 @@ node("win10-1"){
     sh 'ls ${pwd}'
     sh 'ls ${PWD}'
 
-    sh 'docker-compose run --rm volume ls /etc'
+    sh 'docker-compose run --rm -T volume ls /etc'
 
     def rootDir = pwd()
     def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
