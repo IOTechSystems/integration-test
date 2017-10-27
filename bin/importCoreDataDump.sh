@@ -16,6 +16,8 @@ DATA_BASE="coredata"
 COLLECTIONS=( "event" "reading" "valueDescriptor" )
 DUMP_FILES=( $EVENTDATADUMP $READINGDATADUMP $VDDATADUMP)
 
+docker-compose exec -T volume ls /etc/newman
+
 for index in "${!DUMP_FILES[@]}"
 do
 
