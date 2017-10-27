@@ -28,9 +28,9 @@
     }
 }**/
 
-parallel (
-    "win10-1" : {
-        node("win10-1") {
+
+def testNode(nodeName) {
+      return  node(nodeName) {
             checkout scm
 
             try {
@@ -59,6 +59,11 @@ parallel (
                 }
             }
         }
+}
 
-                   }
+parallel (
+    "win10-1" : {
+        testNode("win10-1")
+
+     }
 )
