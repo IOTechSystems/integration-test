@@ -1,8 +1,8 @@
-node{
+node("win10-1"){
     checkout scm
 
     def rootDir = pwd()
     def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
 
-    integrationTestJob.runNode("win10-1")
+    integrationTestJob.runNode()
 }
