@@ -1,5 +1,5 @@
-def testNode(nodeName) {
-      return  node(nodeName) {
+def runNode(nodeName) {
+        node(nodeName) {
             checkout scm
 
             try {
@@ -30,11 +30,4 @@ def testNode(nodeName) {
         }
 }
 
-parallel (
-    "ubuntu1604-vm1" : {
-        testNode("ubuntu1604-vm1")
-     },
-    "win10-1" : {
-        testNode("win10-1")
-     }
-)
+return this
