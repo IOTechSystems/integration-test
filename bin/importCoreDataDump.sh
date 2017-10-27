@@ -28,7 +28,7 @@ do
         docker ps
         echo "mongo $(docker-compose ps -q mongo)"
         MONGO_CONTAINER=$(docker-compose ps -q mongo)
-        MONGO_CONTAINER='echo ${MONGO_CONTAINER} | cut -b 1-12'
+        MONGO_CONTAINER=`echo ${MONGO_CONTAINER} | cut -b 1-12`
         echo "mongo ${MONGO_CONTAINER}"
 
         docker cp ${COPY_FROM} "${MONGO_CONTAINER}":${COPY_TO}
