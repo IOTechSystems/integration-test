@@ -25,7 +25,10 @@ do
         COPY_FROM="${FLUSH_SCRIPTS[index]}"
         COPY_TO="${RANDOM}.json"
 
-        docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
+        MONGO_CONTAINER=$(docker-compose ps -q mongo)
+        MONGO_CONTAINER=`echo ${MONGO_CONTAINER} | cut -b 1-12`
+
+        docker cp ${COPY_FROM} "${MONGO_CONTAINER}":${COPY_TO}
         docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${COPY_TO}"
 
         echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
