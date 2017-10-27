@@ -33,7 +33,7 @@ run_service () {
 #run_service config-seed
 run_service mongo
 
-#sleep 12
+sleep 12
 #
 #run_service mongo-seed
 #run_service logging
