@@ -29,8 +29,8 @@
 }**/
 
 parallel (
-    win10-1 : {
-        node {
+    "win10-1" : {
+        node("win10-1") {
             checkout scm
 
             try {
