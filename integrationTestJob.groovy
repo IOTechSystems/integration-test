@@ -1,7 +1,5 @@
 def runNode() {
 
-    checkout scm
-
     try {
 
         stage('Startup test services') {
