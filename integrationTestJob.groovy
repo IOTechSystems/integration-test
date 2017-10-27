@@ -1,5 +1,7 @@
 def runNode(nodeName) {
         node(nodeName) {
+            checkout scm
+
             try {
 
                 stage('Deploy test service ~') {
