@@ -17,7 +17,7 @@ fi
 
 echo "Info: Initiating Coredata Test."
 
-echo "[info] ---------- use docker-compose run newman ${PWD}/bin/postman-test----------"
+echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
