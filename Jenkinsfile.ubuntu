@@ -1,4 +1,6 @@
 node{
+    checkout scm
+
     def rootDir = pwd()
     def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
     integrationTestJob.runNode("ubuntu1604-vm1")
