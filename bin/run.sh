@@ -14,7 +14,7 @@ FUSELOGSPATH=$BASEPATH/fuse$TIMESTAMPFORMAT.log
 coreDataTest() {
 
 	$(dirname "$0")/importCoreDataDump.sh
-#	$(dirname "$0")/coreDataTest.sh
+	$(dirname "$0")/coreDataTest.sh
 	$(dirname "$0")/flushCoreDataDump.sh
 
 }
