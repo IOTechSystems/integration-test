@@ -1,5 +1,5 @@
 node{
     def rootDir = pwd()
-    def integrationTestJob = load "${rootDir}/Jenkinsfile"
+    def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
     integrationTestJob.runNode("ubuntu1604-vm1")
 }

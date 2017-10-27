@@ -4,7 +4,7 @@ def runNode(nodeName) {
 
             try {
 
-                stage('Deploy test service') {
+                stage('Deploy test service ~') {
                     sh 'sh deploy-edgeX.sh'
                 }
 
