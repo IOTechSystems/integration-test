@@ -22,7 +22,7 @@ echo "[info] ---------- use docker-compose run newman ---------- ${PWD}/bin/post
 docker-compose run --rm -v "bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
     --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
-docker-compose run --rm -v "$bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
+docker-compose run --rm -v "bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
     --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
