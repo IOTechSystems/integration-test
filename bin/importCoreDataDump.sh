@@ -27,8 +27,11 @@ do
 
         docker ps
         echo "mongo $(docker-compose ps -q mongo)"
+        MONGO_CONTAINER=$(docker-compose ps -q mongo)
+        MONGO_CONTAINER=${MONGO_CONTAINER:12}
+        echo "mongo ${MONGO_CONTAINER}"
 
-        docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
+        docker cp ${COPY_FROM} "${MONGO_CONTAINER}":${COPY_TO}
         docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${COPY_TO}"
 
     else
