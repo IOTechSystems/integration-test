@@ -17,23 +17,23 @@ fi
 
 echo "Info: Initiating Coredata Test."
 
-echo "[info] ---------- use docker-compose run newman ----------"
+echo "[info] ---------- use docker-compose run newman ---------- ${PWD}/bin/postman-test"
 
-docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
+docker-compose run --rm -v "bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
     --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
-docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
+docker-compose run --rm -v "$bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
     --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
+docker-compose run --rm -v "bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
     --folder="reading" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
-docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
+docker-compose run --rm -v "bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
     --folder="reading_error_4xx" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
+docker-compose run --rm -v "bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
     --folder="valuedescriptor" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 docker-compose run --rm -v "${PWD}/bin/postman-test":/etc/newman postman run ${COLLECTION_PATH} \
