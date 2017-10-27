@@ -29,7 +29,7 @@
 }**/
 
 parallel (
-    "win10-1" : {
+    win10-1 : {
         node {
             checkout scm
 
