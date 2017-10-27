@@ -25,6 +25,9 @@ do
 
         echo "${COPY_FROM}  ${COPY_TO}"
 
+        docker ps
+        echo "mongo $(docker-compose ps -q mongo)"
+
         docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
         docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${COPY_TO}"
 
