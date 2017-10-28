@@ -4,7 +4,7 @@ node("win10-1"){
     sh 'set COMPOSE_CONVERT_WINDOWS_PATHS=1'
 
     sh 'ls ${pwd}'
-    sh 'echo "test'
+    sh 'echo "test"'
     sh 'ls ${PWD}'
 
     //sh 'docker-compose run --rm -T volume ls /etc'
