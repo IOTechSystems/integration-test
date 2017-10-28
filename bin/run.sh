@@ -79,7 +79,7 @@ esac
 
 
 echo "[INFO] Fetch postman test result ."
-docker cp "${VOLUME_CONTAINER}":/etc/newman/newman/. $(dirname "$0")/result
+docker cp "${VOLUME_CONTAINER}":/etc/newman/newman/. $(dirname "$0")/testResult
 
 echo
 echo "Info: Logs available in [scriptLogs]"

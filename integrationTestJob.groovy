@@ -7,12 +7,12 @@ def runNode() {
         }
 
         stage('Run Postman test') {
+            sh 'rm -rf testResult'
 
             sh './bin/run.sh -cd'
 
             junit 'result/**.xml'
 
-            sh 'rm -rf result'
         }
 
 
