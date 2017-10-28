@@ -24,8 +24,8 @@ run_service () {
 }
 
 
-#run_service volume
-#sleep 10
+run_service volume
+sleep 10
 #run_service consul
 #
 #while ! $(docker-compose exec -T consul nc -z localhost 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
