@@ -9,12 +9,7 @@ node("win10-1"){
 
     sh 'docker-compose up -d  volume'
 
-    sh 'VOLUME_CONTAINER=$(docker-compose ps -q volume)'
-    sh 'VOLUME_CONTAINER=`echo ${VOLUME_CONTAINER} | cut -b 1-12`'
-    sh 'docker cp ${PWD}/bin/postman-test "${VOLUME_CONTAINER}":/etc/newman'
-
-    sh 'docker-compose exec -T  volume ls /etc/newman'
-
+    sh 'sh test.sh'
 
     sh 'docker-compose down'
 
