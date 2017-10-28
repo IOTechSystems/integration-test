@@ -12,7 +12,6 @@ services:
       - /edgex/logs
       - /consul/config
       - /consul/data
-#      - ${PWD}/bin/postman-test/:/etc/newman/
       - /etc/newman
   consul:
     image: edgexfoundry/docker-core-consul

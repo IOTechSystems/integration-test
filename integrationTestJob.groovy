@@ -4,17 +4,15 @@ def runNode() {
 
         stage('Startup test services') {
             sh 'sh deploy-edgeX.sh'
-            sh 'docker-compose exec -T volume ls /etc/newman'
         }
-
 
         stage('Run Postman test') {
 
-            sh './bin/run.sh -all'
+            sh './bin/run.sh -cd'
 
-            junit 'bin/postman-test/newman/**.xml'
+            junit 'result/**.xml'
 
-            sh 'docker-compose exec -T volume rm -rf /etc/newman/newman/'
+            sh 'rm -rf result'
         }
 
 

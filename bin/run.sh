@@ -46,6 +46,14 @@ testAll() {
 #Main Script starts here
 $(dirname "$0")/banner.sh
 
+echo "Init postman test data ."
+VOLUME_CONTAINER=$(docker-compose ps -q volume)
+VOLUME_CONTAINER=`echo ${VOLUME_CONTAINER} | cut -b 1-12`
+
+echo "VOLUME_CONTAINER ${VOLUME_CONTAINER}"
+docker cp $(dirname "$0")/bin/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
+
+
 case ${option} in 
 	-cd)  
 	echo "Info: Initiating Coredata Test"
@@ -68,10 +76,15 @@ case ${option} in
       	echo
       	exit 0
       	;; 
-esac 
+esac
+
+
+echo "Fetch postman test result ."
+docker cp "${VOLUME_CONTAINER}":/etc/newman/newman/. $(dirname "$0")/result
+
 echo
 echo "Info: Logs available in [scriptLogs]"
-echo "Info: HTML Reports available in [Reports]"
+#echo "Info: HTML Reports available in [Reports]"
 echo
 $(dirname "$0")/endBanner.sh
 
