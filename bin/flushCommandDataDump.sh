@@ -1,11 +1,11 @@
 #!/bin/bash
 
 NAMESFILE=$(dirname "$0")/files.sh
-ADDRESSABLE_JS=$(dirname "$0")/javascript/command/addressable.js
-DEVICE_JS=$(dirname "$0")/javascript/command/device.js
-COMMAND_JS=$(dirname "$0")/javascript/command/command.js
-DEVICPROFILE_JS=$(dirname "$0")/javascript/command/deviceProfile.js
-DEVICESERVICE_JS=$(dirname "$0")/javascript/command/deviceService.js
+ADDRESSABLE_JS=/etc/newman/javascript/command/addressable.js
+DEVICE_JS=/etc/newman/javascript/command/device.js
+COMMAND_JS=/etc/newman/javascript/command/command.js
+DEVICPROFILE_JS=/etc/newman/javascript/command/deviceProfile.js
+DEVICESERVICE_JS=/etc/newman/javascript/command/deviceService.js
 
 if [ -f $NAMESFILE ]; then 
 
@@ -23,11 +23,8 @@ FLUSH_SCRIPTS=( $ADDRESSABLE_JS $DEVICE_JS $DEVICPROFILE_JS $DEVICESERVICE_JS $C
 for index in "${!FLUSH_SCRIPTS[@]}"
 do
     if [ -f ${FLUSH_SCRIPTS[index]} ]; then
-        COPY_FROM="${FLUSH_SCRIPTS[index]}"
-        COPY_TO="${RANDOM}.json"
 
-        docker cp ${COPY_FROM} "$(docker-compose ps -q mongo)":${COPY_TO}
-        docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${COPY_TO}"
+        docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${FLUSH_SCRIPTS[index]}"
 
         echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
 
