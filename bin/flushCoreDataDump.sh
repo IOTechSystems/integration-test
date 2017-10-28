@@ -21,16 +21,8 @@ FLUSH_SCRIPTS=( $EVENTDUMPJS $READINGDUMPJS $VDDUMPJS)
 
 for index in "${!FLUSH_SCRIPTS[@]}"
 do
-    if [ -f ${FLUSH_SCRIPTS[index]} ]; then
+    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${FLUSH_SCRIPTS[index]}"
 
-        docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${FLUSH_SCRIPTS[index]}"
-
-        echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
-
-    else
-        echo "Error: Mongo JS ${FLUSH_SCRIPTS[index]} file does not exist."
-
-    fi
-
+    echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
 
 done
