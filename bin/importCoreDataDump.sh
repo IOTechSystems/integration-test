@@ -20,14 +20,14 @@ for index in "${!DUMP_FILES[@]}"
 do
 
     if [ -f ${DUMP_FILES[index]} ]; then
-        COPY_FROM="${DUMP_FILES[index]}"
-        COPY_TO="${RANDOM}.json"
-
-        MONGO_CONTAINER=$(docker-compose ps -q mongo)
-        MONGO_CONTAINER=`echo ${MONGO_CONTAINER} | cut -b 1-12`
-
-        docker cp ${COPY_FROM} "${MONGO_CONTAINER}":${COPY_TO}
-        docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${COPY_TO}"
+#        COPY_FROM="${DUMP_FILES[index]}"
+#        COPY_TO="${RANDOM}.json"
+#
+#        MONGO_CONTAINER=$(docker-compose ps -q mongo)
+#        MONGO_CONTAINER=`echo ${MONGO_CONTAINER} | cut -b 1-12`
+#
+#        docker cp ${COPY_FROM} "${MONGO_CONTAINER}":${COPY_TO}
+        docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]}"
 
     else
         echo "Error: ${DUMP_FILES[index]} data dump does not exist."
