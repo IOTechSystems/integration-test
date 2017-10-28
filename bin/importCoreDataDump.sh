@@ -21,6 +21,12 @@ do
 
     if [ -f ${DUMP_FILES[index]} ]; then
 
+        echo "test"
+
+        docker-compose exec -T mongo ls /etc
+
+        docker-compose exec -T mongo ls /etc/newman
+
         docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]}"
 
     else
