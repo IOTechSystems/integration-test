@@ -1,21 +1,9 @@
 node("win10-1"){
     checkout scm
 
-    sh 'set COMPOSE_CONVERT_WINDOWS_PATHS=1'
-
-    sh 'docker-compose up -d  volume'
-
-    sh 'sh test.sh'
-
-    sh 'docker-compose down'
-
     def rootDir = pwd()
     def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
 
-    //integrationTestJob.runNode()
-
-
-
-
+    integrationTestJob.runNode()
 
 }
