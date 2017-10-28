@@ -46,11 +46,10 @@ testAll() {
 #Main Script starts here
 $(dirname "$0")/banner.sh
 
-echo "Init postman test data ."
+echo "[INFO] Init postman test data ."
 VOLUME_CONTAINER=$(docker-compose ps -q volume)
 VOLUME_CONTAINER=`echo ${VOLUME_CONTAINER} | cut -b 1-12`
 
-echo "VOLUME_CONTAINER ${VOLUME_CONTAINER}"
 docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
 
 
@@ -79,7 +78,7 @@ case ${option} in
 esac
 
 
-echo "Fetch postman test result ."
+echo "[INFO] Fetch postman test result ."
 docker cp "${VOLUME_CONTAINER}":/etc/newman/newman/. $(dirname "$0")/result
 
 echo
