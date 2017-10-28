@@ -21,7 +21,7 @@ do
 
     if [ -f ${DUMP_FILES[index]} ]; then
 
-        echo "test"
+        echo "test where mongo "
 
         docker-compose exec -T mongo ls /etc
 
