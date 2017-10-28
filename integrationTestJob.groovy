@@ -9,7 +9,7 @@ def runNode() {
         stage('Run Postman test') {
             sh 'rm -rf bin/testResult'
 
-            sh './bin/run.sh -cd'
+            sh './bin/run.sh -all'
 
             junit 'bin/testResult/**.xml'
 
