@@ -12,8 +12,8 @@ services:
       - /edgex/logs
       - /consul/config
       - /consul/data
-      - ${PWD}/bin/postman-test:/etc/newman
-
+#      - ${PWD}/bin/postman-test:/etc/newman
+      - C:\cygwin64\home\Jenkins\workspace\est-win10_use-jenkins-slave-N5QMB5FHPNVKVNA3YM7PMIDKCZH526DU5V4FQI3FI2YFSCTWCFBA\bin\postman:/etc/newman
   consul:
     image: edgexfoundry/docker-core-consul
 #    ports:
