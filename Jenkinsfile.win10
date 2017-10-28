@@ -9,7 +9,8 @@ node("win10-1"){
 
     sh 'docker-compose up -d  volume'
     sh 'docker-compose exec -T  volume ls'
-    sh 'docker-compose exec -T  volume ls /etc/newman'
+    sh 'docker-compose exec -T  volume ls /etc/'
+    sh 'docker-compose exec -T  volume ls /etc/newman/'
     sh 'docker-compose down'
 
     def rootDir = pwd()
