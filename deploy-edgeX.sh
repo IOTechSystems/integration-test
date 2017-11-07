@@ -21,7 +21,7 @@
 declare -A IMAGES=(
     ["volume"]="edgexfoundry/docker-edgex-volume"
     ["consul"]="edgexfoundry/docker-core-consul"
-    ["aaa"]="edgexfoundry/docker-core-metadata"
+    ["coreMetadata"]="edgexfoundry/docker-core-metadata"
 )
 
 if [ -z "$TEST_SERVICE" ]; then
@@ -38,7 +38,7 @@ do
 done
 
 echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
-echo "${aaa}"
+echo "${coreMetadata}"
 echo "${volume}"
 echo "${consul}"
 
