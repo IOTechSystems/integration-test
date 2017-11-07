@@ -25,10 +25,10 @@ declare -A IMAGES=(
 
 for image in "${!IMAGES[@]}";
 do
-    env ${image}=${IMAGES[image]}
+    env ${image}=${IMAGES[$image]}
 done
 
-
+echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
 echo "${volume}"
 echo "${consul}"
 
