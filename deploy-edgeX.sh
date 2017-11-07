@@ -24,6 +24,7 @@ declare -A IMAGES=(
     ["coreMetadata"]="edgexfoundry/docker-core-metadata"
 )
 
+echo "${TEST_SERVICE}"
 if [ -z "${TEST_SERVICE}" ]; then
     echo "TEST_SERVICE not set , use default"
 else
