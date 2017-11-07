@@ -3,7 +3,7 @@
 version: '2'
 services:
   volume:
-    image: "${IMAGES[volume]}"
+    image: "${volume}"
     networks:
       - edgex-network
 
@@ -14,7 +14,7 @@ services:
       - /consul/data
       - /etc/newman
   consul:
-    image: "${IMAGES[consul]}"
+    image: "${consul}"
 #    ports:
 #      - "8400:8400"
 #      - "8500:8500"
