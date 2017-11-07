@@ -3,7 +3,7 @@ def runNode() {
     try {
 
         stage('Startup test services') {
-            sh 'sh deploy-edgeX.sh'
+            sh 'sh ./deploy-edgeX.sh'
         }
 
         stage('Run Postman test') {
