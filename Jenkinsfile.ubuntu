@@ -7,7 +7,7 @@ node("ubuntu1604-vm1"){
     print "DEBUG: parameter isFoo = ${params.testService}"
     sh "echo sh isFoo is ${params.testService}"
 
-    env.TEST_SERVICE="${params.testService}""
+    env.TEST_SERVICE="${params.testService}"
 
     sh "echo ${TEST_SERVICE}"
 
