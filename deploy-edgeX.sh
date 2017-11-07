@@ -27,7 +27,7 @@ for image in "${!IMAGES[@]}";
 do
     echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
     echo "${image} ${IMAGES[$image]}"
-    env "${image}=${IMAGES[$image]}"
+    setenv "${image}=${IMAGES[$image]}"
 done
 
 echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
