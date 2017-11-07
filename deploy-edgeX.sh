@@ -18,7 +18,7 @@
 # Start EdgeX Foundry services in right order, as described:
 # https://wiki.edgexfoundry.org/display/FA/Get+EdgeX+Foundry+-+Users
 
-IMAGES=(
+declare -A IMAGES=(
     ["volume"]="edgexfoundry/docker-edgex-volume"
     ["consul"]="edgexfoundry/docker-core-consul"
 )
