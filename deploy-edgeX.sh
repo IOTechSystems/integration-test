@@ -18,6 +18,12 @@
 # Start EdgeX Foundry services in right order, as described:
 # https://wiki.edgexfoundry.org/display/FA/Get+EdgeX+Foundry+-+Users
 
+export IMAGES=(
+    ["volume"]="edgexfoundry/docker-edgex-volume"
+    ["consul"]="edgexfoundry/docker-core-consul"
+)
+
+
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
 	docker-compose up -d $1
