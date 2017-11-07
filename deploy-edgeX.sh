@@ -21,7 +21,7 @@
 declare -A IMAGES=(
     ["volume"]="edgexfoundry/docker-edgex-volume"
     ["consul"]="edgexfoundry/docker-core-consul"
-    ["core-metadata"]="edgexfoundry/docker-core-metadata"
+    ["metadata"]="edgexfoundry/docker-core-metadata"
 )
 
 if [ -z "$TEST_SERVICE" ]; then
