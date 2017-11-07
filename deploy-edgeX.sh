@@ -25,7 +25,7 @@ declare -A IMAGES=(
 )
 
 if [ -z "$TEST_SERVICE" ]; then
-    IMAGES[$TEST_SERVICE]="123123"
+    IMAGES["${TEST_SERVICE}"]="123123"
 else
     echo "TEST_SERVICE not set , use default"
 fi
