@@ -23,6 +23,7 @@ export IMAGES=(
     ["consul"]="edgexfoundry/docker-core-consul"
 )
 
+echo "${IMAGES[consul]}"
 
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
