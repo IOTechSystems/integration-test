@@ -4,5 +4,8 @@ node("ubuntu1604-vm1"){
     def rootDir = pwd()
     def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
 
+    print "DEBUG: parameter isFoo = ${params.testService}"
+    sh "echo sh isFoo is ${params.testService}"
+
     integrationTestJob.runNode()
 }
