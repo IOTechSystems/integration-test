@@ -25,14 +25,12 @@ declare -A IMAGES=(
 
 for image in "${!IMAGES[@]}";
 do
-    echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
-    echo "${image} ${IMAGES[$image]}"
-
+    echo "set env ${image} ${IMAGES[$image]}"
     export $image=${IMAGES[$image]}
-#    setenv "${image}=${IMAGES[$image]}"
 done
 
 echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
+echo "${TEST_SERVICE}"
 echo "${volume}"
 echo "${consul}"
 
