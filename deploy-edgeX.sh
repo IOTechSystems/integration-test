@@ -21,7 +21,15 @@
 declare -A IMAGES=(
     ["volume"]="edgexfoundry/docker-edgex-volume"
     ["consul"]="edgexfoundry/docker-core-consul"
+    ["core-metadata"]="edgexfoundry/docker-core-metadata"
 )
+
+if [ -z "$TEST_SERVICE" ]; then
+    IMAGES[$TEST_SERVICE]="123123"
+else
+    echo "TEST_SERVICE not set , use default"
+fi
+
 
 for image in "${!IMAGES[@]}";
 do
@@ -30,7 +38,7 @@ do
 done
 
 echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
-echo "${TEST_SERVICE}"
+echo "${core-metadata}"
 echo "${volume}"
 echo "${consul}"
 
