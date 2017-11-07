@@ -28,7 +28,7 @@ do
     echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
     echo "${image} ${IMAGES[$image]}"
 
-    echo 'export '${image}=${IMAGES[$image]}' ;'
+    export $image=${IMAGES[$image]}
 #    setenv "${image}=${IMAGES[$image]}"
 done
 
