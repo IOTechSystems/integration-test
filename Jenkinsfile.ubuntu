@@ -8,6 +8,7 @@ node("ubuntu1604-vm1"){
     sh "echo sh isFoo is ${params.testService}"
 
     env.TEST_SERVICE="${params.testService}"
+    env.TEST_SERVICE_IMAGE="${params.testServiceImage}"
 
     sh "echo ${TEST_SERVICE}"
 

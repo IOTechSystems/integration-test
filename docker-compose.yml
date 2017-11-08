@@ -3,7 +3,7 @@
 version: '2'
 services:
   volume:
-    image: "${volume}"
+    image: ${volume}
     networks:
       - edgex-network
 
@@ -14,7 +14,7 @@ services:
       - /consul/data
       - /etc/newman
   consul:
-    image: "${consul}"
+    image: ${consul}
 #    ports:
 #      - "8400:8400"
 #      - "8500:8500"
@@ -41,7 +41,7 @@ services:
       - consul
 
   mongo:
-    image: edgexfoundry/docker-edgex-mongo
+    image: ${mongo}
 #    ports:
 #      - "27017:27017"
     networks:
@@ -55,7 +55,7 @@ services:
     command: --smallfiles
 
   mongo-seed:
-    image: edgexfoundry/docker-edgex-mongo-seed
+    image: ${mongoSeed}
     networks:
       edgex-network:
         aliases:
@@ -67,7 +67,7 @@ services:
       - mongo
 
   logging:
-    image: edgexfoundry/docker-support-logging
+    image: ${supportLogging}
 #    ports:
 #      - "48061:48061"
     networks:
@@ -102,7 +102,7 @@ services:
       - logging
 
   metadata:
-    image: edgexfoundry/docker-core-metadata
+    image: ${coreMetadata)
 #    ports:
 #      - "48081:48081"
     hostname: edgex-core-metadata
@@ -121,7 +121,7 @@ services:
       - logging
 
   data:
-    image: edgexfoundry/docker-core-data
+    image: ${coreData}
 #    ports:
 #      - "48080:48080"
 #      - "5563"
@@ -141,7 +141,7 @@ services:
       - notifications
 
   command:
-    image: edgexfoundry/docker-core-command
+    image: ${coreCommand}
 #    ports:
 #      - "48082:48082"
     networks:
@@ -160,7 +160,7 @@ services:
       - metadata
 
   scheduler:
-    image: edgexfoundry/docker-support-scheduler
+    image: ${supportScheduler}
 #    ports:
 #      - "48085:48085"
     networks:
@@ -180,7 +180,7 @@ services:
       - command
 
   export-client:
-    image: edgexfoundry/docker-export-client
+    image: ${exportClient}
 #    ports:
 #      - "48071:48071"
     networks:
@@ -201,7 +201,7 @@ services:
       - data
 
   export-distro:
-    image: edgexfoundry/docker-export-distro
+    image: ${exportDistro}
 #    ports:
 #      - "48070:48070"
 #      - "5566"
@@ -224,7 +224,7 @@ services:
       - export-client
 
   rulesengine:
-    image: edgexfoundry/docker-support-rulesengine
+    image: ${supportRulesengine}
 #    ports:
 #      - "48075:48075"
     networks:
@@ -249,7 +249,7 @@ services:
 #################################################################
 
   device-virtual:
-    image: edgexfoundry/docker-device-virtual
+    image: ${deviceVirtual}
 #    ports:
 #      - "49990:49990"
     networks:
