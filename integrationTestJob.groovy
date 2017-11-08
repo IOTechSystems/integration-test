@@ -23,6 +23,7 @@ def runNode() {
         throw e;
     }finally{
         stage('Shutdown test services') {
+            sh 'bash ./bin/env.sh'
             echo '[INFO] test end !'
             sh 'docker-compose down -v'
         }
