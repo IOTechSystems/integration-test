@@ -102,7 +102,7 @@ services:
       - logging
 
   metadata:
-    image: ${coreMetadata)
+    image: ${coreMetadata}
 #    ports:
 #      - "48081:48081"
     hostname: edgex-core-metadata
