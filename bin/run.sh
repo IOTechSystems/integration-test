@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. $(dirname "$0")/env.sh
+
 option="${1}"
 
 echo " ${option}"

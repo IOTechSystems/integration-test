@@ -18,42 +18,7 @@
 # Start EdgeX Foundry services in right order, as described:
 # https://wiki.edgexfoundry.org/display/FA/Get+EdgeX+Foundry+-+Users
 
-declare -A IMAGES=(
-    ["volume"]="edgexfoundry/docker-edgex-volume"
-    ["consul"]="edgexfoundry/docker-core-consul"
-    ["coreMetadata"]="edgexfoundry/docker-core-metadata"
-    ["mongo"]="edgexfoundry/docker-edgex-mongo"
-    ["mongoSeed"]="edgexfoundry/docker-edgex-mongo-seed"
-    ["supportLogging"]="edgexfoundry/docker-support-logging"
-    ["coreMetadata"]="edgexfoundry/docker-core-metadata"
-    ["coreData"]="edgexfoundry/docker-core-data"
-    ["coreCommand"]="edgexfoundry/docker-core-command"
-    ["supportScheduler"]="edgexfoundry/docker-support-scheduler"
-    ["exportClient"]="edgexfoundry/docker-export-client"
-    ["exportDistro"]="edgexfoundry/docker-export-distro"
-    ["supportRulesengine"]="edgexfoundry/docker-support-rulesengine"
-    ["deviceVirtual"]="edgexfoundry/docker-device-virtual"
-)
-
-echo "${TEST_SERVICE}"
-if [ -z "${TEST_SERVICE}" ]; then
-    echo "TEST_SERVICE not set , use default"
-else
-    echo "TEST_SERVICE has set , replace default"
-    IMAGES["${TEST_SERVICE}"]="${TEST_SERVICE_IMAGE}"
-fi
-
-
-for image in "${!IMAGES[@]}";
-do
-    echo "set env ${image} ${IMAGES[$image]}"
-    export $image=${IMAGES[$image]}
-done
-
-echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
-echo "${coreMetadata}"
-echo "${volume}"
-echo "${consul}"
+. $(dirname "$0")/bin/env.sh
 
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
