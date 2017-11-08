@@ -35,7 +35,6 @@ declare -A IMAGES=(
     ["deviceVirtual"]="edgexfoundry/docker-device-virtual"
 )
 
-echo "params.TEST_SERVICE_IMAGE ${params.TEST_SERVICE_IMAGE}"
 echo "${TEST_SERVICE}"
 if [ -z "${TEST_SERVICE}" ]; then
     echo "TEST_SERVICE not set , use default"
