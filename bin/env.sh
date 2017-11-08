@@ -17,13 +17,9 @@ declare -A IMAGES=(
     ["deviceVirtual"]="edgexfoundry/docker-device-virtual"
 )
 
-echo "${TEST_SERVICE}"
-if [ -z "${TEST_SERVICE}" ]; then
-    echo "TEST_SERVICE not set , use default"
-else
-    echo "TEST_SERVICE has set , replace default"
-    IMAGES["${TEST_SERVICE}"]="${TEST_SERVICE_IMAGE}"
-fi
+echo "TEST_SERVICE : ${TEST_SERVICE}"
+echo "TEST_SERVICE replace default"
+IMAGES["${TEST_SERVICE}"]="${TEST_SERVICE_IMAGE}"
 
 
 for image in "${!IMAGES[@]}";
