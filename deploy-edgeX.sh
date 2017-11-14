@@ -20,10 +20,6 @@
 
 . $(dirname "$0")/bin/env.sh
 
-docker ps
-
-env
-
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
 	docker-compose up -d $1

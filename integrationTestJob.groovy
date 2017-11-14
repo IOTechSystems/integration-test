@@ -3,6 +3,8 @@ def runNode() {
     try {
 
         stage('Startup test services') {
+            sh 'env'
+            sh 'docker ps'
             sh 'docker login -u bruce -p Txcx2sDHk5Ts3GO2 docker.iotechsys.com'
             sh 'bash ./deploy-edgeX.sh'
             sh 'docker logout docker.iotechsys.com'
