@@ -21,8 +21,8 @@
 
 if [ "${OS}" ==  "Windows_NT" ] ; then
     echo " os =  ${OS}"
+    . $(dirname "$0")/bin/env-win10.sh
 else
-    echo " os is  ${OS}"
     . $(dirname "$0")/bin/env.sh
 fi
 
