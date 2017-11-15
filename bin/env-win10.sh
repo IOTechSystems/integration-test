@@ -26,10 +26,10 @@ for image in "${!IMAGES[@]}";
 do
     echo "set env ${image} ${IMAGES[$image]}"
 #    set "${image}"="${IMAGES[$image]}"
-    setx "${image}" "${IMAGES[$image]}"
+    setx ${image} ${IMAGES[$image]}
 done
 
 echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
-echo "${coreMetadata}"
+echo ${coreMetadata}
 echo "${volume}"
 echo "${consul}"
