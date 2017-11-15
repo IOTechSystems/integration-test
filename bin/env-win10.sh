@@ -29,6 +29,8 @@ do
     setx ${image} ${IMAGES[$image]}
 done
 
+set test=123
+echo ${test}
 echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
 echo ${coreMetadata}
 echo "${volume}"
