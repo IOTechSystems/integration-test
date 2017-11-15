@@ -28,7 +28,7 @@ do
 #    setx ${image} ${IMAGES[$image]}
 done
 
-SET test=123
+set test="123"
 echo "${test}"
 echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
 echo ${coreMetadata}
