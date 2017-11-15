@@ -25,7 +25,7 @@ IMAGES["${TEST_SERVICE}"]="${TEST_SERVICE_IMAGE}"
 for image in "${!IMAGES[@]}";
 do
     echo "set env ${image} ${IMAGES[$image]}"
-    set $image="${IMAGES[$image]}"
+    set "${image}"="${IMAGES[$image]}"
 done
 
 echo "~~~~~~~~~~~~~~~~~!!!!!!!!!!!!"
