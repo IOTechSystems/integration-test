@@ -1,5 +1,13 @@
-def runNode() {
+def map = ['a':1, 'b':2, 'c':3]
 
+
+def runNode() {
+    script{
+        for ( e in map ) {
+            print "key = ${e.key}, value = ${e.value}"
+            print "${TEST_SERVICE_IMAGE}"
+        }
+    }
     try {
 
         stage('Startup test services') {
