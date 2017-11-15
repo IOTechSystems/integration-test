@@ -9,6 +9,8 @@ node("win10-1"){
     sh "echo ${TEST_SERVICE}"
     sh "echo ${TEST_SERVICE_IMAGE}"
 
+    env.TEST_ENV="TEST-ENV"
+
     integrationTestJob.runNode()
 
 }
