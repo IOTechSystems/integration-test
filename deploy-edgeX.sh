@@ -18,12 +18,21 @@
 # Start EdgeX Foundry services in right order, as described:
 # https://wiki.edgexfoundry.org/display/FA/Get+EdgeX+Foundry+-+Users
 
-. $(dirname "$0")/bin/env.sh
+
+if [ "${OS}" ==  "Windows_NT" ] ; then
+    echo " os =  ${OS}"
+else
+    echo " os is  ${OS}"
+    . $(dirname "$0")/bin/env.sh
+fi
+
+
 
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
 	docker-compose up -d $1
 }
+
 
 
 run_service volume
