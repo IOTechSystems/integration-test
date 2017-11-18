@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $(dirname "$0")/env.sh
+#. $(dirname "$0")/env.sh
 
 option="${1}"
 

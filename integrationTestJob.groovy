@@ -18,10 +18,17 @@ def runNode() {
         'supportRulesengine':'edgexfoundry/docker-support-rulesengine',
         'deviceVirtual':'edgexfoundry/docker-device-virtual'
     ]
+    if(env.TEST_SERVICE==null){
+        print "test_service is null"
+    }else{
+        print "test_service is exist ,set to envMap"
+        envMap.put(env.TEST_SERVICE,env.TEST_SERVICE_IMAGE)
+    }
 
     def envList = []
 
     for ( e in envMap ) {
+        print "set env ${e.key}=${e.value}"
         envList.add("${e.key}=${e.value}")
     }
 

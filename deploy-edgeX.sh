@@ -18,17 +18,12 @@
 # Start EdgeX Foundry services in right order, as described:
 # https://wiki.edgexfoundry.org/display/FA/Get+EdgeX+Foundry+-+Users
 
-echo "test"
-echo $deviceVirtual
-echo $supportRulesengine
-exit 1
-
-if [ "${OS}" ==  "Windows_NT" ] ; then
-    echo " os =  ${OS}"
-    . $(dirname "$0")/bin/env-win10.sh
-else
-    . $(dirname "$0")/bin/env.sh
-fi
+#if [ "${OS}" ==  "Windows_NT" ] ; then
+#    echo " os =  ${OS}"
+#    . $(dirname "$0")/bin/env-win10.sh
+#else
+#    . $(dirname "$0")/bin/env.sh
+#fi
 
 
 
