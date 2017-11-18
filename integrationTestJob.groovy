@@ -7,7 +7,6 @@ def runNode() {
         def map = ['a':1, 'b':2, 'c':3]
         for ( e in map ) {
             print "key = ${e.key}, value = ${e.value}"
-            print "${TEST_ENV}"
         }
     }
     withEnv(['MYTOOL_HOME=/usr/local/mytool']) {
