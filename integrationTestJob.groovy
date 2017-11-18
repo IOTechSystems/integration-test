@@ -1,6 +1,4 @@
 
-
-
 def runNode() {
     def envMap =[
         'volume':'edgexfoundry/docker-edgex-volume',
