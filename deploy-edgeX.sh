@@ -18,6 +18,9 @@
 # Start EdgeX Foundry services in right order, as described:
 # https://wiki.edgexfoundry.org/display/FA/Get+EdgeX+Foundry+-+Users
 
+echo "test"
+echo $MYTOOL_HOME
+exit 1
 
 if [ "${OS}" ==  "Windows_NT" ] ; then
     echo " os =  ${OS}"

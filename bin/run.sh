@@ -1,7 +1,5 @@
 #!/bin/bash
-echo "test"
-echo $MYTOOL_HOME
-exit 1
+
 . $(dirname "$0")/env.sh
 
 option="${1}"
