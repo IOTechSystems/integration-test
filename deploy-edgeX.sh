@@ -19,7 +19,8 @@
 # https://wiki.edgexfoundry.org/display/FA/Get+EdgeX+Foundry+-+Users
 
 echo "test"
-echo $MYTOOL_HOME
+echo $deviceVirtual
+echo $supportRulesengine
 exit 1
 
 if [ "${OS}" ==  "Windows_NT" ] ; then
