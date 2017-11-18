@@ -19,7 +19,7 @@ def runNode() {
         'deviceVirtual':'edgexfoundry/docker-device-virtual'
     ]
 
-    def envList = new ArrayList<String>()
+    def envList = []
 
     for ( e in envMap ) {
         envList.add("${e.key}=${e.value}")
