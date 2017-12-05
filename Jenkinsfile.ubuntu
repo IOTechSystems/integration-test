@@ -1,4 +1,6 @@
 node("ubuntu1604-vm1"){
+    triggers { cron('0 6 * * *') }
+
     checkout scm
 
     def rootDir = pwd()
