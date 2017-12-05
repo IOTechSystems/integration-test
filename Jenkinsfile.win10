@@ -1,8 +1,33 @@
-node("win10-1"){
-    checkout scm
 
-    def rootDir = pwd()
-    def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
+pipeline {
+    agent any
+    triggers { cron('0 0 * * *') }
 
-    integrationTestJob.runNode()
+    stages{
+        stage("integration-test"){
+            steps{
+                parallel(
+                  win10: {
+                    node("win10-1"){
+
+                        script {
+
+                            checkout scm
+
+                            def rootDir = pwd()
+                            def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
+
+                            integrationTestJob.runNode()
+                        }
+                    }
+                  }
+                )
+
+            }
+
+        }
+    }
+
+
+
 }
