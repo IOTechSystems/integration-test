@@ -1,10 +1,23 @@
-node("ubuntu1604-vm1"){
+pipeline {
+    agent any
     triggers { cron('0 6 * * *') }
+    node("ubuntu1604-vm1"){
 
-    checkout scm
+        stages{
+            stage("integration-test"){
+                script {
 
-    def rootDir = pwd()
-    def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
+                    checkout scm
 
-    integrationTestJob.runNode()
+                    def rootDir = pwd()
+                    def integrationTestJob = load "${rootDir}/integrationTestJob.groovy"
+
+                    integrationTestJob.runNode()
+                }
+            }
+        }
+
+    }
+
 }
+
