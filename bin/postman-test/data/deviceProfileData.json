@@ -11,7 +11,7 @@
     "dpById": "57f39ee1e4b060e268aeb06d",
     "dpByModel": "TestModel7",
     "dpByLable": "bacnet",
-    "responseTime": 400,
+    "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
     "ApplicationTextPlainType": "text/plain",
     "deviceProfileSchemaArray": {
