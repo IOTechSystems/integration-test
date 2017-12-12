@@ -56,6 +56,12 @@ def runNode() {
             stage('Shutdown test services') {
                 echo '[INFO] test end !'
                 sh 'docker-compose down -v'
+                try{
+                    sh 'docker rmi $(docker images -f dangling=true -q)'
+                }catch (e){
+                    echo 'clear done , none dangling image !'
+                }
+
             }
         }
     }
