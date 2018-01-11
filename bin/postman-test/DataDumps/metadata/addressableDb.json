@@ -331,7 +331,7 @@
   "protocol": "HTTP",
   "address": "172.17.99.42",
   "port": 48097,
-  "path": "/gogle,
+  "path": "/gogle",
   "publisher": "none",
   "user": "none",
   "password": "none",
