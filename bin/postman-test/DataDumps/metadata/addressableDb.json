@@ -327,7 +327,7 @@
     "$oid": "57fdda80e4b060e2df0aa102"
   },
   "_class": "com.dell.fuse.domain.meta.Addressable",
-  "name": "test addressable for Gogle Home device service,
+  "name": "test addressable for Gogle Home device service",
   "protocol": "HTTP",
   "address": "172.17.99.42",
   "port": 48097,
