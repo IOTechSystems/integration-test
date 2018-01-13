@@ -17,7 +17,7 @@
     "schema": {
       "type": "array",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "Fuse Core device/sensor reading",
+      "description": "EdgeX Core device/sensor reading",
       "title": "reading",
       "properties": {
         "id": {
@@ -60,7 +60,7 @@
     "objectSchema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "Fuse Core device/sensor reading",
+      "description": "EdgeX Core device/sensor reading",
       "title": "reading",
       "properties": {
         "id": {
