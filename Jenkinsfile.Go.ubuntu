@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    triggers { cron('0 22 * * *') }
+
+    stages{
+        stage("integration-test"){
+            steps{
+                parallel(
+                  ubuntu: {
+                    node("ubuntu1604-vm1"){
+
+                        script {
+
+                            checkout scm
+
+                            def rootDir = pwd()
+                            def integrationTestJob = load "${rootDir}/integrationTestJob_Go.groovy"
+
+                            integrationTestJob.runNode()
+                        }
+                    }
+                  }
+                )
+
+            }
+
+        }
+    }
+
+
+
+}
+
