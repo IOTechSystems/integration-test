@@ -24,7 +24,6 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
 
   mongo:
     image: ${mongo}
@@ -52,10 +51,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
 
   notifications:
     image: edgexfoundry/docker-support-notifications
@@ -69,10 +66,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   metadata:
@@ -88,10 +83,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   data:
@@ -107,10 +100,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
 
@@ -126,10 +117,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
 
@@ -145,10 +134,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -165,10 +152,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -187,10 +172,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -209,10 +192,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -234,10 +215,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - data
@@ -262,10 +241,8 @@ services:
       # - volume
     # depends_on:
       # - volume
-      # - consul
       # - config-seed
       # - mongo
-      # - mongo-seed
       # - logging
       # - metadata
       # - data
@@ -284,10 +261,8 @@ services:
     # privileged: true
     # depends_on:
       # - volume
-      # - consul
       # - config-seed
       # - mongo
-      # - mongo-seed
       # - logging
       # - metadata
       # - data
@@ -306,10 +281,8 @@ services:
     # privileged: true
     # depends_on:
       # - volume
-      # - consul
       # - config-seed
       # - mongo
-      # - mongo-seed
       # - logging
       # - metadata
       # - data
@@ -328,10 +301,8 @@ services:
     # privileged: true
     # depends_on:
       # - volume
-      # - consul
       # - config-seed
       # - mongo
-      # - mongo-seed
       # - logging
       # - metadata
       # - data
@@ -349,10 +320,8 @@ services:
       # - volume
     # depends_on:
       # - volume
-      # - consul
       # - config-seed
       # - mongo
-      # - mongo-seed
       # - logging
       # - metadata
       # - data
@@ -370,10 +339,8 @@ services:
       # - volume
     # depends_on:
       # - volume
-      # - consul
       # - config-seed
       # - mongo
-      # - mongo-seed
       # - logging
       # - metadata
       # - data
