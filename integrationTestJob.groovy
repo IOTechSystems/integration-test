@@ -2,14 +2,12 @@
 def runNode() {
     def envMap =[
         'volume':'edgexfoundry/docker-edgex-volume',
-        'consul':'edgexfoundry/docker-core-consul',
         'coreMetadata':'edgexfoundry/docker-core-metadata',
         'mongo':'edgexfoundry/docker-edgex-mongo',
-        'mongoSeed':'edgexfoundry/docker-edgex-mongo-seed',
         'supportLogging':'edgexfoundry/docker-support-logging',
-        'coreMetadata':'docker.iotechsys.com/edgex/core-metadata:built',
-        'coreData':'docker.iotechsys.com/edgex/core-data:built',
-        'coreCommand':'docker.iotechsys.com/edgex/core-command:built',
+        'coreMetadata':'docker.iotechsys.com/edgexpert/core-metadata:built',
+        'coreData':'docker.iotechsys.com/edgexpert/core-data:built',
+        'coreCommand':'docker.iotechsys.com/edgexpert/core-command:built',
         'supportScheduler':'edgexfoundry/docker-support-scheduler',
         'exportClient':'edgexfoundry/docker-export-client',
         'exportDistro':'edgexfoundry/docker-export-distro',

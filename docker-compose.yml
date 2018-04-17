@@ -13,20 +13,6 @@ services:
       - /consul/config
       - /consul/data
       - /etc/newman
-  consul:
-    image: ${consul}
-#    ports:
-#      - "8400:8400"
-#      - "8500:8500"
-#      - "8600:8600"
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-core-consul
-    volumes_from:
-      - volume
-    depends_on:
-      - volume
 
   config-seed:
     image: edgexfoundry/docker-core-config-seed
@@ -53,18 +39,6 @@ services:
     depends_on:
       - volume
     command: --smallfiles
-
-  mongo-seed:
-    image: ${mongoSeed}
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-mongo-seed
-    volumes_from:
-      - volume
-    depends_on:
-      - volume
-      - mongo
 
   logging:
     image: ${supportLogging}
