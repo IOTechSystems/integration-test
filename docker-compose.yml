@@ -7,6 +7,7 @@ volumes:
   log-data:
   consul-config:
   consul-data:
+  newman:
 
 services:
   volume:
@@ -19,6 +20,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - newman:/etc/newman
 
   config-seed:
     image: edgexfoundry/docker-core-config-seed
@@ -272,8 +274,8 @@ services:
     image: postman/newman_ubuntu1404
     networks:
       - edgex-network
-    volumes_from:
-      - volume
+    volumes:
+      - newman:/etc/newman
 
   # device-bacnet:
       # image: edgexfoundry/docker-device-bacnet
