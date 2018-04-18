@@ -57,6 +57,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - newman:/etc/newman
     depends_on:
       - volume
 
