@@ -33,6 +33,7 @@ run_service () {
 }
 
 docker container prune
+docker rm $( docker ps -q -f status=exited)
 docker ps -a
 
 run_service volume
