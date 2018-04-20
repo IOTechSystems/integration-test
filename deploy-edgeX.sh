@@ -33,7 +33,6 @@ run_service () {
 }
 
 docker container prune
-docker rm $( docker ps -q -f status=exited)
 docker network prune -f
 
 run_service volume
@@ -50,6 +49,7 @@ while ! $(docker-compose exec -T config-seed nc -z localhost 8500);do echo "not 
 sleep 5
 
 run_service logging
+docker ps -a
 
 while ! $(docker-compose exec -T config-seed nc -z edgex-support-logging 48061);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
