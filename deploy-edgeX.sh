@@ -32,7 +32,8 @@ run_service () {
 	docker-compose up -d $1
 }
 
-
+docker container prune
+docker ps -a
 
 run_service volume
 sleep 3
@@ -42,8 +43,6 @@ run_service mongo
 
 #sleep 5
 #run_service mongo-seed
-
-docker ps -a
 
 while ! $(docker-compose exec -T config-seed nc -z localhost 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 
