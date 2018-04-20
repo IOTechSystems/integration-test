@@ -34,7 +34,7 @@ run_service () {
 
 docker container prune
 docker rm $( docker ps -q -f status=exited)
-docker ps -a
+docker network prune
 
 run_service volume
 sleep 3
