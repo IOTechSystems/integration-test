@@ -43,7 +43,7 @@ run_service mongo
 #sleep 5
 #run_service mongo-seed
 
-docker-compose exec -T config-seed nc
+docker ps -a
 
 while ! $(docker-compose exec -T config-seed nc -z localhost 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 
