@@ -9,6 +9,6 @@
 
 . $(dirname "$0")/test_env.sh
 
-#sh deploy-edgex.sh
+sh deploy-edgex.sh
 
-sh ./bin/run.sh -cd
+#sh ./bin/run.sh -cd
