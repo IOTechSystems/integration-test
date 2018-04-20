@@ -55,6 +55,7 @@ while ! $(docker-compose exec -T config-seed nc -z edgex-support-logging 48061);
 do
     echo "not already startup… wait for 5 second reconnect." ;
     docker ps -a
+    docker logs blacktestinggoubuntu2_logging_1
     sleep 5;
 done
 
