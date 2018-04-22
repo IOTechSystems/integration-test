@@ -32,10 +32,6 @@ run_service () {
 	docker-compose up -d $1
 }
 
-docker container prune
-docker rm $( docker ps -q -f status=exited)
-docker network prune -f
-
 run_service volume
 sleep 3
 
@@ -54,8 +50,6 @@ run_service logging
 while ! $(docker-compose exec -T config-seed nc -z edgex-support-logging 48061);
 do
     echo "not already startup… wait for 5 second reconnect." ;
-    docker ps -a
-    docker logs blacktestinggoubuntu2_logging_1
     sleep 5;
 done
 

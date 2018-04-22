@@ -9,6 +9,8 @@
 
 . $(dirname "$0")/test_env.sh
 
-sh deploy-edgex.sh
+#sh deploy-edgex.sh
 
 #sh ./bin/run.sh -cd
+
+docker-compose up logging
