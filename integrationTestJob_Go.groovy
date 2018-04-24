@@ -4,7 +4,7 @@ def runNode() {
         'volume':'edgexfoundry/docker-edgex-volume',
         'coreMetadata':'edgexfoundry/docker-core-metadata',
         'mongo':'edgexfoundry/docker-edgex-mongo',
-        'supportLogging':'docker.iotechsys.com/edgexpert/support-logging-go-x86_64:0.5.2',
+        'supportLogging':'edgexfoundry/docker-support-logging-go',
         'coreMetadata':'docker.iotechsys.com/edgexpert/core-metadata-go-x86_64:0.5.2',
         'coreData':'docker.iotechsys.com/edgexpert/core-data-go-x86_64:0.5.2',
         'coreCommand':'docker.iotechsys.com/edgexpert/core-command-go-x86_64:0.5.2',
