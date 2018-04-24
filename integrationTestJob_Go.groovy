@@ -31,23 +31,24 @@ def runNode() {
     withEnv(envList) {
         try {
 
-            stage('Startup test services') {
-                sh 'bash ./deploy-edgeX.sh'
+            timeout(time: 15, unit: 'SECONDS'){
+
+                stage('Startup test services') {
+                    sh 'bash ./deploy-edgeX.sh'
+                }
+
+                stage('Run Postman test') {
+                    sh 'rm -rf bin/testResult'
+
+                    sh './bin/run.sh -all'
+
+                    junit 'bin/testResult/**.xml'
+
+                }
             }
-
-            stage('Run Postman test') {
-                sh 'rm -rf bin/testResult'
-
-                sh './bin/run.sh -all'
-
-                junit 'bin/testResult/**.xml'
-
-            }
-
 
         }catch (e) {
-            echo 'Something failed!'
-            throw e;
+            echo 'Something failed!' + e.causes.get(0)
         }finally{
             stage('Shutdown test services') {
                 echo '[INFO] test end !'

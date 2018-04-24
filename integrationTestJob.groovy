@@ -30,7 +30,7 @@ def runNode() {
 
     withEnv(envList) {
         try {
-            timeout(time: 30, unit: 'SECONDS'){
+            timeout(15){
 
                 stage('Startup test services') {
                     sh 'bash ./deploy-edgeX.sh'
@@ -45,8 +45,6 @@ def runNode() {
 
                 }
             }
-
-
 
         }catch (e) {
             echo 'Something failed!'
