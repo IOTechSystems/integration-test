@@ -47,8 +47,11 @@ def runNode() {
                 }
             }
 
-        }catch (e) {
-            e.printStackTrace()
+        }catch (err) {
+            def sw = new StringWriter()
+            def pw = new PrintWriter(sw)
+            err.printStackTrace(pw)
+            echo sw.toString()
         }finally{
             stage('Shutdown test services') {
                 echo '[INFO] test end !'
