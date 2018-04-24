@@ -80,6 +80,11 @@ services:
       - volume
       - config-seed
       - mongo
+    entrypoint:
+      - /support-logging
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   notifications:
     image: edgexfoundry/docker-support-notifications
@@ -122,6 +127,11 @@ services:
       - config-seed
       - mongo
       - logging
+    entrypoint:
+      - /core-metadata
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   data:
     image: ${coreData}
@@ -145,6 +155,11 @@ services:
       - mongo
       - logging
       - notifications
+    entrypoint:
+      - /core-data
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   command:
     image: ${coreCommand}
@@ -167,6 +182,11 @@ services:
       - mongo
       - logging
       - metadata
+    entrypoint:
+      - /core-command
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   scheduler:
     image: ${supportScheduler}
