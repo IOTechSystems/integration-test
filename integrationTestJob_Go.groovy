@@ -49,6 +49,7 @@ def runNode() {
 
         }catch (err) {
             echo 'Something failed!'
+            error("Build failed!")
         }finally{
             stage('Shutdown test services') {
                 echo '[INFO] test end !'
