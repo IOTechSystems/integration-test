@@ -48,7 +48,7 @@ def runNode() {
             }
 
         }catch (e) {
-            echo 'Something failed!' + e.causes.get(0)
+            err.printStackTrace()
         }finally{
             stage('Shutdown test services') {
                 echo '[INFO] test end !'
