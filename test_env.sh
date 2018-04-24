@@ -14,5 +14,5 @@ export supportRulesengine=edgexfoundry/docker-support-rulesengine
 export deviceVirtual=edgexfoundry/docker-device-virtual
 
 
-export supportLogging=docker.iotechsys.com/edgexpert/support-logging-go-x86_64:0.5.0
+export supportLogging=edgexfoundry/docker-support-logging-go:0.5.2
 

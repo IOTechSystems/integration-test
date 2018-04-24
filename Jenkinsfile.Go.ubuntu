@@ -10,13 +10,15 @@ pipeline {
                     node("ubuntu1604-vm1"){
 
                         script {
-
+                            timeout(1) {
                             checkout scm
 
                             def rootDir = pwd()
                             def integrationTestJob = load "${rootDir}/integrationTestJob_Go.groovy"
 
                             integrationTestJob.runNode()
+                            }
+
                         }
                     }
                   }
