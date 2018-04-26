@@ -3,7 +3,7 @@
 version: '2'
 services:
   volume:
-    image: edgexfoundry/docker-edgex-volume
+    image: ${volume}
     networks:
       - edgex-network
 
@@ -13,12 +13,9 @@ services:
       - /consul/config
       - /consul/data
       - /etc/newman
-  consul:
-    image: edgexfoundry/docker-core-consul
-#    ports:
-#      - "8400:8400"
-#      - "8500:8500"
-#      - "8600:8600"
+
+  config-seed:
+    image: edgexfoundry/docker-core-config-seed
     networks:
       edgex-network:
         aliases:
@@ -28,20 +25,8 @@ services:
     depends_on:
       - volume
 
-  config-seed:
-    image: edgexfoundry/docker-core-config-seed
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-core-config-seed
-    volumes_from:
-      - volume
-    depends_on:
-      - volume
-      - consul
-
   mongo:
-    image: edgexfoundry/docker-edgex-mongo
+    image: ${mongo}
 #    ports:
 #      - "27017:27017"
     networks:
@@ -54,20 +39,8 @@ services:
       - volume
     command: --smallfiles
 
-  mongo-seed:
-    image: edgexfoundry/docker-edgex-mongo-seed
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-mongo-seed
-    volumes_from:
-      - volume
-    depends_on:
-      - volume
-      - mongo
-
   logging:
-    image: edgexfoundry/docker-support-logging
+    image: ${supportLogging}
 #    ports:
 #      - "48061:48061"
     networks:
@@ -78,10 +51,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
 
   notifications:
     image: edgexfoundry/docker-support-notifications
@@ -95,14 +66,12 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   metadata:
-    image: edgexfoundry/docker-core-metadata
+    image: ${coreMetadata}
 #    ports:
 #      - "48081:48081"
     hostname: edgex-core-metadata
@@ -114,14 +83,17 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
+    entrypoint:
+      - /core-metadata
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   data:
-    image: docker.iotechsys.com/edgex/core-data:built
+    image: ${coreData}
 #    ports:
 #      - "48080:48080"
 #      - "5563"
@@ -133,15 +105,18 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
+    entrypoint:
+      - /core-data
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   command:
-    image: docker.iotechsys.com/edgex/core-command:built
+    image: ${coreCommand}
 #    ports:
 #      - "48082:48082"
     networks:
@@ -152,15 +127,18 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
+    entrypoint:
+      - /core-command
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   scheduler:
-    image: edgexfoundry/docker-support-scheduler
+    image: ${supportScheduler}
 #    ports:
 #      - "48085:48085"
     networks:
@@ -171,16 +149,14 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
 
   export-client:
-    image: edgexfoundry/docker-export-client
+    image: ${exportClient}
 #    ports:
 #      - "48071:48071"
     networks:
@@ -191,17 +167,15 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
       - data
 
   export-distro:
-    image: edgexfoundry/docker-export-distro
+    image: ${exportDistro}
 #    ports:
 #      - "48070:48070"
 #      - "5566"
@@ -213,10 +187,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -224,7 +196,7 @@ services:
       - export-client
 
   rulesengine:
-    image: edgexfoundry/docker-support-rulesengine
+    image: ${supportRulesengine}
 #    ports:
 #      - "48075:48075"
     networks:
@@ -235,10 +207,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -260,10 +230,8 @@ services:
       - volume
     depends_on:
       - volume
-      - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - data

@@ -13,4 +13,8 @@
 
 #sh ./bin/run.sh -cd
 
-docker-compose up logging
+#docker-compose up logging
+
+
+sh local-deploy-edgex.sh
+#docker-compose -f local-docker-compose.yml up logging
