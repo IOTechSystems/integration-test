@@ -16,5 +16,6 @@
 #docker-compose up logging
 
 
-sh local-deploy-edgex.sh
+#sh local-deploy-edgex.sh
 #docker-compose -f local-docker-compose.yml up logging
+docker-compose -f local-docker-compose.yml up notifications
