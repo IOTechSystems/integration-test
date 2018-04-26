@@ -33,7 +33,7 @@ def runNode() {
             timeout(15){
 
                 stage('Startup test services') {
-                    sh 'bash ./deploy-edgeX.sh'
+                    sh 'bash ./deploy-edgeX.java.sh'
                 }
 
                 stage('Run Postman test') {

@@ -29,7 +29,7 @@
 
 run_service () {
 	echo "Starting.. $1"
-	docker-compose up -d $1
+	docker-compose -f docker-compose.java.yml up -d $1
 }
 
 run_service volume
@@ -41,13 +41,13 @@ run_service mongo
 #sleep 5
 #run_service mongo-seed
 
-while ! $(docker-compose exec -T config-seed nc -z localhost 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+while ! $(docker-compose -f docker-compose.java.yml exec -T config-seed nc -z localhost 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 
 sleep 5
 
 run_service logging
 
-while ! $(docker-compose exec -T config-seed nc -z edgex-support-logging 48061);
+while ! $(docker-compose -f docker-compose.java.yml exec -T config-seed nc -z edgex-support-logging 48061);
 do
     echo "not already startup… wait for 5 second reconnect." ;
     sleep 5;
@@ -57,22 +57,22 @@ sleep 5
 
 run_service notifications
 
-while ! $(docker-compose exec -T config-seed nc -z edgex-support-notifications 48060);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+while ! $(docker-compose -f docker-compose.java.yml exec -T config-seed nc -z edgex-support-notifications 48060);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
 
 run_service metadata
 
-while ! $(docker-compose exec -T config-seed nc -z edgex-core-metadata 48081);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+while ! $(docker-compose -f docker-compose.java.yml exec -T config-seed nc -z edgex-core-metadata 48081);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
 
 run_service data
 
-while ! $(docker-compose exec -T config-seed nc -z edgex-core-data 48080);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+while ! $(docker-compose -f docker-compose.java.yml exec -T config-seed nc -z edgex-core-data 48080);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
 
 run_service command
 
-while ! $(docker-compose exec -T config-seed nc -z edgex-core-command 48082);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+while ! $(docker-compose -f docker-compose.java.yml exec -T config-seed nc -z edgex-core-command 48082);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
 
 #run_service scheduler
