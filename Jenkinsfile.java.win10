@@ -1,20 +1,21 @@
+
 pipeline {
     agent any
-    triggers { cron('20 22 * * *') }
+    triggers { cron('0 22 * * *') }
 
     stages{
         stage("integration-test"){
             steps{
                 parallel(
-                  ubuntu: {
-                    node("ubuntu1604-vm1"){
+                  win10: {
+                    node("win10-1"){
 
                         script {
 
                             checkout scm
 
                             def rootDir = pwd()
-                            def integrationTestJob = load "${rootDir}/integrationTestJob_Go.groovy"
+                            def integrationTestJob = load "${rootDir}/integrationTestJob_java.groovy"
 
                             integrationTestJob.runNode()
                         }
@@ -30,4 +31,3 @@ pipeline {
 
 
 }
-

@@ -14,7 +14,7 @@ pipeline {
                             checkout scm
 
                             def rootDir = pwd()
-                            def integrationTestJob = load "${rootDir}/integrationTestJob_Java.groovy"
+                            def integrationTestJob = load "${rootDir}/integrationTestJob_java.groovy"
 
                             integrationTestJob.runNode()
                         }
