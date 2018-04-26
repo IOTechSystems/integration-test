@@ -8,7 +8,7 @@ export supportScheduler=edgexfoundry/docker-support-scheduler
 export exportClient=edgexfoundry/docker-export-client
 export exportDistro=edgexfoundry/docker-export-distro
 export supportRulesengine=edgexfoundry/docker-support-rulesengine
-export supportNotifications=edgexfoundry/docker-support-notifications:0.2
+export supportNotifications=edgexfoundry/docker-support-notifications
 export deviceVirtual=edgexfoundry/docker-device-virtual
 
 export coreMetadata=edgexfoundry/docker-core-metadata
