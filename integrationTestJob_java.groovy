@@ -57,6 +57,7 @@ def runNode() {
                 echo '[INFO] test end !'
                 sh 'docker-compose down -v'
                 sh 'docker volume prune -f'
+                slack.post('good', 'Black testing done !')
                 try{
                     sh 'docker rmi $(docker images -f dangling=true -q)'
                 }catch (e){
