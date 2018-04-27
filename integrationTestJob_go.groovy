@@ -1,5 +1,7 @@
 
 def runNode() {
+    slack = load "${pwd()}/slack.groovy"
+
     def envMap =[
         'volume':'edgexfoundry/docker-edgex-volume',
         'coreMetadata':'edgexfoundry/docker-core-metadata',
@@ -49,12 +51,16 @@ def runNode() {
 
         }catch (err) {
             echo 'Something failed!'
-            error("Build failed!")
+            slack.post('danger', 'Black testing failed !')
+            throw e
         }finally{
             stage('Shutdown test services') {
                 echo '[INFO] test end !'
+                slack.post('good', 'Black testing done !')
+
                 sh 'docker-compose down -v'
                 sh 'docker volume prune -f'
+
                 try{
                     sh 'docker rmi $(docker images -f dangling=true -q)'
                 }catch (e){

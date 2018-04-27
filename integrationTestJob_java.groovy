@@ -51,20 +51,20 @@ def runNode() {
         }catch (e) {
             echo 'Something failed!'
             slack.post('danger', 'Black testing failed !')
-            throw e;
+            throw e
         }finally{
             stage('Shutdown test services') {
                 echo '[INFO] test end !'
+                slack.post('good', 'Black testing done !')
+
                 sh 'docker-compose down -v'
                 sh 'docker volume prune -f'
-                slack.post('good', 'Black testing done !')
+
                 try{
                     sh 'docker rmi $(docker images -f dangling=true -q)'
                 }catch (e){
                     echo 'clear done , none dangling image !'
-                }finally{
                 }
-
             }
         }
     }
