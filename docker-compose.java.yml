@@ -23,7 +23,7 @@ services:
       - newman:/etc/newman
 
   config-seed:
-    image: edgexfoundry/docker-core-config-seed
+    image: ${configSeed}
 #    ports:
 #        - "8400:8400"
 #        - "8500:8500"
@@ -82,7 +82,7 @@ services:
       - mongo
 
   notifications:
-    image: edgexfoundry/docker-support-notifications
+    image: ${supportNotifications}
 #    ports:
 #      - "48060:48060"
 #    container_name: edgex-support-notifications

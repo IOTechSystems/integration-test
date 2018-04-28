@@ -23,7 +23,7 @@ services:
       - newman:/etc/newman
 
   config-seed:
-    image: edgexfoundry/docker-core-config-seed
+    image: ${configSeed}
 #    ports:
 #        - "8400:8400"
 #        - "8500:8500"
@@ -80,14 +80,9 @@ services:
       - volume
       - config-seed
       - mongo
-    entrypoint:
-      - /support-logging
-      - --consul
-      - --profile=docker
-      - --confdir=/res
 
   notifications:
-    image: edgexfoundry/docker-support-notifications
+    image: ${supportNotifications}
 #    ports:
 #      - "48060:48060"
 #    container_name: edgex-support-notifications
@@ -127,11 +122,6 @@ services:
       - config-seed
       - mongo
       - logging
-    entrypoint:
-      - /core-metadata
-      - --consul
-      - --profile=docker
-      - --confdir=/res
 
   data:
     image: ${coreData}
@@ -155,11 +145,6 @@ services:
       - mongo
       - logging
       - notifications
-    entrypoint:
-      - /core-data
-      - --consul
-      - --profile=docker
-      - --confdir=/res
 
   command:
     image: ${coreCommand}
@@ -182,11 +167,6 @@ services:
       - mongo
       - logging
       - metadata
-    entrypoint:
-      - /core-command
-      - --consul
-      - --profile=docker
-      - --confdir=/res
 
   scheduler:
     image: ${supportScheduler}

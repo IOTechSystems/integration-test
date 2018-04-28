@@ -4,16 +4,21 @@ def runNode() {
 
     def envMap =[
         'volume':'edgexfoundry/docker-edgex-volume',
-        'coreMetadata':'edgexfoundry/docker-core-metadata',
         'mongo':'edgexfoundry/docker-edgex-mongo',
-        'supportLogging':'edgexfoundry/docker-support-logging:0.2',
-        'coreMetadata':'docker.iotechsys.com/edgexpert/core-metadata-go-x86_64:0.5.2',
+        'configSeed':'edgexfoundry/docker-core-config-seed',
+
         'coreData':'docker.iotechsys.com/edgexpert/core-data-go-x86_64:0.5.2',
+        'coreMetadata':'docker.iotechsys.com/edgexpert/core-metadata-go-x86_64:0.5.2',
         'coreCommand':'docker.iotechsys.com/edgexpert/core-command-go-x86_64:0.5.2',
+
+        'supportLogging':'edgexfoundry/docker-support-logging:0.2.1',
+        'supportNotifications':'edgexfoundry/docker-support-notifications',
         'supportScheduler':'edgexfoundry/docker-support-scheduler',
+        'supportRulesengine':'edgexfoundry/docker-support-rulesengine:0.2.1',
+
         'exportClient':'edgexfoundry/docker-export-client',
         'exportDistro':'edgexfoundry/docker-export-distro',
-        'supportRulesengine':'edgexfoundry/docker-support-rulesengine',
+
         'deviceVirtual':'edgexfoundry/docker-device-virtual'
     ]
     if(params.TEST_SERVICE==null){

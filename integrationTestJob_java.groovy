@@ -3,18 +3,23 @@ def runNode() {
     slack = load "${pwd()}/slack.groovy"
 
     def envMap =[
-        'volume':'edgexfoundry/docker-edgex-volume',
-        'coreMetadata':'edgexfoundry/docker-core-metadata',
-        'mongo':'edgexfoundry/docker-edgex-mongo',
+        'volume':'docker.iotechsys.com/edgexpert/docker-edgex-volume-x86_64:0.5.2',
+        'mongo':'docker.iotechsys.com/edgexpert/docker-edgex-mongo-x86_64:0.5.2',
+        'configSeed':'docker.iotechsys.com/edgexpert/docker-core-config-seed-x86_64:0.5.2',
+
+        'coreData':'docker.iotechsys.com/edgexpert/core-data-java-x86_64:0.5.2',
+        'coreMetadata':'docker.iotechsys.com/edgexpert/core-metadata-java-x86_64:0.5.2',
+        'coreCommand':'docker.iotechsys.com/edgexpert/core-command-java-x86_64:0.5.2',
+
         'supportLogging':'edgexfoundry/docker-support-logging:0.2',
-        'coreMetadata':'docker.iotechsys.com/edgexpert/core-metadata-java-x86_64:0.5.0',
-        'coreData':'docker.iotechsys.com/edgexpert/core-data-java-x86_64:0.5.0',
-        'coreCommand':'docker.iotechsys.com/edgexpert/core-command-java-x86_64:0.5.0',
-        'supportScheduler':'edgexfoundry/docker-support-scheduler',
-        'exportClient':'edgexfoundry/docker-export-client',
-        'exportDistro':'edgexfoundry/docker-export-distro',
-        'supportRulesengine':'edgexfoundry/docker-support-rulesengine',
-        'deviceVirtual':'edgexfoundry/docker-device-virtual'
+        'supportNotifications':'docker.iotechsys.com/edgexpert/support-notifications-java-x86_64:0.5.2',
+        'supportScheduler':'docker.iotechsys.com/edgexpert/support-scheduler-java-x86_64:0.5.2',
+        'supportRulesengine':'edgexfoundry/docker-support-rulesengine:0.2.1',
+
+        'exportClient':'docker.iotechsys.com/edgexpert/export-client-java-x86_64:0.5.2',
+        'exportDistro':'docker.iotechsys.com/edgexpert/export-distro-java-x86_64:0.5.2',
+
+        'deviceVirtual':'docker.iotechsys.com/edgexpert/device-virtual-java-x86_64:0.5.2',
     ]
     if(params.TEST_SERVICE==null){
         print "test_service is null"
