@@ -3,23 +3,23 @@ def runNode() {
     slack = load "${pwd()}/slack.groovy"
 
     def envMap =[
-        'volume':'edgexfoundry/docker-edgex-volume',
-        'mongo':'edgexfoundry/docker-edgex-mongo',
-        'configSeed':'edgexfoundry/docker-core-config-seed',
+        'volume':'docker.iotechsys.com/edgexpert/docker-edgex-volume-x86_64:0.5.2',
+        'mongo':'docker.iotechsys.com/edgexpert/docker-edgex-mongo-x86_64:0.5.2',
+        'configSeed':'docker.iotechsys.com/edgexpert/docker-core-config-seed-x86_64:0.5.2',
 
         'coreData':'docker.iotechsys.com/edgexpert/core-data-go-x86_64:0.5.2',
         'coreMetadata':'docker.iotechsys.com/edgexpert/core-metadata-go-x86_64:0.5.2',
         'coreCommand':'docker.iotechsys.com/edgexpert/core-command-go-x86_64:0.5.2',
 
-        'supportLogging':'edgexfoundry/docker-support-logging:0.2.1',
-        'supportNotifications':'edgexfoundry/docker-support-notifications',
-        'supportScheduler':'edgexfoundry/docker-support-scheduler',
+        'supportLogging':'docker.iotechsys.com/edgexpert/support-logging-go-x86_64:0.5.2',
+        'supportNotifications':'docker.iotechsys.com/edgexpert/support-notifications-java-x86_64:0.5.2',
+        'supportScheduler':'docker.iotechsys.com/edgexpert/support-scheduler-java-x86_64:0.5.2',
         'supportRulesengine':'edgexfoundry/docker-support-rulesengine:0.2.1',
 
-        'exportClient':'edgexfoundry/docker-export-client',
-        'exportDistro':'edgexfoundry/docker-export-distro',
+        'exportClient':'docker.iotechsys.com/edgexpert/export-client-go-x86_64:0.5.2',
+        'exportDistro':'docker.iotechsys.com/edgexpert/export-distro-go-x86_64:0.5.2',
 
-        'deviceVirtual':'edgexfoundry/docker-device-virtual'
+        'deviceVirtual':'docker.iotechsys.com/edgexpert/device-virtual-java-x86_64:0.5.2'
     ]
     if(params.TEST_SERVICE==null){
         print "test_service is null"
