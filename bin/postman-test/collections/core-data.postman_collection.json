@@ -540,7 +540,7 @@
       "description": "Update the event data (not including updating the readings). NotFoundException (HTTP 404) if the event cannot be found by id. ServcieException (HTTP 503) for unknown or unanticipated issues.",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
       "responses": [],
-      "rawModeData": "{\"id\":\"Dummy_Id\",\"pushed\":1471806399999}"
+      "rawModeData": "{\"id\":\"57e866d4e4b0ca8e6d73a411\",\"pushed\":1471806399999}"
     },
     {
       "id": "21d1c70c-d875-3708-10fd-89dadc58e3bc",
