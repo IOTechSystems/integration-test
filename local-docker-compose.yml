@@ -24,10 +24,10 @@ services:
 
   config-seed:
     image: ${configSeed}
-    ports:
-        - "8400:8400"
-        - "8500:8500"
-        - "8600:8600"
+#    ports:
+#        - "8400:8400"
+#        - "8500:8500"
+#        - "8600:8600"
 #    container_name: edgex-config-seed
 #    hostname: edgex-core-config-seed
     networks:
@@ -46,7 +46,7 @@ services:
     image: ${mongo}
     ports:
       - "27017:27017"
-#    container_name: edgex-mongo
+    container_name: edgex-mongo
     hostname: edgex-mongo
     networks:
       edgex-network:
@@ -65,7 +65,7 @@ services:
     image: ${supportLogging}
     ports:
       - "48061:48061"
-#    container_name: edgex-support-logging
+    container_name: edgex-support-logging
     hostname: edgex-support-logging
     networks:
       edgex-network:
@@ -80,12 +80,17 @@ services:
       - volume
       - config-seed
       - mongo
+    entrypoint:
+      - /support-logging
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   notifications:
-    image: edgexfoundry/docker-support-notifications
+    image: ${supportNotifications}
     ports:
       - "48060:48060"
-#    container_name: edgex-support-notifications
+    container_name: edgex-support-notifications
     hostname: edgex-support-notifications
     networks:
       edgex-network:
@@ -106,7 +111,7 @@ services:
     image: ${coreMetadata}
     ports:
       - "48081:48081"
-#    container_name: edgex-core-metadata
+    container_name: edgex-core-metadata
     hostname: edgex-core-metadata
     networks:
       edgex-network:
@@ -122,13 +127,18 @@ services:
       - config-seed
       - mongo
       - logging
+    entrypoint:
+      - /core-metadata
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   data:
     image: ${coreData}
     ports:
       - "48080:48080"
       - "5563:5563"
-#    container_name: edgex-core-data
+    container_name: edgex-core-data
     hostname: edgex-core-data
     networks:
       edgex-network:
@@ -145,12 +155,17 @@ services:
       - mongo
       - logging
       - notifications
+    entrypoint:
+      - /core-data
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   command:
     image: ${coreCommand}
     ports:
       - "48082:48082"
-#    container_name: edgex-core-command
+    container_name: edgex-core-command
     hostname: edgex-core-command
     networks:
       edgex-network:
@@ -167,12 +182,17 @@ services:
       - mongo
       - logging
       - metadata
+    entrypoint:
+      - /core-command
+      - --consul
+      - --profile=docker
+      - --confdir=/res
 
   scheduler:
     image: ${supportScheduler}
-    ports:
-      - "48085:48085"
-#    container_name: edgex-support-scheduler
+#    ports:
+#      - "48085:48085"
+    container_name: edgex-support-scheduler
     hostname: edgex-support-scheduler
     networks:
       edgex-network:
@@ -193,9 +213,9 @@ services:
 
   export-client:
     image: ${exportClient}
-    ports:
-      - "48071:48071"
-#    container_name: edgex-export-client
+#    ports:
+#      - "48071:48071"
+    container_name: edgex-export-client
     hostname: edgex-export-client
     networks:
       edgex-network:
@@ -217,10 +237,10 @@ services:
 
   export-distro:
     image: ${exportDistro}
-    ports:
-      - "48070:48070"
+#    ports:
+#      - "48070:48070"
 #      - "5566"
-#    container_name: edgex-export-distro
+    container_name: edgex-export-distro
     hostname: edgex-export-distro
     networks:
       edgex-network:
@@ -243,9 +263,9 @@ services:
 
   rulesengine:
     image: ${supportRulesengine}
-    ports:
-      - "48075:48075"
-#    container_name: edgex-support-rulesengine
+#    ports:
+#      - "48075:48075"
+    container_name: edgex-support-rulesengine
     hostname: edgex-support-rulesengine
     networks:
       edgex-network:
@@ -271,9 +291,9 @@ services:
 
   device-virtual:
     image: ${deviceVirtual}
-    ports:
-      - "49990:49990"
-#    container_name: edgex-device-virtual
+#    ports:
+#      - "49990:49990"
+    container_name: edgex-device-virtual
     hostname: edgex-device-virtual
     networks:
       edgex-network:

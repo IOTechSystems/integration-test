@@ -73,30 +73,30 @@ run_service command
 
 while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-core-command 48082);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
-
-run_service scheduler
-
-while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-support-scheduler 48085);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
-
-run_service export-client
-
-while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-export-client 48071);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
-
-run_service export-distro
-
-while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-export-distro 48070);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
-
-run_service rulesengine
-
-while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
-
-run_service device-virtual
-
-
+#
+#run_service scheduler
+#
+#while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-support-scheduler 48085);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+#sleep 5
+#
+#run_service export-client
+#
+#while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-export-client 48071);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+#sleep 5
+#
+#run_service export-distro
+#
+#while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-export-distro 48070);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+#sleep 5
+#
+#run_service rulesengine
+#
+#while ! $(docker-compose -f local-docker-compose.yml exec -T config-seed nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+#sleep 5
+#
+#run_service device-virtual
+#
+#
 
 
 
