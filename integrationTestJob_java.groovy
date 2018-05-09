@@ -8,7 +8,7 @@ def runNode() {
         'configSeed':'docker.iotechsys.com/edgexpert/docker-core-config-seed-x86_64:0.5.2',
 
         'coreData':'docker.iotechsys.com/edgexpert/core-data-java-x86_64:0.5.2',
-        'coreMetadata':'docker.iotechsys.com/edgexpert/core-metadata-java-x86_64:0.5.2',
+        'coreMetadata':'edgexfoundry/docker-core-metadata:0.2.1',
         'coreCommand':'docker.iotechsys.com/edgexpert/core-command-java-x86_64:0.5.2',
 
         'supportLogging':'edgexfoundry/docker-support-logging:0.2',
