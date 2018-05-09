@@ -1,18 +1,16 @@
 pipeline {
-   agent any
+   agent {node("ubuntu1604-vm1")}
     
    stages{
       stage("integration-test"){
-         ubuntu: {
-            node("ubuntu1604-vm1"){
-               script {
-                  checkout scm
-                  def rootDir = pwd()
-                  def integrationTestJob = load "${rootDir}/integrationTestJob_go.groovy"
-                  integrationTestJob.runNode()
-               }
-            } 
-         }                               
+         steps{
+            script {
+               checkout scm
+               def rootDir = pwd()
+               def integrationTestJob = load "${rootDir}/integrationTestJob_go.groovy"
+               integrationTestJob.runNode()
+            }
+         }              
       }
           
    }
