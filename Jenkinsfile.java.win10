@@ -14,7 +14,10 @@ pipeline {
       }
       stage ("Clean")
       {
-         cleanWs ()
+         steps
+         {
+            cleanWs ()
+         }
       }
           
    }
