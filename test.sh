@@ -17,5 +17,5 @@ sh ./bin/run.sh -md
 
 
 #sh local-deploy-edgex.sh
-#docker-compose -f local-docker-compose.yml up export-distro
+#docker-compose -f local-docker-compose.yml up logging
 #docker-compose -f docker-compose.java.yml up -d device-virtual
