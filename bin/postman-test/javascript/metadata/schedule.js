@@ -2,7 +2,6 @@ var schedulesToBeRemoved = [
     ObjectId("57f4b954e4b060e2bff6c526"),
     ObjectId("57f4b954e4b060e2bff6c527"),
     ObjectId("57f4b954e4b060e2bff6c528"),
-    ObjectId("57f6224de4b060e231e2e9ae"),
     ObjectId("57f6224fe4b060e231e2e9af"),
     ObjectId("57f62253e4b060e231e2e9b0"),
     ObjectId("57fe00dae4b060e2c8236437"),
