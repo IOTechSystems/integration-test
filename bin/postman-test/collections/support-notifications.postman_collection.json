@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "3cb479be-48f0-41d0-82ae-8af034ab9223",
+		"name": "support-notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "subscription",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost/api/v1/subscription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4f243d20-8a10-45c2-9146-b60c0f03f626",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/api/v1/subscription Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4f243d20-8a10-45c2-9146-b60c0f03f626",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "666c1b06-59c6-439c-bae1-c5a90ab634df",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9153ea09-1bf4-4ca0-97e6-7cc2d491db2a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -11,6 +11,7 @@ BASEPATH=$(dirname "$0")/postman-test/scriptLogs
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
+SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -36,6 +37,12 @@ commandTest() {
 	$(dirname "$0")/commandTest.sh
 	$(dirname "$0")/flushCommandDataDump.sh
 
+}
+
+supportNotificationTest(){
+	$(dirname "$0")/importSupportNotificationDump.sh
+	$(dirname "$0")/supportNotificationsTest.sh
+	$(dirname "$0")/flushSupportNotificationDump.sh
 }
 
 testAll() {
@@ -67,6 +74,10 @@ case ${option} in
    	-co)  
       	echo "Info: Initiating Command Test"
 	commandTest	| tee $COMMANDLOGSPATH
+      	;;
+   	-sn)
+      	echo "Info: Initiating SupportNotifications Test"
+	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
       	;;
    	-all)  
       	echo "Info: Initiating EdgeX Test"
