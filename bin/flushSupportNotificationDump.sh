@@ -2,7 +2,7 @@
 
 DATA_BASE="notifications"
 
-SUBSCRIPTION_JS=/etc/newman/javascript/supportNotifications/subscription.js
+SUBSCRIPTION_JS=/etc/newman/javascript/supportNotifications/flushScript.js
 
 FLUSH_SCRIPTS=( $SUBSCRIPTION_JS )
 

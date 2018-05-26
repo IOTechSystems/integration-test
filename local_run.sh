@@ -12,6 +12,7 @@ echoAllAvailableCommand() {
         "-copyPostmanTestScriptToNewman"
 
         "-TestSupportNotification"
+        "-importSupportNotification"
         "-flushSupportNotification"
     )
 
@@ -31,13 +32,18 @@ case ${option} in
         docker cp $(dirname "$0")/bin/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
         ;;
 
+    # SupportNotification
     -TestSupportNotification)
         $(dirname "$0")/bin/flushSupportNotificationDump.sh
         sh ./bin/run.sh -sn
         ;;
+    -importSupportNotification)
+        $(dirname "$0")/bin/importSupportNotificationDump.sh
+        ;;
     -flushSupportNotification)
         $(dirname "$0")/bin/flushSupportNotificationDump.sh
         ;;
+
    	*)
       	echoAllAvailableCommand
       	;;
