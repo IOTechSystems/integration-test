@@ -38,11 +38,18 @@ commandTest() {
 
 }
 
+loggingTest() {
+
+	$(dirname "$0")/loggingTest.sh
+
+}
+
 testAll() {
 
 	coreDataTest
 	metaDataTest
 	commandTest
+   loggingTest
 }
 
 #Main Script starts here
