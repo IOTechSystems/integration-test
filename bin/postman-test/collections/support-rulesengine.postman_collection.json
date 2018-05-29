@@ -1,0 +1,370 @@
+{
+	"id": "8152f7db-97bf-4984-b978-efa39e61fb4e",
+	"name": "support-rulesengine",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [],
+	"folders_order": [
+		"4cd88ceb-2424-4a72-8b04-dbfe7ef29028",
+		"f998919b-3408-4ba8-8f4c-beeef6266518",
+		"be2054d6-8559-4452-930b-0c1d1802a00e"
+	],
+	"folders": [
+		{
+			"id": "be2054d6-8559-4452-930b-0c1d1802a00e",
+			"name": "ping",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "8152f7db-97bf-4984-b978-efa39e61fb4e",
+			"folder": null,
+			"order": [
+				"9c29f5c3-6624-48ac-a06a-f2b47d765f05"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "4cd88ceb-2424-4a72-8b04-dbfe7ef29028",
+			"name": "rules",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "8152f7db-97bf-4984-b978-efa39e61fb4e",
+			"folder": null,
+			"order": [
+				"f169c3ec-98fc-4d47-acc6-4a6f5dd49ecc",
+				"0f8878b2-2fdc-47da-9404-8a275248d061",
+				"383f0f57-23fc-435d-bb8d-9d9d740cfd82"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "f998919b-3408-4ba8-8f4c-beeef6266518",
+			"name": "rules_error_5xx",
+			"description": "",
+			"auth": null,
+			"events": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d89aeeff-e20c-4134-9866-904157a55f7c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0103522-108f-4e52-b6df-e817d84565cb",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"collection": "8152f7db-97bf-4984-b978-efa39e61fb4e",
+			"folder": null,
+			"order": [
+				"c9400174-5bd6-48e8-892d-9e76c4924bff",
+				"78471471-4d8c-4606-adf7-187e968f6848"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "0f8878b2-2fdc-47da-9404-8a275248d061",
+			"name": "http://localhost:48075/api/v1/rule - GET",
+			"url": "{{baseUrl}}/api/v1/rule",
+			"description": "Return all rule names. ServcieException (HTTP 503) for unknown or unanticipated issues.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20f905ff-d12a-49de-96d3-70744cbe0c4f",
+						"type": "text/javascript",
+						"exec": [
+							" /**",
+							" * Test Case:  /api/v1/rule - GET",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" * ",
+							" **/",
+							" ",
+							" tests[\"Rule Post Success\"] = responseCode.code === 200;",
+							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+							" if(responseCode.code === 200){",
+							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"        if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        }",
+							"        if(responseBody.length!== 0){",
+							"            //Parse json response",
+							"            actualReadingData = JSON.parse(responseBody);",
+							"            ",
+							"            tests[\"Body is correct\"] = actualReadingData[0] === \"motortoofastsignal\";",
+							"        }",
+							"    }",
+							""
+						]
+					}
+				}
+			],
+			"folder": "4cd88ceb-2424-4a72-8b04-dbfe7ef29028",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "383f0f57-23fc-435d-bb8d-9d9d740cfd82",
+			"name": "http://localhost:48075/api/v1/rule/name/{rulename}",
+			"url": "{{baseUrl}}/api/v1/rule/name/{{ruleName}}",
+			"description": "Remove the rule designated by name. ServcieException (HTTP 503) for unknown or unanticipated issues.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "948ce5c7-63a9-420d-932f-ee762bbe59bc",
+						"type": "text/javascript",
+						"exec": [
+							" /**",
+							" * Test Case:  /api/v1/rule - DELETE",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" * ",
+							" **/",
+							" ",
+							" tests[\"Rule Delete Success\"] = responseCode.code === 200;",
+							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+							" if(responseCode.code === 200){",
+							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"        if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        }",
+							"        if(responseBody.length!== 0){",
+							"            tests[\"Body is correct\"] = responseBody === \"true\";",
+							"        }",
+							"    }",
+							""
+						]
+					}
+				}
+			],
+			"folder": "4cd88ceb-2424-4a72-8b04-dbfe7ef29028",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "78471471-4d8c-4606-adf7-187e968f6848",
+			"name": "http://localhost:48075/api/v1/rule/name/{rulename} - Invalid Name",
+			"url": "{{baseUrl}}/api/v1/rule/name/{{ruleNameNoExsist}}",
+			"description": "Remove the rule designated by name. ServcieException (HTTP 503) for unknown or unanticipated issues.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "930cc93b-40ed-4270-a875-1e13d303700a",
+						"type": "text/javascript",
+						"exec": [
+							" /**",
+							" * Test Case:  /api/v1/rule - DELETE",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" * ",
+							" **/",
+							" ",
+							" tests[\"Rule Delete Success\"] = responseCode.code === 503;",
+							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+							""
+						]
+					}
+				}
+			],
+			"folder": "f998919b-3408-4ba8-8f4c-beeef6266518",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "9c29f5c3-6624-48ac-a06a-f2b47d765f05",
+			"name": "http://localhost:48075/api/v1/ping",
+			"url": "{{baseUrl}}/api/v1/ping",
+			"description": "Test service providing an indicatioon that the service is avaliable.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2306ecdb-3433-4b22-a928-a08ab35dce51",
+						"type": "text/javascript",
+						"exec": [
+							" /**",
+							" * Test Case:  /ping - GET",
+							" * Version: Alpha",
+							" * @Author: Tata Elxsi",
+							" * ",
+							" **/",
+							" ",
+							" tests[\"Ping Success\"] = responseCode.code === 200;",
+							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+							" if(responseCode.code === 200){",
+							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"        if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+							"        }",
+							"        if(responseBody.length!== 0){",
+							"            tests[\"Body is correct\"] = responseBody === \"pong\";",
+							"        }",
+							"    }",
+							""
+						]
+					}
+				}
+			],
+			"folder": "be2054d6-8559-4452-930b-0c1d1802a00e",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "c9400174-5bd6-48e8-892d-9e76c4924bff",
+			"name": "http://localhost:48075/api/v1/rule - POST",
+			"url": "{{baseUrl}}/api/v1/rule",
+			"description": "Add a new rule. ServcieException (HTTP 503) for unknown or unanticipated issue",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76abd6be-df32-49f6-a6cf-804b1871d68f",
+						"type": "text/javascript",
+						"exec": [
+							"/**",
+							" * Test Case:  api/v1/logs - Invalid Entry",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" *",
+							" **/",
+							"tests[\"Status code is 503\"] = responseCode.code === 503;",
+							"if(responseCode.code === 503){",
+							"    //Verify the existence of content-type in the header.",
+							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"    ",
+							"    //Validate the content-type for application/json.",
+							"    if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+							"    }",
+							"",
+							"}"
+						]
+					}
+				}
+			],
+			"folder": "f998919b-3408-4ba8-8f4c-beeef6266518",
+			"rawModeData": "{\n   \"condition\": \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"checks\":[ \n            {\n               \"parameter\":\"CurrentRPM\", \n               \"operand1\":\"Float.parseFloat(value)\", \n               \"operation\":\">\",\"operand2\":\"1\" \n            } ] \n   }, \n   \"action\" : \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"command\":\"57f73d6ce4b060e27309e45b\",\n         \"body\":\"{\\\\\\\"value\\\\\\\":\\\\\\\"3\\\\\\\"}\"},\n         \"log\":\"Warning triggered for engine speed too high\" \n   }\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "f169c3ec-98fc-4d47-acc6-4a6f5dd49ecc",
+			"name": "http://localhost:48075/api/v1/rule - POST",
+			"url": "{{baseUrl}}/api/v1/rule",
+			"description": "Add a new rule. ServcieException (HTTP 503) for unknown or unanticipated issue",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ec390cb-fa96-43e8-84e9-47617eb04299",
+						"type": "text/javascript",
+						"exec": [
+							" /**",
+							" * Test Case:  /api/v1/rule - POST",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" * ",
+							" **/",
+							" ",
+							" tests[\"Rule Post Success\"] = responseCode.code === 200;",
+							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+							" if(responseCode.code === 200){",
+							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"        if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        }",
+							"        if(responseBody.length!== 0){",
+							"            tests[\"Body is correct\"] = responseBody === \"true\";",
+							"        }",
+							"    }",
+							""
+						]
+					}
+				}
+			],
+			"folder": "4cd88ceb-2424-4a72-8b04-dbfe7ef29028",
+			"rawModeData": "{\n   \"name\":\"motortoofastsignal\", \n   \"condition\": \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"checks\":[ \n            {\n               \"parameter\":\"CurrentRPM\", \n               \"operand1\":\"Float.parseFloat(value)\", \n               \"operation\":\">\",\"operand2\":\"1\" \n            } ] \n   }, \n   \"action\" : \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"command\":\"57f73d6ce4b060e27309e45b\",\n         \"body\":\"{\\\\\\\"value\\\\\\\":\\\\\\\"3\\\\\\\"}\"},\n         \"log\":\"Warning triggered for engine speed too high\" \n   }\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		}
+	]
+}

@@ -38,11 +38,16 @@ commandTest() {
 
 }
 
+rulesengineTest() {
+	$(dirname "$0")/rulesengineTest.sh
+}
+
 testAll() {
 
 	coreDataTest
 	metaDataTest
 	commandTest
+   rulesengineTest
 }
 
 #Main Script starts here
