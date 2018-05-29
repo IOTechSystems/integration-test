@@ -40,19 +40,23 @@ commandTest() {
 
 }
 
-
 loggingTest() {
-  
+
   	$(dirname "$0")/importLoggingDataDump.sh
 	$(dirname "$0")/loggingTest.sh
 	$(dirname "$0")/flushLoggingDataDump.sh
 
 }
+
 supportNotificationTest(){
 	$(dirname "$0")/importSupportNotificationDump.sh
 	$(dirname "$0")/supportNotificationsTest.sh
 	$(dirname "$0")/flushSupportNotificationDump.sh
-	
+
+}
+
+rulesengineTest() {
+	$(dirname "$0")/rulesengineTest.sh
 }
 
 testAll() {
@@ -62,7 +66,8 @@ testAll() {
 	commandTest
 	loggingTest
 	supportNotificationTest
-	
+	rulesengineTest
+
 }
 
 #Main Script starts here
@@ -84,11 +89,11 @@ case ${option} in
 	echo "Info: Initiating Metadata Test"
 	metaDataTest | tee $METADATALOGSPATH
 	;;
- 	-co)  
+ 	-co)
 	echo "Info: Initiating Command Test"
 	commandTest	| tee $COMMANDLOGSPATH
 	;;
-	-log)  
+	-log)
 	echo "Info: Initiating Logging Test"
 	loggingTest	| tee $LOGGINGLOGSPATH
 	;;
