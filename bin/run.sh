@@ -38,11 +38,20 @@ commandTest() {
 
 }
 
+exportClientTest() {
+  
+  $(dirname "$0")/importExportClientDataDump.sh
+	$(dirname "$0")/exportClientTest.sh
+	
+}
+
 testAll() {
 
 	coreDataTest
 	metaDataTest
 	commandTest
+  exportClientTest
+  
 }
 
 #Main Script starts here
