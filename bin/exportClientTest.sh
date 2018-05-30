@@ -20,7 +20,7 @@ echo "Info: Initiating Export-Client Test."
 echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="register" --iteration-data="data/exportClientData.json" --environment=${ENV_PATH} \
+    --folder="registration" --iteration-data="data/exportClientData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
