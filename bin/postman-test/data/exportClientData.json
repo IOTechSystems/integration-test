@@ -3,6 +3,8 @@
     "getName": "OSIClient",
     "deleteName": "OSIClient",
     "regID": "5b0eb384fd4ca80001df4fa9",
+    "regIDNotFound": "thisregisnotthere",
+    "nameNotFound": "OSIClientNotThere",
     "schema": 
     {
       "type":"object",
