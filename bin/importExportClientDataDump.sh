@@ -13,7 +13,7 @@ else
 fi
 
 DATA_BASE="exportclient"
-COLLECTIONS=( "register" )
+COLLECTIONS=( "exportConfiguration" )
 DUMP_FILES=( $REGISTERDATADUMP)
 
 for index in "${!DUMP_FILES[@]}"
