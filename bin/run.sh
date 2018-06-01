@@ -11,6 +11,7 @@ BASEPATH=$(dirname "$0")/postman-test/scriptLogs
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
+LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -39,8 +40,10 @@ commandTest() {
 }
 
 loggingTest() {
-
+  
+  $(dirname "$0")/importLoggingDataDump.sh
 	$(dirname "$0")/loggingTest.sh
+	$(dirname "$0")/flushLoggingDataDump.sh
 
 }
 
@@ -49,7 +52,7 @@ testAll() {
 	coreDataTest
 	metaDataTest
 	commandTest
-   loggingTest
+  loggingTest
 }
 
 #Main Script starts here
@@ -65,25 +68,29 @@ docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
 case ${option} in 
 	-cd)  
 	echo "Info: Initiating Coredata Test"
-	coreDataTest	| tee $COREDATALOGSPATH
+	coreDataTest | tee $COREDATALOGSPATH
 	;; 
 	-md)  
 	echo "Info: Initiating Metadata Test"
-	metaDataTest    | tee $METADATALOGSPATH
-      	;;
-   	-co)  
-      	echo "Info: Initiating Command Test"
+	metaDataTest | tee $METADATALOGSPATH
+	;;
+ 	-co)  
+	echo "Info: Initiating Command Test"
 	commandTest	| tee $COMMANDLOGSPATH
-      	;;
-   	-all)  
-      	echo "Info: Initiating EdgeX Test"
-	testAll		| tee $EDGEXLOGSPATH
-      	;; 
-   	*)  
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-all All]" 
-      	echo
-      	exit 0
-      	;; 
+	;;
+  -log)  
+	echo "Info: Initiating Logging Test"
+	commandTest	| tee $LOGGINGLOGSPATH
+	;;
+ 	-all)  
+	echo "Info: Initiating EdgeX Test"
+	testAll	| tee $EDGEXLOGSPATH
+	;; 
+ 	*)  
+	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-lo Logging] | [-all All]" 
+	echo
+	exit 0
+	;; 
 esac
 
 
