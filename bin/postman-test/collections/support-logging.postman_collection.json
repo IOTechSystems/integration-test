@@ -1,5 +1,5 @@
 {
-	"id": "d5916b93-5f90-4043-ab94-a70420d82994",
+	"id": "9e2e3939-a535-4d52-9e0e-cb386776a03c",
 	"name": "support-logging",
 	"description": "",
 	"auth": null,
@@ -7,50 +7,43 @@
 	"variables": [],
 	"order": [],
 	"folders_order": [
-		"308035e6-2956-4df1-a645-302e5f61bf23",
-		"540b626d-fb48-454b-9788-c6771eb12e37",
-		"e73c349a-c1d8-4836-8e60-a47771f0772b"
+		"c367527f-4cac-40d9-b06c-4814b86fb08c",
+		"457f068f-dc30-4055-b1d5-d5a1b57d41a4",
+		"5c56bb27-489a-4b0f-9e1e-a9a208f101cf"
 	],
 	"folders": [
 		{
-			"id": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"id": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"name": "logs",
 			"description": "",
 			"auth": null,
 			"events": null,
-			"collection": "d5916b93-5f90-4043-ab94-a70420d82994",
+			"collection": "9e2e3939-a535-4d52-9e0e-cb386776a03c",
 			"folder": null,
 			"order": [
-				"73796259-39c9-4979-ae1d-985b0546f9c6",
-				"e2ee5683-dfbb-4af7-b8a4-f63b7ddfe760",
-				"caf10712-8a93-4228-b6e0-d5724c45730c",
-				"34566d59-2beb-4fee-b30f-22cdb641b283",
-				"b8ee328a-c956-4796-8836-0303d1fcc556",
-				"23a0f36d-e2c1-439c-83a8-c14ff9f3e3dd",
-				"09d34eb7-7f8b-4df0-9099-31cf92b0b675",
-				"0c0aaba5-1efc-4cbf-8bbf-18bb0238d140",
-				"991b53e4-3766-4b68-8da4-9110812ea88f",
-				"fa192747-821a-436e-a004-4a688a14cdeb",
-				"5d7c5fb6-304f-404c-89ae-a41b579c14e8",
-				"ec767b14-d9bf-4705-b150-d30e53b47c4e",
-				"8ccd1f18-7fca-4969-be5b-86c1f4d75786",
-				"512a7e2e-cf11-4e96-8958-b2b10d3276fe",
-				"40737cb8-b59c-46b3-9d98-897195aa8817",
-				"ae22086e-f6a7-4c73-8eb0-7e1ecf79b2e3",
-				"b3acd9a2-4263-4a6d-ab43-4d224777ae0e",
-				"c7dae977-ac5b-433b-9008-b65c6e204f55",
-				"cfad24b9-4250-4537-a05c-24653a7dfb7c",
-				"927eb099-5fdc-424f-ad7b-d6da50b4d11c",
-				"8b7c4626-5606-46bc-a9b9-65a27872e0c3",
-				"dfb6e193-abea-4d72-90a5-c77f4192582b",
-				"9bb2c84c-91a9-4422-93b4-f50d54780537",
-				"ff8d3c94-87bf-4985-9e73-ddb3d6ceca69",
-				"3ecca213-c22e-47df-aa0e-cf4eb0be9faf"
+				"6033fddf-a6b1-49e7-ab7e-a614d622c1f3",
+				"d4cc3786-c83c-4cfa-b6a8-a79a0802afea",
+				"a7d6b4dc-3852-4a24-bea2-3a3d30172832",
+				"59495d6c-c165-4d11-a328-818e32d00e3e",
+				"bdd05ffc-2f21-4966-97ad-7aa2c67e9897",
+				"e034aa6f-6e0f-42d6-9d37-04966a422aaf",
+				"fcc96a78-ccfd-44ee-a3a3-dd5698972839",
+				"4adc860c-1081-4663-b510-095caa642d48",
+				"cb73187d-e230-4ccb-a7c3-c4fa974a2e70",
+				"a68f428d-c541-4559-9ae3-4c17f813ee90",
+				"ace1c6a5-6212-421d-ae14-21f2e5a56583",
+				"4a958000-fa02-44d5-85a6-4e521a26f3a0",
+				"086bb3e2-5d81-46c3-b3f7-223386997204",
+				"60294112-0ad0-4a65-9a18-9c96c6817645",
+				"bf89d2f1-9584-4d9d-b5f9-d70e65be5bdd",
+				"b89e9858-3664-4609-8f8f-45dec707e3ac",
+				"fd1e080d-413b-46e0-8f1c-6e28581b369b",
+				"f907966c-ee62-4e7a-9d09-4f8e8ae2e09d"
 			],
 			"folders_order": []
 		},
 		{
-			"id": "540b626d-fb48-454b-9788-c6771eb12e37",
+			"id": "457f068f-dc30-4055-b1d5-d5a1b57d41a4",
 			"name": "logs_error_4xx",
 			"description": "",
 			"auth": null,
@@ -76,246 +69,34 @@
 					}
 				}
 			],
-			"collection": "d5916b93-5f90-4043-ab94-a70420d82994",
+			"collection": "9e2e3939-a535-4d52-9e0e-cb386776a03c",
 			"folder": null,
 			"order": [
-				"af844a18-7251-4d53-b510-047d14643c14",
-				"ce58a39e-e711-42a1-a65b-0ad95d24a790"
+				"81cb44f6-3744-418d-9d09-80d5a9183ebc",
+				"91f79962-f825-48f2-bb89-0a08a120c241"
 			],
 			"folders_order": []
 		},
 		{
-			"id": "e73c349a-c1d8-4836-8e60-a47771f0772b",
+			"id": "5c56bb27-489a-4b0f-9e1e-a9a208f101cf",
 			"name": "ping",
 			"description": null,
 			"auth": null,
 			"events": null,
-			"collection": "d5916b93-5f90-4043-ab94-a70420d82994",
+			"collection": "9e2e3939-a535-4d52-9e0e-cb386776a03c",
 			"folder": null,
 			"order": [
-				"f7993831-437c-49a5-9d94-a85ecdd631d4"
+				"9bfa22c8-c6c9-42ed-9627-eb6b22e9e4bb"
 			],
 			"folders_order": []
 		}
 	],
 	"requests": [
 		{
-			"id": "09d34eb7-7f8b-4df0-9099-31cf92b0b675",
-			"name": "http://localhost:48061/api/v1/logs - service7",
-			"url": "{{baseUrl}}/api/v1/logs",
-			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a9038738-d63d-4092-b135-03364e74063c",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"    if(responseCode.code === 202){",
-							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
-							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(null !== responseBody){",
-							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
-							"        }",
-							"    }"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"rawModeData": "{\n  \"logLevel\": \"ERROR\",\n  \"originService\": \"service7\",\n  \"message\": \"Hello, logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "0c0aaba5-1efc-4cbf-8bbf-18bb0238d140",
-			"name": "http://localhost:48061/api/v1/logs - service8",
-			"url": "{{baseUrl}}/api/v1/logs",
-			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "448bc406-10d4-41fe-ab1c-b898f9bf2f9c",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"    if(responseCode.code === 202){",
-							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
-							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(null !== responseBody){",
-							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
-							"        }",
-							"    }"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"rawModeData": "{\n  \"logLevel\": \"WARN\",\n  \"originService\": \"service8\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "23a0f36d-e2c1-439c-83a8-c14ff9f3e3dd",
-			"name": "http://localhost:48061/api/v1/logs - service6",
-			"url": "{{baseUrl}}/api/v1/logs",
-			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "75872129-06f9-4afa-b777-ea5ac6e47f9f",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"    if(responseCode.code === 202){",
-							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
-							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(null !== responseBody){",
-							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
-							"        }",
-							"    }"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"rawModeData": "{\n  \"logLevel\": \"ERROR\",\n  \"originService\": \"service6\",\n  \"message\": \"Hello, logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\",\n    \"label3\"\n  ]\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "34566d59-2beb-4fee-b30f-22cdb641b283",
-			"name": "http://localhost:48061/api/v1/logs - service4",
-			"url": "{{baseUrl}}/api/v1/logs",
-			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "46a4e7e6-cb15-4b20-9d4e-ce4361e6bbd0",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"    if(responseCode.code === 202){",
-							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
-							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(null !== responseBody){",
-							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
-							"        }",
-							"    }"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"rawModeData": "{\n  \"logLevel\": \"ERROR\",\n  \"originService\": \"service4\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "3ecca213-c22e-47df-aa0e-cf4eb0be9faf",
-			"name": "http://localhost:84061/api/v1/logs/{start}/{end}",
-			"url": "{{baseUrl}}/api/v1/logs/{{start}}/{{end}}",
-			"description": "Delete all log entries between two dates specified by start and end. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
+			"id": "086bb3e2-5d81-46c3-b3f7-223386997204",
+			"name": "http://localhost:84061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end",
+			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel4}}/{{start}}/{{end}}",
+			"description": "Delete a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
 			"data": null,
 			"dataMode": "params",
 			"headerData": [],
@@ -327,11 +108,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "88cdae2e-9336-4e76-b5ce-8c95a5854c76",
+						"id": "45388164-a908-4249-8925-b68dfc90523b",
 						"type": "text/javascript",
 						"exec": [
 							" /**",
-							" * Test Case:  /api/v1/logs/{start}/{end} - DELETE",
+							" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end} - DELETE",
 							" * Version: Alpha",
 							" * @Author: Tom Fleming",
 							" * ",
@@ -354,12 +135,59 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "40737cb8-b59c-46b3-9d98-897195aa8817",
+			"id": "4a958000-fa02-44d5-85a6-4e521a26f3a0",
+			"name": "http://localhost:84061/api/v1//logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}",
+			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel3}}/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
+			"description": "Delete a collection of LogEntry whose message matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e8e44cfb-9234-4d47-ae33-e43734855520",
+						"type": "text/javascript",
+						"exec": [
+							" /**",
+							" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{lables}/{start}/{end} - DELETE",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" * ",
+							" **/",
+							" ",
+							" tests[\"Delete Success\"] = responseCode.code === 200;",
+							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+							" if(responseCode.code === 200){",
+							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"        if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        }",
+							"        if(responseBody.length!== 0){",
+							"            tests[\"Body is correct\"] = responseBody >= 1;",
+							"        }",
+							"    }",
+							""
+						]
+					}
+				}
+			],
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "4adc860c-1081-4663-b510-095caa642d48",
 			"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end}/{limit}",
 			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/{{start}}/{{end}}/{{limit}}",
 			"description": "list a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
@@ -438,89 +266,12 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "512a7e2e-cf11-4e96-8958-b2b10d3276fe",
-			"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/{start}/{end}/{limit}",
-			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/{{start}}/{{end}}/{{limit}}",
-			"description": "list a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "10df6a95-4e38-4608-9779-e92c30e7dea4",
-						"type": "text/javascript",
-						"exec": [
-							" /*",
-							" * Test Case:  api/v1/logs/logLevels/{logLevels}/{start}/{end}/{limit}- GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" */",
-							" ",
-							"//Verify the http status code for 200.",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"//Verify if response time is less than 200ms.",
-							"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
-							"",
-							"if (responseCode.code === 200) {",
-							"    //Verify the existence of content-type in the header.",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    ",
-							"    //Validate the content-type for application/json.",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        ",
-							"        //Validate the respose data with json schema.",
-							"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-							"            try{",
-							"                //Parse json response",
-							"                actualReadingData = JSON.parse(responseBody);",
-							"            }catch(e) {",
-							"                console.log(\"Exception while parsing json response\");",
-							"            }",
-							"            ",
-							"            if(actualReadingData.length !== 0) {",
-							"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-							"               ",
-							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-							"                console.log(\"Validation failed: \", tv4.error);",
-							"                ",
-							"                // Check that each entry contains the correct logLevel",
-							"                var correctLevel = true;",
-							"                for (var i = 0; i < actualReadingData.length; i++) {",
-							"                    correctLevel  = actualReadingData[i].logLevel.includes(data.loggingLevel);",
-							"                }",
-							"                tests[\"Has correct logging level\"] = correctLevel === true;",
-							"                ",
-							"            } else {",
-							"                console.log(\"Log is empty.\");",
-							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-							"            }",
-							"        }",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "5d7c5fb6-304f-404c-89ae-a41b579c14e8",
+			"id": "59495d6c-c165-4d11-a328-818e32d00e3e",
 			"name": "http://localhost:48061/api/v1/logs/labels/{labels}/{start}/{end}/{limit}",
 			"url": "{{baseUrl}}/api/v1/logs/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
 			"description": "list a collection of LogEntry matching any of the specified labels and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
@@ -592,65 +343,12 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "73796259-39c9-4979-ae1d-985b0546f9c6",
-			"name": "http://localhost:48061/api/v1/logs - service1",
-			"url": "{{baseUrl}}/api/v1/logs",
-			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "811633cf-669f-44d9-85fd-560a58bbc8b1",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"    if(responseCode.code === 202){",
-							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
-							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(null !== responseBody){",
-							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
-							"        }",
-							"    }"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"rawModeData": "{\n  \"logLevel\": \"WARN\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "8b7c4626-5606-46bc-a9b9-65a27872e0c3",
+			"id": "60294112-0ad0-4a65-9a18-9c96c6817645",
 			"name": "http://localhost:48061/api/v1/logs/labels/{labels}/{start}/{end}",
 			"url": "{{baseUrl}}/api/v1/logs/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
 			"description": "Delete ",
@@ -692,19 +390,26 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "8ccd1f18-7fca-4969-be5b-86c1f4d75786",
-			"name": "http://localhost:48061/api/v1/logs/keywords/{keywords}/{start}/{end}/{limit}",
-			"url": "{{baseUrl}}/api/v1/logs/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
-			"description": "list a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues..",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
+			"id": "6033fddf-a6b1-49e7-ab7e-a614d622c1f3",
+			"name": "http://localhost:48061/api/v1/logs",
+			"url": "http://localhost:48061/api/v1/logs",
+			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
@@ -712,324 +417,38 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "89a73bcd-e486-451f-8548-ea91b7ee486c",
+						"id": "d5d7eda4-37dc-4e1b-b830-6186a6b08834",
 						"type": "text/javascript",
 						"exec": [
-							" /*",
-							" * Test Case:  api/v1/logs/keywords/{keywords}/{start}/{end}/{limit}- GET",
+							"/**",
+							" * Test Case:  api/v1/logs",
 							" * Version: Alpha",
 							" * @Author: Tom Fleming",
 							" *",
-							" */",
-							" ",
-							"//Verify the http status code for 200.",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"//Verify if response time is less than 200ms.",
-							"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
-							"",
-							"if (responseCode.code === 200) {",
-							"    //Verify the existence of content-type in the header.",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    ",
-							"    //Validate the content-type for application/json.",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        ",
-							"        //Validate the respose data with json schema.",
-							"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-							"            try{",
-							"                //Parse json response",
-							"                actualReadingData = JSON.parse(responseBody);",
-							"            }catch(e) {",
-							"                console.log(\"Exception while parsing json response\");",
-							"            }",
-							"            ",
-							"            if(actualReadingData.length !== 0) {",
-							"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-							"               ",
-							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-							"                console.log(\"Validation failed: \", tv4.error);",
-							"                ",
-							"                // Check that each entry contains the correct keyword",
-							"                var correctKeyword = true;",
-							"                for (var i = 0; i < actualReadingData.length; i++) {",
-							"                    correctKeyword  = actualReadingData[i].message.includes(data.loggingKeyword);",
-							"                }",
-							"                tests[\"Has correct keyword\"] = correctKeyword === true;",
-							"                ",
-							"            } else {",
-							"                console.log(\"Log is empty.\");",
-							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-							"            }",
-							"        }",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "927eb099-5fdc-424f-ad7b-d6da50b4d11c",
-			"name": "http://localhost:84061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end",
-			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel4}}/{{start}}/{{end}}",
-			"description": "Delete a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "45388164-a908-4249-8925-b68dfc90523b",
-						"type": "text/javascript",
-						"exec": [
-							" /**",
-							" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end} - DELETE",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" * ",
 							" **/",
-							" ",
-							" tests[\"Delete Success\"] = responseCode.code === 200;",
-							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							" if(responseCode.code === 200){",
+							"    if(responseCode.code === 202){",
+							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
+							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
 							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 							"        if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
 							"        }",
-							"        if(responseBody.length!== 0){",
-							"            tests[\"Body is correct\"] = responseBody >= 1;",
+							"        if(null !== responseBody){",
+							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
 							"        }",
-							"    }",
-							""
+							"    }"
 						]
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"headers": "",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
+			"rawModeData": "{\n  \"logLevel\": \"WARN\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n",
+			"headers": "Content-Type: application/json\n",
 			"pathVariables": {}
 		},
 		{
-			"id": "991b53e4-3766-4b68-8da4-9110812ea88f",
-			"name": "http://localhost:48061/api/v1/logs/{limit}",
-			"url": "{{baseUrl}}/api/v1/logs/{{limit}}",
-			"description": "List a collection of LogEntry - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "dabae727-9dd5-4d2f-abba-6657368a049d",
-						"type": "text/javascript",
-						"exec": [
-							" /*",
-							" * Test Case:  api/v1/logs/{limit}",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" */",
-							" ",
-							"//Verify the http status code for 200.",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"//Verify if response time is less than 200ms.",
-							"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
-							"",
-							"if (responseCode.code === 200) {",
-							"    //Verify the existence of content-type in the header.",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    ",
-							"    //Validate the content-type for application/json.",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        ",
-							"          //Validate the respose data with json schema.",
-							"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-							"            try{",
-							"                //Parse json response",
-							"                actualReadingData = JSON.parse(responseBody);",
-							"            }catch(e) {",
-							"                console.log(\"Exception while parsing json response\");",
-							"            }",
-							"            ",
-							"            if(actualReadingData.length !== 0) {",
-							"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-							"               ",
-							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-							"                console.log(\"Validation failed: \", tv4.error);",
-							"            } else {",
-							"                console.log(\"Log is empty.\");",
-							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-							"            }",
-							"        }",
-							"    }",
-							"}",
-							""
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "9bb2c84c-91a9-4422-93b4-f50d54780537",
-			"name": "https://localhost:4861/api/v1/logs/keywords/{keywords}/{start}/{end}",
-			"url": "{{baseUrl}}/api/v1/logs/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
-			"description": "Delete a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9730a4c5-ac0b-4b80-9255-18e8241adb16",
-						"type": "text/javascript",
-						"exec": [
-							" /**",
-							" * Test Case:  /api/v1/logs/keywords/{keywords}/{start}/{end} - DELETE",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" * ",
-							" **/",
-							" ",
-							" tests[\"Delete Success\"] = responseCode.code === 200;",
-							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							" if(responseCode.code === 200){",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(responseBody.length!== 0){",
-							"            tests[\"Body is correct\"] = responseBody >= 1;",
-							"        }",
-							"    }",
-							""
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "ae22086e-f6a7-4c73-8eb0-7e1ecf79b2e3",
-			"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}/{limit}",
-			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
-			"description": "list a collection of LogEntry whose message matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9a88385f-333d-40da-92aa-4a649bde6da1",
-						"type": "text/javascript",
-						"exec": [
-							" /*",
-							" * Test Case:  api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}/{limit}- GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" */",
-							" ",
-							"//Verify the http status code for 200.",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"//Verify if response time is less than 200ms.",
-							"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
-							"",
-							"if (responseCode.code === 200) {",
-							"    //Verify the existence of content-type in the header.",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    ",
-							"    //Validate the content-type for application/json.",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        ",
-							"        //Validate the respose data with json schema.",
-							"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-							"            try{",
-							"                //Parse json response",
-							"                actualReadingData = JSON.parse(responseBody);",
-							"            }catch(e) {",
-							"                console.log(\"Exception while parsing json response\");",
-							"            }",
-							"            ",
-							"            if(actualReadingData.length !== 0) {",
-							"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-							"               ",
-							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-							"                console.log(\"Validation failed: \", tv4.error);",
-							"                ",
-							"                // Check that each entry contains the correct logLevel",
-							"                var correctLevel = true;",
-							"                for (var i = 0; i < actualReadingData.length; i++) {",
-							"                    correctLevel  = actualReadingData[i].logLevel.includes(data.loggingLevel);",
-							"                }",
-							"                tests[\"Has correct logging level\"] = correctLevel === true;",
-							"                ",
-							"                // Check that each entry contains the originService",
-							"                var correctOrigin = true;",
-							"                for (var i = 0; i < actualReadingData.length; i++) {",
-							"                    correctOrigin  = (actualReadingData[i].originService.indexOf(data.loggingService) > -1);",
-							"                }",
-							"                tests[\"Has correct origin\"] = correctOrigin === true;",
-							"                ",
-							"                 // Check that each entry contains the correct label",
-							"                var correctLabels = true;",
-							"                for (var i = 0; i < actualReadingData.length; i++) {",
-							"                    correctLabels  = (actualReadingData[i].labels.indexOf(data.loggingLabel) > -1);",
-							"                }",
-							"                tests[\"Has correct Labels\"] = correctLabels === true;",
-							"                ",
-							"            } else {",
-							"                console.log(\"Log is empty.\");",
-							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-							"            }",
-							"        }",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "af844a18-7251-4d53-b510-047d14643c14",
+			"id": "81cb44f6-3744-418d-9d09-80d5a9183ebc",
 			"name": "http://localhost:48061 - 400 Invalid Entry",
 			"url": "{{baseUrl}}/api/v1/logs",
 			"description": "Create a new, invalid, log entry. Expect 400 Bad Request.",
@@ -1079,13 +498,112 @@
 					}
 				}
 			],
-			"folder": "540b626d-fb48-454b-9788-c6771eb12e37",
+			"folder": "457f068f-dc30-4055-b1d5-d5a1b57d41a4",
 			"rawModeData": "{\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n",
 			"headers": "Content-Type: application/json\n",
 			"pathVariables": {}
 		},
 		{
-			"id": "b3acd9a2-4263-4a6d-ab43-4d224777ae0e",
+			"id": "91f79962-f825-48f2-bb89-0a08a120c241",
+			"name": "http://localhost:48061/api/v1/logs/{limit}",
+			"url": "{{baseUrl}}/api/v1/logs/{{overLimit}}",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76755ee8-18fb-4758-86f7-541869ca3bcc",
+						"type": "text/javascript",
+						"exec": [
+							"/**",
+							" * Test Case:  api/v1/logs/{overLimit}",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" *",
+							" **/",
+							"//Test assumes the default limit is 100 ",
+							"tests[\"Status code is 413\"] = responseCode.code === 413;",
+							"if(responseCode.code === 413){",
+							"        ",
+							"    //Verify the existence of content-type in the header.",
+							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"    ",
+							"    //Validate the content-type for application/json.",
+							"    if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"    }",
+							"    ",
+							"    if(responseBody.length!== 0){",
+							"        //Parse json response",
+							"        actualReadingData = JSON.parse(responseBody);",
+							"        tests[\"Body is correct\"] = actualReadingData.error.includes(\"Payload Too Large\");",
+							"    }",
+							"}"
+						]
+					}
+				}
+			],
+			"folder": "457f068f-dc30-4055-b1d5-d5a1b57d41a4",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "9bfa22c8-c6c9-42ed-9627-eb6b22e9e4bb",
+			"name": "http://localhost:48061/api/v1/ping",
+			"url": "{{baseUrl}}/api/v1/ping",
+			"description": "Test service providing an indicatioon that the service is avaliable.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2306ecdb-3433-4b22-a928-a08ab35dce51",
+						"type": "text/javascript",
+						"exec": [
+							" /**",
+							" * Test Case:  /ping - GET",
+							" * Version: Alpha",
+							" * @Author: Tata Elxsi",
+							" * ",
+							" **/",
+							" ",
+							" tests[\"Ping Success\"] = responseCode.code === 200;",
+							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+							" if(responseCode.code === 200){",
+							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"        if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+							"        }",
+							"        if(responseBody.length!== 0){",
+							"            tests[\"Body is correct\"] = responseBody === \"pong\";",
+							"        }",
+							"    }",
+							""
+						]
+					}
+				}
+			],
+			"folder": "5c56bb27-489a-4b0f-9e1e-a9a208f101cf",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a68f428d-c541-4559-9ae3-4c17f813ee90",
 			"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/keywords/{keywords}/{start}/{end}/{limit}",
 			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
 			"description": "list a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
@@ -1178,26 +696,19 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "b8ee328a-c956-4796-8836-0303d1fcc556",
-			"name": "http://localhost:48061/api/v1/logs - service5",
-			"url": "{{baseUrl}}/api/v1/logs",
-			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
+			"id": "a7d6b4dc-3852-4a24-bea2-3a3d30172832",
+			"name": "http://localhost:48061/api/v1/logs/{start}/{end}/{limit}",
+			"url": "{{baseUrl}}/api/v1/logs/{{start}}/{{end}}/{{limit}}",
+			"description": "list a collection of LogEntry created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
@@ -1205,38 +716,61 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2ad9aee7-6d09-46ad-913d-fda9fba2edcb",
+						"id": "7dd4f073-147b-4f5e-97bf-0c62a4618bf7",
 						"type": "text/javascript",
 						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs",
+							" /*",
+							" * Test Case:  api/v1/logs/{start}/{end}/{limit}- GET",
 							" * Version: Alpha",
 							" * @Author: Tom Fleming",
 							" *",
-							" **/",
-							"    if(responseCode.code === 202){",
-							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
-							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							" */",
+							" ",
+							"//Verify the http status code for 200.",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"//Verify if response time is less than 200ms.",
+							"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+							"",
+							"if (responseCode.code === 200) {",
+							"    //Verify the existence of content-type in the header.",
+							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"    ",
+							"    //Validate the content-type for application/json.",
+							"    if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        ",
+							"        //Validate the respose data with json schema.",
+							"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
+							"            try{",
+							"                //Parse json response",
+							"                actualReadingData = JSON.parse(responseBody);",
+							"            }catch(e) {",
+							"                console.log(\"Exception while parsing json response\");",
+							"            }",
+							"            ",
+							"            if(actualReadingData.length !== 0) {",
+							"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
+							"               ",
+							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
+							"                console.log(\"Validation failed: \", tv4.error);",
+							"            } else {",
+							"                console.log(\"Log is empty.\");",
+							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
+							"            }",
 							"        }",
-							"        if(null !== responseBody){",
-							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
-							"        }",
-							"    }"
+							"    }",
+							"}"
 						]
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"rawModeData": "{\n  \"logLevel\": \"ERROR\",\n  \"originService\": \"service5\",\n  \"message\": \"Hello, KeyWordTest Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\",\n    \"label3\"\n  ]\n}",
-			"headers": "Content-Type: application/json\n",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
+			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "c7dae977-ac5b-433b-9008-b65c6e204f55",
+			"id": "ace1c6a5-6212-421d-ae14-21f2e5a56583",
 			"name": "http://localhost:84061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/keywords/{keywords}/{start}/{end}",
 			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel2}}/labels/{{loggingLabelDel}}/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
 			"description": "Delete a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
@@ -1278,120 +812,15 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "caf10712-8a93-4228-b6e0-d5724c45730c",
-			"name": "http://localhost:48061/api/v1/logs - service3",
-			"url": "{{baseUrl}}/api/v1/logs",
-			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "b8f93202-08b3-49e0-bbc3-efb4148850aa",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"    if(responseCode.code === 202){",
-							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
-							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(null !== responseBody){",
-							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
-							"        }",
-							"    }"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"rawModeData": "{\n  \"logLevel\": \"WARN\",\n  \"originService\": \"service3\",\n  \"message\": \"Hello, KeyWordTest Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "ce58a39e-e711-42a1-a65b-0ad95d24a790",
-			"name": "http://localhost:48061/api/v1/logs/{limit}",
-			"url": "{{baseUrl}}/api/v1/logs/{{overLimit}}",
-			"description": "",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "76755ee8-18fb-4758-86f7-541869ca3bcc",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs/{overLimit}",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"//Test assumes the default limit is 100 ",
-							"tests[\"Status code is 413\"] = responseCode.code === 413;",
-							"if(responseCode.code === 413){",
-							"        ",
-							"    //Verify the existence of content-type in the header.",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    ",
-							"    //Validate the content-type for application/json.",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    ",
-							"    if(responseBody.length!== 0){",
-							"        //Parse json response",
-							"        actualReadingData = JSON.parse(responseBody);",
-							"        tests[\"Body is correct\"] = actualReadingData.error.includes(\"Payload Too Large\");",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "540b626d-fb48-454b-9788-c6771eb12e37",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "cfad24b9-4250-4537-a05c-24653a7dfb7c",
-			"name": "http://localhost:84061/api/v1//logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}",
-			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel3}}/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
-			"description": "Delete a collection of LogEntry whose message matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
+			"id": "b89e9858-3664-4609-8f8f-45dec707e3ac",
+			"name": "https://localhost:4861/api/v1/logs/keywords/{keywords}/{start}/{end}",
+			"url": "{{baseUrl}}/api/v1/logs/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
+			"description": "Delete a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
 			"data": null,
 			"dataMode": "params",
 			"headerData": [],
@@ -1403,11 +832,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e8e44cfb-9234-4d47-ae33-e43734855520",
+						"id": "9730a4c5-ac0b-4b80-9255-18e8241adb16",
 						"type": "text/javascript",
 						"exec": [
 							" /**",
-							" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{lables}/{start}/{end} - DELETE",
+							" * Test Case:  /api/v1/logs/keywords/{keywords}/{start}/{end} - DELETE",
 							" * Version: Alpha",
 							" * @Author: Tom Fleming",
 							" * ",
@@ -1430,112 +859,12 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "dfb6e193-abea-4d72-90a5-c77f4192582b",
-			"name": "http://localhost:48061/api/logs/originServices/{originServices}/{start}/{end}",
-			"url": "{{baseUrl}}/api/v1/logs/originServices/{{loggingServiceDel1}}/{{start}}/{{end}}",
-			"description": "Delete a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "74816ecd-f527-456d-b208-d4fcb2c52fb8",
-						"type": "text/javascript",
-						"exec": [
-							" /**",
-							" * Test Case:  /api/v1/logs/originServices/{originServices}/{start}/{end} - DELETE",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" * ",
-							" **/",
-							" ",
-							" tests[\"Delete Success\"] = responseCode.code === 200;",
-							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							" if(responseCode.code === 200){",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(responseBody.length!== 0){",
-							"            tests[\"Body is correct\"] = responseBody >= 1;",
-							"        }",
-							"    }",
-							""
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "e2ee5683-dfbb-4af7-b8a4-f63b7ddfe760",
-			"name": "http://localhost:48061/api/v1/logs - service2",
-			"url": "{{baseUrl}}/api/v1/logs",
-			"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "09183381-ef37-4051-9d19-19121c0eb08e",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/logs",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"    if(responseCode.code === 202){",
-							"        tests[\"Status code is 202\"] = responseCode.code === 202;",
-							"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"            tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"        }",
-							"        if(null !== responseBody){",
-							"            tests[\"Response Timestamp\"] = responseBody.length === 13;",
-							"        }",
-							"    }"
-						]
-					}
-				}
-			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
-			"rawModeData": "{\n  \"logLevel\": \"WARN\",\n  \"originService\": \"service2\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\",\n    \"label3\"\n  ]\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "ec767b14-d9bf-4705-b150-d30e53b47c4e",
+			"id": "bdd05ffc-2f21-4966-97ad-7aa2c67e9897",
 			"name": "http://localhost:48061/api/v1/logs/originServices/{originServices}{start}/{end}/{limit}",
 			"url": "{{baseUrl}}/api/v1/logs/originServices/{{loggingService}}/{{start}}/{{end}}/{{limit}}",
 			"description": "list a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
@@ -1607,19 +936,19 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "f7993831-437c-49a5-9d94-a85ecdd631d4",
-			"name": "http://localhost:48061/api/v1/ping",
-			"url": "{{baseUrl}}/api/v1/ping",
-			"description": "Test service providing an indicatioon that the service is avaliable.",
+			"id": "bf89d2f1-9584-4d9d-b5f9-d70e65be5bdd",
+			"name": "http://localhost:48061/api/logs/originServices/{originServices}/{start}/{end}",
+			"url": "{{baseUrl}}/api/v1/logs/originServices/{{loggingServiceDel1}}/{{start}}/{{end}}",
+			"description": "Delete a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
 			"data": null,
 			"dataMode": "params",
 			"headerData": [],
-			"method": "GET",
+			"method": "DELETE",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
@@ -1627,26 +956,26 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2306ecdb-3433-4b22-a928-a08ab35dce51",
+						"id": "74816ecd-f527-456d-b208-d4fcb2c52fb8",
 						"type": "text/javascript",
 						"exec": [
 							" /**",
-							" * Test Case:  /ping - GET",
+							" * Test Case:  /api/v1/logs/originServices/{originServices}/{start}/{end} - DELETE",
 							" * Version: Alpha",
-							" * @Author: Tata Elxsi",
+							" * @Author: Tom Fleming",
 							" * ",
 							" **/",
 							" ",
-							" tests[\"Ping Success\"] = responseCode.code === 200;",
+							" tests[\"Delete Success\"] = responseCode.code === 200;",
 							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
 							" if(responseCode.code === 200){",
 							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 							"        if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
 							"        }",
 							"        if(responseBody.length!== 0){",
-							"            tests[\"Body is correct\"] = responseBody === \"pong\";",
+							"            tests[\"Body is correct\"] = responseBody >= 1;",
 							"        }",
 							"    }",
 							""
@@ -1654,15 +983,15 @@
 					}
 				}
 			],
-			"folder": "e73c349a-c1d8-4836-8e60-a47771f0772b",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "fa192747-821a-436e-a004-4a688a14cdeb",
-			"name": "http://localhost:48061/api/v1/logs/{start}/{end}/{limit}",
-			"url": "{{baseUrl}}/api/v1/logs/{{start}}/{{end}}/{{limit}}",
-			"description": "list a collection of LogEntry created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
+			"id": "cb73187d-e230-4ccb-a7c3-c4fa974a2e70",
+			"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}/{limit}",
+			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
+			"description": "list a collection of LogEntry whose message matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
 			"data": null,
 			"dataMode": "params",
 			"headerData": [],
@@ -1674,11 +1003,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7dd4f073-147b-4f5e-97bf-0c62a4618bf7",
+						"id": "9a88385f-333d-40da-92aa-4a649bde6da1",
 						"type": "text/javascript",
 						"exec": [
 							" /*",
-							" * Test Case:  api/v1/logs/{start}/{end}/{limit}- GET",
+							" * Test Case:  api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}/{limit}- GET",
 							" * Version: Alpha",
 							" * @Author: Tom Fleming",
 							" *",
@@ -1712,6 +1041,28 @@
 							"               ",
 							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
 							"                console.log(\"Validation failed: \", tv4.error);",
+							"                ",
+							"                // Check that each entry contains the correct logLevel",
+							"                var correctLevel = true;",
+							"                for (var i = 0; i < actualReadingData.length; i++) {",
+							"                    correctLevel  = actualReadingData[i].logLevel.includes(data.loggingLevel);",
+							"                }",
+							"                tests[\"Has correct logging level\"] = correctLevel === true;",
+							"                ",
+							"                // Check that each entry contains the originService",
+							"                var correctOrigin = true;",
+							"                for (var i = 0; i < actualReadingData.length; i++) {",
+							"                    correctOrigin  = (actualReadingData[i].originService.indexOf(data.loggingService) > -1);",
+							"                }",
+							"                tests[\"Has correct origin\"] = correctOrigin === true;",
+							"                ",
+							"                 // Check that each entry contains the correct label",
+							"                var correctLabels = true;",
+							"                for (var i = 0; i < actualReadingData.length; i++) {",
+							"                    correctLabels  = (actualReadingData[i].labels.indexOf(data.loggingLabel) > -1);",
+							"                }",
+							"                tests[\"Has correct Labels\"] = correctLabels === true;",
+							"                ",
 							"            } else {",
 							"                console.log(\"Log is empty.\");",
 							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
@@ -1723,12 +1074,283 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
-			"id": "ff8d3c94-87bf-4985-9e73-ddb3d6ceca69",
+			"id": "d4cc3786-c83c-4cfa-b6a8-a79a0802afea",
+			"name": "http://localhost:48061/api/v1/logs/{limit}",
+			"url": "{{baseUrl}}/api/v1/logs/{{limit}}",
+			"description": "List a collection of LogEntry - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dabae727-9dd5-4d2f-abba-6657368a049d",
+						"type": "text/javascript",
+						"exec": [
+							" /*",
+							" * Test Case:  api/v1/logs/{limit}",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" *",
+							" */",
+							" ",
+							"//Verify the http status code for 200.",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"//Verify if response time is less than 200ms.",
+							"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+							"",
+							"if (responseCode.code === 200) {",
+							"    //Verify the existence of content-type in the header.",
+							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"    ",
+							"    //Validate the content-type for application/json.",
+							"    if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        ",
+							"          //Validate the respose data with json schema.",
+							"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
+							"            try{",
+							"                //Parse json response",
+							"                actualReadingData = JSON.parse(responseBody);",
+							"            }catch(e) {",
+							"                console.log(\"Exception while parsing json response\");",
+							"            }",
+							"            ",
+							"            if(actualReadingData.length !== 0) {",
+							"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
+							"               ",
+							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
+							"                console.log(\"Validation failed: \", tv4.error);",
+							"            } else {",
+							"                console.log(\"Log is empty.\");",
+							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
+							"            }",
+							"        }",
+							"    }",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "e034aa6f-6e0f-42d6-9d37-04966a422aaf",
+			"name": "http://localhost:48061/api/v1/logs/keywords/{keywords}/{start}/{end}/{limit}",
+			"url": "{{baseUrl}}/api/v1/logs/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
+			"description": "list a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues..",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89a73bcd-e486-451f-8548-ea91b7ee486c",
+						"type": "text/javascript",
+						"exec": [
+							" /*",
+							" * Test Case:  api/v1/logs/keywords/{keywords}/{start}/{end}/{limit}- GET",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" *",
+							" */",
+							" ",
+							"//Verify the http status code for 200.",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"//Verify if response time is less than 200ms.",
+							"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+							"",
+							"if (responseCode.code === 200) {",
+							"    //Verify the existence of content-type in the header.",
+							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"    ",
+							"    //Validate the content-type for application/json.",
+							"    if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        ",
+							"        //Validate the respose data with json schema.",
+							"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
+							"            try{",
+							"                //Parse json response",
+							"                actualReadingData = JSON.parse(responseBody);",
+							"            }catch(e) {",
+							"                console.log(\"Exception while parsing json response\");",
+							"            }",
+							"            ",
+							"            if(actualReadingData.length !== 0) {",
+							"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
+							"               ",
+							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
+							"                console.log(\"Validation failed: \", tv4.error);",
+							"                ",
+							"                // Check that each entry contains the correct keyword",
+							"                var correctKeyword = true;",
+							"                for (var i = 0; i < actualReadingData.length; i++) {",
+							"                    correctKeyword  = actualReadingData[i].message.includes(data.loggingKeyword);",
+							"                }",
+							"                tests[\"Has correct keyword\"] = correctKeyword === true;",
+							"                ",
+							"            } else {",
+							"                console.log(\"Log is empty.\");",
+							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
+							"            }",
+							"        }",
+							"    }",
+							"}"
+						]
+					}
+				}
+			],
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f907966c-ee62-4e7a-9d09-4f8e8ae2e09d",
+			"name": "http://localhost:84061/api/v1/logs/{start}/{end}",
+			"url": "{{baseUrl}}/api/v1/logs/{{start}}/{{end}}",
+			"description": "Delete all log entries between two dates specified by start and end. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88cdae2e-9336-4e76-b5ce-8c95a5854c76",
+						"type": "text/javascript",
+						"exec": [
+							" /**",
+							" * Test Case:  /api/v1/logs/{start}/{end} - DELETE",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" * ",
+							" **/",
+							" ",
+							" tests[\"Delete Success\"] = responseCode.code === 200;",
+							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+							" if(responseCode.code === 200){",
+							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"        if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        }",
+							"        if(responseBody.length!== 0){",
+							"            tests[\"Body is correct\"] = responseBody >= 1;",
+							"        }",
+							"    }",
+							""
+						]
+					}
+				}
+			],
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "fcc96a78-ccfd-44ee-a3a3-dd5698972839",
+			"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/{start}/{end}/{limit}",
+			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/{{start}}/{{end}}/{{limit}}",
+			"description": "list a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10df6a95-4e38-4608-9779-e92c30e7dea4",
+						"type": "text/javascript",
+						"exec": [
+							" /*",
+							" * Test Case:  api/v1/logs/logLevels/{logLevels}/{start}/{end}/{limit}- GET",
+							" * Version: Alpha",
+							" * @Author: Tom Fleming",
+							" *",
+							" */",
+							" ",
+							"//Verify the http status code for 200.",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"//Verify if response time is less than 200ms.",
+							"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+							"",
+							"if (responseCode.code === 200) {",
+							"    //Verify the existence of content-type in the header.",
+							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+							"    ",
+							"    //Validate the content-type for application/json.",
+							"    if (contentTypeHeaderExists) {",
+							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+							"        ",
+							"        //Validate the respose data with json schema.",
+							"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
+							"            try{",
+							"                //Parse json response",
+							"                actualReadingData = JSON.parse(responseBody);",
+							"            }catch(e) {",
+							"                console.log(\"Exception while parsing json response\");",
+							"            }",
+							"            ",
+							"            if(actualReadingData.length !== 0) {",
+							"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
+							"               ",
+							"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
+							"                console.log(\"Validation failed: \", tv4.error);",
+							"                ",
+							"                // Check that each entry contains the correct logLevel",
+							"                var correctLevel = true;",
+							"                for (var i = 0; i < actualReadingData.length; i++) {",
+							"                    correctLevel  = actualReadingData[i].logLevel.includes(data.loggingLevel);",
+							"                }",
+							"                tests[\"Has correct logging level\"] = correctLevel === true;",
+							"                ",
+							"            } else {",
+							"                console.log(\"Log is empty.\");",
+							"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
+							"            }",
+							"        }",
+							"    }",
+							"}"
+						]
+					}
+				}
+			],
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "fd1e080d-413b-46e0-8f1c-6e28581b369b",
 			"name": "http://localhost:84061/api/v1/logs/logLevels/{logLevels}/{start}/{end}",
 			"url": "{{baseUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/{{start}}/{{end}}",
 			"description": "Delete a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues.",
@@ -1770,7 +1392,7 @@
 					}
 				}
 			],
-			"folder": "308035e6-2956-4df1-a645-302e5f61bf23",
+			"folder": "c367527f-4cac-40d9-b06c-4814b86fb08c",
 			"headers": "",
 			"pathVariables": {}
 		}
