@@ -4,8 +4,7 @@ var operationStatus;
 
 collections.forEach(function(collection) {
     operationStatus = db[collection].remove({});
-    print('DB:'+ dbName + ' , collecation:' + collection + ' , data flushed . ');
-    printjson(operationStatus);
+    print('[mongo js script] DB: '+ dbName + ' , collecation: ' + collection + ' , flushed ' + operationStatus.nRemoved +' documents');
 
 });
 
