@@ -7,5 +7,5 @@ collections.forEach(function(collection) {
     print('DB:'+ dbName + ' , collecation:' + collection + ' , data flushed . ');
     printjson(operationStatus);
 
-})
+});
 
