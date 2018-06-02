@@ -1,6 +1,11 @@
 var dbName = 'notifications';
-var collectionName = 'subscription';
-var operationStatus = db[collectionName].remove({});
+var collections = ['transmission' ,'notification' ,'subscription' ];
+var operationStatus;
 
-print('DB:'+ dbName + ' , collecation:' + collectionName + ' , data flushed . ');
-printjson(operationStatus);
+collections.forEach(function(collection) {
+    operationStatus = db[collection].remove({});
+    print('DB:'+ dbName + ' , collecation:' + collection + ' , data flushed . ');
+    printjson(operationStatus);
+
+})
+
