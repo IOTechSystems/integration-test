@@ -1,11 +1,9 @@
 var dbName = 'notifications';
 var collectionName = 'subscription' ;
-var subscriptions =[];
-var operationStatus;
-
+var documents =[];
 
 // Test case : Fail to create a subscription , cause slug already exist.
-subscriptions.push(
+documents.push(
     {
         "slug": "group-a-member",
         "receiver": "Group A Member",
@@ -31,7 +29,7 @@ subscriptions.push(
 
 // Test case : Can cancel a subscription by slug .
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-b-member",
         "receiver": "Group B Member",
@@ -57,7 +55,7 @@ subscriptions.push(
 
 // Test case : Can modify subscription successful
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-c-member",
         "receiver": "Group C Member",
@@ -83,7 +81,7 @@ subscriptions.push(
 
 // Test case : Can list all subscription
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-d-member",
         "receiver": "Group D Member",
@@ -107,7 +105,7 @@ subscriptions.push(
     }
 );
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-e-member",
         "receiver": "Group E Member",
@@ -133,7 +131,7 @@ subscriptions.push(
 
 // Test case : Can query a specific Subscription by slug
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-f-member",
         "receiver": "Group F Member",
@@ -159,7 +157,7 @@ subscriptions.push(
 
 // Test case : Can query the Subscription by subscribed categories matching any one of them.
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-g-member",
         "receiver": "Group G Member",
@@ -183,7 +181,7 @@ subscriptions.push(
     }
 );
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-h-member",
         "receiver": "Group H Member",
@@ -208,7 +206,7 @@ subscriptions.push(
 
 // Test case : Can query the Subscription by subscribed labels matching any one of them.
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-i-member",
         "receiver": "Group I Member",
@@ -232,7 +230,7 @@ subscriptions.push(
     }
 );
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-j-member",
         "receiver": "Group J Member",
@@ -257,7 +255,7 @@ subscriptions.push(
 
 // Test case : Can query the Subscription by subscribed categories and labels matching any one of them.
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-k-member",
         "receiver": "Group K Member",
@@ -281,7 +279,7 @@ subscriptions.push(
     }
 );
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-l-member",
         "receiver": "Group L Member",
@@ -304,9 +302,9 @@ subscriptions.push(
     }
 );
 
-// Test case : Can query the Subscriptions by receiver Name.
+// Test case : Can query the documents by receiver Name.
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-m-member-sw",
         "receiver": "Group M Member",
@@ -329,7 +327,7 @@ subscriptions.push(
     }
 );
 
-subscriptions.push(
+documents.push(
     {
         "slug": "group-m-member-hw",
         "receiver": "Group M Member",
@@ -354,7 +352,7 @@ subscriptions.push(
 
 try {
 
-    operationStatus = db[collectionName].insertMany(subscriptions);
+    var operationStatus = db[collectionName].insertMany(documents);
 
     print('[mongo js script] DB: '+ dbName + ' , collecation: ' + collectionName + ' , imported ' + operationStatus.insertedIds.length +' documents');
 

@@ -5,6 +5,8 @@ DATA_BASE="notifications"
 
 DUMP_FILES=(
     "/etc/newman/DataDumps/supportNotifications/subscription.js"
+    "/etc/newman/DataDumps/supportNotifications/notification.js"
+    "/etc/newman/DataDumps/supportNotifications/transmission.js"
 
 )
 

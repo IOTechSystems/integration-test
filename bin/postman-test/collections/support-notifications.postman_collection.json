@@ -394,7 +394,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6fc25b2f-ff82-4b24-b1b2-3ae282082ed3",
+								"id": "915bb2d9-2f23-455b-b75d-124b7e0af6e0",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -417,9 +417,6 @@
 									"pm.test(\"Response must be valid and have a body\", function () {",
 									"     pm.response.to.be.withBody;",
 									"     pm.response.to.be.json; ",
-									"     var jsonData = pm.response.json();",
-									"     pm.expect( jsonData.length > 0 ).to.be.true;",
-									"     ",
 									"});",
 									""
 								]
@@ -490,7 +487,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/SW_HEALTH",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/SW_HEALTH,HW_HEALTH",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -499,7 +496,7 @@
 								"v1",
 								"subscription",
 								"categories",
-								"SW_HEALTH"
+								"SW_HEALTH,HW_HEALTH"
 							]
 						},
 						"description": "List all Subscriptions."
@@ -608,7 +605,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/{categories}/labels/{labels}",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/HW_HEALTH/labels/sensor,cpu",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -617,9 +614,69 @@
 								"v1",
 								"subscription",
 								"categories",
-								"{categories}",
+								"HW_HEALTH",
 								"labels",
-								"{labels}"
+								"sensor,cpu"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Subscriptions by receiver Name.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2bd6f38-9816-44f8-8408-3fca8de17a2c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.be.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription//receiver/Group M Member",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"",
+								"receiver",
+								"Group M Member"
 							]
 						},
 						"description": "List all Subscriptions."
