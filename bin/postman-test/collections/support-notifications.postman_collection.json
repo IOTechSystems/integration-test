@@ -10,12 +10,334 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost/api/v1/subscription",
+					"name": "Can create a subscription.",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "4f243d20-8a10-45c2-9146-b60c0f03f626",
+								"id": "b8bafa00-5eed-4cd3-9369-57055e86a33d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"slug\": \"sys-admin\",\n\t\"receiver\": \"System Administrator\",\n\t\"subscribedCategories\": [\n\t\t\"HW_HEALTH\"\n\t],\n\t\"subscribedLabels\": [\n\t\t\"temperature\",\n\t\t\"humidity\"\n    ],\n\t\"channels\": [\n\t\t{\n\t\t\t\"type\": \"REST\",\n\t\t\t\"url\": \"http://abc.def/alert\"\n\t\t},\n\t\t{\n\t\t\t\"type\": \"EMAIL\",\n\t\t\t\"mailAddresses\": [\n\t\t\t\t\"cloud@abc.def\",\n\t\t\t\t\"jack@abc.def\"\n\t    \t]\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to create a subscription , cause slug already exist.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "66ee6d52-a817-4b98-bb21-45776277f5c2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"slug\": \"group-a-member\",\n\t\"receiver\": \"Group A Member\",\n\t\"subscribedCategories\": [\n\t\t\"HW_HEALTH\"\n\t],\n\t\"subscribedLabels\": [\n\t\t\"temperature\",\n\t\t\"humidity\"\n    ],\n\t\"channels\": [\n\t\t{\n\t\t\t\"type\": \"EMAIL\",\n\t\t\t\"mailAddresses\": [\n\t\t\t\t\"andy@abc.def\",\n\t\t\t\t\"tom@abc.def\"\n\t    \t]\n\t\t}\n\t]\n}\n"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can cancel a subscription by slug .",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38894715-b88b-4c38-b8a2-e9d0361a5466",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/group-b-member",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"slug",
+								"group-b-member"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to cancel a subscription by slug ,cause slug not exist.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0fd4faed-58cf-4e15-899d-8b5acb21cd41",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/non-exist-test-slug",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"slug",
+								"non-exist-test-slug"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can modify subscription successful .",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "18459588-7cd7-42b0-a649-fbbace886cdb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"slug\": \"group-c-member\",\n        \"receiver\": \"Group C Member\",\n        \"subscribedCategories\": [\n            \"HW_HEALTH\"\n        ],\n        \"subscribedLabels\": [\n            \"temperature\",\n            \"humidity\"\n        ],\n        \"channels\": [\n            {\n                \"type\": \"EMAIL\",\n                \"_class\" : \"org.edgexfoundry.support.domain.notifications.EmailChannel\" ,\n                \"mailAddresses\": [\n                    \"karl@abc.def\",\n                    \"jeff@abc.def\"\n                ]\n            }\n        ]\n    }"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to modify subscription , cause subscription’s slug not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81fd2615-6d48-4f2c-b7d3-76e51bf8daac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"slug\": \"non-exist-test-slug\",\n        \"receiver\": \"Non Exist Receiver\",\n        \"subscribedCategories\": [\n            \"HW_HEALTH\"\n        ],\n        \"subscribedLabels\": [\n            \"temperature\",\n            \"humidity\"\n        ],\n        \"channels\": [\n            {\n                \"type\": \"EMAIL\",\n                \"_class\" : \"org.edgexfoundry.support.domain.notifications.EmailChannel\" ,\n                \"mailAddresses\": [\n                    \"karl@abc.def\",\n                    \"jeff@abc.def\"\n                ]\n            }\n        ]\n    }"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can list all subscription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "48b9e2f1-e134-460c-a16e-cb75e33fef53",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -33,6 +355,14 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var responseHeaders = pm.response.headers",
 									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
 									"});",
 									""
 								]
@@ -59,12 +389,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost/api/v1/subscription Copy",
+					"name": "Can query a specific Subscription by slug",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "4f243d20-8a10-45c2-9146-b60c0f03f626",
+								"id": "6fc25b2f-ff82-4b24-b1b2-3ae282082ed3",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -83,6 +413,14 @@
 									"    var responseHeaders = pm.response.headers",
 									"    responseHeaders.has('application/json')",
 									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.be.true;",
+									"     ",
+									"});",
 									""
 								]
 							}
@@ -93,14 +431,195 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/group-f-member",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"subscription"
+								"subscription",
+								"slug",
+								"group-f-member"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Subscription by subscribed categories matching any one of them.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "48b9e2f1-e134-460c-a16e-cb75e33fef53",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/SW_HEALTH",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"categories",
+								"SW_HEALTH"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Subscription by subscribed labels matching any one of them.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "48b9e2f1-e134-460c-a16e-cb75e33fef53",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/labels/sensor",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"labels",
+								"sensor"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Subscription by subscribed categories and labels matching any one of them.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2bd6f38-9816-44f8-8408-3fca8de17a2c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.be.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/{categories}/labels/{labels}",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"categories",
+								"{categories}",
+								"labels",
+								"{labels}"
 							]
 						},
 						"description": "List all Subscriptions."
