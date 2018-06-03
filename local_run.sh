@@ -11,9 +11,14 @@ echoAllAvailableCommand() {
         "-localDeploy"
         "-copyPostmanTestScriptToNewman"
 
-        "-TestSupportNotification"
+        "-testCoreData"
+        "-importMetaData"
+
+        "-testMetaData"
+        "-importCoreData"
+
+        "-testSupportNotification"
         "-importSupportNotification"
-        "-flushSupportNotification"
     )
 
     for index in "${!COLLECTIONS[@]}"
@@ -32,16 +37,34 @@ case ${option} in
         docker cp $(dirname "$0")/bin/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
         ;;
 
+    # CoreData
+    -testCoreData)
+        $(dirname "$0")/bin/flushCoreDataDump.sh
+        sh ./bin/run.sh -cd
+        ;;
+    -importCoreData)
+        $(dirname "$0")/bin/flushCoreDataDump.sh
+        $(dirname "$0")/bin/importCoreDataDump.sh
+        ;;
+
+    # MetaData
+    -testMetaData)
+        $(dirname "$0")/bin/flushMetaDataDump.sh
+        sh ./bin/run.sh -md
+        ;;
+    -importMetaData)
+        $(dirname "$0")/bin/flushMetaDataDump.sh
+        $(dirname "$0")/bin/importMetaDataDump.sh
+        ;;
+
     # SupportNotification
-    -TestSupportNotification)
+    -testSupportNotification)
         $(dirname "$0")/bin/flushSupportNotificationDump.sh
         sh ./bin/run.sh -sn
         ;;
     -importSupportNotification)
-        $(dirname "$0")/bin/importSupportNotificationDump.sh
-        ;;
-    -flushSupportNotification)
         $(dirname "$0")/bin/flushSupportNotificationDump.sh
+        $(dirname "$0")/bin/importSupportNotificationDump.sh
         ;;
 
    	*)
