@@ -359,9 +359,13 @@ try {
 
 } catch (e) {
     print('[mongo js script] DB: '+ dbName + ' , collecation: ' + collectionName + ' , imported fail !! ');
-    var wErrors = e.getWriteErrors();
-    wErrors.forEach(function(doc){
-        print(doc.errmsg);
-    });
-
+    if("name" in e && e.name == 'BulkWriteError'){
+        var wErrors = e.getWriteErrors();
+        wErrors.forEach(function(doc){
+            print(doc.errmsg);
+        });
+    }else{
+        print(e);
+    }
 }
+
