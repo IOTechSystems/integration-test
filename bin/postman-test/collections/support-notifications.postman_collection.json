@@ -809,7 +809,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "adfcec01-8679-4b8d-a614-3b4b23200bf6",
+								"id": "eeb22cb7-ff5d-464f-9240-77db6babb80d",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 202\", function () {",
@@ -828,6 +828,19 @@
 									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
 									"    pm.expect(contentType).to.include(\"text/plain\");",
 									"});",
+									"",
+									"pm.test(\"Critical notification had been proceessed and transmissions are created.  \", function(){",
+									"    setTimeout(()=>{ ",
+									"        var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"        pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-002/5\", function (err, response) {",
+									"            var res = response.json();",
+									"            pm.expect(res.length > 0).to.be.true;",
+									"        });",
+									"    }",
+									"    , 1000);",
+									"});",
+									"",
+									"",
 									""
 								]
 							}
