@@ -629,7 +629,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f2bd6f38-9816-44f8-8408-3fca8de17a2c",
+								"id": "d7ce1d75-85f5-48e7-8351-619c9f6f0033",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -680,6 +680,1479 @@
 							]
 						},
 						"description": "List all Subscriptions."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"description": "",
+			"item": [
+				{
+					"name": "Can create a normal notification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "adfcec01-8679-4b8d-a614-3b4b23200bf6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"slug\": \"notice-test-001\",\n\t\"sender\": \"System Management\",\n\t\"category\": \"SECURITY\",\n\t\"severity\": \"NORMAL\",\n\t\"content\": \"Hello, Notification!\",\n\t\"labels\": [\n\t\t\"cool\",\n\t\t\"test\"\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to create a normal notification , cause slug already exist .",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5de5767e-47c7-4080-a13f-5cf02366725e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"slug\": \"notice-001\",\n    \"sender\": \"System Management\",\n    \"category\": \"HW_HEALTH\",\n    \"severity\": \"NORMAL\",\n    \"content\": \" [ INFO ] Room's temperature is 82 °F\",\n    \"labels\": [\n        \"room\",\n        \"temperature\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can create a critical notification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "adfcec01-8679-4b8d-a614-3b4b23200bf6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"slug\": \"notice-002\",\n    \"sender\": \"System Management\",\n    \"category\": \"HW_HEALTH\",\n    \"severity\": \"CRITICAL\",\n    \"content\": \" [ WARNING ] Room's temperature is 103 °F , it's over upper limit 100 °F.\",\n    \"labels\": [\n        \"room\",\n        \"temperature\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can delete a specific Notification by slug.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c341e910-fd91-44ba-8143-0df1be6222c0",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/notice-003",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"slug",
+								"notice-003"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to delete a specific Notification by slug , cause slug not exist .",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65510e98-43f3-4944-a821-a22f426b1cd4",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/non-exist-test-slug",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"slug",
+								"non-exist-test-slug"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can delete the proccessed Notifications and the corresponding Transmissions by age.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38894715-b88b-4c38-b8a2-e9d0361a5466",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query a specific Notification by slug.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38894715-b88b-4c38-b8a2-e9d0361a5466",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/notice-004",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"slug",
+								"notice-004"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Notifications by sender name with limited returned records.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1ed4ae4-6789-4aa3-92a3-2551ec638dca",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/sender/Room System Management/2",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"sender",
+								"Room System Management",
+								"2"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Notifications by creation timestamp between start date and end date.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f0679bf1-8057-4769-907a-86368e83ea9b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.be.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/1300000/1400000/2",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"1300000",
+								"1400000",
+								"2"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Notifications by creation timestamp after start date.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "35a76a3f-2ed8-43bd-b71e-2832a863bfc7",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.be.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/1500000/1",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"start",
+								"1500000",
+								"1"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Notifications by creation timestamp before end date.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1520621c-3051-4eca-ad30-fc52ff92c0e6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.be.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/end/1600000/1",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"end",
+								"1600000",
+								"1"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Notifications by labels matching any one of them.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "266ea47d-bbda-4821-b5ee-7938a62f2ce1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.be.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/labels/power-meter/10",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"labels",
+								"power-meter",
+								"10"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the unprocessed Notifications (status = NEW).",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38894715-b88b-4c38-b8a2-e9d0361a5466",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/new/10",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"new",
+								"10"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can delete all the Notifications if the current timestamp minus their last modification timestamp is less than a default age setting, and the corresponding Transmissions will also be deleted.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8d40aea-3102-4198-9a2c-b6956e5f4b2f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/cleanup",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cleanup"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can delete all the Notifications if the current timestamp minus their last modification timestamp is less than the age parameter, and the corresponding Transmissions will also be deleted.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "68960d77-8bcc-482d-9856-5d7b4863a235",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/cleanup/age/123456",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cleanup",
+								"age",
+								"123456"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transmission",
+			"description": "",
+			"item": [
+				{
+					"name": "Can query the Transmissions associating a specific Notification by the Notification slug.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca67b1fb-7355-4469-a6f4-e20c9dcebfdd",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/notice-015/2",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"slug",
+								"notice-015",
+								"2"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Transmissions by creation timestamp between start date and end date.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca67b1fb-7355-4469-a6f4-e20c9dcebfdd",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/100000/100020/5",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"100000",
+								"100020",
+								"5"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Transmissions by creation timestamp after start date.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca67b1fb-7355-4469-a6f4-e20c9dcebfdd",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/140000/5",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"start",
+								"140000",
+								"5"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the Transmissions by creation timestamp before end date.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca67b1fb-7355-4469-a6f4-e20c9dcebfdd",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/end/100000/5",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"end",
+								"100000",
+								"5"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the escalated Transmissions (status = ESCALATED) .",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca67b1fb-7355-4469-a6f4-e20c9dcebfdd",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/escalated/10",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"escalated",
+								"10"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can query the failed Transmissions (status = FAILED) .",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca67b1fb-7355-4469-a6f4-e20c9dcebfdd",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.true;",
+									"     ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/failed/10",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"failed",
+								"10"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can delete all the sent Transmissions (status = SENT) if the current timestamp minus their last modification timestamp is less than the age parameter.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5bf1253-0179-403f-af23-74c528dace0d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/sent/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"sent",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can delete all the escalated Transmissions (status = ESCALATED) if the current timestamp minus their last modification timestamp is less than the age parameter.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8bf14c39-d532-4c80-a4ab-8348da9ca611",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/escalated/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"escalated",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can delete all the acknowledged Transmissions (status = ACKNOWLEDGED) if the current timestamp minus their last modification timestamp is less than the age parameter.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4893272e-dc62-4904-8906-c68eb521d5cf",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/acknowledged/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"acknowledged",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Can delete all the failed Transmissions (status = FAILED and resendCount >= resend limit) if the current timestamp minus their last modification timestamp is less than the age parameter.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "03bc396a-4261-40fd-843d-89baf1d4c878",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/failed/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"failed",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
 					},
 					"response": []
 				}

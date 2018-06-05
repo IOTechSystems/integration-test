@@ -16,12 +16,12 @@ documents.push(
             "httpMethod": "POST",
             "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
         },
-        "status": "FAILED",
+        "status": "SENT",
         "resendCount": 0,
         "records": [
             {
-                "status": "FAILED",
-                "response": "I/O error on POST request for \"http://localhost:5566/test\": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect",
+                "status": "SENT",
+                "response": "true",
                 "sent": 1472439914709
             }
         ],
@@ -30,6 +30,125 @@ documents.push(
     }
 );
 
+// Test case : Can query the Transmissions by creation timestamp between start date and end date.
+documents.push(
+    {
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "SENT",
+        "resendCount": 0,
+        "records": [
+            {
+                "status": "SENT",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 100010,
+        "modified": 100010
+    }
+);
+
+// Test case : Can query the Transmissions by creation timestamp after start date.
+documents.push(
+    {
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "SENT",
+        "resendCount": 0,
+        "records": [
+            {
+                "status": "SENT",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 150000,
+        "modified": 150000
+    }
+);
+
+// Test case : Can query the Transmissions by creation timestamp before end date.
+documents.push(
+    {
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "SENT",
+        "resendCount": 0,
+        "records": [
+            {
+                "status": "SENT",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 99000,
+        "modified": 99000
+    }
+);
+
+// Test case : Can query the escalated Transmissions (status = ESCALATED) .
+documents.push(
+    {
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "ESCALATED",
+        "resendCount": 0,
+        "records": [
+            {
+                "status": "SENT",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 100000,
+        "modified": 100000
+    }
+);
+
+// Test case : Can query the failed Transmissions (status = FAILED) .
+documents.push(
+    {
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "FAILED",
+        "resendCount": 0,
+        "records": [
+            {
+                "status": "FAILED",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 100000,
+        "modified": 100000
+    }
+);
 
 try {
 

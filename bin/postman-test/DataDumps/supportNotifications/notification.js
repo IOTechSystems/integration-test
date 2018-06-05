@@ -215,21 +215,7 @@ documents.push(
         "status":"NEW"
     }
 );
-documents.push(
-    {
-        "_id" : ObjectId("57ba04a1189b95b8afcdafd1"),
-        "slug": "notice-015",
-        "sender": "Room System Management",
-        "category": "HW_HEALTH",
-        "severity": "NORMAL",
-        "content": " [ Notification ] Power meter's counter value is 356 kWh",
-        "labels": [
-            "room",
-            "power-meter"
-        ],
-        "status":"NEW"
-    }
-);
+
 
 try {
 
