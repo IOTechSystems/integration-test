@@ -216,6 +216,74 @@ documents.push(
     }
 );
 
+// Test case : Can delete all the sent Transmissions (status = SENT) if the current timestamp minus their last modification timestamp is less than the age parameter.
+documents.push(
+    {
+        "_id" : ObjectId("57ba04a1189b95b8afcdafd2"),
+        "slug": "notice-016",
+        "sender": "Room System Management",
+        "category": "HW_HEALTH",
+        "severity": "NORMAL",
+        "content": " [ Notification ] Power meter's counter value is 356 kWh",
+        "labels": [
+            "room",
+            "power-meter"
+        ],
+        "status":"PROCESSED"
+    }
+);
+
+// Test case : Can delete all the escalated Transmissions (status = ESCALATED) if the current timestamp minus their last modification timestamp is less than the age parameter.
+documents.push(
+    {
+        "_id" : ObjectId("57ba04a1189b95b8afcdafd3"),
+        "slug": "notice-017",
+        "sender": "Room System Management",
+        "category": "HW_HEALTH",
+        "severity": "NORMAL",
+        "content": " [ Notification ] Power meter's counter value is 356 kWh",
+        "labels": [
+            "room",
+            "power-meter"
+        ],
+        "status":"PROCESSED"
+    }
+);
+
+// Test case : Can delete all the acknowledged Transmissions (status = ACKNOWLEDGED) if the current timestamp minus their last modification timestamp is less than the age parameter.
+documents.push(
+    {
+        "_id" : ObjectId("57ba04a1189b95b8afcdafd4"),
+        "slug": "notice-018",
+        "sender": "Room System Management",
+        "category": "HW_HEALTH",
+        "severity": "NORMAL",
+        "content": " [ Notification ] Power meter's counter value is 356 kWh",
+        "labels": [
+            "room",
+            "power-meter"
+        ],
+        "status":"PROCESSED"
+    }
+);
+
+// Test case : Can delete all the failed Transmissions (status = FAILED and resendCount >= resend limit) if the current timestamp minus their last modification timestamp is less than the age parameter.
+documents.push(
+    {
+        "_id" : ObjectId("57ba04a1189b95b8afcdafd5"),
+        "slug": "notice-019",
+        "sender": "Room System Management",
+        "category": "HW_HEALTH",
+        "severity": "NORMAL",
+        "content": " [ Notification ] Power meter's counter value is 356 kWh",
+        "labels": [
+            "room",
+            "power-meter"
+        ],
+        "status":"PROCESSED"
+    }
+);
+
 
 try {
 

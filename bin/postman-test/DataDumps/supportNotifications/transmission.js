@@ -150,6 +150,118 @@ documents.push(
     }
 );
 
+// Test case :  Can delete all the sent Transmissions (status = SENT) if the current timestamp minus their last modification timestamp is less than the age parameter.
+documents.push(
+    {
+        "notification": {
+            "$ref": "notification",
+            "$id": ObjectId("57ba04a1189b95b8afcdafd2")
+        },
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "SENT",
+        "resendCount": 0,
+        "records": [
+            {
+                "status": "SENT",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 100000,
+        "modified": 100000
+    }
+);
+
+// Test case : Can delete all the escalated Transmissions (status = ESCALATED) if the current timestamp minus their last modification timestamp is less than the age parameter.
+documents.push(
+    {
+        "notification": {
+            "$ref": "notification",
+            "$id": ObjectId("57ba04a1189b95b8afcdafd3")
+        },
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "ESCALATED",
+        "resendCount": 0,
+        "records": [
+            {
+                "status": "ESCALATED",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 100000,
+        "modified": 100000
+    }
+);
+
+// Test case : Can delete all the acknowledged Transmissions (status = ACKNOWLEDGED) if the current timestamp minus their last modification timestamp is less than the age parameter.
+documents.push(
+    {
+        "notification": {
+            "$ref": "notification",
+            "$id": ObjectId("57ba04a1189b95b8afcdafd4")
+        },
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "ACKNOWLEDGED",
+        "resendCount": 0,
+        "records": [
+            {
+                "status": "SENT",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 100000,
+        "modified": 100000
+    }
+);
+
+// Test case : Can delete all the failed Transmissions (status = FAILED and resendCount >= resend limit) if the current timestamp minus their last modification timestamp is less than the age parameter.
+documents.push(
+    {
+        "notification": {
+            "$ref": "notification",
+            "$id": ObjectId("57ba04a1189b95b8afcdafd5")
+        },
+        "receiver": "Jack",
+        "channel": {
+            "type": "REST",
+            "url": "http://localhost:5566/test",
+            "httpMethod": "POST",
+            "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel" ,
+        },
+        "status": "FAILED",
+        "resendCount": 3,
+        "records": [
+            {
+                "status": "FAILED",
+                "response": "true",
+                "sent": 1472439914709
+            }
+        ],
+        "created": 100000,
+        "modified": 100000
+    }
+);
+
 try {
 
     var operationStatus = db[collectionName].insertMany(documents);
