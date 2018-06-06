@@ -198,6 +198,16 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "991f88c3-b8a1-410c-9fff-04bcdd5e1832",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1959,7 +1969,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c5bf1253-0179-403f-af23-74c528dace0d",
+								"id": "da14b10d-9648-4a20-83ee-c395b8ce0ad3",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1974,6 +1984,13 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									"",
+									"pm.test(\"Transmissions are been deleted , use specific notification slug to query will return empty array .  \", function(){",
+									"    var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"    pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-016/5\", function (err, response) {",
+									"                var res = response.json();",
+									"                pm.expect(res.length === 0).to.be.true;",
+									"    });",
+									"});",
 									""
 								]
 							}
@@ -2013,7 +2030,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8bf14c39-d532-4c80-a4ab-8348da9ca611",
+								"id": "1b0260f8-d33b-47bc-8e71-d51462ee9a4d",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -2028,6 +2045,13 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									"",
+									"pm.test(\"Transmissions are been deleted , use specific notification slug to query will return empty array .  \", function(){",
+									"    var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"    pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-017/5\", function (err, response) {",
+									"                var res = response.json();",
+									"                pm.expect(res.length === 0).to.be.true;",
+									"    });",
+									"});",
 									""
 								]
 							}
@@ -2067,7 +2091,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4893272e-dc62-4904-8906-c68eb521d5cf",
+								"id": "9033ec7a-070d-4686-be3c-23562726195e",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -2082,7 +2106,13 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									"",
-									""
+									"pm.test(\"Transmissions are been deleted , use specific notification slug to query will return empty array .  \", function(){",
+									"    var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"    pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-018/5\", function (err, response) {",
+									"                var res = response.json();",
+									"                pm.expect(res.length === 0).to.be.true;",
+									"    });",
+									"});"
 								]
 							}
 						}
@@ -2121,7 +2151,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "03bc396a-4261-40fd-843d-89baf1d4c878",
+								"id": "c7581379-49e2-481e-95f4-5db9e6c12bd4",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -2136,7 +2166,13 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									"",
-									""
+									"pm.test(\"Transmissions are been deleted , use specific notification slug to query will return empty array .  \", function(){",
+									"    var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"    pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-019/5\", function (err, response) {",
+									"                var res = response.json();",
+									"                pm.expect(res.length === 0).to.be.true;",
+									"    });",
+									"});"
 								]
 							}
 						}
