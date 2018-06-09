@@ -36,8 +36,6 @@
       "description": "Folder for event",
       "order": [
         "1f799e18-86f8-fa0e-6b25-6cb137882a57",
-        "0aa9d644-ac26-9746-5370-a3be6698d25c",
-        "6463d2de-d27b-bc78-8c8f-0f5ba831666e",
         "8f01d601-61c5-1b86-927a-53feb370d13b",
         "3ab77e32-f5a3-40c1-dc82-5dac8492fc81",
         "e9e6aa4b-ee93-e403-0cec-5423bc98b075",
@@ -114,7 +112,6 @@
       "order": [
         "064b635d-21b1-fb64-663c-9af195ae0f64",
         "2e2bb1f1-6841-c2e2-a5ca-ae69d4ba73e7",
-        "045c15ca-99ff-eb90-c23d-6504b528e2fa",
         "9407c63d-04ef-af3c-b523-973f68e766de",
         "1941beb0-1692-d332-71b1-7a288c7706bd",
         "65f91bcd-1c24-f71e-6aa1-1b2a4562a395",
@@ -122,7 +119,6 @@
         "64f867dd-2abd-27c9-1a20-04b2b7acf532",
         "7808c431-d413-8823-4b62-5590389d5900",
         "12abf366-7ef6-14aa-7ffa-5f1b62cf291c",
-        "76f750a8-3d4c-9aef-188d-65fd0a36ba85",
         "fbe1f863-2181-546e-daea-48c1de1e7e3b"
       ],
       "owner": "1042075",
