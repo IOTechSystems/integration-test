@@ -50,6 +50,7 @@ testAll() {
 	coreDataTest
 	metaDataTest
 	commandTest
+	supportNotificationTest
 }
 
 #Main Script starts here
