@@ -12,10 +12,10 @@
 #sh deploy-edgeX.java.sh
 
 #sh ./bin/run.sh -cd
-sh ./bin/run.sh -md
+#sh ./bin/run.sh -md
 #docker-compose up logging
 
 
 #sh local-deploy-edgex.sh
-#docker-compose -f local-docker-compose.yml up logging
+docker-compose -f local-docker-compose.yml up logging
 #docker-compose -f docker-compose.java.yml up -d device-virtual

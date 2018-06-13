@@ -26,7 +26,8 @@
         "d7b9f54b-2aab-c380-1060-cc63cfe71614",
         "ffce5a08-25d0-3825-484d-2e88425484e5",
         "caa55575-ee06-0216-2af0-13b374ba0957",
-        "00da1829-97da-e251-8e94-f9db65538067"
+        "00da1829-97da-e251-8e94-f9db65538067",
+        "0aa9d644-ac26-9746-5370-a3be6698d25c"
       ],
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6"
     },
@@ -36,7 +37,6 @@
       "description": "Folder for event",
       "order": [
         "1f799e18-86f8-fa0e-6b25-6cb137882a57",
-        "0aa9d644-ac26-9746-5370-a3be6698d25c",
         "6463d2de-d27b-bc78-8c8f-0f5ba831666e",
         "8f01d601-61c5-1b86-927a-53feb370d13b",
         "3ab77e32-f5a3-40c1-dc82-5dac8492fc81",
@@ -354,12 +354,12 @@
       "method": "POST",
       "data": [],
       "dataMode": "raw",
-      "tests": "/*\n * Test Case:  /event - 404 Error - POST \n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n//Test Case for status : 404\ntests[\"Status code is 404\"] = responseCode.code === 404;\n//Test response time\ntests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+      "tests": "/*\n * Test Case:  /event - POST\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n \n//Test Case for status : 200\ntests[\"Status code is 200\"] = responseCode.code === 200;\n//Test response time \ntests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;\nif(responseCode.code === 200) {\n    //Test content type should present in header\n    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n    tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n    \n    if (contentTypeHeaderExists) {\n        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);\n    }\n    //Test body value\n    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;\n}",
       "currentHelper": "normal",
       "helperAttributes": {},
       "time": 1474895413837,
       "name": "02 http://localhost:48080/api/v1/event",
-      "description": "Add a new event (with its associated readings). Prefers the event device is a device name but can also be a device id (database generated). DataValidationException (HTTP 404) if the a reading is associated to a non-existent value descriptor, or if device verification is enabled and the device is not found. ServiceException (HTTP 503) for unknown or unanticipated issues.",
+      "description": "Given a new event (with its associated readings),and event device is a device name, and a reading is associated to a non-existent value descriptor, and configuration file is set ValidateCheck = false ; when post this event ; then system will handle the event object ,and without check the reading's value descriptor , and return status code 200 . ",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
       "responses": [],
       "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"livingroomthermostat\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"hummidity\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
