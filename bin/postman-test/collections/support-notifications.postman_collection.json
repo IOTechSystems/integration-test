@@ -129,15 +129,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38894715-b88b-4c38-b8a2-e9d0361a5466",
+								"id": "e36d9252-1823-4d64-8edc-cc52f94156a4",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
@@ -243,15 +243,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "18459588-7cd7-42b0-a649-fbbace886cdb",
+								"id": "0bc75a11-4897-48c0-98e0-8edd632ec7b2",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
@@ -295,15 +295,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "81fd2615-6d48-4f2c-b7d3-76e51bf8daac",
+								"id": "5f84b52c-ec21-4f3f-8bb4-afb183108f2c",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 404\", function () {",
 									"    pm.response.to.have.status(404);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
@@ -705,15 +705,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "adfcec01-8679-4b8d-a614-3b4b23200bf6",
+								"id": "b2d827a0-7322-49e6-80f6-39a4c19bd9fa",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 202\", function () {",
 									"    pm.response.to.have.status(202);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 600ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
@@ -762,15 +762,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5de5767e-47c7-4080-a13f-5cf02366725e",
+								"id": "93ca51fc-641f-42a7-946e-06d4fb2b15d2",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 409\", function () {",
 									"    pm.response.to.have.status(409);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 600ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
@@ -819,15 +819,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "eeb22cb7-ff5d-464f-9240-77db6babb80d",
+								"id": "e8d1b1e8-8793-44e1-b12e-93ab78cfda34",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 202\", function () {",
 									"    pm.response.to.have.status(202);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 600ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
@@ -889,15 +889,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c341e910-fd91-44ba-8143-0df1be6222c0",
+								"id": "015f4c16-acc3-47ac-a2b1-9fdb57eb735a",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
@@ -993,15 +993,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38894715-b88b-4c38-b8a2-e9d0361a5466",
+								"id": "c093e23c-9479-401b-b16f-d3e14758b496",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
@@ -1045,21 +1045,30 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38894715-b88b-4c38-b8a2-e9d0361a5466",
+								"id": "6e120b34-0d7c-4e79-9c30-52af9b75be69",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
-									""
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"});"
 								]
 							}
 						}
@@ -1424,7 +1433,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38894715-b88b-4c38-b8a2-e9d0361a5466",
+								"id": "f8191f3d-ca71-41bd-9bcc-ba318a0daf89",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1437,6 +1446,19 @@
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
 									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var responseHeaders = pm.response.headers",
+									"    responseHeaders.has('application/json')",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect( jsonData.length > 0 ).to.be.true;",
+									"     ",
 									"});",
 									""
 								]
@@ -1476,15 +1498,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f8d40aea-3102-4198-9a2c-b6956e5f4b2f",
+								"id": "0ddd2895-dd04-4950-967a-130648d76d55",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 202\", function () {",
 									"    pm.response.to.have.status(202);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									""
 								]
@@ -1522,15 +1544,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "68960d77-8bcc-482d-9856-5d7b4863a235",
+								"id": "af35356e-e818-4c99-8844-3ddcab301369",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 202\", function () {",
 									"    pm.response.to.have.status(202);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});"
 								]
 							}
