@@ -10,7 +10,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Can create a subscription.",
+					"name": "Create a subscription",
 					"event": [
 						{
 							"listen": "test",
@@ -67,7 +67,7 @@
 					"response": []
 				},
 				{
-					"name": "Fail to create a subscription , cause slug already exist.",
+					"name": "Fail to create a subscription with a duplicated slug",
 					"event": [
 						{
 							"listen": "test",
@@ -124,7 +124,7 @@
 					"response": []
 				},
 				{
-					"name": "Can cancel a subscription by slug .",
+					"name": "Deleted Subscription can be removed by slug",
 					"event": [
 						{
 							"listen": "test",
@@ -176,7 +176,7 @@
 					"response": []
 				},
 				{
-					"name": "Fail to cancel a subscription by slug ,cause slug not exist.",
+					"name": "Fail to delete a subscription by an inexistent slug",
 					"event": [
 						{
 							"listen": "test",
@@ -238,7 +238,7 @@
 					"response": []
 				},
 				{
-					"name": "Can modify subscription successful .",
+					"name": "Modify a subscription",
 					"event": [
 						{
 							"listen": "test",
@@ -290,7 +290,7 @@
 					"response": []
 				},
 				{
-					"name": "Fail to modify subscription , cause subscription’s slug not exist",
+					"name": "Fail to modify subscription by an inexistent slug",
 					"event": [
 						{
 							"listen": "test",
@@ -342,7 +342,7 @@
 					"response": []
 				},
 				{
-					"name": "Can list all subscription",
+					"name": "List all subscription",
 					"event": [
 						{
 							"listen": "test",
@@ -399,7 +399,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query a specific Subscription by slug",
+					"name": "Query a specific subscription by slug",
 					"event": [
 						{
 							"listen": "test",
@@ -455,7 +455,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Subscription by subscribed categories matching any one of them.",
+					"name": "Query subscriptions by matched categories",
 					"event": [
 						{
 							"listen": "test",
@@ -514,7 +514,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Subscription by subscribed labels matching any one of them.",
+					"name": "Query subscriptions by matched labels",
 					"event": [
 						{
 							"listen": "test",
@@ -573,7 +573,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Subscription by subscribed categories and labels matching any one of them.",
+					"name": "Query subscription by matched categories and labels",
 					"event": [
 						{
 							"listen": "test",
@@ -634,7 +634,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Subscriptions by receiver Name.",
+					"name": "Query subscriptions by receiver name",
 					"event": [
 						{
 							"listen": "test",
@@ -676,7 +676,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription//receiver/Group M Member",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/receiver/Group M Member",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -684,7 +684,6 @@
 								"api",
 								"v1",
 								"subscription",
-								"",
 								"receiver",
 								"Group M Member"
 							]
@@ -700,7 +699,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Can create a normal notification",
+					"name": "Create a normal notification",
 					"event": [
 						{
 							"listen": "test",
@@ -757,7 +756,7 @@
 					"response": []
 				},
 				{
-					"name": "Fail to create a normal notification , cause slug already exist .",
+					"name": "Fail to create a normal notification with a duplicated slug",
 					"event": [
 						{
 							"listen": "test",
@@ -814,7 +813,7 @@
 					"response": []
 				},
 				{
-					"name": "Can create a critical notification",
+					"name": "Create a critical notification",
 					"event": [
 						{
 							"listen": "test",
@@ -884,7 +883,7 @@
 					"response": []
 				},
 				{
-					"name": "Can delete a specific Notification by slug.",
+					"name": "Delete a specific notification by slug",
 					"event": [
 						{
 							"listen": "test",
@@ -936,7 +935,7 @@
 					"response": []
 				},
 				{
-					"name": "Fail to delete a specific Notification by slug , cause slug not exist .",
+					"name": "Fail to delete a specific notification by slug , cause slug not exist .an inexistent slug",
 					"event": [
 						{
 							"listen": "test",
@@ -988,7 +987,7 @@
 					"response": []
 				},
 				{
-					"name": "Can delete the proccessed Notifications and the corresponding Transmissions by age.",
+					"name": "Delete the processed notifications and the corresponding transmissions by age",
 					"event": [
 						{
 							"listen": "test",
@@ -1040,7 +1039,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query a specific Notification by slug.",
+					"name": "Query a specific notification by slug",
 					"event": [
 						{
 							"listen": "test",
@@ -1101,7 +1100,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Notifications by sender name with limited returned records.",
+					"name": "Query notifications by sender name with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1164,7 +1163,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Notifications by creation timestamp between start date and end date.",
+					"name": "Query notifications by creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1230,7 +1229,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Notifications by creation timestamp after start date.",
+					"name": "Query notifications by creation timestamp after start date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1296,7 +1295,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Notifications by creation timestamp before end date.",
+					"name": "Query notifications by creation timestamp before end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1362,7 +1361,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Notifications by labels matching any one of them.",
+					"name": "Query notifications by labels matching any one of them with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1428,7 +1427,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the unprocessed Notifications (status = NEW).",
+					"name": "Query the unprocessed notifications (status = NEW) with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1493,7 +1492,7 @@
 					"response": []
 				},
 				{
-					"name": "Can delete all the Notifications if the current timestamp minus their last modification timestamp is less than a default age setting, and the corresponding Transmissions will also be deleted.",
+					"name": "Delete notifications when the current timestamp minus their last modification timestamp is less than a default age setting, and the corresponding transmissions will also be deleted",
 					"event": [
 						{
 							"listen": "test",
@@ -1539,7 +1538,7 @@
 					"response": []
 				},
 				{
-					"name": "Can delete all the Notifications if the current timestamp minus their last modification timestamp is less than the age parameter, and the corresponding Transmissions will also be deleted.",
+					"name": "Delete notifications if the current timestamp minus their last modification timestamp is less than the age parameter, and the corresponding transmissions will also be deleted",
 					"event": [
 						{
 							"listen": "test",
@@ -1592,7 +1591,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Can query the Transmissions associating a specific Notification by the Notification slug.",
+					"name": "Query transmissions by associating notification’s slug with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1658,7 +1657,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Transmissions by creation timestamp between start date and end date.",
+					"name": "Query transmissions by creation timestamp between start date and end date. with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1724,7 +1723,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Transmissions by creation timestamp after start date.",
+					"name": "Query transmissions by creation timestamp after start date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1790,7 +1789,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the Transmissions by creation timestamp before end date.",
+					"name": "Query transmissions by creation timestamp before end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1856,7 +1855,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the escalated Transmissions (status = ESCALATED) .",
+					"name": "Query the escalated transmissions (status = ESCALATED) with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1921,7 +1920,7 @@
 					"response": []
 				},
 				{
-					"name": "Can query the failed Transmissions (status = FAILED) .",
+					"name": "Query the failed transmissions (status = FAILED) with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -1986,7 +1985,7 @@
 					"response": []
 				},
 				{
-					"name": "Can delete all the sent Transmissions (status = SENT) if the current timestamp minus their last modification timestamp is less than the age parameter.",
+					"name": "Delete the sent transmissions (status = SENT) when the current timestamp minus their last modification timestamp is less than the age parameter",
 					"event": [
 						{
 							"listen": "test",
@@ -2047,7 +2046,7 @@
 					"response": []
 				},
 				{
-					"name": "Can delete all the escalated Transmissions (status = ESCALATED) if the current timestamp minus their last modification timestamp is less than the age parameter.",
+					"name": "Delete the escalated transmissions (status = ESCALATED) when the current timestamp minus their last modification timestamp is less than the age parameter",
 					"event": [
 						{
 							"listen": "test",
@@ -2108,7 +2107,7 @@
 					"response": []
 				},
 				{
-					"name": "Can delete all the acknowledged Transmissions (status = ACKNOWLEDGED) if the current timestamp minus their last modification timestamp is less than the age parameter.",
+					"name": "Delete the acknowledged tTransmissions (status = ACKNOWLEDGED) when the current timestamp minus their last modification timestamp is less than the age parameter",
 					"event": [
 						{
 							"listen": "test",
@@ -2168,7 +2167,7 @@
 					"response": []
 				},
 				{
-					"name": "Can delete all the failed Transmissions (status = FAILED and resendCount >= resend limit) if the current timestamp minus their last modification timestamp is less than the age parameter.",
+					"name": "Delete the failed transmissions (status = FAILED and resendCount >= resend limit) when the current timestamp minus their last modification timestamp is less than the age parameter",
 					"event": [
 						{
 							"listen": "test",
