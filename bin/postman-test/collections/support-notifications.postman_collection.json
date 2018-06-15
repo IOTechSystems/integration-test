@@ -347,15 +347,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "48b9e2f1-e134-460c-a16e-cb75e33fef53",
+								"id": "ac531533-800e-49bd-8b0a-8d004e0b556f",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
