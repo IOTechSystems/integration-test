@@ -2,7 +2,7 @@ var dbName = 'notifications';
 var collectionName = 'subscription' ;
 var documents =[];
 
-// Test case : Fail to create a subscription , cause slug already exist.
+// Test case : Fail to create a subscription with a duplicated slug
 documents.push(
     {
         "slug": "group-a-member",
@@ -27,7 +27,7 @@ documents.push(
     }
 );
 
-// Test case : Can cancel a subscription by slug .
+// Test case : Deleted Subscription can be removed by slug .
 
 documents.push(
     {
@@ -53,7 +53,7 @@ documents.push(
     }
 );
 
-// Test case : Can modify subscription successful
+// Test case : Modify a subscription
 
 documents.push(
     {
@@ -79,7 +79,7 @@ documents.push(
     }
 );
 
-// Test case : Can list all subscription
+// Test case : List all subscription
 
 documents.push(
     {
@@ -129,7 +129,7 @@ documents.push(
     }
 );
 
-// Test case : Can query a specific Subscription by slug
+// Test case : Query a specific subscription by slug
 
 documents.push(
     {
@@ -155,7 +155,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Subscription by subscribed categories matching any one of them.
+// Test case : Query subscriptions by matched categories
 
 documents.push(
     {
@@ -204,7 +204,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Subscription by subscribed labels matching any one of them.
+// Test case : Query subscriptions by matched labels
 
 documents.push(
     {
@@ -253,7 +253,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Subscription by subscribed categories and labels matching any one of them.
+// Test case : Query subscription by matched categories and labels
 
 documents.push(
     {
@@ -302,7 +302,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the documents by receiver Name.
+// Test case : Query subscriptions by receiver name
 
 documents.push(
     {
