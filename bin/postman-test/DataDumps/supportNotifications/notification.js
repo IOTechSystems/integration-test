@@ -2,7 +2,7 @@ var dbName = 'notifications';
 var collectionName = 'notification' ;
 var documents =[];
 
-// Test case : Fail to create a normal notification , cause slug already exist .
+// Test case : Fail to create a normal notification with a duplicated slug
 documents.push(
     {
         "slug": "notice-001",
@@ -17,7 +17,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete a specific Notification by slug.
+// Test case : Delete a specific notification by slug
 documents.push(
     {
         "slug": "notice-003",
@@ -32,7 +32,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete a specific Notification by slug.
+// Test case : Query a specific notification by slug
 documents.push(
     {
         "slug": "notice-004",
@@ -47,7 +47,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Notifications by sender name with limited returned records.
+// Test case : Query notifications by sender name with limited returned records
 documents.push(
     {
         "slug": "notice-005",
@@ -90,7 +90,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Notifications by creation timestamp between start date and end date.
+// Test case : Query notifications by creation timestamp between start date and end date with limited returned records
 documents.push(
     {
         "slug": "notice-008",
@@ -136,7 +136,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Notifications by creation timestamp after start date.
+// Test case : Query notifications by creation timestamp after start date with limited returned records
 documents.push(
     {
         "slug": "notice-011",
@@ -152,7 +152,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Notifications by creation timestamp before end date.
+// Test case : Query notifications by creation timestamp before end date with limited returned records
 documents.push(
     {
         "slug": "notice-012",
@@ -168,7 +168,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Notifications by labels matching any one of them.
+// Test case : Query notifications by labels matching any one of them with limited returned records
 documents.push(
     {
         "slug": "notice-013",
@@ -183,7 +183,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the unprocessed Notifications (status = NEW).
+// Test case : Query the unprocessed notifications (status = NEW) with limited returned records
 documents.push(
     {
         "slug": "notice-014",
@@ -199,7 +199,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Transmissions associating a specific Notification by the Notification slug.
+// Test case : Query transmissions by associating notification’s slug with limited returned records
 documents.push(
     {
         "_id" : ObjectId("57ba04a1189b95b8afcdafd1"),
@@ -216,7 +216,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete all the sent Transmissions (status = SENT) if the current timestamp minus their last modification timestamp is less than the age parameter.
+// Test case : Delete the sent transmissions (status = SENT) when the current timestamp minus their last modification timestamp is less than the age parameter
 documents.push(
     {
         "_id" : ObjectId("57ba04a1189b95b8afcdafd2"),
@@ -233,7 +233,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete all the escalated Transmissions (status = ESCALATED) if the current timestamp minus their last modification timestamp is less than the age parameter.
+// Test case : Delete the escalated transmissions (status = ESCALATED) when the current timestamp minus their last modification timestamp is less than the age parameter
 documents.push(
     {
         "_id" : ObjectId("57ba04a1189b95b8afcdafd3"),
@@ -250,7 +250,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete all the acknowledged Transmissions (status = ACKNOWLEDGED) if the current timestamp minus their last modification timestamp is less than the age parameter.
+// Test case : Delete the acknowledged tTransmissions (status = ACKNOWLEDGED) when the current timestamp minus their last modification timestamp is less than the age parameter
 documents.push(
     {
         "_id" : ObjectId("57ba04a1189b95b8afcdafd4"),
@@ -267,7 +267,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete all the failed Transmissions (status = FAILED and resendCount >= resend limit) if the current timestamp minus their last modification timestamp is less than the age parameter.
+// Test case : Delete the failed transmissions (status = FAILED and resendCount >= resend limit) when the current timestamp minus their last modification timestamp is less than the age parameter
 documents.push(
     {
         "_id" : ObjectId("57ba04a1189b95b8afcdafd5"),

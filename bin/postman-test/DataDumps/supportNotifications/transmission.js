@@ -2,7 +2,7 @@ var dbName = 'notifications';
 var collectionName = 'transmission' ;
 var documents =[];
 
-// Test case : Can query the Transmissions associating a specific Notification by the Notification slug.
+// Test case : Query transmissions by associating notification’s slug with limited returned records
 documents.push(
     {
         "notification": {
@@ -30,7 +30,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Transmissions by creation timestamp between start date and end date.
+// Test case : Query transmissions by creation timestamp between start date and end date. with limited returned records
 documents.push(
     {
         "receiver": "Jack",
@@ -54,7 +54,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Transmissions by creation timestamp after start date.
+// Test case : Query transmissions by creation timestamp after start date with limited returned records
 documents.push(
     {
         "receiver": "Jack",
@@ -78,7 +78,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the Transmissions by creation timestamp before end date.
+// Test case : Query transmissions by creation timestamp before end date with limited returned records
 documents.push(
     {
         "receiver": "Jack",
@@ -102,7 +102,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the escalated Transmissions (status = ESCALATED) .
+// Test case : Query the escalated transmissions (status = ESCALATED) with limited returned records
 documents.push(
     {
         "receiver": "Jack",
@@ -126,7 +126,7 @@ documents.push(
     }
 );
 
-// Test case : Can query the failed Transmissions (status = FAILED) .
+// Test case : Query the failed transmissions (status = FAILED) with limited returned records
 documents.push(
     {
         "receiver": "Jack",
@@ -150,7 +150,7 @@ documents.push(
     }
 );
 
-// Test case :  Can delete all the sent Transmissions (status = SENT) if the current timestamp minus their last modification timestamp is less than the age parameter.
+// Test case :  Delete the sent transmissions (status = SENT) when the current timestamp minus their last modification timestamp is less than the age parameter
 documents.push(
     {
         "notification": {
@@ -178,7 +178,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete all the escalated Transmissions (status = ESCALATED) if the current timestamp minus their last modification timestamp is less than the age parameter.
+// Test case : Delete the escalated transmissions (status = ESCALATED) when the current timestamp minus their last modification timestamp is less than the age parameter
 documents.push(
     {
         "notification": {
@@ -206,7 +206,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete all the acknowledged Transmissions (status = ACKNOWLEDGED) if the current timestamp minus their last modification timestamp is less than the age parameter.
+// Test case : Delete the acknowledged tTransmissions (status = ACKNOWLEDGED) when the current timestamp minus their last modification timestamp is less than the age parameter
 documents.push(
     {
         "notification": {
@@ -234,7 +234,7 @@ documents.push(
     }
 );
 
-// Test case : Can delete all the failed Transmissions (status = FAILED and resendCount >= resend limit) if the current timestamp minus their last modification timestamp is less than the age parameter.
+// Test case : Delete the failed transmissions (status = FAILED and resendCount >= resend limit) when the current timestamp minus their last modification timestamp is less than the age parameter
 documents.push(
     {
         "notification": {
