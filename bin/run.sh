@@ -85,7 +85,7 @@ case ${option} in
 	testAll		| tee $EDGEXLOGSPATH
       	;; 
    	*)  
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-all All]" 
+      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-all All]"
       	echo
       	exit 0
       	;; 
