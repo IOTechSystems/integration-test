@@ -342,7 +342,7 @@
 					"response": []
 				},
 				{
-					"name": "List all subscription",
+					"name": "List all subscriptions",
 					"event": [
 						{
 							"listen": "test",
