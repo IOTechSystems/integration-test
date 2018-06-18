@@ -2238,7 +2238,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "888a22ec-e607-4f84-91ef-c5112c1799bb",
+								"id": "a59b549d-59c2-4b89-aa18-a0c9a322c221",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -2255,7 +2255,7 @@
 									"",
 									"pm.test(\"Content-Type is text/plain\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
-									"    pm.expect( contentType.includes('text/plain') ).to.true;",
+									"    pm.expect(contentType).to.include('text/plain');",
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
