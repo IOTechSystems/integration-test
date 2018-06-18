@@ -2227,6 +2227,64 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "ping",
+			"description": "",
+			"item": [
+				{
+					"name": "Test service providing an indication that the service is available.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "888a22ec-e607-4f84-91ef-c5112c1799bb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect( contentType.includes('text/plain') ).to.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.response.to.have.body(\"pong\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/ping",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
