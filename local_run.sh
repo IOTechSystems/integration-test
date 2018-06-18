@@ -2,7 +2,7 @@
 
 option="${1}"
 
-. $(dirname "$0")/test_env.sh
+. $(dirname "$0")/local_run_env.sh
 
 echoAllAvailableCommand() {
     echo "[info] show below available command"
