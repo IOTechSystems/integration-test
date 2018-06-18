@@ -347,7 +347,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ac531533-800e-49bd-8b0a-8d004e0b556f",
+								"id": "d564f032-62dc-4e40-8908-cd61a82ab3bb",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -363,8 +363,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -404,7 +404,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "915bb2d9-2f23-455b-b75d-124b7e0af6e0",
+								"id": "514f5964-8752-458e-a1f4-206cd47f7959",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -420,8 +420,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -460,7 +460,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "07da8ed3-a9d4-43fc-8340-c0eea07ecbb7",
+								"id": "d89bdc40-987d-45a9-a05f-0ac401026ee1",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -476,8 +476,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -519,7 +519,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "48b9e2f1-e134-460c-a16e-cb75e33fef53",
+								"id": "1584a866-7225-45f0-966c-f68a69095a97",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -535,8 +535,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -578,7 +578,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f2bd6f38-9816-44f8-8408-3fca8de17a2c",
+								"id": "6d85a9a0-6c82-48e0-97fe-7547c0186379",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -594,8 +594,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -639,7 +639,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d7ce1d75-85f5-48e7-8351-619c9f6f0033",
+								"id": "9b7349fe-be84-4d0d-a309-87a66b0278d1",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -655,8 +655,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1044,7 +1044,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6e120b34-0d7c-4e79-9c30-52af9b75be69",
+								"id": "c46149dd-64ca-48ed-86c4-49a6ee91111f",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1060,8 +1060,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1105,7 +1105,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1ed4ae4-6789-4aa3-92a3-2551ec638dca",
+								"id": "cdf0a6c9-3b02-48fa-92a6-bbb3c1c95735",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1121,8 +1121,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1168,7 +1168,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f0679bf1-8057-4769-907a-86368e83ea9b",
+								"id": "0511bad4-5209-4b39-b4b2-1fc87a3522dd",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1184,8 +1184,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1234,7 +1234,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "35a76a3f-2ed8-43bd-b71e-2832a863bfc7",
+								"id": "ae5ea55b-cb6f-4ed3-b80f-490e37e95007",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1250,8 +1250,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1300,7 +1300,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1520621c-3051-4eca-ad30-fc52ff92c0e6",
+								"id": "986abd89-8c1c-4073-b820-cf112ef9f1e5",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1316,8 +1316,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1366,7 +1366,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a49ad2d5-76ce-48d1-875b-53782c426152",
+								"id": "ee34cb8e-3f68-43b1-ad07-469a437f9ff3",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1382,8 +1382,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1432,7 +1432,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f8191f3d-ca71-41bd-9bcc-ba318a0daf89",
+								"id": "d90dcae2-1c80-4474-aa93-0e1cf136e271",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1448,8 +1448,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1596,7 +1596,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4b6d6440-5bde-4e97-9635-94d9e7247df6",
+								"id": "e38dee3a-bfc7-4f32-b94d-b283ba6d0e42",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1612,8 +1612,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1662,7 +1662,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "98cb0313-d083-4d05-9757-a540f477b1ed",
+								"id": "fa5c17cd-67b1-4ff7-a1cb-54644c3d6023",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1678,8 +1678,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1728,7 +1728,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7824d5f5-7a73-40cd-8e55-6e0a2c253a1c",
+								"id": "809b7c7a-d991-4e85-a6bf-4356e9c8e71b",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1744,8 +1744,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1794,7 +1794,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "390626fc-156f-4e07-9edf-51350845557a",
+								"id": "7525e419-122c-4748-b71a-a320065f1445",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1810,8 +1810,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1860,7 +1860,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6bb65d2a-ce09-4e5c-9a53-279eba682e44",
+								"id": "f5853f05-99b9-4eea-bb9c-15d421c25ad7",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1876,8 +1876,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
@@ -1925,7 +1925,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4d859943-0118-4f97-b947-38afa325a6a5",
+								"id": "eba37acd-c896-4ba0-854d-ece17c12577d",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1941,8 +1941,8 @@
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var responseHeaders = pm.response.headers",
-									"    responseHeaders.has('application/json')",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response must be valid and have a body\", function () {",
