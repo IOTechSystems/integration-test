@@ -505,7 +505,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3ed297ca-67ea-4e82-90ef-efe7e7eaf80d",
+								"id": "e0cc6a72-711b-4dab-a2b0-f5df719c7d49",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -613,6 +613,11 @@
 									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.slug===\"group-f-member\").to.be.true; ",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -653,7 +658,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "894d2480-af2d-43a5-8f7c-a56099feba39",
+								"id": "2e4d1e7a-f159-40dc-b696-08109ae60aeb",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -770,6 +775,13 @@
 									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.subscribedCategories.includes(\"SW_HEALTH\") || data.subscribedCategories.includes(\"HW_HEALTH\")).to.be.true; ",
+									"    });",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -810,7 +822,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "70e12333-d84f-46ca-b11f-92942173ca7b",
+								"id": "edb04c93-2f8b-4890-8cb3-e5607cfa575a",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -925,6 +937,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.subscribedLabels.includes(\"sensor\")).to.be.true; ",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -966,7 +985,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "09a0681c-5ba6-4f3d-9210-e5aaf29d90e8",
+								"id": "03717c25-502c-48f3-a600-71ae9a5c39bd",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -1081,6 +1100,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.subscribedCategories.includes(\"HW_HEALTH\") || data.subscribedLabels.includes(\"sensor\") || data.subscribedLabels.includes(\"cpu\")).to.be.true; ",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -1124,7 +1150,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "16647257-4764-4d69-b1bb-ebc6aa0b0dce",
+								"id": "04edaa02-3db9-436c-8f43-5964be73b1a3",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -1239,6 +1265,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.receiver===\"Group M Member\").to.be.true; ",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -1631,7 +1664,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "23215f41-2938-4e09-938d-05ff1c60426c",
+								"id": "4fa9d32c-0f68-4188-916d-e273c6a07132",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -1701,6 +1734,12 @@
 									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.slug==='notice-004').to.be.true;",
+									"});",
+									"",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -1746,7 +1785,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "95029e02-febd-4018-901f-e8be1291dbb7",
+								"id": "2decfb35-f1bb-432f-a25e-b216fc604b12",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -1825,6 +1864,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.sender==='Room System Management').to.be.true; ",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -1874,7 +1920,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "71533d93-2d94-4b7e-8af2-c49f30b041f1",
+								"id": "7bbe0bd9-0c62-4543-bfd2-c0d66e7be306",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -1953,6 +1999,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > 1300000 && data.created<1400000).to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -2002,7 +2055,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "51273888-eddc-4908-ab11-ca2cf2b86694",
+								"id": "80a42b86-e93a-48e9-88f0-b082c50af0a4",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -2081,6 +2134,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > 1500000).to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -2130,7 +2190,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0fad48c6-6ca7-4f15-9921-846c3f26f67a",
+								"id": "858048d6-92db-4ce6-8b20-fa3f3d54145d",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -2211,6 +2271,13 @@
 									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created < 1600000).to.be.true;",
+									"    });",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -2258,7 +2325,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "95f07ba4-f65a-4b80-8894-a31ef9be3c22",
+								"id": "734f7e3b-2bee-46c7-af5f-bf13de90c982",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -2339,6 +2406,13 @@
 									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.labels.includes(\"power-meter\")).to.be.true; ",
+									"    });",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -2386,7 +2460,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7e777dbd-4f9b-4dc0-a87e-594e1d4d8550",
+								"id": "7aa268a8-26f3-4d5d-8cfe-1e50cf3945fc",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -2465,6 +2539,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.status==='NEW').to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -2612,7 +2693,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ba8546a0-f6df-4081-8315-d7294583e3b7",
+								"id": "7c87cc08-ed27-4e68-8f01-b04a986076e0",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -2787,6 +2868,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.notification.slug==='notice-015').to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -2835,7 +2923,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "bb0e5c25-70a4-4fae-9489-75044892a871",
+								"id": "56861448-e49a-45fc-b430-5c38a6512fc3",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -3010,6 +3098,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > 100000 && data.created<100020).to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -3058,7 +3153,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "120ba6f5-74ea-451d-ad2d-1104697104af",
+								"id": "2edf882d-f1c3-497b-a8ab-7b1aa7a2998c",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -3233,6 +3328,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > 140000).to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -3281,7 +3383,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b023e023-c3c6-40c1-a7bc-55ce358dd0e9",
+								"id": "f176a1f4-7abf-4925-8fc5-7ae51de6c08b",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -3456,6 +3558,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created < 100000).to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -3505,7 +3614,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a71f84c6-ece3-4224-b25b-1f250dcd77c6",
+								"id": "371b286b-e956-459d-82d1-2aa658f20174",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -3680,6 +3789,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.status==='ESCALATED').to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -3727,7 +3843,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6a2350a7-2f3a-4b0a-a820-6b368294b701",
+								"id": "03f97afa-ccf0-4c2e-af13-cd956de452c0",
 								"type": "text/javascript",
 								"exec": [
 									"var schema = {",
@@ -3902,6 +4018,13 @@
 									"pm.test(\"Content-Type is application/json\", function(){",
 									"    var contentType = pm.response.headers.get('Content-Type');",
 									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.status==='FAILED').to.be.true;",
+									"    });",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
