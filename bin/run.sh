@@ -92,8 +92,6 @@ case ${option} in
 	echo "Info: Initiating Logging Test"
 	loggingTest	| tee $LOGGINGLOGSPATH
 	;;
- 	-all)  
-      	;;
    	-sn)
       	echo "Info: Initiating SupportNotifications Test"
 	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
