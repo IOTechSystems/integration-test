@@ -24,10 +24,10 @@ services:
 
   config-seed:
     image: ${configSeed}
-#    ports:
-#        - "8400:8400"
-#        - "8500:8500"
-#        - "8600:8600"
+    ports:
+        - "8400:8400"
+        - "8500:8500"
+        - "8600:8600"
 #    container_name: edgex-config-seed
 #    hostname: edgex-core-config-seed
     networks:

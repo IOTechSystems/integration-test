@@ -12,6 +12,7 @@ COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
+SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -39,12 +40,18 @@ commandTest() {
 
 }
 
+
 exportClientTest() {
-  
-  $(dirname "$0")/importExportClientDataDump.sh
+	$(dirname "$0")/importExportClientDataDump.sh
 	$(dirname "$0")/exportClientTest.sh
 	$(dirname "$0")/flushExportClientDataDump.sh
 	
+}
+
+supportNotificationTest(){
+	$(dirname "$0")/importSupportNotificationDump.sh
+	$(dirname "$0")/supportNotificationsTest.sh
+	$(dirname "$0")/flushSupportNotificationDump.sh
 }
 
 testAll() {
@@ -52,8 +59,9 @@ testAll() {
 	coreDataTest
 	metaDataTest
 	commandTest
-  exportClientTest
-  
+	exportClientTest
+	supportNotificationTest
+
 }
 
 #Main Script starts here
@@ -82,13 +90,18 @@ case ${option} in
   	-exc)  
       	echo "Info: Initiating ExportClient Test"
 	exportClientTest	| tee $EXPORTCLIENTLOGSPATH
+	;;
+   	-sn)
+      	echo "Info: Initiating SupportNotifications Test"
+	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
       	;;
    	-all)  
       	echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
       	;; 
    	*)  
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-exc Export Client] | [-all All]" 
+
+      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] [-exc Export Client] | [-all All]"
       	echo
       	exit 0
       	;; 
