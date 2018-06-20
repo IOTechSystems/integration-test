@@ -12,13 +12,6 @@ pipeline {
             }
          }              
       }
-      stage ("Archive Artifacts")
-      {
-         steps
-         {
-            archiveArtifacts artifacts: 'bin/testResult/**.xml'
-         }
-      }
       stage ("Clean")
       {
          steps
