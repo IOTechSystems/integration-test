@@ -9,7 +9,7 @@ var logEntryToBeRemoved = [
     ObjectId("7b10147fd7bb6b2d6a48dee7")
 ];
 
-db.event.remove({
+db.logEntry.remove({
     _id: {
         $in: logEntryToBeRemoved
     }
