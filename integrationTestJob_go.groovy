@@ -50,6 +50,7 @@ def runNode() {
                     sh './bin/run.sh -all'
 
                     junit 'bin/testResult/**.xml'
+                    junit 'bin/testResult/**.xml'
 
                 }
             }
