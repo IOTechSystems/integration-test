@@ -78,7 +78,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "dcdc13e1-7dfa-4a63-b741-79548526c659",
+								"id": "65c96875-c86f-4800-bcd0-4446efb11da1",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -89,6 +89,7 @@
 									" */",
 									" ",
 									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
 									" ",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -108,7 +109,6 @@
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
-									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
 									"     if(!result){",
 									"         console.log(tv4.error);",
@@ -159,7 +159,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7087b3a6-ddfd-4766-b143-61e5cbd3895c",
+								"id": "fe95aad7-5323-4476-8e14-0a100845c06d",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -170,7 +170,8 @@
 									" */",
 									"",
 									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
-									" ",
+									"var jsonData = pm.response.json();",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
@@ -189,7 +190,6 @@
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
-									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
 									"     if(!result){",
 									"         console.log(tv4.error);",
@@ -243,7 +243,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8fd38796-7bf6-4ad7-bb50-296710d1df39",
+								"id": "5495dd21-c823-44c0-a17d-5853cbab57de",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -254,7 +254,10 @@
 									" */",
 									"",
 									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
-									" ",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLabel = pm.environment.get(\"loggingLabel\");",
+									"    ",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
@@ -273,7 +276,6 @@
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
-									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
 									"     if(!result){",
 									"         console.log(tv4.error);",
@@ -282,8 +284,7 @@
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    var expectLabel = pm.environment.get(\"loggingLabel\");",
+									"    pm.expect(jsonData.length>0).to.be.true;",
 									"    jsonData.forEach(function(data) {",
 									"      pm.expect(data.labels.includes(expectLabel)).to.be.true; ",
 									"    });",
@@ -343,7 +344,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5e470181-8f59-448d-87d9-f2aac2886e1b",
+								"id": "ac0d3362-a12b-4c5c-955e-6f4eadc744cb",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -354,6 +355,9 @@
 									" */",
 									" ",
 									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLoggingService = pm.environment.get(\"loggingService\");",
 									" ",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -373,7 +377,6 @@
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
-									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
 									"     if(!result){",
 									"         console.log(tv4.error);",
@@ -382,8 +385,6 @@
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    var expectLoggingService = pm.environment.get(\"loggingService\");",
 									"    pm.expect(jsonData.length>0).to.be.true;",
 									"    jsonData.forEach(function(data) {",
 									"      pm.expect(data.originService.includes(expectLoggingService)).to.be.true; ",
@@ -395,9 +396,10 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "82f42cf2-f5d4-4c38-9b1d-1f2f1ca3ae18",
+								"id": "6d875742-ef9b-4fd4-9996-57a351a77642",
 								"type": "text/javascript",
 								"exec": [
+									"// handle iteration data",
 									"if(!data.loggingLabel){",
 									"    pm.environment.set(\"loggingService\", \"service2\");",
 									"    pm.environment.set(\"start\", \"0\");",
@@ -439,12 +441,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/keywords/{keywords}/{start}/{end}/{limit}",
+					"name": "Query logs by matched log message keywords  ,which creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "89a73bcd-e486-451f-8548-ea91b7ee486c",
+								"id": "d3eda1d2-d742-43b4-8bb3-7768465bfe2e",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -454,49 +456,64 @@
 									" *",
 									" */",
 									" ",
-									"//Verify the http status code for 200.",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Verify if response time is less than 200ms.",
-									"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
 									"",
-									"if (responseCode.code === 200) {",
-									"    //Verify the existence of content-type in the header.",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    //Validate the content-type for application/json.",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        ",
-									"        //Validate the respose data with json schema.",
-									"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-									"            try{",
-									"                //Parse json response",
-									"                actualReadingData = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualReadingData.length !== 0) {",
-									"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-									"               ",
-									"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"                ",
-									"                // Check that each entry contains the correct keyword",
-									"                var correctKeyword = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctKeyword  = actualReadingData[i].message.includes(data.loggingKeyword);",
-									"                }",
-									"                tests[\"Has correct keyword\"] = correctKeyword === true;",
-									"                ",
-									"            } else {",
-									"                console.log(\"Log is empty.\");",
-									"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-									"            }",
-									"        }",
-									"    }",
-									"}"
+									"var expectLoggingKeyword = pm.environment.get(\"loggingKeyword\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.message.includes(expectLoggingKeyword)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "396d66ee-59cb-4791-aadf-0eeecbfc2a73",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingKeyword\", \"Hello\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingKeyword\", data.loggingKeyword);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
 								]
 							}
 						}
@@ -526,12 +543,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/{start}/{end}/{limit}",
+					"name": "Query logs by matched logLevels  ,which creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "10df6a95-4e38-4608-9779-e92c30e7dea4",
+								"id": "f044a766-b27f-4f56-9dba-d48fafb3bcc7",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -541,49 +558,64 @@
 									" *",
 									" */",
 									" ",
-									"//Verify the http status code for 200.",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Verify if response time is less than 200ms.",
-									"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
 									"",
-									"if (responseCode.code === 200) {",
-									"    //Verify the existence of content-type in the header.",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    //Validate the content-type for application/json.",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        ",
-									"        //Validate the respose data with json schema.",
-									"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-									"            try{",
-									"                //Parse json response",
-									"                actualReadingData = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualReadingData.length !== 0) {",
-									"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-									"               ",
-									"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"                ",
-									"                // Check that each entry contains the correct logLevel",
-									"                var correctLevel = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctLevel  = actualReadingData[i].logLevel.includes(data.loggingLevel);",
-									"                }",
-									"                tests[\"Has correct logging level\"] = correctLevel === true;",
-									"                ",
-									"            } else {",
-									"                console.log(\"Log is empty.\");",
-									"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-									"            }",
-									"        }",
-									"    }",
-									"}"
+									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.loglevel.includes(expectLoggingLevel)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "75dcd025-957c-4491-894b-bbf1d9d0ca13",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
 								]
 							}
 						}
@@ -613,12 +645,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end}/{limit}",
+					"name": "Query logs by matched logLevels  and originServices ,which creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "8bdfbcf8-352b-4eca-ab11-c90bc5777225",
+								"id": "232e2436-ffc0-444f-915a-eb1a2a140cd3",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -628,56 +660,67 @@
 									" *",
 									" */",
 									" ",
-									"//Verify the http status code for 200.",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Verify if response time is less than 200ms.",
-									"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
 									"",
-									"if (responseCode.code === 200) {",
-									"    //Verify the existence of content-type in the header.",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    //Validate the content-type for application/json.",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        ",
-									"        //Validate the respose data with json schema.",
-									"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-									"            try{",
-									"                //Parse json response",
-									"                actualReadingData = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualReadingData.length !== 0) {",
-									"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-									"               ",
-									"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"                ",
-									"                // Check that each entry contains the correct logLevel",
-									"                var correctLevel = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctLevel  = actualReadingData[i].logLevel.includes(data.loggingLevel);",
-									"                }",
-									"                tests[\"Has correct logging level\"] = correctLevel === true;",
-									"                ",
-									"                // Check that each entry contains the originService",
-									"                var correctOrigin = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctOrigin  = (actualReadingData[i].originService.indexOf(data.loggingService) > -1);",
-									"                }",
-									"                tests[\"Has correct origin\"] = correctOrigin === true;",
-									"                ",
-									"            } else {",
-									"                console.log(\"Log is empty.\");",
-									"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-									"            }",
-									"        }",
-									"    }",
-									"}"
+									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
+									"var expectLoggingService = pm.environment.get(\"loggingService\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.loglevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ee77b5da-8812-40b3-949a-6e6e51e80640",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
+									"    pm.environment.set(\"loggingService\", \"service1\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
+									"    pm.environment.set(\"loggingService\", data.loggingService);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
 								]
 							}
 						}
@@ -709,12 +752,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}/{limit}",
+					"name": "Query logs by matched logLevels  and originServices and labels,which creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "9a88385f-333d-40da-92aa-4a649bde6da1",
+								"id": "f5be1f18-3713-4f7c-ba67-8cb97119b6d5",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -724,63 +767,71 @@
 									" *",
 									" */",
 									" ",
-									"//Verify the http status code for 200.",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Verify if response time is less than 200ms.",
-									"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
 									"",
-									"if (responseCode.code === 200) {",
-									"    //Verify the existence of content-type in the header.",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    //Validate the content-type for application/json.",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        ",
-									"        //Validate the respose data with json schema.",
-									"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-									"            try{",
-									"                //Parse json response",
-									"                actualReadingData = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualReadingData.length !== 0) {",
-									"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-									"               ",
-									"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"                ",
-									"                // Check that each entry contains the correct logLevel",
-									"                var correctLevel = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctLevel  = actualReadingData[i].logLevel.includes(data.loggingLevel);",
-									"                }",
-									"                tests[\"Has correct logging level\"] = correctLevel === true;",
-									"                ",
-									"                // Check that each entry contains the originService",
-									"                var correctOrigin = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctOrigin  = (actualReadingData[i].originService.indexOf(data.loggingService) > -1);",
-									"                }",
-									"                tests[\"Has correct origin\"] = correctOrigin === true;",
-									"                ",
-									"                 // Check that each entry contains the correct label",
-									"                var correctLabels = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctLabels  = (actualReadingData[i].labels.indexOf(data.loggingLabel) > -1);",
-									"                }",
-									"                tests[\"Has correct Labels\"] = correctLabels === true;",
-									"                ",
-									"            } else {",
-									"                console.log(\"Log is empty.\");",
-									"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-									"            }",
-									"        }",
-									"    }",
-									"}"
+									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
+									"var expectLoggingService = pm.environment.get(\"loggingService\");",
+									"var expectLoggingLabel = pm.environment.get(\"loggingLabel\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      var matched = data.loglevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel);",
+									"      pm.expect(matched).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5650d03f-6982-40f6-8f5f-40d6e0cec540",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
+									"    pm.environment.set(\"loggingService\", \"service1\");",
+									"    pm.environment.set(\"loggingLabel\", \"label1\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
+									"    pm.environment.set(\"loggingService\", data.loggingService);",
+									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
 								]
 							}
 						}
@@ -814,12 +865,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/keywords/{keywords}/{start}/{end}/{limit}",
+					"name": "Query logs by matched logLevels  and originServices and labels and keywords ,which creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "fb92743a-2b1d-4193-a8a3-35ec6a5e913b",
+								"id": "53aae657-e794-48e5-9a4a-7fd0e2397696",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -829,70 +880,74 @@
 									" *",
 									" */",
 									" ",
-									"//Verify the http status code for 200.",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Verify if response time is less than 200ms.",
-									"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
 									"",
-									"if (responseCode.code === 200) {",
-									"    //Verify the existence of content-type in the header.",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    //Validate the content-type for application/json.",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        ",
-									"        //Validate the respose data with json schema.",
-									"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-									"            try{",
-									"                //Parse json response",
-									"                actualReadingData = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualReadingData.length !== 0) {",
-									"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-									"               ",
-									"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"                ",
-									"                // Check that each entry contains the correct logLevel",
-									"                var correctLevel = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctLevel  = actualReadingData[i].logLevel.includes(data.loggingLevel);",
-									"                }",
-									"                tests[\"Has correct logging level\"] = correctLevel === true;",
-									"                ",
-									"                // Check that each entry contains the originService",
-									"                var correctOrigin = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctOrigin  = (actualReadingData[i].originService.indexOf(data.loggingService) > -1);",
-									"                }",
-									"                tests[\"Has correct origin\"] = correctOrigin === true;",
-									"                ",
-									"                 // Check that each entry contains the correct label",
-									"                var correctLabels = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctLabels  = (actualReadingData[i].labels.indexOf(data.loggingLabel) > -1);",
-									"                }",
-									"                tests[\"Has correct Labels\"] = correctLabels === true;",
-									"                ",
-									"                // Check that each entry contains the correct keyword",
-									"                var correctKeyword = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctKeyword  = actualReadingData[i].message.includes(data.loggingKeyword);",
-									"                }",
-									"                tests[\"Has correct keyword\"] = correctKeyword === true;",
-									"                ",
-									"            } else {",
-									"                console.log(\"Log is empty.\");",
-									"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-									"            }",
-									"        }",
-									"    }",
-									"}"
+									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
+									"var expectLoggingService = pm.environment.get(\"loggingService\");",
+									"var expectLoggingLabel = pm.environment.get(\"loggingLabel\");",
+									"var expectLoggingKeyword = pm.environment.get(\"loggingKeyword\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      var matched = data.loglevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel) || data.message.includes(expectLoggingKeyword);",
+									"      pm.expect(matched).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b15ae003-f1f2-4ac6-83dc-c01b92c799e7",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
+									"    pm.environment.set(\"loggingService\", \"service1\");",
+									"    pm.environment.set(\"loggingLabel\", \"label1\");",
+									"    pm.environment.set(\"loggingKeyword\", \"Hello\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
+									"    pm.environment.set(\"loggingService\", data.loggingService);",
+									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
+									"    pm.environment.set(\"loggingKeyword\", data.loggingKeyword);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
 								]
 							}
 						}
@@ -928,33 +983,59 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:84061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/keywords/{keywords}/{start}/{end}",
+					"name": "Delete logs by creation timestamp between start date and end date",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "5f612ecd-ce3d-4b57-9f89-a2f826444ee4",
+								"id": "76c0216d-56ef-427d-8c5a-2e7d00b72afc",
 								"type": "text/javascript",
 								"exec": [
 									" /**",
-									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{lables}/keywords/{keywords}/{start}/{end} - DELETE",
+									" * Test Case:  /api/v1/logs/{start}/{end} - DELETE",
 									" * Version: Alpha",
 									" * @Author: Tom Fleming",
 									" * ",
 									" **/",
 									" ",
-									" tests[\"Delete Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody >= 1;",
-									"        }",
-									"    }",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "561dd395-aaab-4655-8444-5b48884c538a",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
 									""
 								]
 							}
@@ -965,7 +1046,423 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel2}}/labels/{{loggingLabelDel}}/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete all log entries between two dates specified by start and end. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by logLevels ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e2e52a9f-94f4-42c5-b72a-7eb1d35ccb27",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "43254381-a2c7-4633-9d5b-ec4f74f650be",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevelDel\", \"ERROR\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevelDel\", data.loggingLevelDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevelDel}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by labels ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63956969-a704-47c6-b9c4-e0cb4401f507",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/labels/{labels}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "641e46c2-8797-47e8-81d6-8084cf43b26f",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"labels",
+								"{{loggingLabelDel}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete "
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by originServices ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f7b65e6-e71e-4b30-9869-f79f02860f02",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/originServices/{originServices}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "029be17b-9ca9-4863-ac08-56a74eb52354",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingServiceDel1\", \"service8\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingServiceDel1\", data.loggingServiceDel1);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/originServices/{{loggingServiceDel1}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"originServices",
+								"{{loggingServiceDel1}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by keywords ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eccbb1ea-8f30-401d-bbd4-db0dd8c826e1",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/keywords/{keywords}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5e848539-419e-4210-93c1-92fe4fe8b18f",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingKeywordDel\", \"KeyWordTest\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingKeywordDel\", data.loggingKeywordDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"keywords",
+								"{{loggingKeywordDel}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by logLevels and originServices ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa25c392-cecc-4c00-a77b-24d87636c4f9",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "46a52b4f-df33-48ce-b40c-c503c55fa1ea",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"loggingServiceDel4\", \"service7\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"loggingServiceDel4\", data.loggingServiceDel4);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel4}}/{{start}}/{{end}}",
 							"host": [
 								"{{supportLoggingUrl}}"
 							],
@@ -976,26 +1473,22 @@
 								"logLevels",
 								"{{loggingLevelDel}}",
 								"originServices",
-								"{{loggingServiceDel2}}",
-								"labels",
-								"{{loggingLabelDel}}",
-								"keywords",
-								"{{loggingKeywordDel}}",
+								"{{loggingServiceDel4}}",
 								"{{start}}",
 								"{{end}}"
 							]
 						},
-						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "Delete a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:84061/api/v1//logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}",
+					"name": "Delete logs by logLevels and originServices and labels ,which creation timestamp between start date and end date",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "e8e44cfb-9234-4d47-ae33-e43734855520",
+								"id": "0bba6c98-4fc2-40ae-b49a-9a00523c5d4a",
 								"type": "text/javascript",
 								"exec": [
 									" /**",
@@ -1005,18 +1498,49 @@
 									" * ",
 									" **/",
 									" ",
-									" tests[\"Delete Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody >= 1;",
-									"        }",
-									"    }",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ec536d9a-eddb-4d3a-8a34-b719f327ad29",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"loggingServiceDel4\", \"service7\");",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"loggingServiceDel4\", data.loggingServiceDel4);",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
 									""
 								]
 							}
@@ -1050,33 +1574,66 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:84061/api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end",
+					"name": "Delete logs by logLevels and originServices and labels and keywords  ,which creation timestamp between start date and end date",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "45388164-a908-4249-8925-b68dfc90523b",
+								"id": "93cde7dd-8d01-4fa9-9765-81605350564a",
 								"type": "text/javascript",
 								"exec": [
 									" /**",
-									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end} - DELETE",
+									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{lables}/keywords/{keywords}/{start}/{end} - DELETE",
 									" * Version: Alpha",
 									" * @Author: Tom Fleming",
 									" * ",
 									" **/",
 									" ",
-									" tests[\"Delete Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody >= 1;",
-									"        }",
-									"    }",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5d176547-15b0-49f9-9bad-5e8b1d983400",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"loggingServiceDel4\", \"service7\");",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"loggingKeywordDel\", \"KeyWordTest\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"loggingServiceDel4\", data.loggingServiceDel4);",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"loggingKeywordDel\", data.loggingKeywordDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
 									""
 								]
 							}
@@ -1087,7 +1644,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel4}}/{{start}}/{{end}}",
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel2}}/labels/{{loggingLabelDel}}/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
 							"host": [
 								"{{supportLoggingUrl}}"
 							],
@@ -1098,290 +1655,16 @@
 								"logLevels",
 								"{{loggingLevelDel}}",
 								"originServices",
-								"{{loggingServiceDel4}}",
-								"{{start}}",
-								"{{end}}"
-							]
-						},
-						"description": "Delete a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:48061/api/v1/logs/labels/{labels}/{start}/{end}",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7a59160c-e5c5-4d1d-85b1-0b9028a55256",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/logs/labels/{labels}/{start}/{end} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Ping Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody >= 1;",
-									"        }",
-									"    }",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
+								"{{loggingServiceDel2}}",
 								"labels",
 								"{{loggingLabelDel}}",
-								"{{start}}",
-								"{{end}}"
-							]
-						},
-						"description": "Delete "
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:48061/api/logs/originServices/{originServices}/{start}/{end}",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "74816ecd-f527-456d-b208-d4fcb2c52fb8",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/logs/originServices/{originServices}/{start}/{end} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Delete Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody >= 1;",
-									"        }",
-									"    }",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/originServices/{{loggingServiceDel1}}/{{start}}/{{end}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"originServices",
-								"{{loggingServiceDel1}}",
-								"{{start}}",
-								"{{end}}"
-							]
-						},
-						"description": "Delete a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "https://localhost:4861/api/v1/logs/keywords/{keywords}/{start}/{end}",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "9730a4c5-ac0b-4b80-9255-18e8241adb16",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/logs/keywords/{keywords}/{start}/{end} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Delete Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody >= 1;",
-									"        }",
-									"    }",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
 								"keywords",
 								"{{loggingKeywordDel}}",
 								"{{start}}",
 								"{{end}}"
 							]
 						},
-						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:84061/api/v1/logs/logLevels/{logLevels}/{start}/{end}",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c966c23c-25a1-4d85-8f7b-de92bb1c3806",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/{start}/{end} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Delete Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody >= 1;",
-									"        }",
-									"    }",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/{{start}}/{{end}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"logLevels",
-								"{{loggingLevelDel}}",
-								"{{start}}",
-								"{{end}}"
-							]
-						},
-						"description": "Delete a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:84061/api/v1/logs/{start}/{end}",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "88cdae2e-9336-4e76-b5ce-8c95a5854c76",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/logs/{start}/{end} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Delete Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody >= 1;",
-									"        }",
-									"    }",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{start}}/{{end}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"{{start}}",
-								"{{end}}"
-							]
-						},
-						"description": "Delete all log entries between two dates specified by start and end. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
 					},
 					"response": []
 				}
@@ -1397,7 +1680,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "79e9860b-83fe-4f62-86ba-fafa64366df3",
+								"id": "56cd1152-06ca-4185-a13d-9cec9a442a9f",
 								"type": "text/javascript",
 								"exec": [
 									"/**",
@@ -1406,21 +1689,27 @@
 									" * @Author: Tom Fleming",
 									" *",
 									" **/",
-									"tests[\"Status code is 400\"] = responseCode.code === 400;",
-									"if(responseCode.code === 400){",
-									"    //Verify the existence of content-type in the header.",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    //Validate the content-type for application/json.",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"    }",
-									"    ",
-									"    if(responseBody.length!== 0){",
-									"        tests[\"Body is correct\"] = responseBody === \"Invalid level in LogEntry: \";",
-									"    }",
-									"}"
+									" ",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});"
 								]
 							}
 						}
@@ -1458,7 +1747,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "76755ee8-18fb-4758-86f7-541869ca3bcc",
+								"id": "a5283325-761c-4554-9ee1-001cf92eb4f6",
 								"type": "text/javascript",
 								"exec": [
 									"/**",
@@ -1467,25 +1756,44 @@
 									" * @Author: Tom Fleming",
 									" *",
 									" **/",
-									"//Test assumes the default limit is 100 ",
-									"tests[\"Status code is 413\"] = responseCode.code === 413;",
-									"if(responseCode.code === 413){",
-									"        ",
-									"    //Verify the existence of content-type in the header.",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    //Validate the content-type for application/json.",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"    }",
-									"    ",
-									"    if(responseBody.length!== 0){",
-									"        //Parse json response",
-									"        actualReadingData = JSON.parse(responseBody);",
-									"        tests[\"Body is correct\"] = actualReadingData.error.includes(\"Payload Too Large\");",
-									"    }",
-									"}"
+									"",
+									"pm.test(\"Status code is 413\", function () {",
+									"    pm.response.to.have.status(413);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"}); ",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Payload Too Large\");",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "da773267-69ff-499b-ba95-d655d189932d",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    //Test assumes the default limit is 100 ",
+									"    pm.environment.set(\"overLimit\", \"101\");",
+									"}else{",
+									"    pm.environment.set(\"overLimit\", data.overLimit);",
+									"}",
+									""
 								]
 							}
 						}
