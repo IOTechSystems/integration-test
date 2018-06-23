@@ -10,7 +10,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:48061/api/v1/logs",
+					"name": "Create a logEntry",
 					"event": [
 						{
 							"listen": "test",
@@ -73,7 +73,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/{limit}",
+					"name": "Query logs with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -154,7 +154,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/{start}/{end}/{limit}",
+					"name": "Query logs by creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
@@ -238,12 +238,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/labels/{labels}/{start}/{end}/{limit}",
+					"name": "Query logs by matched labels  ,which creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "6dcb1715-f92c-408d-8ba4-fa553d002729",
+								"id": "8fd38796-7bf6-4ad7-bb50-296710d1df39",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -252,7 +252,6 @@
 									" * @Author: Tom Fleming",
 									" *",
 									" */",
-									" ",
 									"",
 									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
 									" ",
@@ -281,14 +280,21 @@
 									"     }",
 									"     pm.expect(result).to.be.true;",
 									"});",
-									""
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectLabel = pm.environment.get(\"loggingLabel\");",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.labels.includes(expectLabel)).to.be.true; ",
+									"    });",
+									"});"
 								]
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "fe9feade-78ba-4bac-a472-0df314701e8c",
+								"id": "ed980d77-c2b9-435c-b08a-ce1bf44d6a70",
 								"type": "text/javascript",
 								"exec": [
 									"if(!data.loggingLabel){",
@@ -296,6 +302,11 @@
 									"    pm.environment.set(\"start\", \"0\");",
 									"    pm.environment.set(\"end\", \"2145916800000\");",
 									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
 									"}",
 									""
 								]
@@ -327,12 +338,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/originServices/{originServices}{start}/{end}/{limit}",
+					"name": "Query logs by matched originServices  ,which creation timestamp between start date and end date with limited returned records",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "f6ddf7b1-c588-465b-b2e5-222be995ac7a",
+								"id": "5e470181-8f59-448d-87d9-f2aac2886e1b",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -342,49 +353,63 @@
 									" *",
 									" */",
 									" ",
-									"//Verify the http status code for 200.",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Verify if response time is less than 200ms.",
-									"tests[\"Response time is less than \"+data.responseTime] = responseTime < 200;",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"",
-									"if (responseCode.code === 200) {",
-									"    //Verify the existence of content-type in the header.",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    //Validate the content-type for application/json.",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"        ",
-									"        //Validate the respose data with json schema.",
-									"        if(responseHeaders[\"Content-Type\"].has(\"application/json\")) {",
-									"            try{",
-									"                //Parse json response",
-									"                actualReadingData = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualReadingData.length !== 0) {",
-									"                tests[\"Is record count is equal or less than limit\"] = actualReadingData.length <= data.limit;",
-									"               ",
-									"                tests[\"Is valid response schema\"] = tv4.validate(actualReadingData, data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"                ",
-									"                // Check that each entry contains the originService",
-									"                var correctOrigin = true;",
-									"                for (var i = 0; i < actualReadingData.length; i++) {",
-									"                    correctOrigin  = (actualReadingData[i].originService.indexOf(data.loggingService) > -1);",
-									"                }",
-									"                tests[\"Has correct origin\"] = correctOrigin === true;",
-									"                ",
-									"            } else {",
-									"                console.log(\"Log is empty.\");",
-									"                tests[\"Is Log empty\"] = actualReadingData.length === 0;",
-									"            }",
-									"        }",
-									"    }",
-									"}"
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectLoggingService = pm.environment.get(\"loggingService\");",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.originService.includes(expectLoggingService)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "82f42cf2-f5d4-4c38-9b1d-1f2f1ca3ae18",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingService\", \"service2\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingService\", data.loggingService);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
 								]
 							}
 						}
@@ -1513,7 +1538,7 @@
 			"description": null,
 			"item": [
 				{
-					"name": "http://localhost:48061/api/v1/ping",
+					"name": "Test service providing an indication that the service is available.",
 					"event": [
 						{
 							"listen": "test",
