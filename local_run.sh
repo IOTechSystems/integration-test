@@ -67,7 +67,7 @@ case ${option} in
         ;;
     -importSupportLogging)
         $(dirname "$0")/bin/flushLoggingDataDump.sh
-        $(dirname "$0")/bin/loggingTest.sh
+        $(dirname "$0")/bin/importLoggingDataDump.sh
         ;;
 
     # SupportNotification
