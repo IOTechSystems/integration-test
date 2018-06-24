@@ -17,7 +17,7 @@ export coreCommand=docker.iotechsys.com/edgexpert/core-command-go-x86_64:0.5.2
 
 # Support service
 
-export supportLogging=edgexfoundry/docker-support-logging:0.2
+export supportLogging=docker.iotechsys.com/edgexpert/support-logging-go-x86_64:0.5.2
 export supportNotifications=docker.iotechsys.com/edgexpert/support-notifications-java-x86_64:0.5.2
 export supportRulesengine=edgexfoundry/docker-support-rulesengine:0.2.1
 export supportScheduler=edgexfoundry/docker-support-scheduler:0.2.1
