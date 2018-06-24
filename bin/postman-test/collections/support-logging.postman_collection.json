@@ -122,11 +122,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f73e9687-30de-434c-97ef-353ff882ab56",
+								"id": "c270ce1e-dece-4346-a77f-5bd1049347a0",
 								"type": "text/javascript",
 								"exec": [
 									"if(!data.limit){",
 									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"limit\", data.limit); ",
 									"}",
 									""
 								]
@@ -202,13 +204,17 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a0a4ba1e-c7f5-46a0-b49e-e8aa158a8b0e",
+								"id": "d0630f3b-ac2b-43c3-830a-b5475ca16cf3",
 								"type": "text/javascript",
 								"exec": [
 									"if(!data.loggingLabel){",
 									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"end\", \"10000000000000\");",
 									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
 									"}",
 									""
 								]
@@ -396,22 +402,21 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "6d875742-ef9b-4fd4-9996-57a351a77642",
+								"id": "10db3e02-41e0-4f0d-8836-9b0aebc13c29",
 								"type": "text/javascript",
 								"exec": [
 									"// handle iteration data",
 									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingService\", \"service2\");",
+									"    pm.environment.set(\"loggingService\", \"testService\");",
 									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"end\", \"10000000000000\");",
 									"    pm.environment.set(\"limit\", \"10\");",
 									"}else{",
 									"    pm.environment.set(\"loggingService\", data.loggingService);",
 									"    pm.environment.set(\"start\", data.start);",
 									"    pm.environment.set(\"end\", data.end);",
 									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
-									""
+									"}"
 								]
 							}
 						}
@@ -926,13 +931,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b15ae003-f1f2-4ac6-83dc-c01b92c799e7",
+								"id": "d18e4c68-535d-473e-80ca-22aebe83675b",
 								"type": "text/javascript",
 								"exec": [
 									"// handle iteration data",
 									"if(!data.loggingLabel){",
 									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
-									"    pm.environment.set(\"loggingService\", \"service1\");",
+									"    pm.environment.set(\"loggingService\", \"testService\");",
 									"    pm.environment.set(\"loggingLabel\", \"label1\");",
 									"    pm.environment.set(\"loggingKeyword\", \"Hello\");",
 									"    pm.environment.set(\"start\", \"0\");",
@@ -1675,7 +1680,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:48061 - 400 Invalid Entry",
+					"name": "Fail to create a logEntry by invalid body",
 					"event": [
 						{
 							"listen": "test",
@@ -1742,7 +1747,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:48061/api/v1/logs/{limit}",
+					"name": "Fail to query logs by the number of logs exceeds the current max limit",
 					"event": [
 						{
 							"listen": "test",
@@ -1783,13 +1788,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "da773267-69ff-499b-ba95-d655d189932d",
+								"id": "6b24d1e0-9b89-4160-9605-ed63bb6860ea",
 								"type": "text/javascript",
 								"exec": [
 									"// handle iteration data",
 									"if(!data.loggingLabel){",
 									"    //Test assumes the default limit is 100 ",
-									"    pm.environment.set(\"overLimit\", \"101\");",
+									"    pm.environment.set(\"overLimit\", \"10\");",
 									"}else{",
 									"    pm.environment.set(\"overLimit\", data.overLimit);",
 									"}",
