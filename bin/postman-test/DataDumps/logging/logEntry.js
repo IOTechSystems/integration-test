@@ -12,6 +12,7 @@ for(var i =0 ; i <= 100 ; i++){
             ],
             "originService" : "testService",
             "message" : "Hello, this is testService !",
+            "created" : NumberLong(1527780479547)
         }
     );
 }
@@ -26,6 +27,7 @@ documents.push(
         ],
         "originService" : "service2",
         "message" : "Hello, Logging Service!",
+        "created" : NumberLong(1527780479547)
     }
 );
 
@@ -39,7 +41,8 @@ documents.push(
             "label3"
         ],
         "originService" : "service2",
-        "message" : "Hello, Logging Service!"
+        "message" : "Hello, Logging Service!",
+        "created" : NumberLong(1527780479547)
     }
 );
 
@@ -52,7 +55,8 @@ documents.push(
             "label2"
         ],
         "originService" : "service3",
-        "message" : "Hello, KeyWordTest Service!"
+        "message" : "Hello, KeyWordTest Service!",
+        "created" : NumberLong(1527780479547)
     }
 );
 
@@ -65,7 +69,8 @@ documents.push(
             "label2"
         ],
         "originService" : "service4",
-        "message" : "Hello, Logging Service!"
+        "message" : "Hello, Logging Service!",
+        "created" : NumberLong(1527780479547)
     }
 );
 
@@ -78,7 +83,8 @@ documents.push(
             "label3"
         ],
         "originService" : "service5",
-        "message" : "Hello, KeyWordTest Service!"
+        "message" : "Hello, KeyWordTest Service!",
+        "created" : NumberLong(1527780479547)
     }
 );
 
@@ -91,7 +97,8 @@ documents.push(
             "label3"
         ],
         "originService" : "service6",
-        "message" : "Hello, Logging Service!"
+        "message" : "Hello, Logging Service!",
+        "created" : NumberLong(1527780479547)
     }
 );
 
@@ -103,7 +110,8 @@ documents.push(
             "label2"
         ],
         "originService" : "service7",
-        "message" : "Hello, Logging Service!"
+        "message" : "Hello, Logging Service!",
+        "created" : NumberLong(1527780479547)
     }
 );
 
@@ -115,7 +123,8 @@ documents.push(
             "label2"
         ],
         "originService" : "service8",
-        "message" : "Hello, Logging Service!"
+        "message" : "Hello, Logging Service!",
+        "created" : NumberLong(1527780479547)
     }
 );
 
