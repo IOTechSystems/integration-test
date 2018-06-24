@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DATA_BASE="logging"
+
 DUMP_FILES=(
     "/etc/newman/DataDumps/logging/logEntry.js"
 )

@@ -80,11 +80,6 @@ services:
       - volume
       - config-seed
       - mongo
-    entrypoint:
-      - /support-logging
-      - --consul
-      - --profile=docker
-      - --confdir=/res
 
   notifications:
     image: ${supportNotifications}

@@ -1929,7 +1929,7 @@
 					"            \"enum\": [\"TRACE\",\"DEBUG\",\"INFO\",\"WARN\",\"ERROR\"]",
 					"          },",
 					"          \"labels\": {",
-					"            \"type\": \"array\",",
+					"            \"type\": [\"array\",\"null\"],",
 					"            \"items\": { \"type\": \"string\" },",
 					"            \"uniqueItems\": true",
 					"          },",
