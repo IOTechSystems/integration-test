@@ -817,13 +817,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "5650d03f-6982-40f6-8f5f-40d6e0cec540",
+								"id": "6209843f-242a-47d9-8c58-893afc8eb35c",
 								"type": "text/javascript",
 								"exec": [
 									"// handle iteration data",
 									"if(!data.loggingLabel){",
 									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
-									"    pm.environment.set(\"loggingService\", \"service1\");",
+									"    pm.environment.set(\"loggingService\", \"testService\");",
 									"    pm.environment.set(\"loggingLabel\", \"label1\");",
 									"    pm.environment.set(\"start\", \"0\");",
 									"    pm.environment.set(\"end\", \"2145916800000\");",
