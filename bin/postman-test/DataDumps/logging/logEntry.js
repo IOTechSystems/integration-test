@@ -3,10 +3,54 @@ var collectionName = 'logEntry' ;
 var documents =[];
 
 // Test case : Query logs
-for(var i =0 ; i <= 100 ; i++){
+for(var i =0 ; i <= 20 ; i++){
+    documents.push(
+        {
+            "logLevel" : "TRACE",
+            "labels" : [
+                "testLabel"
+            ],
+            "originService" : "testService",
+            "message" : "Hello, this is testService !",
+            "created" : NumberLong(1527780479547)
+        }
+    );
+    documents.push(
+        {
+            "logLevel" : "DEBUG",
+            "labels" : [
+                "testLabel"
+            ],
+            "originService" : "testService",
+            "message" : "Hello, this is testService !",
+            "created" : NumberLong(1527780479547)
+        }
+    );
     documents.push(
         {
             "logLevel" : "INFO",
+            "labels" : [
+                "testLabel"
+            ],
+            "originService" : "testService",
+            "message" : "Hello, this is testService !",
+            "created" : NumberLong(1527780479547)
+        }
+    );
+    documents.push(
+        {
+            "logLevel" : "WARN",
+            "labels" : [
+                "testLabel"
+            ],
+            "originService" : "testService",
+            "message" : "Hello, this is testService !",
+            "created" : NumberLong(1527780479547)
+        }
+    );
+    documents.push(
+        {
+            "logLevel" : "ERROR",
             "labels" : [
                 "testLabel"
             ],

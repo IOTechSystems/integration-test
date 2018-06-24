@@ -301,11 +301,11 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "ed980d77-c2b9-435c-b08a-ce1bf44d6a70",
+								"id": "5cf6fb3c-a81c-4de4-bb74-26e205207180",
 								"type": "text/javascript",
 								"exec": [
 									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingLabel\", \"label1\");",
+									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
 									"    pm.environment.set(\"start\", \"0\");",
 									"    pm.environment.set(\"end\", \"2145916800000\");",
 									"    pm.environment.set(\"limit\", \"10\");",
@@ -553,7 +553,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f044a766-b27f-4f56-9dba-d48fafb3bcc7",
+								"id": "41f40781-c9a8-45a5-873c-50ccf8db5fcb",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -596,7 +596,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(jsonData.length>0).to.be.true;",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.loglevel.includes(expectLoggingLevel)).to.be.true; ",
+									"      pm.expect(data.logLevel.includes(expectLoggingLevel)).to.be.true; ",
 									"    });",
 									"});"
 								]
@@ -655,7 +655,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "232e2436-ffc0-444f-915a-eb1a2a140cd3",
+								"id": "cef4f249-f4a1-443f-b9c1-6054fce7a7d8",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -699,7 +699,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(jsonData.length>0).to.be.true;",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.loglevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService)).to.be.true; ",
+									"      pm.expect(data.logLevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService)).to.be.true; ",
 									"    });",
 									"});"
 								]
@@ -762,7 +762,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f5be1f18-3713-4f7c-ba67-8cb97119b6d5",
+								"id": "8a5b89da-dfca-4d84-a42e-7ab8b7839f47",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -807,7 +807,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(jsonData.length>0).to.be.true;",
 									"    jsonData.forEach(function(data) {",
-									"      var matched = data.loglevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel);",
+									"      var matched = data.logLevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel);",
 									"      pm.expect(matched).to.be.true; ",
 									"    });",
 									"});"
@@ -817,14 +817,14 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "6209843f-242a-47d9-8c58-893afc8eb35c",
+								"id": "a5b01e85-e668-4ff5-b994-c402b51dcf63",
 								"type": "text/javascript",
 								"exec": [
 									"// handle iteration data",
 									"if(!data.loggingLabel){",
 									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
 									"    pm.environment.set(\"loggingService\", \"testService\");",
-									"    pm.environment.set(\"loggingLabel\", \"label1\");",
+									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
 									"    pm.environment.set(\"start\", \"0\");",
 									"    pm.environment.set(\"end\", \"2145916800000\");",
 									"    pm.environment.set(\"limit\", \"10\");",
@@ -875,7 +875,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "53aae657-e794-48e5-9a4a-7fd0e2397696",
+								"id": "584032a1-8f0c-4b0a-8aee-d78c7e65d7a4",
 								"type": "text/javascript",
 								"exec": [
 									" /*",
@@ -921,7 +921,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(jsonData.length>0).to.be.true;",
 									"    jsonData.forEach(function(data) {",
-									"      var matched = data.loglevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel) || data.message.includes(expectLoggingKeyword);",
+									"      var matched = data.logLevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel) || data.message.includes(expectLoggingKeyword);",
 									"      pm.expect(matched).to.be.true; ",
 									"    });",
 									"});"
@@ -931,14 +931,14 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d18e4c68-535d-473e-80ca-22aebe83675b",
+								"id": "02d7d539-10f9-4115-9b14-df52bb717e9b",
 								"type": "text/javascript",
 								"exec": [
 									"// handle iteration data",
 									"if(!data.loggingLabel){",
 									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
 									"    pm.environment.set(\"loggingService\", \"testService\");",
-									"    pm.environment.set(\"loggingLabel\", \"label1\");",
+									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
 									"    pm.environment.set(\"loggingKeyword\", \"Hello\");",
 									"    pm.environment.set(\"start\", \"0\");",
 									"    pm.environment.set(\"end\", \"2145916800000\");",
