@@ -1680,16 +1680,16 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Fail to create a logEntry by invalid body",
+					"name": "Fail to create logEntry by an inexistent log level",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "56cd1152-06ca-4185-a13d-9cec9a442a9f",
+								"id": "fe53065f-b72e-4747-98ee-6e9124a80d55",
 								"type": "text/javascript",
 								"exec": [
 									"/**",
-									" * Test Case:  api/v1/logs - Invalid Entry",
+									" * Test Case:  api/v1/logs",
 									" * Version: Alpha",
 									" * @Author: Tom Fleming",
 									" *",
@@ -1706,15 +1706,7 @@
 									"pm.test(\"Content-Type is present\", function () {",
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
-									"",
-									"pm.test(\"Content-Type is text/plain\", function(){",
-									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
-									"    pm.expect(contentType).to.include(\"text/plain\");",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
-									"});"
+									""
 								]
 							}
 						}
@@ -1729,7 +1721,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n"
+							"raw": "{\n  \"logLevel\": \"XXX\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n"
 						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs",
@@ -1741,8 +1733,7 @@
 								"v1",
 								"logs"
 							]
-						},
-						"description": "Create a new, invalid, log entry. Expect 400 Bad Request."
+						}
 					},
 					"response": []
 				},
@@ -1752,7 +1743,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a5283325-761c-4554-9ee1-001cf92eb4f6",
+								"id": "d6663a73-8c1a-4d3b-b907-2a834042432e",
 								"type": "text/javascript",
 								"exec": [
 									"/**",
@@ -1774,11 +1765,6 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									"",
-									"pm.test(\"Content-Type is text/plain\", function(){",
-									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
-									"    pm.expect(contentType).to.include(\"text/plain\");",
-									"});",
-									"",
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"Payload Too Large\");",
 									"});"
@@ -1788,13 +1774,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "6b24d1e0-9b89-4160-9605-ed63bb6860ea",
+								"id": "75a10485-5e41-419d-a735-2838d349238b",
 								"type": "text/javascript",
 								"exec": [
 									"// handle iteration data",
 									"if(!data.loggingLabel){",
 									"    //Test assumes the default limit is 100 ",
-									"    pm.environment.set(\"overLimit\", \"10\");",
+									"    pm.environment.set(\"overLimit\", \"101\");",
 									"}else{",
 									"    pm.environment.set(\"overLimit\", data.overLimit);",
 									"}",
@@ -1856,7 +1842,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c7e83233-7cd2-49c9-82d6-91f577cc9ebb",
+								"id": "7217e96e-48ef-4965-aa01-efa8c9b4b470",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -1869,11 +1855,6 @@
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
 									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var contentType = pm.response.headers.get('Content-Type');",
-									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
