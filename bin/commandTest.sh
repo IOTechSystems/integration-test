@@ -21,11 +21,11 @@ echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="device" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+    --reporters="junit,cli" --reporter-junit-export "newman/coreCommand_device_`date "+%Y%m%d-%H%M%S"`.xml"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+    --reporters="junit,cli" --reporter-junit-export "newman/coreCommand_device4xx_`date "+%Y%m%d-%H%M%S"`.xml"
 
 #docker run --rm -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
 #    --folder="device" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
