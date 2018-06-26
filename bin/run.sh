@@ -13,6 +13,7 @@ METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
+RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -82,31 +83,35 @@ docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
 
 case ${option} in 
 	-cd)  
-	echo "Info: Initiating Coredata Test"
-	coreDataTest | tee $COREDATALOGSPATH
-	;; 
+	    echo "Info: Initiating Coredata Test"
+	    coreDataTest | tee $COREDATALOGSPATH
+	    ;;
 	-md)  
-	echo "Info: Initiating Metadata Test"
-	metaDataTest | tee $METADATALOGSPATH
-	;;
+	    echo "Info: Initiating Metadata Test"
+	    metaDataTest | tee $METADATALOGSPATH
+	    ;;
  	-co)
-	echo "Info: Initiating Command Test"
-	commandTest	| tee $COMMANDLOGSPATH
-	;;
+	    echo "Info: Initiating Command Test"
+	    commandTest	| tee $COMMANDLOGSPATH
+	    ;;
 	-log)
-	echo "Info: Initiating Logging Test"
-	loggingTest	| tee $LOGGINGLOGSPATH
-	;;
+	    echo "Info: Initiating Logging Test"
+	    loggingTest	| tee $LOGGINGLOGSPATH
+	    ;;
    	-sn)
       	echo "Info: Initiating SupportNotifications Test"
 	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
       	;;
-   	-all)  
+      	-ru)
+      	echo "Info: Initiating SupportRulesengine Test"
+	rulesengineTest	| tee $RULESENGINELOGSPATH
+      	;;
+   	-all)
       	echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
       	;; 
    	*)  
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] [-lo Logging] | [-all All]"
+      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-lo Logging] | [-sn SupportNotification] | [-ru Rulesengine] | [-all All]"
       	echo
       	exit 0
       	;; 
