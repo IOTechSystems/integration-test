@@ -1,986 +1,1561 @@
 {
-	"id": "a53e35c3-9a81-4871-b43e-5b59b2b8f5f4",
-	"name": "export-client",
-	"description": "",
-	"auth": null,
-	"events": null,
-	"variables": [],
-	"order": [],
-	"folders_order": [
-		"e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-		"eab31664-98ca-4662-a1ec-61910be39240",
-		"2f03cc2d-883a-4d70-968a-5ce4c0107e17"
-	],
-	"folders": [
+	"info": {
+		"_postman_id": "94d01352-09d4-46f1-a1a6-00b92a5170af",
+		"name": "export-client",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "2f03cc2d-883a-4d70-968a-5ce4c0107e17",
-			"name": "ping",
-			"description": "",
-			"auth": null,
-			"events": null,
-			"collection": "a53e35c3-9a81-4871-b43e-5b59b2b8f5f4",
-			"folder": null,
-			"order": [
-				"b145d386-33ca-49d4-950d-db9954055176"
-			],
-			"folders_order": []
-		},
-		{
-			"id": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
 			"name": "registration",
 			"description": "",
-			"auth": null,
-			"events": null,
-			"collection": "a53e35c3-9a81-4871-b43e-5b59b2b8f5f4",
-			"folder": null,
-			"order": [
-				"c4377832-7dce-4723-9926-801f01667e1d",
-				"73ddf488-6b2c-413b-bbdd-5589fd05197a",
-				"9cf44e72-c78d-45ad-a402-9c1ae780caea",
-				"9f6ef1e6-f046-41bb-b16c-5401adb8358e",
-				"cf115b5f-4d89-4bdd-921b-cabb3d27a1f8",
-				"c3c68a10-b0cf-44cd-95cf-4f6cfc79f103",
-				"0f33254e-a0fa-4bdd-a133-36527e5c7ea7",
-				"248a265d-899b-4cc7-9652-49869ad226dd",
-				"a97407ae-0627-4d54-a83c-4f915bf47110",
-				"2bca8f03-205d-4c5b-8912-f99f2cdcf0ed",
-				"b8260279-b90f-4f9f-82aa-6e4b574b6751"
-			],
-			"folders_order": []
+			"item": [
+				{
+					"name": "Create a registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "683d513e-a052-4e1f-8530-780c5fd06c05",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration - POST",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length === 24 ).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"origin\":1471806386919,\n\t\"name\":\"OSIClient\",\n\t\"addressable\":\n\t{\t\n\t\t\"origin\":1471806386919,\n\t\t\"name\":\"OSIMQTTBroker\",\n\t\t\"protocol\":\"TCP\",\n\t\t\"address\":\"m10.cloudmqtt.com\",\n\t\t\"port\":15421,\n\t\t\"publisher\":\"EdgeXExportPublisher\",\n\t\t\"user\":\"hukfgtoh\",\n\t\t\"password\":\"uP6hJLYW6Ji4\",\n\t\t\"topic\":\"EdgeXDataTopic\"\n\t},\n\t\"format\":\"JSON\",\n\t\"filter\":\n\t{\n\t\t\"deviceIdentifiers\":[\"livingroomthermosat\", \"hallwaythermostat\"],\n\t\t\"valueDescriptorIdentifiers\":[\"temperature\", \"humidity\"]\n\t\t\n\t},\n\t\t\"encryption\":\n\t\t{\n\t\t\t\"encryptionAlgorithm\":\"AES\",\n\t\t\t\"encryptionKey\":\"123\",\n\t\t\t\"initializingVector\":\"123\"\n\t\t},\n\t\t\"compression\":\"GZIP\",\n\t\t\"enable\":true, \n\t\t\"destination\": \"REST_ENDPOINT\"\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration"
+							]
+						},
+						"description": "Add a new client export registration. Name must be unique across the database. Return ServiceException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Modify a registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0233f73-59c2-4ea0-82a3-caaf14f99271",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration - PUT",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text() === 'true' ).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\": false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration"
+							]
+						},
+						"description": "Update a client export registration. Name & id are not updated as they are identifiers. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id or name. Return ServiceException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query a registration by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "023c4d17-a2f1-4c18-b2c6-8121221b0edb",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/name - GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"var schema = pm.globals.get(\"schemas\").registration;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectRegistration = pm.environment.get(\"getName\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.name===expectRegistration).to.be.true; ",
+									"});",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3659413e-88db-4bfd-a658-add93a8a2b27",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"getName\", \"OSIClient\");",
+									"}else{",
+									"    pm.environment.set(\"getName\", data.getName);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/name/{{getName}}",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"name",
+								"{{getName}}"
+							]
+						},
+						"description": "Fetch a client export registration by unique name. Response will be null if no export registration matches on name. Return ServiceException (HTTP 503) for unknown or unanticipated issues"
+					},
+					"response": []
+				},
+				{
+					"name": "Query a registration by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dd27c513-464f-4576-81a5-d17921984635",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/id - GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"var schema = pm.globals.get(\"schemas\").registration;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectRegistrationId = pm.environment.get(\"regID\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.id===expectRegistrationId).to.be.true; ",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5fa1802a-3f8e-4afb-b8b1-bf8975939563",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"regID\", \"5b0eb384fd4ca80001df4fa9\");",
+									"}else{",
+									"    pm.environment.set(\"regID\", data.regID);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/{{regID}}",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"{{regID}}"
+							]
+						},
+						"description": "Fetch a client export registration by id. Response will be null if no export registration matches on id. Return ServiceException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query all registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "24836363-c978-4fb7-9265-634203f591ab",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration - GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").registrationArray;",
+									"var jsonData = pm.response.json();",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration"
+							]
+						},
+						"description": "Fetch all client export registrations. Return ServiceException (HTTP 503) for unknown or unanticipated issues. No limits are exercised on this query at this time. May need to add this in the future if the number of clients is huge."
+					},
+					"response": []
+				},
+				{
+					"name": "Query all supported algorithm property values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d59f43a-dd65-4ecf-9b77-27811f39af8e",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/reference/algorithms - GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/reference/algorithms",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"reference",
+								"algorithms"
+							]
+						},
+						"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications."
+					},
+					"response": []
+				},
+				{
+					"name": "Query all supported compression property values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bd0626a-905e-4583-bc07-c530c43bc121",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/reference/compressions - GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/reference/compressions",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"reference",
+								"compressions"
+							]
+						},
+						"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications."
+					},
+					"response": []
+				},
+				{
+					"name": "Query all supported format property values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef4b8936-a7ad-43ee-afd3-f14a467e32f3",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/reference/formats - GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/reference/formats",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"reference",
+								"formats"
+							]
+						},
+						"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications."
+					},
+					"response": []
+				},
+				{
+					"name": "Query all supported destination property values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93621cd9-fbca-49f8-980d-ae34d0618df6",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/reference/destinations - GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/reference/destinations",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"reference",
+								"destinations"
+							]
+						},
+						"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a registration by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0066d782-d4cc-4ee9-9154-caf04fda1bce",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/id/id - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text() === 'true' ).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0ff0d2c6-abb7-4cc7-b917-a3b2bc94c514",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"regDeleteID\", \"5b0eb384fd4ca80001df4fa2\");",
+									"}else{",
+									"    pm.environment.set(\"regDeleteID\", data.regDeleteID);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/id/{{regDeleteID}}",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"id",
+								"{{regDeleteID}}"
+							]
+						},
+						"description": "Delete a client export registration by database id. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id. Return ServiceException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a registration by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9565f19-0801-4e0c-8b47-14241a244031",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/name - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text() === 'true' ).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8cfe0d53-f476-4774-adfb-40c4a193604d",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"deleteName\", \"OSIClient3\");",
+									"}else{",
+									"    pm.environment.set(\"deleteName\", data.deleteName);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/name/{{deleteName}}",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"name",
+								"{{deleteName}}"
+							]
+						},
+						"description": "Delete a client export registration by name. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by name. Return ServiceException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"id": "eab31664-98ca-4662-a1ec-61910be39240",
 			"name": "registration_error_4xx",
 			"description": "",
-			"auth": null,
-			"events": null,
-			"collection": "a53e35c3-9a81-4871-b43e-5b59b2b8f5f4",
-			"folder": null,
-			"order": [
-				"bb3d4d13-bf13-4130-bfef-81b19b12191b",
-				"117bf727-241d-4aa8-bba8-d58eaab5dcb8",
-				"79c345ee-9712-4de0-9837-b434ad7bbafd",
-				"344031b5-c29d-4b13-bce2-81924b79029b",
-				"b9e7511b-8c61-4532-884c-2f21ac35004e",
-				"8e55acc6-ddb1-42c1-a799-b45800113e8f",
-				"30f23bdc-f295-4daa-8ba9-cae923bbf594",
-				"4fbe9de0-690a-4ebe-9e2c-3d39b2cdb488"
-			],
-			"folders_order": []
+			"item": [
+				{
+					"name": "Fail to create a registration by empty name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e0592ed8-c18d-4338-b076-b241a5d5b343",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration - POST - 400",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"origin\":1471806386919,\n\t\"name\":\"\",\n\t\"addressable\":\n\t{\t\n\t\t\"origin\":1471806386919,\n\t\t\"name\":\"OSIMQTTBroker\",\n\t\t\"protocol\":\"TCP\",\n\t\t\"address\":\"m10.cloudmqtt.com\",\n\t\t\"port\":15421,\n\t\t\"publisher\":\"EdgeXExportPublisher\",\n\t\t\"user\":\"hukfgtoh\",\n\t\t\"password\":\"uP6hJLYW6Ji4\",\n\t\t\"topic\":\"EdgeXDataTopic\"\n\t},\n\t\"format\":\"JSON\",\n\t\"filter\":\n\t{\n\t\t\"deviceIdentifiers\":[\"livingroomthermosat\", \"hallwaythermostat\"],\n\t\t\"valueDescriptorIdentifiers\":[\"temperature\", \"humidity\"]\n\t\t\n\t},\n\t\t\"encryption\":\n\t\t{\n\t\t\t\"encryptionAlgorithm\":\"AES\",\n\t\t\t\"encryptionKey\":\"123\",\n\t\t\t\"initializingVector\":\"123\"\n\t\t},\n\t\t\"compression\":\"GZIP\",\n\t\t\"enable\":true, \n\t\t\"destination\": \"REST_ENDPOINT\"\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration"
+							]
+						},
+						"description": "Add a new client export registration. Name must be unique across the database. Return ServiceException (HTTP 503) for unknown or unanticipated issues. This entry does not provide a name, thus returns a 400 error code."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to modify registration by inexistent name field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "510f7316-2b2b-467a-9c65-283aac327ae8",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration - PUT - 400",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"names\":\"OSIClient\",\n\t\"enable\": false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration"
+							]
+						},
+						"description": "Update a client export registration. Name & id are not updated as they are identifiers. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id or name. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Passes JSON containing no id or name identifier."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to modify registration by inexistent name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1158a8e4-ae1e-4037-9f99-53eb881deacc",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration - PUT - 404",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClientNotThere\",\n\t\"enable\": false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration"
+							]
+						},
+						"description": "Update a client export registration. Name & id are not updated as they are identifiers. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id or name. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Passes JSON containing an name that does not exsist."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to query registration by inexistent name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c509e893-6ab6-4a5e-b4ad-c3997ec5fdc9",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/name - GET - 404",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b174d310-b3c3-4398-9aee-2f9738ec67c9",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"nameNotFound\", \"OSIClientNotThere\");",
+									"}else{",
+									"    pm.environment.set(\"nameNotFound\", data.nameNotFound);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/name/{{nameNotFound}}",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"name",
+								"{{nameNotFound}}"
+							]
+						},
+						"description": "Fetch a client export registration by unique name. Response will be null if no export registration matches on name. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Searches for a name that has not registration assocated with it."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to query registration by inexistent ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8014665a-aed1-4e9e-a1b5-f8d0dd16fbd0",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/id - GET - 404",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7b2c1412-fa90-4e92-bff1-3d1d9f859911",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"regIDNotFound\", \"thisregisnotthere\");",
+									"}else{",
+									"    pm.environment.set(\"regIDNotFound\", data.regIDNotFound);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/{{regIDNotFound}}",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"{{regIDNotFound}}"
+							]
+						},
+						"description": "Fetch a client export registration by id. Response will be null if no export registration matches on id. Return ServiceException (HTTP 503) for unknown or unanticipated issues. We attempt to get a registration via an id that doesn't exsist."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to query property values by invalid property type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca69de04-181d-4c4a-823f-9c0816ee737c",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/reference/algorithms - GET - 400",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/reference/invalid",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"reference",
+								"invalid"
+							]
+						},
+						"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to delete registration by inexistent id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81430a21-0c98-4980-8364-a3c625312c3d",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/id/id - DELETE - 404",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "33ec4f00-b33f-411a-a87e-588125ebc2f6",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"nameNotFound\", \"OSIClientNotThere\");",
+									"}else{",
+									"    pm.environment.set(\"nameNotFound\", data.nameNotFound);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/name/{{nameNotFound}}",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"name",
+								"{{nameNotFound}}"
+							]
+						},
+						"description": "Delete a client export registration by database id. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Attempts to delete an entry with an id that does not exsist."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to delete registration by inexistent id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de83487f-f543-4dc5-9c25-85dda6f8287e",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/registration/id/id - DELETE - 404",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "446af669-41f6-43d6-aa5a-f1acb1d9f0f4",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"regIDNotFound\", \"thisregisnotthere\");",
+									"}else{",
+									"    pm.environment.set(\"regIDNotFound\", data.regIDNotFound);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/registration/id/{{regIDNotFound}}",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registration",
+								"id",
+								"{{regIDNotFound}}"
+							]
+						},
+						"description": "Delete a client export registration by database id. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Attempts to delete an entry with an id that does not exsist."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ping",
+			"description": "",
+			"item": [
+				{
+					"name": "Test service providing an indication that the service is available.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0a31e29a-5204-406c-8eb5-a047d8a641b5",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /ping - GET",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"pong\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{exportClientUrl}}/api/v1/ping",
+							"host": [
+								"{{exportClientUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indicatioon that the service is avaliable."
+					},
+					"response": []
+				}
+			]
 		}
 	],
-	"requests": [
+	"event": [
 		{
-			"id": "0f33254e-a0fa-4bdd-a133-36527e5c7ea7",
-			"name": "http://localhost:48071/api/v1/registration/reference/formats",
-			"url": "{{baseUrl}}/api/v1/registration/reference/formats",
-			"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "b41bac14-695d-4e98-8bde-aa832baf23d8",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/reference/formats - GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    //Can't foresee which types are supported, so difficult to check.",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
+			"listen": "prerequest",
+			"script": {
+				"id": "18db43d9-8a4e-4a65-a9af-f4c9d6bb9017",
+				"type": "text/javascript",
+				"exec": [
+					"var schemas = {} ; ",
+					"",
+					"schemas.registration = {",
+					"      \"type\":\"object\",",
+					"      \"$schema\":\"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\":\"Defines the registration details on the part of north side export clients\",",
+					"      \"title\":\"ExportRegistration\",",
+					"      \"properties\":{",
+					"        \"id\":{",
+					"          \"type\":\"string\",",
+					"          \"required\":false,",
+					"          \"title\":\"id\"",
+					"        },",
+					"        \"created\":{",
+					"          \"type\":\"integer\",",
+					"          \"required\":false,",
+					"          \"title\":\"created\"",
+					"        },",
+					"        \"modified\":{",
+					"          \"type\":\"integer\",",
+					"          \"required\":false,",
+					"          \"title\":\"modified\"",
+					"        },",
+					"        \"origin\":{",
+					"          \"type\":\"integer\",",
+					"          \"required\":false,",
+					"          \"title\":\"origin\"",
+					"        },",
+					"        \"name\":{",
+					"          \"type\":\"string\",",
+					"          \"required\":true,",
+					"          \"title\":\"name\"",
+					"        },",
+					"        \"addressable\":{",
+					"          \"type\":\"object\",",
+					"          \"properties\":{",
+					"            \"id\":{",
+					"              \"type\":[\"string\",\"null\"],",
+					"              \"required\":false,",
+					"              \"title\":\"id\"",
+					"            },",
+					"            \"created\":{",
+					"              \"type\":\"integer\",",
+					"              \"required\":false,",
+					"              \"title\":\"created\"",
+					"            },",
+					"            \"modified\":{",
+					"              \"type\":\"integer\",",
+					"              \"required\":false,",
+					"              \"title\":\"modified\"",
+					"            },",
+					"            \"origin\":{",
+					"              \"type\":\"integer\",",
+					"              \"required\":false,",
+					"              \"title\":\"origin\"",
+					"            },",
+					"            \"name\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"name\"",
+					"            },",
+					"            \"protocol\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"protocol\"",
+					"            },",
+					"            \"address\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"address\"",
+					"            },",
+					"            \"port\":{",
+					"              \"type\":\"integer\",",
+					"              \"required\":false,",
+					"              \"title\":\"port\"",
+					"            },",
+					"            \"path\":{",
+					"              \"type\":[\"string\",\"null\"],",
+					"              \"required\":false,",
+					"              \"title\":\"path\"",
+					"            },",
+					"            \"publisher\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"publisher\"",
+					"            },",
+					"            \"user\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"user\"",
+					"            },",
+					"            \"password\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"password\"",
+					"            },",
+					"            \"topic\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"topic\"",
+					"            }",
+					"          }",
+					"        },",
+					"        \"format\":{",
+					"          \"type\":\"string\",",
+					"          \"required\":false,",
+					"          \"title\":\"format\"",
+					"        },",
+					"        \"filter\":{",
+					"          \"type\":\"object\",",
+					"          \"properties\":{",
+					"            \"deviceIdentifiers\":{",
+					"              \"type\":\"array\",",
+					"              \"required\":false,",
+					"              \"title\":\"deviceIdentifiers\",",
+					"              \"items\":{",
+					"                \"type\":\"string\",",
+					"                \"title\":\"deviceIdentifiers\"",
+					"              },",
+					"              \"uniqueItems\":false",
+					"            },",
+					"            \"valueDescriptorIdentifiers\":{",
+					"              \"type\":\"array\",",
+					"              \"required\":false,",
+					"              \"title\":\"valueDescriptorIdentifiers\",",
+					"              \"items\":{",
+					"                \"type\":\"string\",",
+					"                \"title\":\"valueDescriptorIdentifiers\"",
+					"              },",
+					"              \"uniqueItems\":false",
+					"            }",
+					"          }",
+					"        },",
+					"        \"encryption\":{",
+					"          \"type\":\"object\",",
+					"          \"properties\":{",
+					"            \"encryptionAlgorithm\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"encryptionAlgorithm\"",
+					"            },",
+					"            \"encryptionKey\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"encryptionKey\"",
+					"            },",
+					"            \"initializingVector\":{",
+					"              \"type\":\"string\",",
+					"              \"required\":false,",
+					"              \"title\":\"initializingVector\"",
+					"            }",
+					"          }",
+					"        },",
+					"        \"compression\":{",
+					"          \"type\":\"string\",",
+					"          \"required\":false,",
+					"          \"title\":\"compression\"",
+					"        },",
+					"        \"enable\":{",
+					"          \"type\":\"boolean\",",
+					"          \"required\":false,",
+					"          \"title\":\"enable\"",
+					"        }",
+					"      }",
+					"    };",
+					"      ",
+					"schemas.registrationArray = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The Array of Registration\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/Registration\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"Registration\": schemas.registration",
+					"        }",
+					"      };",
+					"    ",
+					"pm.globals.set(\"schemas\", schemas);"
+				]
+			}
 		},
 		{
-			"id": "117bf727-241d-4aa8-bba8-d58eaab5dcb8",
-			"name": "http://localhost:48071/api/v1/registration - 400",
-			"url": "{{baseUrl}}/api/v1/registration",
-			"description": "Update a client export registration. Name & id are not updated as they are identifiers. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id or name. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Passes JSON containing no id or name identifier.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "PUT",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9b4400c6-87b3-44bf-8634-56bdb029ab6c",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration - PUT - 400",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 400\"] = responseCode.code === 400;",
-							"if(responseCode.code === 400){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"   ",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "eab31664-98ca-4662-a1ec-61910be39240",
-			"rawModeData": "{\n\t\"names\":\"OSIClient\",\n\t\"enable\": false\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "248a265d-899b-4cc7-9652-49869ad226dd",
-			"name": "http://localhost:48071/api/v1/registration/reference/destinations",
-			"url": "{{baseUrl}}/api/v1/registration/reference/destinations",
-			"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9af7b7a6-d623-49b1-8c33-13113f8a5a62",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/reference/destinations - GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    //Can't foresee which types are supported, so difficult to check.",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "2bca8f03-205d-4c5b-8912-f99f2cdcf0ed",
-			"name": "http://localhost:48071/api/v1/registration/id/{id}",
-			"url": "{{baseUrl}}/api/v1/registration/id/{{regID}}",
-			"description": "Delete a client export registration by database id. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id. Return ServiceException (HTTP 503) for unknown or unanticipated issues.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d65ca1af-6d49-4393-b68d-9740823a1634",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/id/id - DELETE",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    if(null !== responseBody){",
-							"        //Parse json response",
-							"        actualReadingData = JSON.parse(responseBody);",
-							"        tests[\"Response Boolean\"] = actualReadingData === true;",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "30f23bdc-f295-4daa-8ba9-cae923bbf594",
-			"name": "http://localhost:48071/api/v1/registration/name/{name} - 404",
-			"url": "{{baseUrl}}/api/v1/registration/name/{{nameNotFound}}",
-			"description": "Delete a client export registration by name. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by name. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Searches for a name that has not registration assocated with it.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "508d44b1-aab4-4b3d-a6af-ed70dfea0386",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/name - DELETE - 404",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 404\"] = responseCode.code === 404;",
-							"if(responseCode.code === 404){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "eab31664-98ca-4662-a1ec-61910be39240",
-			"rawModeData": "",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "344031b5-c29d-4b13-bce2-81924b79029b",
-			"name": "http://localhost:48071/api/v1/registration/reference/{invalidProperty} - 400",
-			"url": "{{baseUrl}}/api/v1/registration/reference/invalid",
-			"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "174a9868-2933-4e93-856e-b0283b7dad42",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/reference/algorithms - GET - 400",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 400\"] = responseCode.code === 400;",
-							"if(responseCode.code === 400){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "eab31664-98ca-4662-a1ec-61910be39240",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "4fbe9de0-690a-4ebe-9e2c-3d39b2cdb488",
-			"name": "http://localhost:48071/api/v1/registration/id/{id}  - 404",
-			"url": "{{baseUrl}}/api/v1/registration/id/{{nameNotFound}}",
-			"description": "Delete a client export registration by database id. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Attempts to delete an entry with an id that does not exsist.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "51f89bd7-bf1b-4442-bbbe-9b2df129976e",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/id/id - DELETE - 404",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 404\"] = responseCode.code === 404;",
-							"if(responseCode.code === 404){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "eab31664-98ca-4662-a1ec-61910be39240",
-			"rawModeData": "",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "73ddf488-6b2c-413b-bbdd-5589fd05197a",
-			"name": "http://localhost:48071/api/v1/registration",
-			"url": "{{baseUrl}}/api/v1/registration",
-			"description": "Update a client export registration. Name & id are not updated as they are identifiers. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id or name. Return ServiceException (HTTP 503) for unknown or unanticipated issues.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "PUT",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "6a9cd403-87ba-4339-85a3-124e1b4eaa3a",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration - PUT",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    if(null !== responseBody){",
-							"        //Parse json response",
-							"        actualReadingData = JSON.parse(responseBody);",
-							"        tests[\"Response Boolean\"] = actualReadingData === true;",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\": false\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "79c345ee-9712-4de0-9837-b434ad7bbafd",
-			"name": "http://localhost:48071/api/v1/registration - 404",
-			"url": "{{baseUrl}}/api/v1/registration",
-			"description": "Update a client export registration. Name & id are not updated as they are identifiers. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by id or name. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Passes JSON containing an name that does not exsist.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "PUT",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "f09c4d40-983f-4835-a61c-18696a609d11",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration - PUT - 404",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 404\"] = responseCode.code === 404;",
-							"if(responseCode.code === 404){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"   ",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "eab31664-98ca-4662-a1ec-61910be39240",
-			"rawModeData": "{\n\t\"name\":\"OSIClientNotThere\",\n\t\"enable\": false\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "8e55acc6-ddb1-42c1-a799-b45800113e8f",
-			"name": "http://localhost:48071/api/v1/registration/{id} - 404",
-			"url": "{{baseUrl}}/api/v1/registration/{{regIDNotFound}}",
-			"description": "Fetch a client export registration by id. Response will be null if no export registration matches on id. Return ServiceException (HTTP 503) for unknown or unanticipated issues. We attempt to get a registration via an id that doesn't exsist.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "62e0c2ed-3d2c-4f25-8e08-637e48583a1e",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/id - GET - 404",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 404\"] = responseCode.code === 404;",
-							"if(responseCode.code === 404){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "eab31664-98ca-4662-a1ec-61910be39240",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "9cf44e72-c78d-45ad-a402-9c1ae780caea",
-			"name": "http://localhost:48071/api/v1/registration",
-			"url": "{{baseUrl}}/api/v1/registration",
-			"description": "Fetch all client export registrations. Return ServiceException (HTTP 503) for unknown or unanticipated issues. No limits are exercised on this query at this time. May need to add this in the future if the number of clients is huge.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "99af4c32-ffa1-4fb4-9fb5-fcc161d4926f",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration - GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    if(null !== responseBody){",
-							"        //Parse json response",
-							"        actualReadingData = JSON.parse(responseBody);",
-							"        //Validate against schema",
-							"        tests[\"Validates against schema\"] = tv4.validate(actualReadingData, data.schema);",
-							"        //Check that the content is correct",
-							"        tests[\"Content Correct\"] = actualReadingData[0].name === \"OSIClient\";",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "9f6ef1e6-f046-41bb-b16c-5401adb8358e",
-			"name": "http://localhost:48071/api/v1/registration/name/{name}",
-			"url": "{{baseUrl}}/api/v1/registration/name/{{getName}}",
-			"description": "Fetch a client export registration by unique name. Response will be null if no export registration matches on name. Return ServiceException (HTTP 503) for unknown or unanticipated issues",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "0d513b06-7193-4947-a991-950de8178ff5",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/name - GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    if(null !== responseBody){",
-							"        //Parse json response",
-							"        actualReadingData = JSON.parse(responseBody);",
-							"        //Validate against schema",
-							"        tests[\"Validates against schema\"] = tv4.validate(actualReadingData, data.schema);",
-							"        //Check that the content is correct",
-							"        tests[\"Content Correct\"] = actualReadingData.name === \"OSIClient\";",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "a97407ae-0627-4d54-a83c-4f915bf47110",
-			"name": "http://localhost:48071/api/v1/registration/{id}",
-			"url": "{{baseUrl}}/api/v1/registration/{{regID}}",
-			"description": "Fetch a client export registration by id. Response will be null if no export registration matches on id. Return ServiceException (HTTP 503) for unknown or unanticipated issues.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "5b974cb0-1cd9-4676-8b37-2e1e3cb355ef",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/id - GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    if(null !== responseBody){",
-							"        //Parse json response",
-							"        actualReadingData = JSON.parse(responseBody);",
-							"        //Validate against schema",
-							"        tests[\"Validates against schema\"] = tv4.validate(actualReadingData, data.schema);",
-							"        //Check that the content is correct",
-							"        tests[\"Content Correct\"] = actualReadingData.id === \"5b0eb384fd4ca80001df4fa9\";",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "b145d386-33ca-49d4-950d-db9954055176",
-			"name": "http://localhost:48071/api/v1/ping",
-			"url": "{{baseUrl}}/api/v1/ping",
-			"description": "Test service providing an indicatioon that the service is avaliable.",
-			"data": null,
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "2306ecdb-3433-4b22-a928-a08ab35dce51",
-						"type": "text/javascript",
-						"exec": [
-							" /**",
-							" * Test Case:  /ping - GET",
-							" * Version: Alpha",
-							" * @Author: Tata Elxsi",
-							" * ",
-							" **/",
-							" ",
-							" tests[\"Ping Success\"] = responseCode.code === 200;",
-							" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							" if(responseCode.code === 200){",
-							"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"        if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-							"        }",
-							"        if(responseBody.length!== 0){",
-							"            tests[\"Body is correct\"] = responseBody === \"pong\";",
-							"        }",
-							"    }",
-							""
-						]
-					}
-				}
-			],
-			"folder": "2f03cc2d-883a-4d70-968a-5ce4c0107e17",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "b8260279-b90f-4f9f-82aa-6e4b574b6751",
-			"name": "http://localhost:48071/api/v1/registration/name/{name}",
-			"url": "{{baseUrl}}/api/v1/registration/name/{{deleteName}}",
-			"description": "Delete a client export registration by name. Return NotFoundException (HTTP 404) if the existing export registration cannot be found by name. Return ServiceException (HTTP 503) for unknown or unanticipated issues.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "DELETE",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "0b8b5ef2-8e01-4e81-975e-09df0550343a",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/name - DELETE",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    if(null !== responseBody){",
-							"        //Parse json response",
-							"        actualReadingData = JSON.parse(responseBody);",
-							"        tests[\"Response Boolean\"] = actualReadingData === true;",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "b9e7511b-8c61-4532-884c-2f21ac35004e",
-			"name": "http://localhost:48071/api/v1/registration/name/{name} - 404",
-			"url": "{{baseUrl}}/api/v1/registration/name/{{nameNotFound}}",
-			"description": "Fetch a client export registration by unique name. Response will be null if no export registration matches on name. Return ServiceException (HTTP 503) for unknown or unanticipated issues. Searches for a name that has not registration assocated with it.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "02562929-a285-4ff5-a50b-a5ef5ded8d1e",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/name - GET - 404",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 404\"] = responseCode.code === 404;",
-							"if(responseCode.code === 404){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "eab31664-98ca-4662-a1ec-61910be39240",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "bb3d4d13-bf13-4130-bfef-81b19b12191b",
-			"name": "http://localhost:48071/api/v1/registration - 400",
-			"url": "{{baseUrl}}/api/v1/registration",
-			"description": "Add a new client export registration. Name must be unique across the database. Return ServiceException (HTTP 503) for unknown or unanticipated issues. This entry does not provide a name, thus returns a 400 error code.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "80a5932b-996b-4deb-8845-e646f0da00ff",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration - POST - 400",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 400\"] = responseCode.code === 400;",
-							"if(responseCode.code === 400){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "eab31664-98ca-4662-a1ec-61910be39240",
-			"rawModeData": "{\n\t\"origin\":1471806386919,\n\t\"name\":\"\",\n\t\"addressable\":\n\t{\t\n\t\t\"origin\":1471806386919,\n\t\t\"name\":\"OSIMQTTBroker\",\n\t\t\"protocol\":\"TCP\",\n\t\t\"address\":\"m10.cloudmqtt.com\",\n\t\t\"port\":15421,\n\t\t\"publisher\":\"EdgeXExportPublisher\",\n\t\t\"user\":\"hukfgtoh\",\n\t\t\"password\":\"uP6hJLYW6Ji4\",\n\t\t\"topic\":\"EdgeXDataTopic\"\n\t},\n\t\"format\":\"JSON\",\n\t\"filter\":\n\t{\n\t\t\"deviceIdentifiers\":[\"livingroomthermosat\", \"hallwaythermostat\"],\n\t\t\"valueDescriptorIdentifiers\":[\"temperature\", \"humidity\"]\n\t\t\n\t},\n\t\t\"encryption\":\n\t\t{\n\t\t\t\"encryptionAlgorithm\":\"AES\",\n\t\t\t\"encryptionKey\":\"123\",\n\t\t\t\"initializingVector\":\"123\"\n\t\t},\n\t\t\"compression\":\"GZIP\",\n\t\t\"enable\":true, \n\t\t\"destination\": \"REST_ENDPOINT\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "c3c68a10-b0cf-44cd-95cf-4f6cfc79f103",
-			"name": "http://localhost:48071/api/v1/registration/reference/compressions",
-			"url": "{{baseUrl}}/api/v1/registration/reference/compressions",
-			"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "f490f191-4395-4b35-aa0e-ba2d51b48904",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/reference/compressions - GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    //Can't foresee which types are supported, so difficult to check.",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "c4377832-7dce-4723-9926-801f01667e1d",
-			"name": "http://localhost:48071/api/v1/registration",
-			"url": "{{baseUrl}}/api/v1/registration",
-			"description": "Add a new client export registration. Name must be unique across the database. Return ServiceException (HTTP 503) for unknown or unanticipated issues.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "3456c796-3522-4212-8d00-7cd1203d624a",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration - POST",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-							"    }",
-							"    if(null !== responseBody){",
-							"        tests[\"Response ID\"] = responseBody.length === 24;",
-							"    }",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"origin\":1471806386919,\n\t\"name\":\"OSIClient\",\n\t\"addressable\":\n\t{\t\n\t\t\"origin\":1471806386919,\n\t\t\"name\":\"OSIMQTTBroker\",\n\t\t\"protocol\":\"TCP\",\n\t\t\"address\":\"m10.cloudmqtt.com\",\n\t\t\"port\":15421,\n\t\t\"publisher\":\"EdgeXExportPublisher\",\n\t\t\"user\":\"hukfgtoh\",\n\t\t\"password\":\"uP6hJLYW6Ji4\",\n\t\t\"topic\":\"EdgeXDataTopic\"\n\t},\n\t\"format\":\"JSON\",\n\t\"filter\":\n\t{\n\t\t\"deviceIdentifiers\":[\"livingroomthermosat\", \"hallwaythermostat\"],\n\t\t\"valueDescriptorIdentifiers\":[\"temperature\", \"humidity\"]\n\t\t\n\t},\n\t\t\"encryption\":\n\t\t{\n\t\t\t\"encryptionAlgorithm\":\"AES\",\n\t\t\t\"encryptionKey\":\"123\",\n\t\t\t\"initializingVector\":\"123\"\n\t\t},\n\t\t\"compression\":\"GZIP\",\n\t\t\"enable\":true, \n\t\t\"destination\": \"REST_ENDPOINT\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "cf115b5f-4d89-4bdd-921b-cabb3d27a1f8",
-			"name": "http://localhost:48071/api/v1/registration/reference/algorithms",
-			"url": "{{baseUrl}}/api/v1/registration/reference/algorithms",
-			"description": "Fetch all supported values for the specified Export Client registration property type. Types are algorithms, compressions, formats, and destinations. Return ServiceException (HTTP 503) for unknown type specifications.",
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "62807439-f0e8-414a-ab3e-b70f04d99f88",
-						"type": "text/javascript",
-						"exec": [
-							"/**",
-							" * Test Case:  api/v1/registration/reference/algorithms - GET",
-							" * Version: Alpha",
-							" * @Author: Tom Fleming",
-							" *",
-							" **/",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"if(responseCode.code === 200){",
-							"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-							"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-							"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-							"    if (contentTypeHeaderExists) {",
-							"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-							"    }",
-							"    //Can't foresee which types are supported, so difficult to check.",
-							"}"
-						]
-					}
-				}
-			],
-			"folder": "e447483c-6d3a-47e2-b46e-8ff5b1f9f76b",
-			"rawModeData": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}",
-			"headers": "",
-			"pathVariables": {}
+			"listen": "test",
+			"script": {
+				"id": "77761ca0-cb23-4f44-9618-2b3ad616ba16",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

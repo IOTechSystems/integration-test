@@ -237,9 +237,9 @@ services:
 
   export-distro:
     image: ${exportDistro}
-#    ports:
-#      - "48070:48070"
-#      - "5566"
+    ports:
+      - "48070:48070"
+      - "5566"
     container_name: edgex-export-distro
     hostname: edgex-export-distro
     networks:

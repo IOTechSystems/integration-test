@@ -93,8 +93,8 @@ case ${option} in
 
     # ExportClient
     -testExportClient)
-        $(dirname "$0")/bin/exportClientTest.sh
-        sh ./bin/run.sh -ru
+        $(dirname "$0")/bin/flushExportClientDataDump.sh
+        sh ./bin/run.sh -exc
         ;;
     -importExportClient)
         $(dirname "$0")/bin/flushExportClientDataDump.sh
