@@ -263,8 +263,8 @@ services:
 
   rulesengine:
     image: ${supportRulesengine}
-#    ports:
-#      - "48075:48075"
+    ports:
+      - "48075:48075"
     container_name: edgex-support-rulesengine
     hostname: edgex-support-rulesengine
     networks:

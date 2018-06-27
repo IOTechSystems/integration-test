@@ -17,8 +17,13 @@ echoAllAvailableCommand() {
         "-testMetaData"
         "-importCoreData"
 
+        "-testSupportLogging"
+        "-importSupportLogging"
+
         "-testSupportNotification"
         "-importSupportNotification"
+
+        "-testSupportRulesengine"
     )
 
     for index in "${!COLLECTIONS[@]}"
@@ -57,6 +62,16 @@ case ${option} in
         $(dirname "$0")/bin/importMetaDataDump.sh
         ;;
 
+    # SupportLogging
+    -testSupportLogging)
+        $(dirname "$0")/bin/flushLoggingDataDump.sh
+        sh ./bin/run.sh -log
+        ;;
+    -importSupportLogging)
+        $(dirname "$0")/bin/flushLoggingDataDump.sh
+        $(dirname "$0")/bin/importLoggingDataDump.sh
+        ;;
+
     # SupportNotification
     -testSupportNotification)
         $(dirname "$0")/bin/flushSupportNotificationDump.sh
@@ -65,6 +80,12 @@ case ${option} in
     -importSupportNotification)
         $(dirname "$0")/bin/flushSupportNotificationDump.sh
         $(dirname "$0")/bin/importSupportNotificationDump.sh
+        ;;
+
+    # SupportRulesengine
+    -testSupportRulesengine)
+        $(dirname "$0")/bin/rulesengineTest.sh
+        sh ./bin/run.sh -ru
         ;;
 
    	*)

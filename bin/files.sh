@@ -46,7 +46,9 @@ COMMANDCCDATADUMP=/etc/newman/DataDumps/command/commandDb.json
 CORECOMMANDDATAFILE=/etc/newman/data/coreCommandData.json
 
 REGISTERDATADUMP=/etc/newman/DataDumps/exportclient/exportConfigurationDb.json
-if [ -f $CONFIGFILE ]; then 
+LOGGINGDATADUMP=/etc/newman/DataDumps/logging/logEntryDb.json
+
+if [ -f $CONFIGFILE ]; then
 
 	source $CONFIGFILE
 
@@ -117,4 +119,3 @@ SCHEDULEEVENT_4XXFILE=$scheduleEventReportPath4XXStatus/scheduleEvent$TIMESTAMPF
 
 DEVICECCREPORT200FILE=$deviceCcReportPath200Status/device$TIMESTAMPFORMAT.xml
 DEVICECCREPORT4XXFILE=$deviceCcReportPath4XXStatus/device$TIMESTAMPFORMAT.xml
-
