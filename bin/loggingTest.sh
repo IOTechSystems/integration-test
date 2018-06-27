@@ -21,14 +21,14 @@ echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="logs" --iteration-data="data/loggingData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+    --reporters="junit,cli" --reporter-junit-export "newman/supportLogging_logs_`date "+%Y%m%d-%H%M%S"`.xml"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="logs_error_4xx" --iteration-data="data/loggingData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+    --reporters="junit,cli" --reporter-junit-export "newman/supportLogging_logs4xx_`date "+%Y%m%d-%H%M%S"`.xml"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="ping" --iteration-data="data/loggingData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+    --reporters="junit,cli" --reporter-junit-export "newman/supportLogging_ping_`date "+%Y%m%d-%H%M%S"`.xml"
 
 echo "Info:Command Test Completed."
