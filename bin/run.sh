@@ -104,11 +104,11 @@ case ${option} in
       	;;
       	-ru)
       	echo "Info: Initiating SupportRulesengine Test"
-	rulesengineTest	| tee $RULESENGINELOGSPATH
+	    rulesengineTest	| tee $RULESENGINELOGSPATH
       	;;
    	-all)
       	echo "Info: Initiating EdgeX Test"
-	testAll		| tee $EDGEXLOGSPATH
+	    testAll	| tee $EDGEXLOGSPATH
       	;; 
    	*)  
       	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-lo Logging] | [-sn SupportNotification] | [-ru Rulesengine] | [-all All]"
