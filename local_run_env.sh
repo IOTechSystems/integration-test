@@ -2,7 +2,7 @@
 
 export volume=docker.iotechsys.com/edgexpert/docker-edgex-volume-x86_64:1.0.0
 export mongo=docker.iotechsys.com/edgexpert/docker-edgex-mongo-x86_64:1.0.0
-export configSeed=docker.iotechsys.com/edgexpert/docker-core-config-seed-x86_64:1.0.0
+export configSeed=docker.iotechsys.com/edgexpert/docker-core-config-seed-go-x86_64:1.0.0
 
 # Core service
 
@@ -21,10 +21,10 @@ export supportLogging=docker.iotechsys.com/edgexpert/support-logging-go-x86_64:1
 export supportNotifications=docker.iotechsys.com/edgexpert/support-notifications-java-x86_64:1.0.0
 
 
-export exportClient=edgexpert/export-client-go-x86_64:1.0.0
-export exportDistro=edgexpert/export-distro-go-x86_64:1.0.0
+export exportClient=docker.iotechsys.com/edgexpert/export-client-go-x86_64:1.0.0
+export exportDistro=docker.iotechsys.com/edgexpert/export-distro-go-x86_64:1.0.0
 
-export supportScheduler=edgexpert/support-scheduler-java-x86_64:1.0.0
+export supportScheduler=docker.iotechsys.com/edgexpert/support-scheduler-java-x86_64:1.0.0
 
 export supportRulesengine=edgexfoundry/docker-support-rulesengine:0.2.1
 export deviceVirtual=edgexfoundry/docker-device-virtual:0.2.1
