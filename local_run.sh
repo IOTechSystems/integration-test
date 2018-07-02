@@ -22,6 +22,8 @@ echoAllAvailableCommand() {
 
         "-testSupportNotification"
         "-importSupportNotification"
+
+        "-testSupportRulesengine"
     )
 
     for index in "${!COLLECTIONS[@]}"
@@ -78,6 +80,12 @@ case ${option} in
     -importSupportNotification)
         $(dirname "$0")/bin/flushSupportNotificationDump.sh
         $(dirname "$0")/bin/importSupportNotificationDump.sh
+        ;;
+
+    # SupportRulesengine
+    -testSupportRulesengine)
+        $(dirname "$0")/bin/rulesengineTest.sh
+        sh ./bin/run.sh -ru
         ;;
 
    	*)
