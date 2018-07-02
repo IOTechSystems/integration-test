@@ -213,8 +213,8 @@ services:
 
   export-client:
     image: ${exportClient}
-#    ports:
-#      - "48071:48071"
+    ports:
+      - "48071:48071"
     container_name: edgex-export-client
     hostname: edgex-export-client
     networks:
@@ -237,9 +237,9 @@ services:
 
   export-distro:
     image: ${exportDistro}
-#    ports:
-#      - "48070:48070"
-#      - "5566"
+    ports:
+      - "48070:48070"
+      - "5566"
     container_name: edgex-export-distro
     hostname: edgex-export-distro
     networks:

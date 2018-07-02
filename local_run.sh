@@ -24,6 +24,9 @@ echoAllAvailableCommand() {
         "-importSupportNotification"
 
         "-testSupportRulesengine"
+
+        "-testExportClient"
+        "-importExportClient"
     )
 
     for index in "${!COLLECTIONS[@]}"
@@ -88,6 +91,15 @@ case ${option} in
         sh ./bin/run.sh -ru
         ;;
 
+    # ExportClient
+    -testExportClient)
+        $(dirname "$0")/bin/flushExportClientDataDump.sh
+        sh ./bin/run.sh -exc
+        ;;
+    -importExportClient)
+        $(dirname "$0")/bin/flushExportClientDataDump.sh
+        $(dirname "$0")/bin/importExportClientDataDump.sh
+        ;;
    	*)
       	echoAllAvailableCommand
       	;;

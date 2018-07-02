@@ -14,6 +14,7 @@ COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
+EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -60,6 +61,13 @@ rulesengineTest() {
 	$(dirname "$0")/rulesengineTest.sh
 }
 
+exportClientTest() {
+	$(dirname "$0")/importExportClientDataDump.sh
+	$(dirname "$0")/exportClientTest.sh
+	$(dirname "$0")/flushExportClientDataDump.sh
+
+}
+
 testAll() {
 
 	coreDataTest
@@ -68,7 +76,7 @@ testAll() {
 	loggingTest
 	supportNotificationTest
 	rulesengineTest
-
+	exportClientTest
 }
 
 #Main Script starts here
@@ -88,30 +96,36 @@ case ${option} in
 	    ;;
 	-md)  
 	    echo "Info: Initiating Metadata Test"
-	    metaDataTest | tee $METADATALOGSPATH
-	    ;;
- 	-co)
-	    echo "Info: Initiating Command Test"
+	    metaDataTest    | tee $METADATALOGSPATH
+      	;;
+   	-co)  
+      	echo "Info: Initiating Command Test"
 	    commandTest	| tee $COMMANDLOGSPATH
-	    ;;
+      	;;
 	-log)
 	    echo "Info: Initiating Logging Test"
 	    loggingTest	| tee $LOGGINGLOGSPATH
 	    ;;
    	-sn)
       	echo "Info: Initiating SupportNotifications Test"
-	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
+	    supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
       	;;
-      	-ru)
+    -ru)
       	echo "Info: Initiating SupportRulesengine Test"
 	    rulesengineTest	| tee $RULESENGINELOGSPATH
       	;;
+
+  	-exc)
+      	echo "Info: Initiating ExportClient Test"
+	    exportClientTest | tee $EXPORTCLIENTLOGSPATH
+	    ;;
+
    	-all)
       	echo "Info: Initiating EdgeX Test"
 	    testAll	| tee $EDGEXLOGSPATH
       	;; 
    	*)  
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-lo Logging] | [-sn SupportNotification] | [-ru Rulesengine] | [-all All]"
+      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-lo Logging] | [-sn SupportNotification] | [-ru Rulesengine] | [-exc Export Client] | [-all All]"
       	echo
       	exit 0
       	;; 
