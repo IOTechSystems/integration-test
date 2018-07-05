@@ -22,8 +22,8 @@ export supportNotifications=docker.iotechsys.com/edgexpert/support-notifications
 
 export supportScheduler=docker.iotechsys.com/edgexpert/support-scheduler-java-x86_64:1.0.0
 
-export exportClient=docker.iotechsys.com/edgexpert/export-client-java-x86_64:1.0.0
-export exportDistro=docker.iotechsys.com/edgexpert/export-distro-java-x86_64:1.0.0
+export exportClient=edgexfoundry/docker-export-client:0.2.1
+export exportDistro=docker.iotechsys.com/edgexpert/export-distro-go-x86_64:1.0.0
 export supportRulesengine=edgexfoundry/docker-support-rulesengine:0.2.1
 
 export deviceVirtual=docker.iotechsys.com/edgexpert/device-virtual-java-x86_64:1.0.0

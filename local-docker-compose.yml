@@ -20,16 +20,14 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
-      - newman:/etc/newman
 
-  config-seed:
-    image: ${configSeed}
+  consul:
+    image: consul:1.1.0
     ports:
-        - "8400:8400"
-        - "8500:8500"
-        - "8600:8600"
-#    container_name: edgex-config-seed
-#    hostname: edgex-core-config-seed
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+    hostname: edgex-core-consul
     networks:
       edgex-network:
         aliases:
@@ -41,6 +39,23 @@ services:
       - consul-data:/consul/data
     depends_on:
       - volume
+
+  config-seed:
+    image: ${configSeed}
+#    container_name: edgex-config-seed
+#    hostname: edgex-core-config-seed
+    networks:
+      edgex-network:
+        aliases:
+            - edgex-core-config-seed
+    volumes:
+      - db-data:/data/db
+      - log-data:/edgex/logs
+      - consul-config:/consul/config
+      - consul-data:/consul/data
+    depends_on:
+      - volume
+      - consul
 
   mongo:
     image: ${mongo}
