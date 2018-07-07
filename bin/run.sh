@@ -83,10 +83,12 @@ testAll() {
 $(dirname "$0")/banner.sh
 
 echo "[INFO] Init postman test data ."
-VOLUME_CONTAINER=$(docker-compose ps -q volume)
-VOLUME_CONTAINER=`echo ${VOLUME_CONTAINER} | cut -b 1-12`
+POSTMAN_CONTAINER=$(docker-compose ps -q postman)
+POSTMAN_CONTAINER=`echo ${POSTMAN_CONTAINER} | cut -b 1-12`
+echo "POSTMAN_CONTAINER is ${POSTMAN_CONTAINER}"
 
-docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
+
+docker cp $(dirname "$0")/postman-test/. "${POSTMAN_CONTAINER}":/etc/newman
 
 
 case ${option} in 
@@ -133,7 +135,7 @@ esac
 
 
 echo "[INFO] Fetch postman test result ."
-docker cp "${VOLUME_CONTAINER}":/etc/newman/newman/. $(dirname "$0")/testResult
+docker cp "${POSTMAN_CONTAINER}":/etc/newman/newman/. $(dirname "$0")/testResult
 
 echo
 echo "Info: Logs available in [scriptLogs]"

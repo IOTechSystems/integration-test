@@ -97,7 +97,7 @@ sleep 5
 
 run_service device-virtual
 
-
+run_service postman
 
 
 
