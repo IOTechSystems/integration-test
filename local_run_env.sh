@@ -2,6 +2,7 @@
 
 export volume=docker.iotechsys.com/edgexpert/docker-edgex-volume-x86_64:1.0.0
 export mongo=docker.iotechsys.com/edgexpert/docker-edgex-mongo-x86_64:1.0.0
+export consul=consul:1.1.0
 export configSeed=docker.iotechsys.com/edgexpert/docker-core-config-seed-go-x86_64:1.0.0
 
 # Core service
