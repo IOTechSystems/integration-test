@@ -85,6 +85,8 @@ $(dirname "$0")/banner.sh
 echo "[INFO] Init postman test data ."
 POSTMAN_CONTAINER=$(docker-compose ps -q postman)
 POSTMAN_CONTAINER=`echo ${POSTMAN_CONTAINER} | cut -b 1-12`
+echo "POSTMAN_CONTAINER is ${POSTMAN_CONTAINER}"
+
 
 docker cp $(dirname "$0")/postman-test/. "${POSTMAN_CONTAINER}":/etc/newman
 
