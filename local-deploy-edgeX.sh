@@ -28,7 +28,7 @@
 
 
 run_service () {
-	echo "\033[0;32mStarting.. $1\033[0m"
+	echo "[INFO] Starting.. $1"
 	docker-compose -f local-docker-compose.yml up -d $1
 }
 
