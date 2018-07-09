@@ -17,7 +17,7 @@ def runNode() {
         'supportScheduler':'docker.iotechsys.com/edgexpert/support-scheduler-java-x86_64:1.0.0',
         'supportRulesengine':'edgexfoundry/docker-support-rulesengine:0.6.0',
 
-        'exportClient':'edgexfoundry/docker-export-client:0.2.1',
+        'exportClient':'docker.iotechsys.com/edgexpert/export-client-go-x86_64:1.0.0',
         'exportDistro':'docker.iotechsys.com/edgexpert/export-distro-go-x86_64:1.0.0',
 
         'deviceVirtual':'docker.iotechsys.com/edgexpert/device-virtual-java-x86_64:1.0.0'
