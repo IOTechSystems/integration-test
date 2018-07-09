@@ -21,14 +21,14 @@ echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="registration" --iteration-data="data/exportClientData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+    --reporters="junit,cli" --reporter-junit-export "newman/exportClient_registration_`date "+%Y%m%d-%H%M%S"`.xml"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="registration_error_4xx" --iteration-data="data/exportClientData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+    --reporters="junit,cli" --reporter-junit-export "newman/exportClient_registration4xx_`date "+%Y%m%d-%H%M%S"`.xml"
     
 docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="ping" --iteration-data="data/exportClientData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+    --reporters="junit,cli" --reporter-junit-export "newman/exportClient_ping_`date "+%Y%m%d-%H%M%S"`.xml"
 
 echo "Info: Export-Client Test Completed."
