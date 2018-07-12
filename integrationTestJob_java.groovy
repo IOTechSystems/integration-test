@@ -38,7 +38,7 @@ def runNode() {
 
     withEnv(envList) {
         try {
-            timeout(15){
+            timeout(20){
 
                 stage('Startup test services') {
                     sh 'bash ./deploy-edgeX.java.sh'
