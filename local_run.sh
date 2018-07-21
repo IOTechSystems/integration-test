@@ -87,7 +87,6 @@ case ${option} in
 
     # SupportRulesengine
     -testSupportRulesengine)
-        $(dirname "$0")/bin/rulesengineTest.sh
         sh ./bin/run.sh -ru
         ;;
 
