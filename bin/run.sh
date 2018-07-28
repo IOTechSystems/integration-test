@@ -15,6 +15,7 @@ LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
+DEVICESDKPATH=$BASEPATH/deviceSDK$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -68,8 +69,11 @@ exportClientTest() {
 
 }
 
-testAll() {
+deviceSDKTest() {
+	$(dirname "$0")/deviceSDKTest.sh
+}
 
+testAll() {
 	coreDataTest
 	metaDataTest
 	commandTest
@@ -77,6 +81,7 @@ testAll() {
 	supportNotificationTest
 	rulesengineTest
 	exportClientTest
+	deviceSDKTest
 }
 
 #Main Script starts here
@@ -116,18 +121,20 @@ case ${option} in
       	echo "Info: Initiating SupportRulesengine Test"
 	    rulesengineTest	| tee $RULESENGINELOGSPATH
       	;;
-
   	-exc)
       	echo "Info: Initiating ExportClient Test"
 	    exportClientTest | tee $EXPORTCLIENTLOGSPATH
 	    ;;
-
+  	-sdk)
+      	echo "Info: Initiating DeviceSDK Test"
+	    deviceSDKTest | tee $DEVICESDKPATH
+	    ;;
    	-all)
       	echo "Info: Initiating EdgeX Test"
 	    testAll	| tee $EDGEXLOGSPATH
       	;; 
    	*)  
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-lo Logging] | [-sn SupportNotification] | [-ru Rulesengine] | [-exc Export Client] | [-all All]"
+      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-lo Logging] | [-sn SupportNotification] | [-ru Rulesengine] | [-exc Export Client] | [-sdk Device SDK] | [-all All]"
       	echo
       	exit 0
       	;; 

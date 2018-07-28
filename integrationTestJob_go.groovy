@@ -20,7 +20,8 @@ def runNode() {
         'exportClient':'docker.iotechsys.com/edgexpert/export-client-go-x86_64:1.0.0',
         'exportDistro':'docker.iotechsys.com/edgexpert/export-distro-go-x86_64:1.0.0',
 
-        'deviceVirtual':'docker.iotechsys.com/edgexpert/device-virtual-java-x86_64:1.0.0'
+        'deviceVirtual':'docker.iotechsys.com/edgexpert/device-virtual-java-x86_64:1.0.0',
+        'deviceSDK':'docker.iotechsys.com/edgexpert/device-sdk-java-x86_64:1.0.0',
     ]
     if(params.TEST_SERVICE==null){
         print "test_service is null"
