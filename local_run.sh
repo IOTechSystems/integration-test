@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 option="${1}"
 
@@ -37,7 +37,7 @@ echoAllAvailableCommand() {
 
 case ${option} in
     -localDeploy)
-        sh local-deploy-edgex.sh
+        sh local-deploy-edgeX.sh
         ;;
     -copyPostmanTestScriptToNewman)
         POSTMAN_CONTAINER=$(docker-compose ps -q postman)
