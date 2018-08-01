@@ -10,7 +10,7 @@ services:
 
   volume:
     image: docker.iotechsys.com/edgexpert/docker-edgex-volume-${EX_ARCH}:${EX_VER}
-    container_name: edgex-files
+#    container_name: edgex-files
     networks:
       - edgex-network
     volumes:
@@ -54,7 +54,7 @@ services:
       - consul-data:/consul/data
     depends_on:
       - consul
-      
+
   mongo:
     image: docker.iotechsys.com/edgexpert/docker-edgex-mongo-${EX_ARCH}:${EX_VER}
 #    ports:
@@ -62,7 +62,9 @@ services:
 #    container_name: edgex-mongo
     hostname: edgex-mongo
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+            - edgex-mongo
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -84,7 +86,9 @@ services:
 #    container_name: edgex-support-logging
     hostname: edgex-support-logging
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-support-logging
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -106,7 +110,9 @@ services:
 #    container_name: edgex-support-notifications
     hostname: edgex-support-notifications
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-support-notifications
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -127,7 +133,9 @@ services:
 #    container_name: edgex-core-metadata
     hostname: edgex-core-metadata
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-core-metadata
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -147,7 +155,9 @@ services:
 #    container_name: edgex-core-data
     hostname: edgex-core-data
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-core-data
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -166,7 +176,9 @@ services:
 #    container_name: edgex-core-command
     hostname: edgex-core-command
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-core-command
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -190,7 +202,9 @@ services:
 #    container_name: edgex-support-scheduler
     hostname: edgex-support-scheduler
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-support-scheduler
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -211,7 +225,9 @@ services:
 #    container_name: edgex-export-client
     hostname: edgex-export-client
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-export-client
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -236,7 +252,9 @@ services:
 #    container_name: edgex-export-distro
     hostname: edgex-export-distro
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-export-distro
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
