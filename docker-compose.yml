@@ -289,7 +289,7 @@ services:
       - export-distro
 
   postman:
-    image: postman/newman_ubuntu1404
+    image: postman/newman_ubuntu1404:3.10.0
     networks:
       edgex-network:
         aliases:
