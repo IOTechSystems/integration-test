@@ -1,0 +1,19 @@
+parallel arm:
+{
+  stage ('Build arm')
+  {
+    build job: 'blackbox-go-arm', parameters: [string(name: 'BUILD', value: "$BUILD")]
+  }
+}, arm64:
+{
+  stage ('Build arm64')
+  {
+    build job: 'blackbox-go-arm64', parameters: [string(name: 'BUILD', value: "$BUILD")]
+  }
+}, x86_64:
+{
+  stage ('Build x86_64')
+  {
+    build job: 'blackbox-go-x86_64', parameters: [string(name:'BUILD', value: "$BUILD")]
+  }
+}
