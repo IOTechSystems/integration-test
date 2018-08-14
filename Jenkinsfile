@@ -8,6 +8,7 @@ node ("${env.SLAVE}")
     }
     stage ('integration-test')
     {
+        sh '. ./arch.sh' &&
         script 
         {
             def rootDir = pwd()

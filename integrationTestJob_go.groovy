@@ -5,7 +5,8 @@ def runNode() {
     def envMap =[
         'EX_CONSUL': false,
         'EX_LOG': false,
-        'EX_VER':'1.0.1'
+        'EX_VER':'1.0.1',
+        'EX_ARCH':System.getProperty("$EX_ARCH")
     ]
     if(params.TEST_SERVICE==null){
         print "test_service is null"
