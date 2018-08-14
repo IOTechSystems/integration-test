@@ -25,6 +25,8 @@
 #    . $(dirname "$0")/bin/env.sh
 #fi
 
+./arch.sh
+
 run_service () {
 	echo "[INFO] Starting.. $1"
 	docker-compose -f docker-compose.go.yml up -d $1
