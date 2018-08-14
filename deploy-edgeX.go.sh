@@ -25,7 +25,7 @@
 #    . $(dirname "$0")/bin/env.sh
 #fi
 
-./arch.sh
+. ./arch.sh
 
 run_service () {
 	echo "[INFO] Starting.. $1"
