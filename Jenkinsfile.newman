@@ -6,7 +6,7 @@ node ("${env.SLAVE}")
     {
         cleanWs ()
         checkout scm
-        sh 'git clone --branch v4.0.2 git@github.com:IOTechSystems/newman.git'
+        sh 'git clone --branch E10R-25-branch git@github.com:IOTechSystems/newman.git'
     }
     stage ('Build')
     {
