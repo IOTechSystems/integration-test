@@ -14,7 +14,7 @@ node ("${env.SLAVE}")
     }
     stage ("Clean")
     { 
-        sh '. ./arch.sh && docker image rm iotech_newman_$EX_ARCH:4.0.2'
+        sh '. ./arch.sh && docker image rm docker.iotechsys.com/services/iotech_newman_$EX_ARCH:4.0.2'
         cleanWs ()
     }
 }
