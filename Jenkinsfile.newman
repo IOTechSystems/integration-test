@@ -10,9 +10,7 @@ node ("${env.SLAVE}")
     }
     stage ('Build')
     {
-        sh '. ./arch.sh'
-        sh 'cd newman/docker/images/alpine33'
-        sh 'docker build -t iotech_newman_$EX_ARCH:4.0.2'
+        sh './build-newman.sh'
     }
     stage ("Clean")
     { 
