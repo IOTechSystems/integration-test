@@ -24,7 +24,7 @@
 #else
 #    . $(dirname "$0")/bin/env.sh
 #fi
-
+export EX_ARCH=`uname -m`
 
 
 run_service () {
