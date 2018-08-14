@@ -289,7 +289,7 @@ services:
       - export-distro
 
   postman:
-    image: docker.iotechsys.com/services/iotech_newman_${EX_ARCH}:4.0.2
+    image: docker.iotechsys.com/services/newman_${EX_ARCH}:4.0.2
     networks:
       edgex-network:
         aliases:
