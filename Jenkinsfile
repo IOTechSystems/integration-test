@@ -14,13 +14,13 @@ node ("${env.SLAVE}")
             if (env.LANG == "GO")
             {
                 def integrationTestJob = load "${rootDir}/integrationTestJob_go.groovy"
+                integrationTestJob.runNode()
             }
             else if (env.LANG == "JAVA")
             {
                 def integrationTestJob = load "${rootDir}/integrationTestJob_java.groovy"
+                integrationTestJob.runNode()
             }
-
-            integrationTestJob.runNode()
         }
     }
     stage ("Archive Artifacts")
