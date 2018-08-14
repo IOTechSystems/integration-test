@@ -24,5 +24,8 @@ node ("${env.SLAVE}")
     {
         archiveArtifacts artifacts: 'bin/testResult/**.xml'
     }
-
+    stage ("Clean")
+    { 
+        cleanWs ()
+    }
 }
