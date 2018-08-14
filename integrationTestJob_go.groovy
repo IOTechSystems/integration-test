@@ -1,7 +1,7 @@
 
 def runNode() {
     slack = load "${pwd()}/slack.groovy"
-
+    sh '. ./arch.sh'
     def envMap =[
         'EX_CONSUL': false,
         'EX_LOG': false,
