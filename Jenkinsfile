@@ -2,11 +2,14 @@
 
 node ("${env.SLAVE}")
 {
+    stage ('Checkout')
+    {
+        checkout scm
+    }
     stage ('integration-test')
     {
         script 
         {
-            checkout scm
             def rootDir = pwd()
             if (env.LANG == "GO")
             {
