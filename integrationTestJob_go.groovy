@@ -1,27 +1,25 @@
-
-def runNode() {
-    slack = load "${pwd()}/slack.groovy"
-
-    def checkOs(){
-        if (isUnix()) 
+def checkOs()
+{
+    if (isUnix()) 
+    {
+        def uname = sh script: 'uname', returnStdout: true
+        if (uname.startsWith("armv7l")) 
         {
-            def uname = sh script: 'uname', returnStdout: true
-            if (uname.startsWith("armv7l")) 
-            {
-                return "arm"
-            }
-            else if (uname.startsWith("aarch64")) 
-            {
-                return "arm64"
-            }
-            else if (uname.startsWith("x86_64")) 
-            {
-                return "x86_64"
-            }
+            return "arm"
+        }
+        else if (uname.startsWith("aarch64")) 
+        {
+            return "arm64"
+        }
+        else if (uname.startsWith("x86_64")) 
+        {
+            return "x86_64"
         }
     }
-
-
+}
+    
+def runNode() {
+    slack = load "${pwd()}/slack.groovy"
 
     def envMap =[
         'EX_CONSUL': false,
