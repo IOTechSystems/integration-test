@@ -2,11 +2,32 @@
 def runNode() {
     slack = load "${pwd()}/slack.groovy"
 
+    def checkOs(){
+        if (isUnix()) 
+        {
+            def uname = sh script: 'uname', returnStdout: true
+            if (uname.startsWith("armv7l")) 
+            {
+                return "arm"
+            }
+            else if (uname.startsWith("aarch64")) 
+            {
+                return "arm64"
+            }
+            else if (uname.startsWith("x86_64")) 
+            {
+                return "x86_64"
+            }
+        }
+    }
+
+
+
     def envMap =[
         'EX_CONSUL': false,
         'EX_LOG': false,
         'EX_VER':'1.0.1',
-        'EX_ARCH': System.getProperty ("os.arch")
+        'EX_ARCH': checkOs()
     ]
     if(params.TEST_SERVICE==null){
         print "test_service is null"
