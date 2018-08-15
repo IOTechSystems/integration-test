@@ -20,7 +20,7 @@ services:
       - consul-data:/consul/data
 
   consul:
-    image: consul:1.2.2
+    image: docker.iotechsys.com/services/consul-${EX_ARCH}:1.2.2
 #    ports:
 #      - "8400:8400"
 #      - "8500:8500"
