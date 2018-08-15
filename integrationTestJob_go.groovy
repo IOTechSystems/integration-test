@@ -1,12 +1,12 @@
 
 def runNode() {
     slack = load "${pwd()}/slack.groovy"
-    sh '. ./arch.sh' && env.ARCH='$EX_ARCH'
+
     def envMap =[
         'EX_CONSUL': false,
         'EX_LOG': false,
         'EX_VER':'1.0.1',
-        'EX_ARCH':"${env.ARCH}"
+        'EX_ARCH': System.getProperty ("os.arch")
     ]
     if(params.TEST_SERVICE==null){
         print "test_service is null"
