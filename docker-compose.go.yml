@@ -275,14 +275,6 @@ services:
 #    ports:
 #      - "48075:48075"
 #    container_name: edgex-support-rulesengine
-    entrypoint:
-      - java 
-      - -jar
-      - -Djava.security.egd=file:/dev/urandom
-      - -Xmx100M
-      - support-rulesengine.jar
-      - --spring.cloud.consul.enabled=${EX_CONSUL}
-      - --logging.remote.enable=${EX_LOG}
     hostname: edgex-support-rulesengine
     networks:
       edgex-network:
