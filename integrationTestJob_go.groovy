@@ -1,6 +1,6 @@
 def checkOs()
 {
-    def uname = sh script: 'uname', returnStdout: true
+    def uname = sh script: 'uname -m', returnStdout: true
     if (uname.startsWith("armv7l")) 
     {
         return "arm"
