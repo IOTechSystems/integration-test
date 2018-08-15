@@ -90,11 +90,11 @@ run_service export-distro
 while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-export-distro 48070);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
 
-run_service rulesengine
-
-while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect."; docker logs blackbox-go-arm_rulesengine_1; sleep 5; done
-sleep 5
-
+if [ ${EX_ARCH}=="x86_64" ]
+    run_service rulesengine
+    while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect."; sleep 5; done
+    sleep 5
+fi
 run_service device-virtual
 
 run_service postman
