@@ -92,7 +92,7 @@ sleep 5
 
 run_service rulesengine
 
-while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect."; docker logs edgex-support-rulesengine; sleep 5; done
 sleep 5
 
 run_service device-virtual
