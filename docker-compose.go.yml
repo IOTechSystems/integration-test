@@ -57,8 +57,8 @@ services:
       
   mongo:
     image: docker.iotechsys.com/edgexpert/docker-edgex-mongo-${EX_ARCH}:${EX_VER}
-    ports:
-      - "27017:27017"
+#    ports:
+#      - "27017:27017"
 #    container_name: edgex-mongo
     hostname: edgex-mongo
     networks:
