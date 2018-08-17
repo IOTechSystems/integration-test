@@ -40,6 +40,7 @@ while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z localhost
 run_service config-seed
 run_service mongo
 
+sleep 10
 
 while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-mongo 27017);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 
