@@ -45,7 +45,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "{{metaDataUrl}}/api/v1/deviceservice/name/device-sdk",
+					"raw": "{{metaDataUrl}}/api/v1/deviceservice/name/edgex-device-sdk",
 					"host": [
 						"{{metaDataUrl}}"
 					],
@@ -54,7 +54,7 @@
 						"v1",
 						"deviceservice",
 						"name",
-						"device-sdk"
+						"edgex-device-sdk"
 					]
 				},
 				"description": "given core-metadata and device-sdk started up\nwhen device-sdk initialized successfully\nthen device-sdk registered itself as a device service"
@@ -102,7 +102,7 @@
 					"formdata": [
 						{
 							"key": "file",
-							"value": "device-sdk_sample_profile.yaml",
+							"value": "./postman-test/device-sdk_sample_profile.yaml",
 							"description": "",
 							"type": "file"
 						}
@@ -225,7 +225,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\": \"5b2255460a5d402bb0711a39\", \"name\":\"device-sdk-sample\",\"description\":\"created for test\",\"adminState\":\"UNLOCKED\",\"operatingState\":\"ENABLED\",\"addressable\":{\"name\":\"device-sdk-sample-address\"},\"labels\":[\"modbus\",\"smart-meter\"],\"service\":{\"name\":\"device-sdk\"},\"profile\":{\"name\":\"device-sdk-thermostat-profile\"}}"
+					"raw": "{\"id\": \"5b2255460a5d402bb0711a39\", \"name\":\"device-sdk-sample\",\"description\":\"created for test\",\"adminState\":\"UNLOCKED\",\"operatingState\":\"ENABLED\",\"addressable\":{\"name\":\"device-sdk-sample-address\"},\"labels\":[\"modbus\",\"smart-meter\"],\"service\":{\"name\":\"edgex-device-sdk\"},\"profile\":{\"name\":\"device-sdk-thermostat-profile\"}}"
 				},
 				"url": {
 					"raw": "{{metaDataUrl}}/api/v1/device",
