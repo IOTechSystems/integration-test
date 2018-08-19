@@ -1,11 +1,12 @@
 {
 	"info": {
-		"_postman_id": "77dda8ca-e561-415e-b239-eba984c98bec",
+		"_postman_id": "ada3182d-bf4d-4eab-8b55-762c7ddbf6aa",
 		"name": "device-sdk",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
+			"_postman_id": "7547eefb-2273-4885-b4fb-dea9767af8ca",
 			"name": "check device-sdk registered itself as a device service",
 			"event": [
 				{
@@ -43,7 +44,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{metaDataUrl}}/api/v1/deviceservice/name/edgex-device-sdk",
 					"host": [
@@ -62,6 +66,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "fceabd26-a262-4b50-8974-85065cafd580",
 			"name": "create a device profile for device-sdk",
 			"event": [
 				{
@@ -96,34 +101,32 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"value": "./postman-test/device-sdk_sample_profile.yaml",
-							"description": "",
-							"type": "file"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\"description\":\"BACnet Honeywell thermostats\",\"name\":\"device-sdk-thermostat-profile\",\"manufacturer\":\"Honeywell\",\"model\":\"ABC123\",\"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\"objects\":null,\"deviceResources\":[{\"description\":\"Cooling Point\",\"name\":\"coolingpoint\",\"tag\":null,\"properties\":{\"value\":{\"type\":\"INT64\",\"readWrite\":\"RW\",\"minimum\":\"0\",\"maximum\":\"1000\",\"defaultValue\":\"0\",\"size\":\"1\",\"word\":\"2\",\"lsb\":null,\"mask\":\"0x00\",\"shift\":\"0\",\"scale\":\"1\",\"offset\":\"0.0\",\"base\":\"0\",\"assertion\":null,\"signed\":true,\"precision\":null},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"degree\"}},\"attributes\":null}],\"resources\":[{\"name\":\"coolingpoint\",\"get\":[{\"index\":\"1\",\"operation\":\"get\",\"object\":\"coolingpoint\",\"property\":\"value\",\"parameter\":\"coolingpoint\",\"resource\":null,\"secondary\":[],\"mappings\":{}}],\"set\":[{\"index\":\"2\",\"operation\":\"set\",\"object\":\"coolingpoint\",\"property\":\"value\",\"parameter\":\"coolingpoint\",\"resource\":null,\"secondary\":[],\"mappings\":{}}]}],\"commands\":[{\"name\":\"coolingpoint\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/coolingpoint\",\"responses\":[{\"code\":\"200\",\"description\":\"not a float\",\"expectedValues\":[\"coolingpoint\"]}]},\"put\":{\"path\":\"/api/v1/device/{deviceId}/coolingpoint\",\"responses\":[{\"code\":\"200\",\"description\":\"not a float\",\"expectedValues\":[\"coolingpoint\"]}],\"parameterNames\":[\"coolingpoint\"]}}]}"
 				},
 				"url": {
-					"raw": "{{metaDataUrl}}/api/v1/deviceprofile/uploadfile",
+					"raw": "{{metaDataUrl}}/api/v1/deviceprofile",
 					"host": [
 						"{{metaDataUrl}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"deviceprofile",
-						"uploadfile"
+						"deviceprofile"
 					]
 				}
 			},
 			"response": []
 		},
 		{
+			"_postman_id": "46773496-5026-49e0-8856-f28ecfbe6e9b",
 			"name": "create an addressable for device-sdk",
 			"event": [
 				{
@@ -183,6 +186,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "97c76051-4375-4fe5-b82a-5183490d422e",
 			"name": "create a device tied to device-sdk to test callback",
 			"event": [
 				{
@@ -242,6 +246,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "ba992bf3-24da-4dc4-8261-2a6286c655bf",
 			"name": "delete the device tied to device-sdk to test callback",
 			"event": [
 				{
@@ -268,7 +273,10 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{metaDataUrl}}/api/v1/device/id/5b2255460a5d402bb0711a39",
 					"host": [
@@ -286,6 +294,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "cf839ee4-23da-4bdb-90dd-97707e47c24c",
 			"name": "check the get command works",
 			"event": [
 				{
@@ -323,7 +332,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{deviceSDKUrl}}/api/v1/device/5b2255460a5d402bb0711a39/coolingpoint",
 					"host": [
@@ -341,6 +353,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "ce1ff514-6796-42b3-a556-c0064f8d82f5",
 			"name": "check the get command from the deleted device returns 404",
 			"event": [
 				{
@@ -364,7 +377,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{deviceSDKUrl}}/api/v1/device/5b2255460a5d402bb0711a39/coolingpoint",
 					"host": [
