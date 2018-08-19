@@ -21,6 +21,7 @@ def runNode() {
         'exportDistro':'edgexfoundry/docker-export-distro:0.2.1',
 
         'deviceVirtual':'docker.iotechsys.com/edgexpert/device-virtual-java-x86_64:1.0.0',
+        'deviceSDK':'docker.iotechsys.com/edgexpert/device-sdk-java-x86_64:1.0.0',
     ]
     if(params.TEST_SERVICE==null){
         print "test_service is null"

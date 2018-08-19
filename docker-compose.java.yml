@@ -274,6 +274,25 @@ services:
       - data
       - command
 
+  device-sdk:
+    image: ${deviceSDK}
+#    ports:
+#      - "49999:49999"
+#    container_name: edgex-device-sdk
+    hostname: edgex-device-sdk
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-device-sdk
+    volumes:
+      - db-data:/data/db
+      - log-data:/edgex/logs
+      - consul-config:/consul/config
+      - consul-data:/consul/data
+    depends_on:
+      - data
+      - command
+
   postman:
     image: postman/newman_ubuntu1404:3.10.0
     networks:

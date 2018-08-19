@@ -344,6 +344,33 @@ services:
       - data
       - command
 
+  device-sdk:
+    image: docker.iotechsys.com/edgexpert/device-sdk-java-${EX_ARCH}:${EX_VER}
+    entrypoint:
+      - java
+      - -jar
+      - -Djava.security.egd=file:/dev/urandom
+      - -Xmx100M
+      - device-sdk.jar
+      - --spring.cloud.consul.enabled=${EX_CONSUL}
+      - --logging.remote.enable=${EX_LOG}
+#    ports:
+#      - "49999:49999"
+#    container_name: edgex-device-sdk
+    hostname: edgex-device-sdk
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-device-sdk
+    volumes:
+      - db-data:/data/db
+      - log-data:/edgex/logs
+      - consul-config:/consul/config
+      - consul-data:/consul/data
+    depends_on:
+      - data
+      - command
+
   device-modbus:
     image: docker.iotechsys.com/edgexpert/device-modbus-java-${EX_ARCH}:${EX_VER}
     entrypoint:
