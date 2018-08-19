@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"_postman_id": "7547eefb-2273-4885-b4fb-dea9767af8ca",
+			"_postman_id": "db4d63ed-f7b7-467d-a3b1-568f4d1477ca",
 			"name": "check device-sdk registered itself as a device service",
 			"event": [
 				{
@@ -66,7 +66,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "fceabd26-a262-4b50-8974-85065cafd580",
+			"_postman_id": "a076cbe9-674d-437c-83fa-0f81641c7d74",
 			"name": "create a device profile for device-sdk",
 			"event": [
 				{
@@ -126,7 +126,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "46773496-5026-49e0-8856-f28ecfbe6e9b",
+			"_postman_id": "45d23dfd-80b8-47c2-8aff-5b1b31ad5a3f",
 			"name": "create an addressable for device-sdk",
 			"event": [
 				{
@@ -186,13 +186,13 @@
 			"response": []
 		},
 		{
-			"_postman_id": "97c76051-4375-4fe5-b82a-5183490d422e",
+			"_postman_id": "05bce14c-00d1-4238-b968-cda704e38747",
 			"name": "create a device tied to device-sdk to test callback",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "3004f0c3-7fdf-4f1a-9a34-ff120ff825e8",
+						"id": "e4116d2d-c1ff-4bab-99df-e94a2726e9bf",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -214,7 +214,10 @@
 							"",
 							"pm.test(\"Response must be valid and have a body\", function () {",
 							"     pm.response.to.be.withBody;",
-							"});"
+							"});",
+							"",
+							"pm.environment.set(\"device_id\", pm.response.text());",
+							""
 						]
 					}
 				}
@@ -229,7 +232,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\": \"5b2255460a5d402bb0711a39\", \"name\":\"device-sdk-sample\",\"description\":\"created for test\",\"adminState\":\"UNLOCKED\",\"operatingState\":\"ENABLED\",\"addressable\":{\"name\":\"device-sdk-sample-address\"},\"labels\":[\"modbus\",\"smart-meter\"],\"service\":{\"name\":\"edgex-device-sdk\"},\"profile\":{\"name\":\"device-sdk-thermostat-profile\"}}"
+					"raw": "{\"name\":\"device-sdk-sample\",\"description\":\"created for test\",\"adminState\":\"UNLOCKED\",\"operatingState\":\"ENABLED\",\"addressable\":{\"name\":\"device-sdk-sample-address\"},\"labels\":[\"modbus\",\"smart-meter\"],\"service\":{\"name\":\"edgex-device-sdk\"},\"profile\":{\"name\":\"device-sdk-thermostat-profile\"}}"
 				},
 				"url": {
 					"raw": "{{metaDataUrl}}/api/v1/device",
@@ -246,55 +249,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "ba992bf3-24da-4dc4-8261-2a6286c655bf",
-			"name": "delete the device tied to device-sdk to test callback",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "3b142789-04c6-43ed-a9b6-7d68ac2d169a",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response time is less than 600ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(600);",
-							"});",
-							"",
-							"pm.test(\"Response must be valid and have a body\", function () {",
-							"     pm.response.to.be.withBody;",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{metaDataUrl}}/api/v1/device/id/5b2255460a5d402bb0711a39",
-					"host": [
-						"{{metaDataUrl}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"device",
-						"id",
-						"5b2255460a5d402bb0711a39"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"_postman_id": "cf839ee4-23da-4bdb-90dd-97707e47c24c",
+			"_postman_id": "a60ad2b9-d9ff-403c-b955-943cb847c89c",
 			"name": "check the get command works",
 			"event": [
 				{
@@ -337,7 +292,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{deviceSDKUrl}}/api/v1/device/5b2255460a5d402bb0711a39/coolingpoint",
+					"raw": "{{deviceSDKUrl}}/api/v1/device/{{device_id}}/coolingpoint",
 					"host": [
 						"{{deviceSDKUrl}}"
 					],
@@ -345,7 +300,7 @@
 						"api",
 						"v1",
 						"device",
-						"5b2255460a5d402bb0711a39",
+						"{{device_id}}",
 						"coolingpoint"
 					]
 				}
@@ -353,7 +308,55 @@
 			"response": []
 		},
 		{
-			"_postman_id": "ce1ff514-6796-42b3-a556-c0064f8d82f5",
+			"_postman_id": "235b14dc-ae77-430d-aa1a-6b87ebe3ff2c",
+			"name": "delete the device tied to device-sdk to test callback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b142789-04c6-43ed-a9b6-7d68ac2d169a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{metaDataUrl}}/api/v1/device/id/{{device_id}}",
+					"host": [
+						"{{metaDataUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device",
+						"id",
+						"{{device_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "b5940f72-1bba-4342-a4a4-fa73c2bb4a3b",
 			"name": "check the get command from the deleted device returns 404",
 			"event": [
 				{
@@ -382,7 +385,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{deviceSDKUrl}}/api/v1/device/5b2255460a5d402bb0711a39/coolingpoint",
+					"raw": "{{deviceSDKUrl}}/api/v1/device/{{device_id}}/coolingpoint",
 					"host": [
 						"{{deviceSDKUrl}}"
 					],
@@ -390,7 +393,7 @@
 						"api",
 						"v1",
 						"device",
-						"5b2255460a5d402bb0711a39",
+						"{{device_id}}",
 						"coolingpoint"
 					]
 				}
