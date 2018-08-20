@@ -6,7 +6,6 @@
 	},
 	"item": [
 		{
-			"_postman_id": "db4d63ed-f7b7-467d-a3b1-568f4d1477ca",
 			"name": "check device-sdk registered itself as a device service",
 			"event": [
 				{
@@ -66,7 +65,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "a076cbe9-674d-437c-83fa-0f81641c7d74",
 			"name": "create a device profile for device-sdk",
 			"event": [
 				{
@@ -126,7 +124,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "45d23dfd-80b8-47c2-8aff-5b1b31ad5a3f",
 			"name": "create an addressable for device-sdk",
 			"event": [
 				{
@@ -186,7 +183,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "05bce14c-00d1-4238-b968-cda704e38747",
 			"name": "create a device tied to device-sdk to test callback",
 			"event": [
 				{
@@ -249,16 +245,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "a60ad2b9-d9ff-403c-b955-943cb847c89c",
 			"name": "check the get command works",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "6f2e5f9a-52e2-447a-91cc-1eddea9acf8a",
+						"id": "59adeb23-62cb-473c-9aa7-9b711686c860",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
+							"    if(responseCode.code !== 200){",
+							"        console.log(pm.response.text());",
+							"    }",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
@@ -308,13 +306,12 @@
 			"response": []
 		},
 		{
-			"_postman_id": "235b14dc-ae77-430d-aa1a-6b87ebe3ff2c",
 			"name": "delete the device tied to device-sdk to test callback",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "3b142789-04c6-43ed-a9b6-7d68ac2d169a",
+						"id": "415f0a2f-1f00-4a1c-a710-43a9d1b680a4",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -326,7 +323,7 @@
 							"});",
 							"",
 							"pm.test(\"Response must be valid and have a body\", function () {",
-							"     pm.response.to.be.withBody;",
+							"    pm.response.to.be.withBody;",
 							"});"
 						]
 					}
@@ -356,7 +353,6 @@
 			"response": []
 		},
 		{
-			"_postman_id": "b5940f72-1bba-4342-a4a4-fa73c2bb4a3b",
 			"name": "check the get command from the deleted device returns 404",
 			"event": [
 				{
