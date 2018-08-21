@@ -12,5 +12,5 @@ DUMP_FILES=(
 
 for index in "${!DUMP_FILES[@]}"
 do
-    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${DUMP_FILES[index]} --jsonArray"
+    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${DUMP_FILES[index]}"
 done
