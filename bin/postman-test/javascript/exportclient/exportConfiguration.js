@@ -10,6 +10,4 @@ db.exportConfiguration.remove({
     }
 });
 
-db.exportConfiguration.remove({
-    name: "OSIClient"
-});
+db.exportConfiguration.remove({"name": "OSIClient"});
