@@ -23,20 +23,3 @@ do
     echo "Info: ${DUMP_FILES[index]} data imported"
 done
 
-
-#!/bin/bash
-
-#DATA_BASE="metadata"
-
-#DUMP_FILES=(
-#    "/etc/newman/DataDumps/command/addressable.js"
-#    "/etc/newman/DataDumps/command/command.js"
-#    "/etc/newman/DataDumps/command/device.js"
-#    "/etc/newman/DataDumps/command/deviceProfile.js"
-#    "/etc/newman/DataDumps/command/deviceService.js"
-#)
-
-#for index in "${!DUMP_FILES[@]}"
-#do
-#    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${DUMP_FILES[index]}"
-#done
