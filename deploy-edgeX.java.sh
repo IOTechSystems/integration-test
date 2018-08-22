@@ -97,41 +97,8 @@ run_service rulesengine
 while ! $(docker-compose -f docker-compose.java.yml exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
 
-run_service device-virtual
+run_service device-sdk
+while ! $(docker-compose -f docker-compose.java.yml exec -T consul nc -z edgex-device-sdk 49999);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+sleep 5
 
 run_service postman
-
-
-
-
-
-
-
-
-#run_service volume
-#sleep 10
-#run_service consul
-#sleep 65
-#run_service config-seed
-#run_service mongo
-#sleep 12
-#run_service mongo-seed
-#run_service logging
-#sleep 65
-#run_service notifications
-#sleep 33
-#run_service metadata
-#sleep 60
-#run_service data
-#sleep 60
-#run_service command
-#sleep 60
-#run_service scheduler
-#sleep 60
-#run_service export-client
-#sleep 60
-#run_service export-distro
-#sleep 60
-#run_service rulesengine
-#sleep 60
-#run_service device-virtual
