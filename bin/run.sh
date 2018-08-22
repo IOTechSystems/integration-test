@@ -84,7 +84,7 @@ testAll() {
 	    rulesengineTest
     fi
 	exportClientTest
-	deviceSDKTest
+	#deviceSDKTest
 }
 
 #Main Script starts here

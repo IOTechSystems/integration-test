@@ -97,9 +97,9 @@ then
     sleep 5
 fi
 
-run_service device-sdk
+#run_service device-sdk
 
-while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-device-sdk 49999);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+#while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-device-sdk 49999);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+#sleep 5
 
 run_service postman
