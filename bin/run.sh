@@ -79,7 +79,10 @@ testAll() {
 	commandTest
 	loggingTest
 	supportNotificationTest
-	rulesengineTest
+	if [ "$EX_ARCH" = "x86_64" ]
+	then
+	    rulesengineTest
+    fi
 	exportClientTest
 	deviceSDKTest
 }
