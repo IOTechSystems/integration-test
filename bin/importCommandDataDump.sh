@@ -1,24 +1,42 @@
 #!/bin/bash
 
-NAMESFILE=$(dirname "$0")/files.sh
+#NAMESFILE=$(dirname "$0")/files.sh
 
-if [ -f $NAMESFILE ]; then 
+#if [ -f $NAMESFILE ]; then 
 
-	. $NAMESFILE
+#	. $NAMESFILE
 
-else 
-	echo "Error: Names file does not exist."
-	exit $?
+#else 
+#	echo "Error: Names file does not exist."
+#	exit $?
 
-fi
+#fi
+
+#DATA_BASE="metadata"
+#COLLECTIONS=( "addressable" "device" "deviceProfile" "deviceService" "command" )
+#DUMP_FILES=( $ADDRESSABLECCDATADUMP $DEVICECCDATADUMP $DEVICEPROFILECCDATADUMP $DEVICESERVICECCDATADUMP $COMMANDCCDATADUMP )
+
+#for index in "${!DUMP_FILES[@]}"
+#do
+#    docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]} --jsonArray"
+
+#    echo "Info: ${DUMP_FILES[index]} data imported"
+#done
+
+
+#!/bin/bash
 
 DATA_BASE="metadata"
-COLLECTIONS=( "addressable" "device" "deviceProfile" "deviceService" "command" )
-DUMP_FILES=( $ADDRESSABLECCDATADUMP $DEVICECCDATADUMP $DEVICEPROFILECCDATADUMP $DEVICESERVICECCDATADUMP $COMMANDCCDATADUMP )
+
+DUMP_FILES=(
+    "/etc/newman/DataDumps/command/addressable.js"
+    "/etc/newman/DataDumps/command/command.js"
+    "/etc/newman/DataDumps/command/device.js"
+    "/etc/newman/DataDumps/command/deviceProfile.js"
+    "/etc/newman/DataDumps/command/deviceService.js"
+)
 
 for index in "${!DUMP_FILES[@]}"
 do
-    docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]} --jsonArray"
-
-    echo "Info: ${DUMP_FILES[index]} data imported"
+    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${DUMP_FILES[index]}"
 done
