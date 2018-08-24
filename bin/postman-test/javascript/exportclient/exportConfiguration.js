@@ -4,10 +4,9 @@ var exportConfigurationsToBeRemoved = [
     ObjectId("5b0eb384fd4ca80001df4fa3")
 ];
 
-db.exportConfiguration.remove({
+db.logEntry.remove({
     _id: {
         $in: exportConfigurationsToBeRemoved
     }
 });
 
-db.exportConfiguration.remove({"name": "OSIClient"});
