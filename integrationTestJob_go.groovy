@@ -41,7 +41,7 @@ def runNode() {
     withEnv(envList) {
         try {
 
-            timeout(15){
+            timeout(30){
 
                 stage('Startup test services') {
                     sh 'bash ./deploy-edgeX.go.sh'
