@@ -1,26 +1,24 @@
 #!/bin/bash
 
 NAMESFILE=$(dirname "$0")/files.sh
-LOGGINGDUMPJS=/etc/newman/javascript/logging/logEntry.js
 
-
-if [ -f $NAMESFILE ]; then 
+if [ -f $NAMESFILE ]; then
 
 	. $NAMESFILE
 
-else 
+else
 	echo "Error: Names file does not exist."
 	exit $?
 
 fi
 
 DATA_BASE="logging"
-FLUSH_SCRIPTS=( $LOGGINGDUMPJS )
+COLLECTIONS=( "logEntry" )
+DUMP_FILES=( $LOGGINGDATADUMP )
 
-for index in "${!FLUSH_SCRIPTS[@]}"
+for index in "${!DUMP_FILES[@]}"
 do
-    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${FLUSH_SCRIPTS[index]}"
+    docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]}"
 
-    echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
-
+    echo "Info: ${DUMP_FILES[index]} data imported"
 done
