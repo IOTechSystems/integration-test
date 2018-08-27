@@ -24,12 +24,6 @@ def runNode() {
         'EX_VER':'1.0.1',
         'EX_ARCH': checkOs()
     ]
-    if(params.TEST_SERVICE==null){
-        print "test_service is null"
-    }else{
-        print "test_service is exist ,set to envMap"
-        envMap.put(params.TEST_SERVICE,params.TEST_SERVICE_IMAGE)
-    }
 
     def envList = []
 
