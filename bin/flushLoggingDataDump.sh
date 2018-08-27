@@ -1,6 +1,8 @@
 #!/bin/bash
 
 NAMESFILE=$(dirname "$0")/files.sh
+LOGGINGDUMPJS=/etc/newman/javascript/logging/logEntry.js
+
 
 if [ -f $NAMESFILE ]; then
 
@@ -13,12 +15,12 @@ else
 fi
 
 DATA_BASE="logging"
-COLLECTIONS=( "logEntry" )
-DUMP_FILES=( $LOGGINGDATADUMP )
+FLUSH_SCRIPTS=( $LOGGINGDUMPJS )
 
-for index in "${!DUMP_FILES[@]}"
+for index in "${!FLUSH_SCRIPTS[@]}"
 do
-    docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]}"
+    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${FLUSH_SCRIPTS[index]}"
 
-    echo "Info: ${DUMP_FILES[index]} data imported"
+    echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
+
 done
