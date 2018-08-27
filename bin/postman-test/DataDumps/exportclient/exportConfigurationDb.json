@@ -1,14 +1,16 @@
 [
 {
-    "_id" : ObjectId("5b0eb384fd4ca80001df4fa9"),
-    "created" : NumberLong(1527690084377),
-    "modified" : NumberLong(0),
-    "origin" : NumberLong(1471806386919),
+    "_id": {
+        "$oid": "5b0eb384fd4ca80001df4fa9"
+    },
+    "created" : 1527690084377,
+    "modified" : 0,
+    "origin" : 1471806386919,
     "name" : "TestClient",
     "addressable" : {
-        "created" : NumberLong(0),
-        "modified" : NumberLong(0),
-        "origin" : NumberLong(1471806386919),
+        "created" : 0,
+        "modified" : 0,
+        "origin" : 1471806386919,
         "name" : "OSIMQTTBroker",
         "protocol" : "TCP",
         "method" : "",
@@ -41,15 +43,17 @@
     "destination" : "REST_ENDPOINT"
 },
 {
-    "_id" : ObjectId("5b0eb384fd4ca80001df4fa2"),
-    "created" : NumberLong(1527690084377),
-    "modified" : NumberLong(0),
-    "origin" : NumberLong(1471806386919),
+    "_id": {
+        "$oid": "5b0eb384fd4ca80001df4fa2"
+    },
+    "created" : 1527690084377,
+    "modified" : 0,
+    "origin" : 1471806386919,
     "name" : "TestClient2",
     "addressable" : {
-        "created" : NumberLong(0),
-        "modified" : NumberLong(0),
-        "origin" : NumberLong(1471806386919),
+        "created" : 0,
+        "modified" : 0,
+        "origin" : 1471806386919,
         "name" : "OSIMQTTBroker",
         "protocol" : "TCP",
         "method" : "",
@@ -82,15 +86,17 @@
     "destination" : "REST_ENDPOINT"
 },
 {
-    "_id" : ObjectId("5b0eb384fd4ca80001df4fa3"),
-    "created" : NumberLong(1527690084377),
-    "modified" : NumberLong(0),
-    "origin" : NumberLong(1471806386919),
+    "_id": {
+        "$oid": "5b0eb384fd4ca80001df4fa3"
+    },
+    "created" : 1527690084377,
+    "modified" : 0,
+    "origin" : 1471806386919,
     "name" : "OSIClient3",
     "addressable" : {
-        "created" : NumberLong(0),
-        "modified" : NumberLong(0),
-        "origin" : NumberLong(1471806386919),
+        "created" : 0,
+        "modified" : 0,
+        "origin" : 1471806386919,
         "name" : "OSIMQTTBroker",
         "protocol" : "TCP",
         "method" : "",
