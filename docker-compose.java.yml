@@ -294,7 +294,7 @@ services:
       - command
 
   postman:
-    image: postman/newman_ubuntu1404:3.10.0
+    image: docker.iotechsys.com/services/newman_${EX_ARCH}:4.0.2
     networks:
       edgex-network:
         aliases:

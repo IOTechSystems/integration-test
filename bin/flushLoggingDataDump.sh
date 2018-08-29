@@ -4,11 +4,11 @@ NAMESFILE=$(dirname "$0")/files.sh
 LOGGINGDUMPJS=/etc/newman/javascript/logging/logEntry.js
 
 
-if [ -f $NAMESFILE ]; then 
+if [ -f $NAMESFILE ]; then
 
 	. $NAMESFILE
 
-else 
+else
 	echo "Error: Names file does not exist."
 	exit $?
 

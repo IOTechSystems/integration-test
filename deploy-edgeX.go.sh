@@ -25,8 +25,6 @@
 #    . $(dirname "$0")/bin/env.sh
 #fi
 
-
-
 run_service () {
 	echo "[INFO] Starting.. $1"
 	docker-compose -f docker-compose.go.yml up -d $1
@@ -92,13 +90,16 @@ run_service export-distro
 while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-export-distro 48070);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 sleep 5
 
-run_service rulesengine
+if [ "$EX_ARCH" = "x86_64" ]
+then
+    run_service rulesengine
+    while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect."; sleep 5; done
+    sleep 5
+fi
 
-while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+#run_service device-sdk
 
-run_service device-sdk
-while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-device-sdk 49999);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+#while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-device-sdk 49999);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+#sleep 5
 
 run_service postman

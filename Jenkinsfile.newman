@@ -1,0 +1,20 @@
+#!/usr/bin/env groovy
+
+node ("${env.SLAVE}")
+{
+    stage ('Checkout')
+    {
+        cleanWs ()
+        checkout scm
+        sh 'git clone --branch EDGEX-4.0.2 git@github.com:IOTechSystems/newman.git'
+    }
+    stage ('Build')
+    {
+        sh './build-newman.sh'
+    }
+    stage ("Clean")
+    { 
+        sh '. ./arch.sh && docker image rm docker.iotechsys.com/services/newman_$EX_ARCH:4.0.2'
+        cleanWs ()
+    }
+}

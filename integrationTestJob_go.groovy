@@ -1,19 +1,29 @@
-
+def checkOs()
+{
+    def uname = sh script: 'uname -m', returnStdout: true
+    if (uname.startsWith("armv7l")) 
+    {
+        return "arm"
+    }
+    else if (uname.startsWith("aarch64")) 
+    {
+        return "arm64"
+    }
+    else if (uname.startsWith("x86_64")) 
+    {
+        return "x86_64"
+    }
+}
+    
 def runNode() {
     slack = load "${pwd()}/slack.groovy"
 
     def envMap =[
-        'EX_ARCH':'x86_64',
         'EX_CONSUL': false,
         'EX_LOG': false,
-        'EX_VER':'1.0.1'
+        'EX_VER':'1.0.1',
+        'EX_ARCH': checkOs()
     ]
-    if(params.TEST_SERVICE==null){
-        print "test_service is null"
-    }else{
-        print "test_service is exist ,set to envMap"
-        envMap.put(params.TEST_SERVICE,params.TEST_SERVICE_IMAGE)
-    }
 
     def envList = []
 
@@ -25,7 +35,7 @@ def runNode() {
     withEnv(envList) {
         try {
 
-            timeout(15){
+            timeout(30){
 
                 stage('Startup test services') {
                     sh 'bash ./deploy-edgeX.go.sh'

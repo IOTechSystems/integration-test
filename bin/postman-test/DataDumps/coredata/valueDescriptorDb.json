@@ -1,3 +1,4 @@
+[
 {
   "_id": {
     "$oid": "57b9fbb2189b95b8afcdafd2"
@@ -16,7 +17,7 @@
     "temp",
     "hvac"
   ]
-}
+},
 {
   "_id": {
     "$oid": "57b9fbb2189b95b8afcdafd4"
@@ -34,7 +35,7 @@
   "labels": [
     "RPM"
   ]
-}
+},
 {
   "_id": {
     "$oid": "57b9fbb2189b95b8afcdafd3"
@@ -53,7 +54,7 @@
     "temp",
     "hvac"
   ]
-}
+},
 {
   "_id": {
     "$oid": "57b9fbb2189b95b8afcdafd5"
@@ -72,7 +73,7 @@
     "temp",
     "hvac"
   ]
-}
+},
 {
   "_id": {
     "$oid": "57e5036fe4b0f1b53f5340fe"
@@ -90,7 +91,7 @@
   "labels": [
     "candel"
   ]
-}
+},
 {
   "_id": {
     "$oid": "57ea0061e4b0f1b53f534137"
@@ -108,7 +109,7 @@
   "labels": [
     "mole"
   ]
-}
+},
 {
   "_id": {
     "$oid": "57ea0061e4b0f1b53f534148"
@@ -127,3 +128,4 @@
     "ohm"
   ]
 }
+]

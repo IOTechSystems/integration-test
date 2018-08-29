@@ -18,7 +18,8 @@ DUMP_FILES=( $ADDRESSABLECCDATADUMP $DEVICECCDATADUMP $DEVICEPROFILECCDATADUMP $
 
 for index in "${!DUMP_FILES[@]}"
 do
-    docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]}"
+    docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]} --jsonArray"
 
     echo "Info: ${DUMP_FILES[index]} data imported"
 done
+
