@@ -17,6 +17,9 @@ echoAllAvailableCommand() {
         "-testMetaData"
         "-importCoreData"
 
+        "-testCommand"
+        "-importCommand"
+
         "-testSupportLogging"
         "-importSupportLogging"
 
@@ -63,6 +66,16 @@ case ${option} in
     -importMetaData)
         $(dirname "$0")/bin/flushMetaDataDump.sh
         $(dirname "$0")/bin/importMetaDataDump.sh
+        ;;
+
+    # Command
+    -testCommand)
+        $(dirname "$0")/bin/flushCommandDataDump.sh
+        sh ./bin/run.sh -co
+        ;;
+    -importCommand)
+        $(dirname "$0")/bin/flushCommandDataDump.sh
+        $(dirname "$0")/bin/importCommandDataDump.sh
         ;;
 
     # SupportLogging
