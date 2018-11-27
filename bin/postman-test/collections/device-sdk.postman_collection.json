@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ada3182d-bf4d-4eab-8b55-762c7ddbf6aa",
+		"_postman_id": "77dda8ca-e561-415e-b239-eba984c98bec",
 		"name": "device-sdk",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -43,12 +43,9 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"body": {},
 				"url": {
-					"raw": "{{metaDataUrl}}/api/v1/deviceservice/name/edgex-device-sdk",
+					"raw": "{{metaDataUrl}}/api/v1/deviceservice/name/device-sdk",
 					"host": [
 						"{{metaDataUrl}}"
 					],
@@ -57,7 +54,7 @@
 						"v1",
 						"deviceservice",
 						"name",
-						"edgex-device-sdk"
+						"device-sdk"
 					]
 				},
 				"description": "given core-metadata and device-sdk started up\nwhen device-sdk initialized successfully\nthen device-sdk registered itself as a device service"
@@ -99,25 +96,28 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
+				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\"description\":\"BACnet Honeywell thermostats\",\"name\":\"device-sdk-thermostat-profile\",\"manufacturer\":\"Honeywell\",\"model\":\"ABC123\",\"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\"objects\":null,\"deviceResources\":[{\"description\":\"Cooling Point\",\"name\":\"coolingpoint\",\"tag\":null,\"properties\":{\"value\":{\"type\":\"INT64\",\"readWrite\":\"RW\",\"minimum\":\"0\",\"maximum\":\"1000\",\"defaultValue\":\"0\",\"size\":\"1\",\"word\":\"2\",\"lsb\":null,\"mask\":\"0x00\",\"shift\":\"0\",\"scale\":\"1\",\"offset\":\"0.0\",\"base\":\"0\",\"assertion\":null,\"signed\":true,\"precision\":null},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"degree\"}},\"attributes\":null}],\"resources\":[{\"name\":\"coolingpoint\",\"get\":[{\"index\":\"1\",\"operation\":\"get\",\"object\":\"coolingpoint\",\"property\":\"value\",\"parameter\":\"coolingpoint\",\"resource\":null,\"secondary\":[],\"mappings\":{}}],\"set\":[{\"index\":\"2\",\"operation\":\"set\",\"object\":\"coolingpoint\",\"property\":\"value\",\"parameter\":\"coolingpoint\",\"resource\":null,\"secondary\":[],\"mappings\":{}}]}],\"commands\":[{\"name\":\"coolingpoint\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/coolingpoint\",\"responses\":[{\"code\":\"200\",\"description\":\"not a float\",\"expectedValues\":[\"coolingpoint\"]}]},\"put\":{\"path\":\"/api/v1/device/{deviceId}/coolingpoint\",\"responses\":[{\"code\":\"200\",\"description\":\"not a float\",\"expectedValues\":[\"coolingpoint\"]}],\"parameterNames\":[\"coolingpoint\"]}}]}"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"value": "device-sdk_sample_profile.yaml",
+							"description": "",
+							"type": "file"
+						}
+					]
 				},
 				"url": {
-					"raw": "{{metaDataUrl}}/api/v1/deviceprofile",
+					"raw": "{{metaDataUrl}}/api/v1/deviceprofile/uploadfile",
 					"host": [
 						"{{metaDataUrl}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"deviceprofile"
+						"deviceprofile",
+						"uploadfile"
 					]
 				}
 			},
@@ -188,7 +188,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e4116d2d-c1ff-4bab-99df-e94a2726e9bf",
+						"id": "3004f0c3-7fdf-4f1a-9a34-ff120ff825e8",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -210,10 +210,7 @@
 							"",
 							"pm.test(\"Response must be valid and have a body\", function () {",
 							"     pm.response.to.be.withBody;",
-							"});",
-							"",
-							"pm.environment.set(\"device_id\", pm.response.text());",
-							""
+							"});"
 						]
 					}
 				}
@@ -228,7 +225,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\":\"device-sdk-sample\",\"description\":\"created for test\",\"adminState\":\"UNLOCKED\",\"operatingState\":\"ENABLED\",\"addressable\":{\"name\":\"device-sdk-sample-address\"},\"labels\":[\"modbus\",\"smart-meter\"],\"service\":{\"name\":\"edgex-device-sdk\"},\"profile\":{\"name\":\"device-sdk-thermostat-profile\"}}"
+					"raw": "{\"id\": \"5b2255460a5d402bb0711a39\", \"name\":\"device-sdk-sample\",\"description\":\"created for test\",\"adminState\":\"UNLOCKED\",\"operatingState\":\"ENABLED\",\"addressable\":{\"name\":\"device-sdk-sample-address\"},\"labels\":[\"modbus\",\"smart-meter\"],\"service\":{\"name\":\"device-sdk\"},\"profile\":{\"name\":\"device-sdk-thermostat-profile\"}}"
 				},
 				"url": {
 					"raw": "{{metaDataUrl}}/api/v1/device",
@@ -245,18 +242,59 @@
 			"response": []
 		},
 		{
+			"name": "delete the device tied to device-sdk to test callback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b142789-04c6-43ed-a9b6-7d68ac2d169a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{metaDataUrl}}/api/v1/device/id/5b2255460a5d402bb0711a39",
+					"host": [
+						"{{metaDataUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device",
+						"id",
+						"5b2255460a5d402bb0711a39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "check the get command works",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "59adeb23-62cb-473c-9aa7-9b711686c860",
+						"id": "6f2e5f9a-52e2-447a-91cc-1eddea9acf8a",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
-							"    if(responseCode.code !== 200){",
-							"        console.log(pm.response.text());",
-							"    }",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
@@ -285,12 +323,9 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"body": {},
 				"url": {
-					"raw": "{{deviceSDKUrl}}/api/v1/device/{{device_id}}/coolingpoint",
+					"raw": "{{deviceSDKUrl}}/api/v1/device/5b2255460a5d402bb0711a39/coolingpoint",
 					"host": [
 						"{{deviceSDKUrl}}"
 					],
@@ -298,55 +333,8 @@
 						"api",
 						"v1",
 						"device",
-						"{{device_id}}",
+						"5b2255460a5d402bb0711a39",
 						"coolingpoint"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete the device tied to device-sdk to test callback",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "415f0a2f-1f00-4a1c-a710-43a9d1b680a4",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response time is less than 600ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(600);",
-							"});",
-							"",
-							"pm.test(\"Response must be valid and have a body\", function () {",
-							"    pm.response.to.be.withBody;",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{metaDataUrl}}/api/v1/device/id/{{device_id}}",
-					"host": [
-						"{{metaDataUrl}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"device",
-						"id",
-						"{{device_id}}"
 					]
 				}
 			},
@@ -376,12 +364,9 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"body": {},
 				"url": {
-					"raw": "{{deviceSDKUrl}}/api/v1/device/{{device_id}}/coolingpoint",
+					"raw": "{{deviceSDKUrl}}/api/v1/device/5b2255460a5d402bb0711a39/coolingpoint",
 					"host": [
 						"{{deviceSDKUrl}}"
 					],
@@ -389,7 +374,7 @@
 						"api",
 						"v1",
 						"device",
-						"{{device_id}}",
+						"5b2255460a5d402bb0711a39",
 						"coolingpoint"
 					]
 				}
