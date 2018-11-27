@@ -188,15 +188,12 @@ services:
       - metadata
 
   scheduler:
-    image: docker.iotechsys.com/edgexpert/support-scheduler-java-${EX_ARCH}:${EX_VER}
+    image: docker.iotechsys.com/edgexpert/support-scheduler-go-${EX_ARCH}:${EX_VER}
     entrypoint:
-      - java
-      - -jar
-      - -Djava.security.egd=file:/dev/urandom
-      - -Xmx100M
-      - support-scheduler.jar
-      - --spring.cloud.consul.enabled=${EX_CONSUL}
-      - --logging.remote.enable=${EX_LOG}
+    - /support-scheduler
+    - --consul=${EX_CONSUL}
+    - --profile=docker
+    - --confdir=/res
 #    ports:
 #      - "48085:48085"
 #    container_name: edgex-support-scheduler
