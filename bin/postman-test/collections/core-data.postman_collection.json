@@ -1210,6 +1210,36 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "faf89019-7cf8-4a8d-b80d-44a42fa37c5e",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
