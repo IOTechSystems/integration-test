@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "26ac1661-fcfd-483e-9eb6-a2ac6de0cc3a",
+		"_postman_id": "d49c708b-4afd-46bc-9f89-51d84566313a",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -126,13 +126,28 @@
 								"id": "a1ea6209-73a1-4050-92c7-da553dba75dd",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/event\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"eventID\", res.json()[0].id);",
-									"    }",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"eventID\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -283,13 +298,28 @@
 								"id": "be253b63-b1d1-4bb5-ae57-9c42085f0c31",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/event\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"eventGetRequestId\", res.json()[0].id);",
-									"    }",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"eventGetRequestId\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -362,13 +392,28 @@
 								"id": "c5ca2f23-f6b8-4d9c-82ce-069d17661824",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/event\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"eventPutRequestId\", res.json()[0].id);",
-									"    }",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"eventPutRequestId\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -447,13 +492,28 @@
 								"id": "d795ea87-8a2d-49e3-b945-61b03d678897",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/event\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"eventDelRequestId\", res.json()[0].id);",
-									"    }",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"eventDelRequestId\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1210,6 +1270,36 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f242bd6c-1d57-4fab-b3b5-4e1f89f8f01b",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -1662,89 +1752,6 @@
 				}
 			],
 			"description": "Folder for event"
-		},
-		{
-			"name": "ping",
-			"item": [
-				{
-					"name": "92 http://localhost:48080/api/v1/ping",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/ping - GET",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Ping Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody === \"pong\";",
-									"        }",
-									"    }"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/ping",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"ping"
-							]
-						},
-						"description": "Test service providing an indication that the service is available."
-					},
-					"response": []
-				},
-				{
-					"name": "93 http://localhost:48080/api/v1/ping",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/ping",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"ping"
-							]
-						},
-						"description": "Test service providing an indication that the service is available."
-					},
-					"response": []
-				}
-			],
-			"description": "Folder for ping"
 		},
 		{
 			"name": "reading",
@@ -3215,7 +3222,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5232da28-3a84-4a83-a7b0-4cf79b66241a",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/valuedescriptor/name/:name - DELETE",
@@ -3238,7 +3245,8 @@
 									"            tests[\"Record Deleted\"] = responseBody === \"true\";",
 									"        }",
 									"  }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3938,6 +3946,89 @@
 				}
 			],
 			"description": "Folder for valuedescriptor"
+		},
+		{
+			"name": "ping",
+			"item": [
+				{
+					"name": "92 http://localhost:48080/api/v1/ping",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/ping - GET",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Ping Success\"] = responseCode.code === 200;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" if(responseCode.code === 200){",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"        }",
+									"        if(responseBody.length!== 0){",
+									"            tests[\"Body is correct\"] = responseBody === \"pong\";",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/ping",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				},
+				{
+					"name": "93 http://localhost:48080/api/v1/ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/ping",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for ping"
 		}
 	],
 	"event": [
