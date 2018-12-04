@@ -21,7 +21,7 @@ def runNode() {
     def envMap =[
         'EX_CONSUL': false,
         'EX_LOG': false,
-        'EX_VER':'1.0.1',
+        'EX_VER':'1.1.0',
         'EX_ARCH': checkOs()
     ]
 

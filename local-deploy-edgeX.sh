@@ -37,6 +37,7 @@ run_service consul
 
 run_service config-seed
 run_service mongo
+run_service redis
 
 run_service logging
 
