@@ -40,7 +40,7 @@ services:
       - volume
 
   config-seed:
-    image: docker.iotechsys.com/edgexpert/docker-core-config-seed-go-${EX_ARCH}:${EX_VER}
+    image: docker.iotechsys.com/edgexpert/config-seed-go-${EX_ARCH}:${EX_VER}
     container_name: edgex-config-seed
     hostname: edgex-core-config-seed
     networks:
@@ -74,6 +74,22 @@ services:
     depends_on:
       - volume
 
+  redis:
+    image: redis:5
+    ports:
+      - "6379:6379"
+    container_name: edgex-redis
+    hostname: edgex-redis
+    networks:
+    - edgex-network
+    volumes:
+    - db-data:/data/db
+    - log-data:/edgex/logs
+    - consul-config:/consul/config
+    - consul-data:/consul/data
+    depends_on:
+    - volume
+
   logging:
     image: docker.iotechsys.com/edgexpert/support-logging-go-${EX_ARCH}:${EX_VER}
     entrypoint:
@@ -94,8 +110,9 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
-      - mongo
+      - redis
       - volume
 
   notifications:
@@ -118,6 +135,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
       - logging
 
@@ -141,6 +159,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
 
   data:
     image: docker.iotechsys.com/edgexpert/core-data-go-${EX_ARCH}:${EX_VER}
@@ -163,6 +182,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
 
   command:
     image: docker.iotechsys.com/edgexpert/core-command-go-${EX_ARCH}:${EX_VER}
@@ -184,6 +204,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
       - metadata
 
@@ -207,6 +228,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
       - metadata
 
@@ -230,6 +252,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
       - data
     environment:
@@ -257,6 +280,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
       - export-client
     environment:

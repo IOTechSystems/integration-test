@@ -74,6 +74,22 @@ services:
     depends_on:
       - volume
 
+  redis:
+    image: redis:5
+    ports:
+    - "6379:6379"
+    container_name: edgex-redis
+    hostname: edgex-redis
+    networks:
+    - edgex-network
+    volumes:
+    - db-data:/data/db
+    - log-data:/edgex/logs
+    - consul-config:/consul/config
+    - consul-data:/consul/data
+    depends_on:
+    - volume
+
   logging:
     image: docker.iotechsys.com/edgexpert/support-logging-go-${EX_ARCH}:${EX_VER}
     entrypoint:
