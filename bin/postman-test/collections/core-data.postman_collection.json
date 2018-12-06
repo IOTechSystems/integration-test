@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d49c708b-4afd-46bc-9f89-51d84566313a",
+		"_postman_id": "b53ec894-ecb6-44f7-937b-f9602df24bc2",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1902,13 +1902,22 @@
 								"id": "36c2f6cd-818b-41a1-aa89-22bb99612a5b",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\":1471806366619,",
+									"    \"name\":\"co2\",",
+									"    \"value\":\"12\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/reading',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/reading/0/10000000000000/1\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"readingID\", res.json()[0].id);",
-									"    }",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"readingID\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1925,7 +1934,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"created\": 1474848468971,\n    \"modified\": 1474848468971,\n    \"origin\": 1471806386918,\n    \"pushed\": 0,\n    \"name\": \"ohm\",\n    \"value\": \"6\"\n }"
+							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"name\": \"ohm\",\n    \"value\": \"6\"\n }"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -2122,13 +2131,22 @@
 								"id": "e421cc29-fd07-48e8-8969-a7d5a714bab3",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\":1471806366619,",
+									"    \"name\":\"co2\",",
+									"    \"value\":\"12\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/reading',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/reading/0/10000000000000/1\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"readingDelRequestId\", res.json()[0].id);",
-									"    }",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"readingDelRequestId\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2334,7 +2352,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "dea49113-ab40-4f95-bb48-414bae2b964d",
 								"exec": [
 									"/*",
 									" * Test Case:  api/v1/reading/uomlabel/:uomLabel/{limit}- GET",
@@ -2383,7 +2401,21 @@
 									"    }",
 									"}",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aa531137-b658-4aeb-b938-e0ffb1096515",
+								"exec": [
+									"if(!data.readingValueDescriptorUom){",
+									"    pm.environment.set(\"readingValueDescriptorUom\", \"ohm\");",
+									"    pm.environment.set(\"limit\", \"100\");",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2418,7 +2450,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e7dffd02-30b8-425f-8b54-ae9961db7dfe",
 								"exec": [
 									" /*",
 									" * Test Case:  api/v1/reading/name/:name/{limit}- GET",
@@ -2462,7 +2494,21 @@
 									"        }",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2d8bf02a-f21e-4251-acf7-0fa0cfb3d7cc",
+								"exec": [
+									"if(!data.readingValueDescriptorUom){",
+									"    pm.environment.set(\"readingValueDescriptorLabel\", \"temp\");",
+									"    pm.environment.set(\"limit\", \"100\");",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2844,12 +2890,25 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "f3c739cc-371e-4e5c-801f-466a5f61936b",
 								"exec": [
 									"//Assert 404 status if the reading cannot be found by id",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "46d7a1a7-1fff-43f4-987b-f4e3ce99edcc",
+								"exec": [
+									"if(!data.invalidId){",
+									"    pm.environment.set(\"invalidId\", \"57e866d4e4b0ca8e6d73a412\");",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
