@@ -27,8 +27,7 @@ node ("${env.SLAVE}")
     {
         script 
         {
-            allure
-            ([
+            allure ([
                 includeProperties: false,
                 jdk: '',
                 properties: [],
