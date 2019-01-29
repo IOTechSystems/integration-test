@@ -58,10 +58,10 @@ run_service export-client
 
 run_service export-distro
 
-if [ "$EX_ARCH" = "x86_64" ]
-then
-    run_service rulesengine
-fi
+#if [ "$EX_ARCH" = "x86_64" ]
+#then
+#    run_service rulesengine
+#fi
 
 #run_service device-sdk
 

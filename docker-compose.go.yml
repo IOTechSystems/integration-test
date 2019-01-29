@@ -293,23 +293,23 @@ services:
       - EXPORT_DISTRO_MQTTS_KEY_FILE=none
 
 
-  rulesengine:
-    image: docker.iotechsys.com/edgexpert/support-rulesengine-java-${EX_ARCH}:1.0.1
+#  rulesengine:
+#    image: docker.iotechsys.com/edgexpert/support-rulesengine-java-${EX_ARCH}:1.0.1
 #    ports:
 #      - "48075:48075"
 #    container_name: edgex-support-rulesengine
-    hostname: edgex-support-rulesengine
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-support-rulesengine
-    volumes:
-      - db-data:/data/db
-      - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
-    depends_on:
-      - export-distro
+#    hostname: edgex-support-rulesengine
+#    networks:
+#      edgex-network:
+#        aliases:
+#          - edgex-support-rulesengine
+#    volumes:
+#      - db-data:/data/db
+#      - log-data:/edgex/logs
+#      - consul-config:/consul/config
+#      - consul-data:/consul/data
+#    depends_on:
+#      - export-distro
 
   postman:
     image: docker.iotechsys.com/services/newman_${EX_ARCH}:4.0.2
