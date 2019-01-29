@@ -25,14 +25,16 @@ node ("${env.SLAVE}")
     }
     stage('Generate Allure Reports')
     {
-        script {
-                allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'bin/testResult']]
-                ])
+        script 
+        {
+            allure
+            ([
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'bin/testResult']]
+            ])
         }
     }
     stage ("Archive Artifacts")
