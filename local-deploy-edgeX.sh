@@ -56,7 +56,7 @@ run_service export-client
 
 run_service export-distro
 
-run_service rulesengine
+#run_service rulesengine
 
 #run_service device-virtual
 

@@ -26,7 +26,7 @@ echoAllAvailableCommand() {
         "-testSupportNotification"
         "-importSupportNotification"
 
-        "-testSupportRulesengine"
+    #    "-testSupportRulesengine"
 
         "-testExportClient"
         "-importExportClient"
@@ -99,9 +99,9 @@ case ${option} in
         ;;
 
     # SupportRulesengine
-    -testSupportRulesengine)
-        sh ./bin/run.sh -ru
-        ;;
+    #-testSupportRulesengine)
+    #    sh ./bin/run.sh -ru
+    #    ;;
 
     # ExportClient
     -testExportClient)
