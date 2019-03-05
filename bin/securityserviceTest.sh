@@ -2,8 +2,9 @@
 
 NAMESFILE=$(dirname "$0")/files.sh
 
-COLLECTION_PATH="collections/core-data.postman_collection.json"
-ENV_PATH="environment/core-data-docker.postman_environment.json"
+COLLECTION_PATH="collections/security-apigateway.postman_collection.json"
+ENV_PATH="environment/security-docker.postman_environment.json"
+DOCKER_NETWORK="edgex-network"
 
 if [ -f $NAMESFILE ]; then 
 
@@ -15,31 +16,25 @@ else
 
 fi
 
-echo "Info: Initiating Coredata Test."
+echo "Info: Initiating Securityservice Test."
+
+OUTPUT=$(docker run –-network=${DOCKER_NETWORK} edgexfoundry/docker-edgex-proxy-go --useradd=jerry --group=admin | tail -1)
+TOKEN=$( echo $OUTPUT | sed 's/.*: \([^.]*\).*/\1/')
+
 
 echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="reading" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export "newman/coreData_reading_`date "+%Y%m%d-%H%M%S"`.xml"
-docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="reading_error_4xx" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export "newman/coreData_readinf4xx_`date "+%Y%m%d-%H%M%S"`.xml"
+    --folder="reading" --environment=${ENV_PATH} --reporters="junit,cli" --global-var "accessToken=${TOKEN}"  --reporter-junit-export "newman/securityService_reading_`date "+%Y%m%d-%H%M%S"`.xml"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="valuedescriptor" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export "newman/coreData_valuedescriptor_`date "+%Y%m%d-%H%M%S"`.xml"
-docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="valuedescriptor_error_4xx" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export "newman/coreData_valuedescriptor4xx_`date "+%Y%m%d-%H%M%S"`.xml"
+    --folder="reading_error_4xx" --environment=${ENV_PATH} --reporters="junit,cli" --global-var "accessToken=${TOKEN}"  --reporter-junit-export "newman/securityService_reading_error_4xx_`date "+%Y%m%d-%H%M%S"`.xml"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export "newman/coreData_event_`date "+%Y%m%d-%H%M%S"`.xml"
+    --folder="ping" --environment=${ENV_PATH} --reporters="junit,cli" --global-var "accessToken=${TOKEN}"  --reporter-junit-export "newman/securityService_ping_`date "+%Y%m%d-%H%M%S"`.xml"
+	
 docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli" --reporter-junit-export "newman/coreData_event4xx_`date "+%Y%m%d-%H%M%S"`.xml"
-
+    --folder="api-gateway" --environment=${ENV_PATH} --reporters="junit,cli" --global-var "accessToken=${TOKEN}" --reporter-junit-export "newman/securityService_api-gateway_`date "+%Y%m%d-%H%M%S"`.xml"
 
 
 #docker run --rm --user="1000" -v "${PWD}/bin/postman-test":/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \
@@ -83,4 +78,4 @@ docker-compose run --rm postman run ${COLLECTION_PATH} \
 #
 #newman run $COREDATACOLLFILE --folder valuedescriptor_error_4xx -d $VDDATAFILE -e $COREDATAENVFILE -r cli,html --reporter-html-export $VDREPORT4XXFILE
 
-echo "Info:Coredata Test Completed."
+echo "Info:Securityservice Test Completed."

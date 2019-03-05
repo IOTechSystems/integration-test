@@ -4,26 +4,30 @@ How to run blackbox-testing
 
 .. contents::
 
-============
-Prerequisite
-============
+=============
+Prerequisites
+=============
 
-- Install docker, docker-compose
-- Install postman https://www.getpostman.com/apps
-- Clone repo from https://github.com/edgexfoundry/blackbox-testing
+Before running EdgeX black-box test using the Newman script and Postman, you must install the following:
+
+- docker
+- docker-compose
+- Postman https://www.getpostman.com/apps
+
+You must also clone the repo from https://github.com/edgexfoundry/blackbox-testing
 
 ============
 Setup env.sh
 ============
-We need to set up the environment variables for the test script.
+To set up the environment variables for the test script, do the following:
 
-1. Open file **path/to/blackbox-testing/deploy-edgeX.sh** and uncomment below code snippet:  
+1.Open the **path/to/blackbox-testing/deploy-edgeX.sh** file and uncomment the following code snippet:
 
 . $(dirname "$0")/bin/env.sh
 
 .. image:: images/env-setup1.png
 
-2. Open file **path/to/blackbox-testing/bin/run.sh** and uncomment below code snippet: 
+2. Open the **path/to/blackbox-testing/bin/run.sh** file and uncomment the following code snippet:
 
 . $(dirname "$0")/env.sh
 
@@ -33,13 +37,13 @@ We need to set up the environment variables for the test script.
 Deploy EdgeX
 ============
 
-Change directory to **path/to/blackbox-testing/**, execute below command:
+Change directory to **path/to/blackbox-testing/**, and execute the following command:
 
 .. code-block:: bash
 
         $ bash deploy-edgeX.sh
 
-Then we will see the console output like:
+The console displays output similar to the following:
 
 .. code-block:: bash
 
@@ -66,7 +70,7 @@ Then we will see the console output like:
     blackbox-testing_metadata_1 is up-to-date
     Creating blackbox-testing_command_1 ... done
 
-We can check EdgeX services by command docker ps:
+2. Check the EdgeX services using the **docker ps** command, as shown below:
 
 .. code-block:: bash
 
@@ -82,23 +86,23 @@ We can check EdgeX services by command docker ps:
     9e4bf85969d7        consul:1.1.0                                                       "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:8400->8400/tcp, 8301-8302/udp, 0.0.0.0:8500->8500/tcp, 8300-8302/tcp, 8600/udp, 0.0.0.0:8600->8600/tcp   blackbox-testing_consul_1
     47f532468383        nexus3.edgexfoundry.org:10004/docker-edgex-volume:master           "/bin/sh -c '/usr/bi…"   4 minutes ago       Up 4 minutes                                                                                                                         blackbox-testing_volume_1
 
-==================
-Run test by Newman
-==================
+=====================
+Run Test Using Newman
+=====================
 
-First of all, the script logic is:
+The script logic is as follows:
 
-- mport test data into Edgex
-- Run test script by Newman
+- Import test data into Edgex
+- Run the Newman test script
 - Clean test data
 
-For example, when we execute bash **./bin/run.sh -cd**, then the script logic is:
+For example, when we execute **bash ./bin/run.sh -cd**, then the script logic is:
 
 - Import core-data's test data into Edgex
-- Run core-data's test script by Newman
+- Run core-data's test script
 - Clean core-data's test data
 
-And the output will like:
+The output is similar to the following:
 
 .. code-block:: bash
 
@@ -177,7 +181,7 @@ And the output will like:
     │ average response time: 6ms                    │
     └───────────────────────────────────────────────┘
 
-So after deploy services, we can test service's API by the command:
+After deploying services, we can test the service's API using the following commands:
 
 ======================  ======================
 Testservice             command 
@@ -190,9 +194,9 @@ core-metadata	         bash ./bin/run.sh -md
 core-data	             bash ./bin/run.sh -cd
 core-command	         bash ./bin/run.sh -co
 All	                     bash ./bin/run.sh -all 
-======================  ======================  
+======================  ======================
 
-Or we can just run bash ./bin/run.sh to see all usages:
+You can run bash ./bin/run.sh to list these options:
 
 .. code-block:: bash
 
@@ -202,55 +206,81 @@ Or we can just run bash ./bin/run.sh to see all usages:
     [INFO] Init postman test data .
     run.sh:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ru Rulesengine] | [-all All]
 
-===================
-Run test by Postman
-===================
+----------------------------------------------
+Present Test Result Using the Allure Framework
+----------------------------------------------
 
-Postman also a good tool to run the tests or add more test APIs and update test assertions.
+Install Allure: https://docs.qameta.io/allure/#_get_started
 
-The test is same logic, just like execute bash **./bin/run.sh -cd**. But there are many detail steps need to do.
+Allure is based on standard xUnit results output. Once we have finished running the Newman script, the built-in JUnit reporter outputs a summary of the collection run to a JUnit compatible XML file. (Path: /blackbox-testing/bin/testResult/)
 
-And we choose core-data test as our example.
+Generate report using the following command:
+
+.. code-block:: bash
+
+    $ allure serve /path-to-blackbox-testing-directory/blackbox-testing/bin/testResult
+
+After executing the allure serve command, the following information is displayed in the terminal:
+
+1. The location of the generated report
+
+2. The URL to visit the report
+
+3. The operation to stop the local Allure web server (Ctrl+C)
+
+For example:
+
+.. image:: images/allure-serve.png
+
+For more information about the Allure framework, visit https://docs.qameta.io/allure/
+
+======================
+Run Test Using Postman
+======================
+
+The test uses same logic as **bash ./bin/run.sh -cd**, but there are more steps to complete.
+
+We will use the core-data test below as an example.
 
 ---------------------------
 Import test data into Edgex
 ---------------------------
 
-1. Add script which locates at your_path/to/blackbox-testing/bin/postman-test/collections/core-data-importer.postman_collection.json 
+1. Add the script located at **path/to/blackbox-testing/bin/postman-test/collections/core-data-importer.postman_collection.json**
 
-1-1. Drop or choose the file
+1-1. Drop, or select, the file in the Import dialog box
 
 .. image:: images/import-collection-file.png
 
-1-2. Prepared test data under the tab of Pre-request Script
+1-2. Select the Pre-requisite Scriot tab to view the prepared test data:
 
 .. image:: images/prepare-test-data.png
 
-1-3.  Script under the tab of Tests. This script executes POST API for add new test data.
+1-3.  Select the Tests tab to view the script. This script executes POST API to add new test data.
 
 .. image:: images/import-data-script.png
 
-2. Import environment which locates at **path/to/blackbox-testing/bin/postman-test/environment/core-data.postman_environment.json** 
+2. Import the environment from **path/to/blackbox-testing/bin/postman-test/environment/core-data.postman_environment.json**
 
 .. image:: images/import-env1.png
 .. image:: images/import-env2.png
 
-3. Execute the import script
+3.  Execute the import script in one of the following ways:
 
-3-1. Execute the import script one by one
+3-1.  Execute the import scripts one-by-one
 
 .. image:: images/import-data-1.png
 .. image:: images/import-data-2.png
 
-3-2. Or you can execute the import scripts by Postman Runner
+3-2. Execute the import scripts using Postman Runner
 
 .. image:: images/import-data-3.png
 
---------------------------
-Run test script by Postman
---------------------------
+-----------------------------
+Run Test Script Using Postman
+-----------------------------
 
-1. Import collection.json file **path/to/blackbox-testing/bin/postman-test/collections/core-data.postman_collection.json** , this json file describes the testing APIs and test assertions.
+1. Import the **path/to/blackbox-testing/bin/postman-test/collections/core-data.postman_collection.json file**, this file describes the testing APIs and test assertions.
 
 .. image:: images/import-collection-file.png
 
@@ -258,11 +288,11 @@ Run test script by Postman
 
 .. image:: images/run-test-1.png
 
-3. Select test data file **path/to/blackbox-testing/bin/postman-test/data/eventData.json** and run tests.
+3. Select the **path/to/blackbox-testing/bin/postman-test/data/eventData.json** file and run tests.
 
 .. image:: images/run-test-2.png
 
-4. Then we will see the test result.
+4. View the test result.
 
 .. image:: images/run-test-3.png
 
@@ -270,16 +300,16 @@ Run test script by Postman
 Clean test data
 ---------------
 
-1. Add script which locates at **path/to/blackbox-testing/bin/postman-test/collections/core-data-cleaner.postman_collection.json**
+1. Add the **path/to/blackbox-testing/bin/postman-test/collections/core-data-cleaner.postman_collection.json** script
 
 .. image:: images/import-collection-file.png
 
-2. Execute the clean script
+2. Execute the cleaner script in one of the following ways:
 
-2-1. Execute the clean script one by one
+2-1. Execute the clean scripts one-by-one
 
 .. image:: images/clean-data-1.png
 
-2-2. Or you can execute the clean scripts by Postman Runner
+2-2. Execute the cleaner scripts using Postman Runner
 
 .. image:: images/clean-data-2.png

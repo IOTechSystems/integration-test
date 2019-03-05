@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b2942f9c-d1d3-49fb-a25d-49e96e2a84df",
+		"_postman_id": "d840e622-6231-458d-b71b-49f1c28be0f2",
 		"name": "core-metadata",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -816,7 +816,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1048,13 +1048,33 @@
 								"id": "12efadbf-e6e2-4d86-8a8a-aab73bbd3658",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {  ",
+									"   \"origin\":1471806386919,",
+									"   \"name\":\"test command\",",
+									"   \"get\":{  ",
+									"      \"path\":\"/cooling\",",
+									"      \"response\":{  ",
+									"         \"code\":\"200\",",
+									"         \"errorDescription\":\"not afloat\",",
+									"         \"expectedValues\":\"temperature\"",
+									"      }",
+									"   },",
+									"   \"put\":{  ",
+									"      \"path\":\"/cooling\"",
+									"   }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/command/name/oxygen\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"commandDelRequestId\", res.json()[0].id);",
-									"    }",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/command',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"commandDelRequestId\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1362,13 +1382,33 @@
 								"id": "7a18ce93-08f1-48c7-ab40-203c390b36af",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {  ",
+									"   \"origin\":1471806386919,",
+									"   \"name\":\"test command\",",
+									"   \"get\":{  ",
+									"      \"path\":\"/cooling\",",
+									"      \"response\":{  ",
+									"         \"code\":\"200\",",
+									"         \"errorDescription\":\"not afloat\",",
+									"         \"expectedValues\":\"temperature\"",
+									"      }",
+									"   },",
+									"   \"put\":{  ",
+									"      \"path\":\"/cooling\"",
+									"   }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/command/name/current\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"commandId\", res.json()[0].id);",
-									"    }",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/command',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"commandId\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1430,7 +1470,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								],
 								"type": "text/javascript"
@@ -2893,100 +2933,6 @@
 					"response": []
 				},
 				{
-					"name": "53 http://localhost:48081/api/v1/device/addressable/:addressableId",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "dec9ecbc-45af-48f1-ab4a-7f83e9fb20be",
-								"exec": [
-									"/*",
-									" * Test Case:  /api/v1/device/addressable/:addressableId - GET",
-									" * Version: Alpha",
-									" * Service: Metadata",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"    if(responseCode.code === 200){",
-									"        if(responseBody.length === 0){",
-									"            tests[\"Response body Empty\"] = responseBody === null;",
-									"        } else{",
-									"            var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"            ",
-									"            tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"            ",
-									"            if (contentTypeHeaderExists) {",
-									"                tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"            }",
-									"             //Test body parameters",
-									"            var actualDeviceData;",
-									"            try{",
-									"                //Parse json response",
-									"                actualDeviceData = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualDeviceData.length !== 0) {",
-									"             tests[\"Is Valid Response Schema\"] = tv4.validate(actualDeviceData,data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"            } else {",
-									"                //Shows message when event list is empty",
-									"                console.log(\"Device List Empty\");",
-									"                tests[\"Is Device list empty\"] = actualDeviceData.length === 0",
-									"            }",
-									"        }",
-									"    }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "20db1125-f0e7-4b43-ae02-45870534ac84",
-								"exec": [
-									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/addressable/name/Nest Cam\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"getAddressableId\", res.json().id);",
-									"    }",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/addressable/{{getAddressableId}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"device",
-								"addressable",
-								"{{getAddressableId}}"
-							]
-						},
-						"description": "Find all devices associated to the Addressable with the specified addressable database generated identifier. List may be empty if no device match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no Addressable match on the id provided."
-					},
-					"response": []
-				},
-				{
 					"name": "62 http://localhost:48081/api/v1/device",
 					"event": [
 						{
@@ -3126,7 +3072,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "38475862-a05f-4cf4-a1a5-4f0509952cfa",
 								"exec": [
 									"/*",
 									" * Test Case: /api/v1/device - POST",
@@ -3148,9 +3094,10 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3164,7 +3111,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\" :\"AWS IOT Button\",\r\n   \"description\":\"Home automation system\",\r\n   \"adminState\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"addressable\":{  \r\n      \"name\":\"canary\"\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"Gogle Home device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"Google Home profile\"\r\n   }\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\" :\"AWS IOT Button1\",\r\n   \"description\":\"Home automation system\",\r\n   \"adminState\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"protocols\":{\r\n      \"modbus-tcp\":{\r\n         \"host\":\"localhost\",\r\n         \"port\":\"1234\",\r\n         \"unitID\":\"1\"\r\n      }\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"Gogle Home device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"Google Home profile\"\r\n   },\r\n   \"autoEvents\":[  \r\n      {  \r\n         \"frequency\":123,\r\n         \"onChange\":true,\r\n         \"resource\":\"CurrentHumidity\"\r\n      }\r\n   ]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
@@ -3891,57 +3838,6 @@
 					"response": []
 				},
 				{
-					"name": "49_404 http://localhost:48081/api/v1/device/addressablename/:addressablename",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"    /**",
-									"     * Test Case: /api/v1/device/addressablename/:addressablename - GET",
-									"     * Version: Alpha",
-									"     * @Author: Tata Elxsi",
-									"     *",
-									"     **/",
-									"    tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"    if(responseCode.code === 404){",
-									"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"        }",
-									"        }"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/addressablename/{{InvalidAddressName}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"device",
-								"addressablename",
-								"{{InvalidAddressName}}"
-							]
-						},
-						"description": "Find all devices associated to the Addressable with the specified addressable name. List may be empty if no device match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no Addressable match on the name provided."
-					},
-					"response": []
-				},
-				{
 					"name": "52_404 http://localhost:48081/api/v1/device/profilename/:profilename",
 					"event": [
 						{
@@ -3989,57 +3885,6 @@
 							]
 						},
 						"description": "Find all devices associated to the DeviceProfile with the specified profile name. List may be empty if no device match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no DeviceProfile match on the name provided."
-					},
-					"response": []
-				},
-				{
-					"name": "55_404 http://localhost:48081/api/v1/device/addressable/:addressableId",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ad44da66-f556-4ecc-b860-122e5d618c70",
-								"exec": [
-									"/**",
-									"* Test Case: /api/v1/device/addressable/:addressableId - GET",
-									"* Version: Alpha",
-									"* @Author: Tata Elxsi",
-									"*",
-									"**/",
-									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"}",
-									"// the value descriptor cannot be located by the identifier."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/addressable/57e5fbfde4b060e2d487f244",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"device",
-								"addressable",
-								"57e5fbfde4b060e2d487f244"
-							]
-						},
-						"description": "Find all devices associated to the Addressable with the specified addressable database generated identifier. List may be empty if no device match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no Addressable match on the id provided."
 					},
 					"response": []
 				},
@@ -4105,12 +3950,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "674953e6-4b44-42ea-99cc-3346d8d20ed3",
 								"exec": [
 									"    /**",
 									"     * Test Case:  /api/v1/device - POST",
-									"     * Version: Alpha",
-									"     * @Author: Tata Elxsi",
+									"     * Associated device Profile cannot be found with the id or name provided.",
 									"     *",
 									"     **/",
 									"    tests[\"Status code is 400\"] = responseCode.code === 400;",
@@ -4121,7 +3965,8 @@
 									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
 									"        }",
 									"           }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -4135,7 +3980,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"Amazon Tap\",\r\n   \"description\":\" Portable voice controlled speaker\",\r\n   \"adminstate\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"addressable\":{  \r\n      \"name\":\"\"\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"home thermostat device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"thermostat profile\"\r\n   }\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"Amazon Tap\",\r\n   \"description\":\" Portable voice controlled speaker\",\r\n   \"adminstate\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"protocols\":{  \r\n      \"HTTP\":{  \r\n         \"host\":\"localhost\",\r\n         \"port\":\"1234\",\r\n         \"unitID\":\"1\"\r\n      }\r\n    },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"home thermostat device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"\"\r\n   }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
@@ -4616,7 +4461,7 @@
 									"        }",
 									"        // the device Profile cannot be located by the identifier.",
 									"        tests[\"contains commands\"] = responseBody.has(\"commands\");",
-									"        tests[\"contains objects\"] = responseBody.has(\"objects\");",
+									"        tests[\"contains resources\"] = responseBody.has(\"resources\");",
 									"        tests[\"contains description\"] = responseBody.has(\"description\");",
 									"        tests[\"contains labels\"] = responseBody.has(\"labels\");",
 									"        tests[\"contains manufacturer\"] = responseBody.has(\"manufacturer\");",
@@ -4676,7 +4521,7 @@
 									"        }",
 									"        // the device Profile cannot be located by the identifier.",
 									"        tests[\"contains commands\"] = responseBody.has(\"commands\");",
-									"        tests[\"contains objects\"] = responseBody.has(\"objects\");",
+									"        tests[\"contains resources\"] = responseBody.has(\"resources\");",
 									"        tests[\"contains description\"] = responseBody.has(\"description\");",
 									"        tests[\"contains labels\"] = responseBody.has(\"labels\");",
 									"        tests[\"contains manufacturer\"] = responseBody.has(\"manufacturer\");",
@@ -4904,7 +4749,7 @@
 									"            tests[\"Content-Type is \"+data.ApplicationTextPlainType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationTextPlainType);",
 									"        }",
 									"        if(null !== responseBody){",
-									"            tests[\"Response Object id\"] = responseBody.length === 24;",
+									"            tests[\"Response Object id\"] = responseBody.length === 36;",
 									"        } else{",
 									"            tests[\"Response list is empty\"] = responseBody.length === 0",
 									"        }",
@@ -4923,7 +4768,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPostUniqe\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"commands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"objects\":{\r\n    \"resources\":{\r\n      \"CurrentHumidity\":{\r\n        \"get\":[\r\n          {\r\n            \"parameter\":\"CurrentHumidity\",\r\n            \"property\":\"presentValue\",\r\n            \"operation\":\"get\",\r\n            \"object\":\"AnalogValue_22\"\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n}"
+							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPostUniqe\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"commands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"resources\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -5209,7 +5054,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPost\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"commands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"objects\":{\r\n    \"resources\":{\r\n      \"CurrentHumidity\":{\r\n        \"get\":[\r\n          {\r\n            \"parameter\":\"CurrentHumidity\",\r\n            \"property\":\"presentValue\",\r\n            \"operation\":\"get\",\r\n            \"object\":\"AnalogValue_22\"\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n}"
+							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPost\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"commands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"resources\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -6875,6 +6720,8 @@
 									" *",
 									" **/",
 									" ",
+									"    var schema = pm.globals.get(\"schemas\").DeviceService;",
+									"    ",
 									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"    if(responseCode.code === 200){",
 									"       tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
@@ -6891,7 +6738,7 @@
 									"            console.log(\"Exception while parsing json response\");",
 									"        }",
 									"        if(responseBody !== null){",
-									"            tests[\"Is Valid Response Schema\"] = tv4.validate(deviceService, data.ObjectSchema);",
+									"            tests[\"Is Valid Response Schema\"] = tv4.validate(deviceService, schema);",
 									"        } else {",
 									"            tests[\"DeviceService list empty\"] = deviceService.length === 0",
 									"        }",
@@ -6906,14 +6753,43 @@
 								"id": "95769fd2-36e8-4022-aa93-5da86b15c8ac",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var randName = \"addressable-\"+ Math.random().toString(36).substring(5);",
+									"var addressable = {",
+									"  \"name\":\"addressable-\"+ randName,",
+									"  \"protocol\":\"HTTP\",",
+									"  \"address\":\"127.0.0.1\",",
+									"  \"port\":48089,",
+									"  \"path\":\"/testPath\",",
+									"};",
+									"var deviceService = {",
+									"  \"name\":\"deviceService-\"+ randName,",
+									"  \"addressable\":{",
+									"    \"name\":\"addressable-\"+ randName",
+									"  }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/Common room thermostat deviceservice\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"getDeviceServiceById\", res.json().id);",
-									"    }",
-									"});"
+									"var request = {",
+									"  url: baseUrl+'/api/v1/addressable',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(addressable)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    request.url = baseUrl+'/api/v1/deviceservice';",
+									"    request.body = JSON.stringify(deviceService);",
+									"    pm.sendRequest(request, function (err, res) {",
+									"        if (err) {",
+									"            console.log(err);",
+									"        } else {",
+									"            pm.environment.set(\"getDeviceServiceById\", res.stream.toString());",
+									"        }",
+									"    });",
+									"});",
+									"",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -7270,7 +7146,7 @@
 									"            tests[\"Content-Type is \"+data.ApplicationTextPlainType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationTextPlainType);",
 									"        }",
 									"        if(null !== responseBody){",
-									"            tests[\"Response Object id\"] = responseBody.length === 24;",
+									"            tests[\"Response Object id\"] = responseBody.length === 36;",
 									"        } else{",
 									"            tests[\"Response list is empty\"] = responseBody.length === 0",
 									"        }",
@@ -9441,7 +9317,7 @@
 									"    }",
 									"    ",
 									"    //Validate the body for Id",
-									"    tests[\"Does body contains Id\"] = responseBody.length === 24;",
+									"    tests[\"Does body contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -10320,7 +10196,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"{{scheduleId}}\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"60000\"}"
+							"raw": "{\"id\":\"{{scheduleId}}\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"PT5S\"}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/schedule",
@@ -10343,7 +10219,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e125ede9-deb8-447d-9b26-82fd3291e9c5",
 								"exec": [
 									"/*",
 									" * Test Case: /schedule - POST",
@@ -10370,7 +10246,8 @@
 									"    //Validate the body for Id",
 									"    tests[\"Does body contains Id\"] = responseBody.length === 24;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -10384,7 +10261,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":\"2\", \"cron\":\"0 15 10 * * ?\", \"runOnce\":true} \r\n"
+							"raw": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":\"PT10S\", \"cron\":\"0 15 10 * * ?\", \"runOnce\":true} \r\n"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/schedule",
@@ -11466,6 +11343,182 @@
 				}
 			],
 			"description": "Folder for scheduleevent_error_4xx"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5da10cd0-d90b-4715-ace6-f852bd029486",
+				"type": "text/javascript",
+				"exec": [
+					"var schemas = {} ; ",
+					"",
+					"schemas.DeviceService = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"manages devices and interfaces with coredata\",",
+					"      \"title\": \"deviceservice\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"name\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"name\"",
+					"        },",
+					"        \"description\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"description\"",
+					"        },",
+					"        \"lastConnected\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"lastConnected\"",
+					"        },",
+					"        \"lastReported\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"lastReported\"",
+					"        },",
+					"        \"labels\": {",
+					"          \"type\": \"array\",",
+					"          \"required\": false,",
+					"          \"title\": \"labels\",",
+					"          \"items\": {",
+					"            \"type\": \"string\",",
+					"            \"title\": \"labels\"",
+					"          },",
+					"          \"uniqueItems\": false",
+					"        },",
+					"        \"adminState\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"adminState\"",
+					"        },",
+					"        \"operatingState\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"operatingState\"",
+					"        },",
+					"        \"addressable\": {",
+					"          \"type\": \"object\",",
+					"          \"properties\": {",
+					"            \"id\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"id\"",
+					"            },",
+					"            \"created\": {",
+					"              \"type\": \"integer\",",
+					"              \"required\": false,",
+					"              \"title\": \"created\"",
+					"            },",
+					"            \"modified\": {",
+					"              \"type\": \"integer\",",
+					"              \"required\": false,",
+					"              \"title\": \"modified\"",
+					"            },",
+					"            \"origin\": {",
+					"              \"type\": \"integer\",",
+					"              \"required\": false,",
+					"              \"title\": \"origin\"",
+					"            },",
+					"            \"name\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"name\"",
+					"            },",
+					"            \"protocol\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"protocol\"",
+					"            },",
+					"            \"address\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"address\"",
+					"            },",
+					"            \"port\": {",
+					"              \"type\": \"integer\",",
+					"              \"required\": false,",
+					"              \"title\": \"port\"",
+					"            },",
+					"            \"path\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"path\"",
+					"            },",
+					"            \"publisher\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"publisher\"",
+					"            },",
+					"            \"user\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"user\"",
+					"            },",
+					"            \"password\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"password\"",
+					"            },",
+					"            \"topic\": {",
+					"              \"type\": \"string\",",
+					"              \"required\": false,",
+					"              \"title\": \"topic\"",
+					"            }",
+					"          }",
+					"        }",
+					"      }",
+					"    };",
+					"      ",
+					"schemas.DeviceServiceArray = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The Array of DeviceService\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/DeviceService\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"Notification\": schemas.DeviceService",
+					"        }",
+					"      };",
+					"     ",
+					"    ",
+					"pm.globals.set(\"schemas\", schemas);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8493e49f-8c2e-494e-a1e2-e48ba326af0b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

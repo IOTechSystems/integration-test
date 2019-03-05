@@ -2,19 +2,14 @@
   {
     "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
-    "ValuedescriptorByName": "pressure",
-    "ValuedescriptorByInvalidName": "HC",
-    "ValuedescriptorDeleteByName": "O2",
-    "ValuedescriptorByUmo": "degreecel",
-    "ValuedescriptorByLabel": "hvac",
-    "ValuedescriptorDeleteInavlidId": "8cf9858a-33d5-488d-b2ef-6ae8508f2ba6",
-    "ValuedescriptorByDeleteInvalidName": "HC",
-    "ValuedescriptorDeleteReferReadingName": "RPM",
+    "TextPlainContentType": "text/plain",
+    "start": "1464039919104",
+    "end": "1464039919109",
     "schema": {
       "type": "array",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "EdgeX Core and MetaData value descriptor -describes device/sensor data sent and received",
-      "title": "valueDescriptor",
+      "description": "meta data around anything that needs to be scheduled (one time, frequently with start and end, or on a CRON defined period).",
+      "title": "interval",
       "properties": {
         "id": {
           "type": "string",
@@ -41,53 +36,38 @@
           "required": false,
           "title": "name"
         },
-        "min": {
+        "start": {
           "type": "string",
           "required": false,
-          "title": "min"
+          "title": "start"
         },
-        "max": {
+        "end": {
           "type": "string",
           "required": false,
-          "title": "max"
+          "title": "end"
         },
-        "type": {
+        "frequency": {
           "type": "string",
           "required": false,
-          "title": "type"
+          "title": "frequency"
         },
-        "uomLabel": {
+        "cron": {
           "type": "string",
           "required": false,
-          "title": "uomLabel"
+          "title": "cron"
         },
-        "defaultValue": {
-          "type": "string",
+        "runOnce": {
+          "type": "boolean",
           "required": false,
-          "title": "defaultValue"
-        },
-        "formatting": {
-          "type": "string",
-          "required": false,
-          "title": "formatting"
-        },
-        "labels": {
-          "type": "array",
-          "required": false,
-          "title": "labels",
-          "items": {
-            "type": "string",
-            "title": "labels"
-          },
-          "uniqueItems": false
+          "title": "runOnce"
         }
       }
     },
-    "ObjectSchema": {
+    "objectSchema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "EdgeX Core and MetaData value descriptor -describes device/sensor data sent and received",
-      "title": "valueDescriptor",
+      "description": "meta data around anything that needs to be scheduled (one time, frequently with start and end, or on a CRON defined period).",
+      "title": "interval",
       "properties": {
         "id": {
           "type": "string",
@@ -114,45 +94,30 @@
           "required": false,
           "title": "name"
         },
-        "min": {
+        "start": {
           "type": "string",
           "required": false,
-          "title": "min"
+          "title": "start"
         },
-        "max": {
+        "end": {
           "type": "string",
           "required": false,
-          "title": "max"
+          "title": "end"
         },
-        "type": {
+        "frequency": {
           "type": "string",
           "required": false,
-          "title": "type"
+          "title": "frequency"
         },
-        "uomLabel": {
+        "cron": {
           "type": "string",
           "required": false,
-          "title": "uomLabel"
+          "title": "cron"
         },
-        "defaultValue": {
-          "type": "string",
+        "runOnce": {
+          "type": "boolean",
           "required": false,
-          "title": "defaultValue"
-        },
-        "formatting": {
-          "type": "string",
-          "required": false,
-          "title": "formatting"
-        },
-        "labels": {
-          "type": "array",
-          "required": false,
-          "title": "labels",
-          "items": {
-            "type": "string",
-            "title": "labels"
-          },
-          "uniqueItems": false
+          "title": "runOnce"
         }
       }
     }

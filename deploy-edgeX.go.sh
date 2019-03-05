@@ -49,7 +49,7 @@ run_service data
 run_service command
 
 #
-#run_service scheduler
+run_service scheduler
 #
 #while ! $(docker-compose -f docker-compose.go.yml exec -T consul nc -z edgex-support-scheduler 48085);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 #sleep 5

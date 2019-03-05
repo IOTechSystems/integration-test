@@ -52,6 +52,11 @@ SUPPORTNOTIFICATION_NOTIFICATION_DATADUMP=/etc/newman/DataDumps/supportNotificat
 SUPPORTNOTIFICATION_SUBSCRIPTION_DATADUMP=/etc/newman/DataDumps/supportNotifications/subscriptionDb.json
 SUPPORTNOTIFICATION_TRANSMISSION_DATADUMP=/etc/newman/DataDumps/supportNotifications/transmissionDb.json
 
+INTERVAL_DATAFILE=/etc/newman/data/intervalData.json
+INTERVAL_DATADUMP=etc/newman/DataDumps/intervalDb.json
+INTERVALACTION_DATAFILE=/etc/newman/data/intervalActionData.json
+INTERVALACTION_DUMPFILE=/ect/newman/DataDumps/intervalActionDb.json
+
 if [ -f $CONFIGFILE ]; then
 
 	source $CONFIGFILE
