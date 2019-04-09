@@ -35,12 +35,10 @@ run_service volume
 run_service consul
 
 run_service config-seed
-run_service mongo
+
 run_service redis
 
 run_service logging
-
-run_service notifications
 
 run_service metadata
 
@@ -57,11 +55,6 @@ run_service command
 run_service export-client
 
 run_service export-distro
-
-#if [ "$EX_ARCH" = "x86_64" ]
-#then
-#    run_service rulesengine
-#fi
 
 #run_service device-sdk
 

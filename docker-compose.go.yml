@@ -8,6 +8,9 @@ volumes:
 
 services:
 
+#################################################################
+# Core Services
+#################################################################
   volume:
     image: docker.iotechsys.com/edgexpert/docker-edgex-volume-${EX_ARCH}:${EX_VER}
 #    container_name: edgex-files
@@ -32,13 +35,12 @@ services:
         aliases:
             - edgex-core-consul
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
     depends_on:
       - volume
-
+      
   config-seed:
     image: docker.iotechsys.com/edgexpert/config-seed-go-${EX_ARCH}:${EX_VER}
 #    container_name: edgex-config-seed
@@ -48,50 +50,43 @@ services:
         aliases:
             - edgex-core-config-seed
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
-    depends_on:
-      - consul
-      
-  mongo:
-    image: docker.iotechsys.com/edgexpert/docker-edgex-mongo-${EX_ARCH}:${EX_VER}
-#    ports:
-#      - "27017:27017"
-#    container_name: edgex-mongo
-    hostname: edgex-mongo
-    networks:
-      edgex-network:
-        aliases:
-            - edgex-mongo
-    volumes:
-      - db-data:/data/db
-      - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
-      - newman:/etc/newman
     depends_on:
       - volume
+      - consul
 
   redis:
     image: redis:5
 #    ports:
-#    - "6379:6379"
+#      - "6379:6379"
 #    container_name: edgex-redis
     hostname: edgex-redis
     networks:
       edgex-network:
         aliases:
-        - edgex-redis
+          - edgex-redis
     volumes:
-    - db-data:/data/db
-    - log-data:/edgex/logs
-    - consul-config:/consul/config
-    - consul-data:/consul/data
+      - db-data:/data
+      - log-data:/edgex/logs
     depends_on:
     - volume
-
+       
+  sys-mgmt:
+    image: docker.iotechsys.com/edgexpert/sys-mgmt-agent-${EX_ARCH}:${EX_VER}
+    ports:
+      - "48090:48090"
+    container_name: edgex-sys-mgmt
+    hostname: edgex-sys-mgmt
+    networks:
+      - edgex-network
+    volumes:
+      - log-data:/edgex/logs
+    depends_on:
+      - volume
+      - consul
+      
   logging:
     image: docker.iotechsys.com/edgexpert/support-logging-go-${EX_ARCH}:${EX_VER}
     entrypoint:
@@ -107,39 +102,13 @@ services:
       edgex-network:
         aliases:
           - edgex-support-logging
-    volumes:
-      - db-data:/data/db
+    volumes:      
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
       - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
+      - config-seed
       - redis
       - volume
-
-  notifications:
-    image: docker.iotechsys.com/edgexpert/support-notifications-go-${EX_ARCH}:${EX_VER}
-    entrypoint:
-      - /support-notifications
-      - --consul=${EX_CONSUL}
-      - --profile=docker
-      - --confdir=/res
-#    ports:
-#      - "48060:48060"
-#    container_name: edgex-support-notifications
-    hostname: edgex-support-notifications
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-support-notifications
-    volumes:
-      - db-data:/data/db
-      - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
-      - ./edgexpertLicense:/edgexpert/licenses
-    depends_on:
-      - logging
 
   metadata:
     image: docker.iotechsys.com/edgexpert/core-metadata-go-${EX_ARCH}:${EX_VER}
@@ -157,11 +126,13 @@ services:
         aliases:
           - edgex-core-metadata
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
       - ./edgexpertLicense:/edgexpert/licenses
+    depends_on:
+      - logging
+      - volume
+      - redis
+      - config-seed
 
   data:
     image: docker.iotechsys.com/edgexpert/core-data-go-${EX_ARCH}:${EX_VER}
@@ -180,11 +151,13 @@ services:
         aliases:
           - edgex-core-data
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
       - ./edgexpertLicense:/edgexpert/licenses
+    depends_on:
+      - logging
+      - volume
+      - redis
+      - config-seed
 
   command:
     image: docker.iotechsys.com/edgexpert/core-command-go-${EX_ARCH}:${EX_VER}
@@ -202,10 +175,7 @@ services:
         aliases:
           - edgex-core-command
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
       - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
       - metadata
@@ -213,10 +183,10 @@ services:
   scheduler:
     image: docker.iotechsys.com/edgexpert/support-scheduler-go-${EX_ARCH}:${EX_VER}
     entrypoint:
-    - /support-scheduler
-    - --consul=${EX_CONSUL}
-    - --profile=docker
-    - --confdir=/res
+      - /support-scheduler
+      - --consul=${EX_CONSUL}
+      - --profile=docker
+      - --confdir=/res
 #    ports:
 #      - "48085:48085"
 #    container_name: edgex-support-scheduler
@@ -226,14 +196,11 @@ services:
         aliases:
           - edgex-support-scheduler
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
       - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
       - metadata
-
+      
   export-client:
     image: docker.iotechsys.com/edgexpert/export-client-go-${EX_ARCH}:${EX_VER}
     entrypoint:
@@ -250,15 +217,13 @@ services:
         aliases:
           - edgex-export-client
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
       - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
       - data
+      - export-distro
+      - config-seed
     environment:
-      - EXPORT_CLIENT_MONGO_URL=edgex-mongo
       - EXPORT_CLIENT_DISTRO_HOST=edgex-export-distro
       - EXPORT_CLIENT_CONSUL_HOST=edgex-core-consul
 
@@ -278,38 +243,17 @@ services:
         aliases:
           - edgex-export-distro
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
       - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
-      - export-client
+      - data
+      - config-seed
     environment:
       - EXPORT_DISTRO_CLIENT_HOST=edgex-export-client
       - EXPORT_DISTRO_DATA_HOST=edgex-core-data
       - EXPORT_DISTRO_CONSUL_HOST=edgex-core-consul
       - EXPORT_DISTRO_MQTTS_CERT_FILE=none
       - EXPORT_DISTRO_MQTTS_KEY_FILE=none
-
-
-#  rulesengine:
-#    image: docker.iotechsys.com/edgexpert/support-rulesengine-java-${EX_ARCH}:1.0.1
-#    ports:
-#      - "48075:48075"
-#    container_name: edgex-support-rulesengine
-#    hostname: edgex-support-rulesengine
-#    networks:
-#      edgex-network:
-#        aliases:
-#          - edgex-support-rulesengine
-#    volumes:
-#      - db-data:/data/db
-#      - log-data:/edgex/logs
-#      - consul-config:/consul/config
-#      - consul-data:/consul/data
-#    depends_on:
-#      - export-distro
 
   postman:
     image: docker.iotechsys.com/services/newman_${EX_ARCH}:4.0.2
@@ -319,13 +263,13 @@ services:
           - postman
     volumes:
       - newman:/etc/newman
-
+      
 #################################################################
 # Management Console
 #################################################################
 
   iotech-manager:
-    image: docker.iotechsys.com/edgexpert/iotech-manager-java-${EX_ARCH}:${EX_VER}
+    image: docker.iotechsys.com/edgexpert/iotech-manager-${EX_ARCH}:${EX_VER}
     ports:
       - "8080:8080"
     container_name: iotech-manager
@@ -333,7 +277,6 @@ services:
     networks:
       - edgex-network
     depends_on:
-      - volume
       - metadata
       - data
       - command
@@ -342,170 +285,173 @@ services:
 # Device Services
 #################################################################
 
-  device-virtual:
-    image: docker.iotechsys.com/edgexpert/device-virtual-java-${EX_ARCH}:${EX_VER}
+  device-opc-ua:
+    image: docker.iotechsys.com/edgexpert/device-opc-ua-c-${EX_ARCH}:${EX_VER}
     entrypoint:
-      - java
-      - -jar
-      - -Djava.security.egd=file:/dev/urandom
-      - -Xmx100M
-      - device-virtual.jar
-      - --spring.cloud.consul.enabled=${EX_CONSUL}
-      - --logging.remote.enable=${EX_LOG}
-#    ports:
-#      - "49990:49990"
-#    container_name: edgex-device-virtual
-    hostname: edgex-device-virtual
+    - /device_opcua
+    - --confdir=/res
+    - --name=device-opcua
+    - --registry=${EX_CONSUL}
+    ports:
+      - "49952:49952"
+    container_name: edgex-device-opc-ua
+    hostname: edgex-device-opc-ua
     networks:
       - edgex-network
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
+      - metadata
       - data
       - command
 
-  device-sdk:
-    image: docker.iotechsys.com/edgexpert/device-sdk-java-${EX_ARCH}:${EX_VER}
+  device-bacnet-ip:
+    image: docker.iotechsys.com/edgexpert/device-bacnet-ip-${EX_ARCH}:${EX_VER}
     entrypoint:
-      - java
-      - -jar
-      - -Djava.security.egd=file:/dev/urandom
-      - -Xmx100M
-      - device-sdk.jar
-      - --spring.cloud.consul.enabled=${EX_CONSUL}
-      - --logging.remote.enable=${EX_LOG}
-#    ports:
-#      - "49999:49999"
-#    container_name: edgex-device-sdk
-    hostname: edgex-device-sdk
+      - /device-bacnet-c/build/release/device-bacnet-c
+      - --confdir=/device-bacnet-c/res
+      - --name=device-bacnet-ip
+      - --registry=${EX_CONSUL}
+    ports:
+      - "49901:49901"
+    container_name: edgex-device-bacnet-ip
+    hostname: edgex-device-bacnet-ip
     networks:
-      edgex-network:
-        aliases:
-          - edgex-device-sdk
+      - edgex-network
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
+      - metadata
+      - data
+      - command
+
+  device-bacnet-mstp:
+    image: docker.iotechsys.com/edgexpert/device-bacnet-mstp-${EX_ARCH}:${EX_VER}
+    entrypoint:
+    - /device-bacnet-c/build/release/device-bacnet-c
+    - --confdir=/device-bacnet-c/res
+    - --name=device-bacnet-mtsp
+    - --registry=${EX_CONSUL}
+    ports:
+      - "49902:49902"
+    container_name: edgex-device-bacnet-mstp
+    hostname: edgex-device-bacnet-mstp
+    networks:
+      - edgex-network
+    volumes:
+      - log-data:/edgex/logs
+      - ./edgexpertLicense:/edgexpert/licenses
+    depends_on:
+      - metadata
+      - data
+      - command
+
+  device-random:
+    image: docker.iotechsys.com/edgexpert/device-random-go-${EX_ARCH}:${EX_VER}
+    entrypoint:
+      - /device-random
+      - --profile=docker
+      - --confdir=/res
+      - --registry=${EX_CONSUL}
+    ports:
+      - "49988:49988"
+    container_name: edgex-device-random
+    hostname: edgex-device-random
+    networks:
+      - edgex-network
+    volumes:
+      - log-data:/edgex/logs
+      - ./edgexpertLicense:/edgexpert/licenses
+    depends_on:
+      - metadata
       - data
       - command
 
   device-modbus:
-    image: docker.iotechsys.com/edgexpert/device-modbus-java-${EX_ARCH}:${EX_VER}
+    image: docker.iotechsys.com/edgexpert/device-modbus-go-${EX_ARCH}:${EX_VER}
     entrypoint:
-      - java
-      - -jar
-      - -Djava.security.egd=file:/dev/urandom
-      - -Xmx100M
-      - device-modbus.jar
-      - --spring.cloud.consul.enabled=${EX_CONSUL}
-      - --logging.remote.enable=${EX_LOG}
+      - /device-modbus
+      - --profile=docker
+      - --confdir=/res
+      - --registry=${EX_CONSUL}
     ports:
       - "49991:49991"
     container_name: edgex-device-modbus
+    hostname: edgex-device-modbus
     networks:
       - edgex-network
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
-    privileged: true
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
+      - metadata
       - data
       - command
-
-  device-bacnet:
-    image: docker.iotechsys.com/edgexpert/device-bacnet-java-${EX_ARCH}:${EX_VER}
-    entrypoint:
-      - ./bacnet.sh
-      - device-bacnet.jar
-      - -Djava.security.egd=file:/dev/urandom
-      - -Xmx100
-      - FlaskController.py
-      - "5002"
-      - --spring.cloud.consul.enabled=${EX_CONSUL}
-      - --logging.remote.enable=${EX_LOG}
-    ports:
-      - "49986:49986"
-      - "5002:5002"
-    container_name: edgex-device-bacnet
-    hostname: edgex-device-bacnet
-    networks:
-      - edgex-network
-    volumes:
-      - db-data:/data/db
-      - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
-    depends_on:
-      - data
-      - command
-
   device-mqtt:
-    image: docker.iotechsys.com/edgexpert/device-mqtt-java-${EX_ARCH}:${EX_VER}
+    image: docker.iotechsys.com/edgexpert/device-mqtt-go-${EX_ARCH}:${EX_VER}
     entrypoint:
-      - java 
-      - -jar
-      - -Djava.security.egd=file:/dev/urandom
-      - -Xmx100M
-      - device-mqtt.jar
-      - --spring.cloud.consul.enabled=${EX_CONSUL}
-      - --logging.remote.enable=${EX_LOG}
+      - /device-mqtt
+      - --profile=docker
+      - --confdir=/res
+      - --registry=${EX_CONSUL}
     ports:
       - "49982:49982"
-      - "14377:14377"
     container_name: edgex-device-mqtt
     hostname: edgex-device-mqtt
     networks:
       - edgex-network
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
+      - ./edgexpertLicense:/edgexpert/licenses
     depends_on:
+      - metadata
       - data
       - command
+      - mqtt-broker
     environment:
       - INCOMING_MQTT_BROKER=172.17.0.1
       - INCOMING_MQTT_BROKER_PORT=1883
       - RESPONSE_MQTT_BROKER=172.17.0.1
       - RESPONSE_MQTT_BROKER_PORT=1883
 
-
-  device-opc-ua:
-    image: docker.iotechsys.com/edgexpert/device-opc-ua-java-${EX_ARCH}:${EX_VER}
+  device-grove:
+    image: docker.iotechsys.com/edgexpert/device-grove-${EX_ARCH}:${EX_VER}
     entrypoint:
-      - java 
-      - -jar
-      - -Djava.security.egd=file:/dev/urandom
-      - -Xmx100M
-      - device-opc-ua.jar
-      - --spring.cloud.consul.enabled=${EX_CONSUL}
-      - --logging.remote.enable=${EX_LOG}
+    - /device-grove
+    - --confdir=/res
+    - --name=device-grove
+    - --registry=${EX_CONSUL}
     ports:
-      - "59090:59090"
-    container_name: edgex-device-opc-ua
-    hostname: edgex-device-opc-ua
+      - "49992:49992"
+    devices:
+#     - /dev/i2c-5 # for UP Squared (x86, 64-bit)
+      - /dev/i2c-1 # for Raspberry Pi (arm 32, 64-bit)
+    container_name: edgex-device-grove
+    hostname: edgex-device-grove
     networks:
       - edgex-network
     volumes:
-      - db-data:/data/db
       - log-data:/edgex/logs
-      - consul-config:/consul/config
-      - consul-data:/consul/data
     depends_on:
+      - metadata
       - data
       - command
-     
+      
 #################################################################
 # Tools
 #################################################################
+      
+  mqtt-broker:
+    image: docker.iotechsys.com/edgexpert/docker-mqtt-broker-${EX_ARCH}:${EX_VER}
+    ports:
+      - "1883:1883"
+    container_name: mqtt-broker
+    hostname: mqtt-broker
+    networks:
+      - edgex-network
+
   bacnet-server:
     image: docker.iotechsys.com/edgexpert/docker-bacnet-server-${EX_ARCH}:${EX_VER}
     container_name: bacnet-server
@@ -513,8 +459,8 @@ services:
     networks:
       - edgex-network
     depends_on:
-      - device-bacnet
-      
+      - device-bacnet-ip
+   
 networks:
   edgex-network:
     driver: "bridge"
